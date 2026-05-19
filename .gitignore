@@ -2,7 +2,9 @@
 __pycache__/
 *.pyc
 
-# Libvirt images
+# VM images
+vm_images/
+*.img
 *.qcow2
 *.iso
 
