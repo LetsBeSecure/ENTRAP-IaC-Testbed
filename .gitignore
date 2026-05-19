@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+
+# Libvirt images
+*.qcow2
+*.iso
+
+# Cloud-init temporary files
+cloud_init/
+
+# Captures
+captures/
+
+# Logs
+*.log
+
+# Ansible retry files
+*.retry
+
+# VSCode
+.vscode/
+
+# Vim swap
+*.swp
+
+# Temporary files
+tmp/
+
+# OS files
+.DS_Store

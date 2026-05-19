@@ -1,0 +1,48 @@
+---
+- name: Configure DNS server
+  hosts: dns
+  become: true
+
+  tasks:
+
+    - name: Install bind9
+      apt:
+        name:
+          - bind9
+          - dnsutils
+        update_cache: true
+        state: present
+
+    - name: Configure named.conf.local
+      copy:
+        dest: /etc/bind/named.conf.local
+        content: |
+          zone "enterprise.lab" {
+              type master;
+              file "/etc/bind/db.enterprise.lab";
+          };
+
+    - name: Configure DNS zone
+      copy:
+        dest: /etc/bind/db.enterprise.lab
+        content: |
+          $TTL 604800
+          @ IN SOA dns1.enterprise.lab. root.enterprise.lab. (
+              2
+              604800
+              86400
+              2419200
+              604800 )
+
+          @ IN NS dns1.enterprise.lab.
+
+          dns1 IN A 10.10.10.53
+          dhcp1 IN A 10.10.10.10
+          backup1 IN A 10.10.10.20
+          client1 IN A 10.10.10.100
+
+    - name: Restart bind9
+      systemd:
+        name: bind9
+        enabled: true
+        state: restarted

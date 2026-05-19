@@ -1,0 +1,34 @@
+---
+- name: Destroy ransomware lab
+  hosts: localhost
+  connection: local
+  become: true
+  become_method: sudo
+  gather_facts: false
+
+  vars:
+    vms:
+      - dhcp1
+      - dns1
+      - backup1
+      - client1
+
+  tasks:
+
+    - name: Destroy VMs
+      shell: virsh destroy {{ item }}
+      loop: "{{ vms }}"
+      ignore_errors: true
+
+    - name: Undefine VMs
+      shell: virsh undefine {{ item }} --remove-all-storage
+      loop: "{{ vms }}"
+      ignore_errors: true
+
+    - name: Destroy network
+      shell: virsh net-destroy enterprise-net
+      ignore_errors: true
+
+    - name: Undefine network
+      shell: virsh net-undefine enterprise-net
+      ignore_errors: true

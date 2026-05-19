@@ -1,0 +1,54 @@
+---
+- name: Configure DHCP server
+  hosts: dhcp
+  become: true
+
+  tasks:
+
+    - name: Install Kea DHCP
+      apt:
+        name:
+          - kea
+          - kea-dhcp4-server
+        update_cache: true
+        state: present
+
+    - name: Configure Kea DHCP
+      copy:
+        dest: /etc/kea/kea-dhcp4.conf
+        content: |
+          {
+            "Dhcp4": {
+              "interfaces-config": {
+                "interfaces": [ "ens3" ]
+              },
+
+              "subnet4": [
+                {
+                  "subnet": "10.10.10.0/24",
+                  "pools": [
+                    {
+                      "pool": "10.10.10.150 - 10.10.10.200"
+                    }
+                  ],
+
+                  "option-data": [
+                    {
+                      "name": "routers",
+                      "data": "10.10.10.1"
+                    },
+                    {
+                      "name": "domain-name-servers",
+                      "data": "10.10.10.53"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+
+    - name: Restart DHCP
+      systemd:
+        name: kea-dhcp4-server
+        enabled: true
+        state: restarted

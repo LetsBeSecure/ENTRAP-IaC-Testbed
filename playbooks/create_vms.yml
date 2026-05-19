@@ -1,0 +1,145 @@
+---
+- name: Create enterprise VMs
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  vars:
+
+    vm_storage: /var/lib/libvirt/images
+    base_image: /opt/vm_images/jammy-server-cloudimg-amd64.img
+
+    vms:
+      - name: dhcp1
+        ip: 10.10.10.10
+
+      - name: dns1
+        ip: 10.10.10.53
+
+      - name: backup1
+        ip: 10.10.10.20
+
+      - name: client1
+        ip: 10.10.10.100
+
+  tasks:
+
+    - name: Create qcow2 disks
+      command: >
+        qemu-img create -f qcow2
+        -F qcow2
+        -b {{ base_image }}
+        {{ vm_storage }}/{{ item.name }}.qcow2 20G
+      args:
+        creates: "{{ vm_storage }}/{{ item.name }}.qcow2"
+      loop: "{{ vms }}"
+
+    - name: Create cloud-init folders
+      file:
+        path: "/tmp/{{ item.name }}"
+        state: directory
+      loop: "{{ vms }}"
+
+    - name: Create meta-data
+      copy:
+        dest: "/tmp/{{ item.name }}/meta-data"
+        content: |
+          instance-id: {{ item.name }}
+          local-hostname: {{ item.name }}
+      loop: "{{ vms }}"
+
+    - name: Create user-data
+      copy:
+        dest: "/tmp/{{ item.name }}/user-data"
+        content: |
+          #cloud-config
+
+          hostname: {{ item.name }}
+
+          users:
+            - name: student
+              groups: sudo
+              shell: /bin/bash
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              plain_text_passwd: student
+              lock_passwd: false
+
+          ssh_pwauth: true
+          disable_root: false
+
+          chpasswd:
+            list: |
+              student:student
+            expire: false
+
+          package_update: false
+          package_upgrade: false
+
+          write_files:
+            - path: /etc/netplan/01-netcfg.yaml
+              permissions: '0600'
+              content: |
+                network:
+                  version: 2
+                  ethernets:
+                    enp1s0:
+                      dhcp4: false
+                      addresses:
+                        - {{ item.ip }}/24
+                      routes:
+                        - to: default
+                          via: 10.10.10.1
+                      nameservers:
+                        addresses:
+                          - 8.8.8.8
+                          - 1.1.1.1
+
+          runcmd:
+            - netplan apply
+
+      loop: "{{ vms }}"
+
+    - name: Generate cloud-init ISOs
+      command: >
+        genisoimage
+        -output {{ vm_storage }}/{{ item.name }}-seed.iso
+        -volid cidata
+        -joliet
+        -rock
+        /tmp/{{ item.name }}/user-data
+        /tmp/{{ item.name }}/meta-data
+      loop: "{{ vms }}"
+
+    - name: Check if VM already exists
+      shell: virsh dominfo {{ item.name }}
+      register: vm_check
+      failed_when: false
+      changed_when: false
+      loop: "{{ vms }}"
+
+    - name: Create VMs
+      command: >
+        virt-install
+        --name {{ item.item.name }}
+        --memory 2048
+        --vcpus 2
+        --disk {{ vm_storage }}/{{ item.item.name }}.qcow2
+        --disk {{ vm_storage }}/{{ item.item.name }}-seed.iso,device=cdrom
+        --network network=enterprise-net
+        --os-variant ubuntu22.04
+        --graphics none
+        --import
+        --noautoconsole
+      when: item.rc != 0
+      loop: "{{ vm_check.results }}"
+
+    - name: Wait 120 seconds for cloud-init
+      pause:
+        seconds: 120
+
+    - name: Wait for SSH
+      wait_for:
+        host: "{{ item.ip }}"
+        port: 22
+        timeout: 600
+      loop: "{{ vms }}"

@@ -1,0 +1,28 @@
+---
+- name: Create enterprise libvirt network
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  vars:
+    network_xml: "../configs/network/enterprise-net.xml"
+
+  tasks:
+
+    - name: Check if network exists
+      shell: virsh net-list --all | grep enterprise-net
+      register: network_check
+      failed_when: false
+      changed_when: false
+
+    - name: Define network
+      command: virsh net-define {{ network_xml }}
+      when: network_check.rc != 0
+
+    - name: Start network
+      command: virsh net-start enterprise-net
+      when: network_check.rc != 0
+
+    - name: Enable autostart
+      command: virsh net-autostart enterprise-net
+      when: network_check.rc != 0

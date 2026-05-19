@@ -1,0 +1,40 @@
+---
+- name: Configure backup server
+  hosts: backup
+  become: true
+
+  tasks:
+
+    - name: Install samba
+      apt:
+        name: samba
+        update_cache: true
+        state: present
+
+    - name: Create backup share
+      file:
+        path: /srv/backups
+        state: directory
+        mode: '0777'
+
+    - name: Configure samba
+      copy:
+        dest: /etc/samba/smb.conf
+        content: |
+          [global]
+          workgroup = WORKGROUP
+          security = user
+          map to guest = Bad User
+
+          [backups]
+          path = /srv/backups
+          browsable = yes
+          writable = yes
+          guest ok = yes
+          read only = no
+
+    - name: Restart samba
+      systemd:
+        name: smbd
+        enabled: true
+        state: restarted

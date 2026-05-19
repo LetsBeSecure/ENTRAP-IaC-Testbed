@@ -1,0 +1,21 @@
+---
+- name: Create VM snapshots
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    vms:
+      - dhcp1
+      - dns1
+      - backup1
+      - client1
+
+  tasks:
+
+    - name: Create snapshots
+      command: >
+        virsh snapshot-create-as
+        {{ item }}
+        clean-state
+      loop: "{{ vms }}"
+      ignore_errors: true

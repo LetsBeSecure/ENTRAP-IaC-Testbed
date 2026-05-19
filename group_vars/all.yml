@@ -1,0 +1,42 @@
+enterprise_network_name: enterprise-net
+
+enterprise_bridge_name: virbr10
+
+enterprise_gateway: 10.10.10.1
+
+enterprise_subnet: 10.10.10.0/24
+
+enterprise_netmask: 255.255.255.0
+
+project_root: "{{ playbook_dir }}/.."
+
+runtime_dir: "/var/lib/libvirt/images/ransomware_lab"
+
+vm_storage_dir: "{{ runtime_dir }}"
+
+seed_iso_dir: "{{ runtime_dir }}"
+
+base_image: "/var/lib/libvirt/images/ransomware_lab/jammy-server-cloudimg-amd64.img"
+
+cloud_init_dir: "{{ project_root }}/cloud_init"
+
+network_xml: "{{ project_root }}/configs/network/enterprise-net.xml"
+
+vms:
+  - name: dns1
+    ip: 10.10.10.2
+    memory: 2048
+    vcpus: 2
+
+  - name: dhcp1
+    ip: 10.10.10.3
+    memory: 2048
+    vcpus: 2
+
+  - name: client1
+    memory: 2048
+    vcpus: 2
+
+  - name: backup1
+    memory: 2048
+    vcpus: 2
