@@ -332,6 +332,123 @@ sudo ansible-playbook -i inventory/hosts.ini playbooks/site.yml
 
 ---
 
+---
+
+# 🌐 Internal Enterprise DNS Validation
+
+After deployment, the enterprise infrastructure can be configured to use the internally deployed DNS server:
+
+```text
+10.10.10.53
+```
+
+instead of public DNS resolvers.
+
+Example `netplan` configuration on `client1`:
+
+```yaml
+network:
+  version: 2
+  ethernets:
+    enp1s0:
+      dhcp4: false
+      addresses:
+        - 10.10.10.100/24
+      routes:
+        - to: default
+          via: 10.10.10.1
+      nameservers:
+        addresses:
+          - 10.10.10.53
+```
+
+Apply configuration:
+
+```bash
+sudo netplan apply
+```
+
+---
+
+## 🔍 Verify DNS Resolver
+
+```bash
+resolvectl status
+```
+
+Expected output:
+
+```text
+Link 2 (enp1s0)
+Current Scopes: DNS
+DNS Servers: 10.10.10.53
+```
+
+---
+
+## 🧪 Validate Internal DNS Resolution
+
+Example:
+
+```bash
+dig dns1.enterprise.lab
+```
+
+Expected output:
+
+```text
+dns1.enterprise.lab.    IN    A    10.10.10.53
+```
+
+Additional examples:
+
+```bash
+dig backup1.enterprise.lab
+
+dig dhcp1.enterprise.lab
+
+ping dns1.enterprise.lab
+```
+
+---
+
+## ℹ️ Note on `127.0.0.53`
+
+Ubuntu uses `systemd-resolved` as a local DNS stub resolver.
+
+Therefore, commands such as `dig` may show:
+
+```text
+SERVER: 127.0.0.53
+```
+
+This is normal behavior.
+
+The local resolver forwards DNS requests internally to the configured enterprise DNS server:
+
+```text
+10.10.10.53
+```
+
+---
+
+## ⚠️ Open vSwitch Warning
+
+During `netplan apply`, Ubuntu may display:
+
+```text
+WARNING:root:Cannot call Open vSwitch: ovsdb-server.service is not running.
+```
+
+This warning is harmless in this project because the ransomware testbed uses:
+
+- libvirt NAT networking
+- standard Linux bridges
+
+and does NOT depend on Open vSwitch.
+
+---
+
 ## 🧯 Troubleshooting
 
 ### VM Already Exists
