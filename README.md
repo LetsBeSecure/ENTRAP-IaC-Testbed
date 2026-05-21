@@ -115,12 +115,24 @@ sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 ```
 
-### Verify Virtualization & KVM
+## Verify Virtualization & KVM
 
-Check that hardware virtualization is enabled (output should be greater than `0`):
+Check hardware virtualization support:
 
 ```bash
 egrep -c '(vmx|svm)' /proc/cpuinfo
+```
+
+Expected output:
+
+```text
+> 0
+```
+
+Install KVM verification utilities:
+
+```bash
+sudo apt install -y cpu-checker
 ```
 
 Verify KVM acceleration:
