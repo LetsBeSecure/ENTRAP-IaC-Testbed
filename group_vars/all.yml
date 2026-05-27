@@ -24,12 +24,12 @@ network_xml: "{{ project_root }}/configs/network/enterprise-net.xml"
 
 vms:
   - name: dns1
-    ip: 10.10.10.2
+    ip: 10.10.10.53
     memory: 2048
     vcpus: 2
 
   - name: dhcp1
-    ip: 10.10.10.3
+    ip: 10.10.10.10
     memory: 2048
     vcpus: 2
 
