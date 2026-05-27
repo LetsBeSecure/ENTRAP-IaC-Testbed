@@ -13,7 +13,7 @@
 
     - name: Create backup share
       file:
-        path: /srv/backups
+        path: "{{ backup_share_path }}"
         state: directory
         mode: '0777'
 
@@ -27,7 +27,7 @@
           map to guest = Bad User
 
           [backups]
-          path = /srv/backups
+          path = {{ backup_share_path }}
           browsable = yes
           writable = yes
           guest ok = yes

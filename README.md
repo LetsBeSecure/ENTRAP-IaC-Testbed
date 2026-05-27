@@ -63,11 +63,11 @@ RansomwareTestbed/
 ├── configs/
 │   └── network/
 │       └── enterprise-net.xml
-├── group_vars/
-│   └── all.yml
 ├── inventory/
 │   └── hosts.ini
 ├── playbooks/
+│   ├── group_vars/
+│   │   └── all.yml
 │   ├── site.yml
 │   ├── 00_create_enterprise_network.yml
 │   ├── create_vms.yml
@@ -167,8 +167,8 @@ cd RansomwareTestbed
 ### 2. Download the Ubuntu Cloud Image
 
 ```bash
-sudo mkdir -p /opt/vm_images
-cd /opt/vm_images
+sudo mkdir -p /var/lib/libvirt/images/ransomware_lab
+cd /var/lib/libvirt/images/ransomware_lab
 sudo wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 ```
 
@@ -247,10 +247,10 @@ sudo ansible-playbook playbooks/snapshots.yml
 
 ```bash
 # List enterprise network
-virsh net-list --all
+sudo virsh net-list --all
 
 # List virtual machines
-virsh list --all
+sudo virsh list --all
 ```
 
 Expected virtual machines:
@@ -332,8 +332,8 @@ sudo ansible-playbook playbooks/destroy_lab.yml
 ### Remove Leftover Disk Images
 
 ```bash
-sudo rm -f /var/lib/libvirt/images/*.qcow2
-sudo rm -f /var/lib/libvirt/images/*-seed.iso
+sudo rm -f /var/lib/libvirt/images/ransomware_lab/*.qcow2
+sudo rm -f /var/lib/libvirt/images/ransomware_lab/*-seed.iso
 ```
 
 ### Redeploy

@@ -4,13 +4,10 @@
   become: true
   gather_facts: false
 
-  vars:
-    network_xml: "../configs/network/enterprise-net.xml"
-
   tasks:
 
     - name: Check if network exists
-      shell: virsh net-list --all | grep enterprise-net
+      shell: virsh net-list --all | grep {{ enterprise_network_name }}
       register: network_check
       failed_when: false
       changed_when: false
@@ -20,9 +17,9 @@
       when: network_check.rc != 0
 
     - name: Start network
-      command: virsh net-start enterprise-net
+      command: virsh net-start {{ enterprise_network_name }}
       when: network_check.rc != 0
 
     - name: Enable autostart
-      command: virsh net-autostart enterprise-net
+      command: virsh net-autostart {{ enterprise_network_name }}
       when: network_check.rc != 0

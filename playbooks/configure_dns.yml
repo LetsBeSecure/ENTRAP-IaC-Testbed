@@ -17,29 +17,28 @@
       copy:
         dest: /etc/bind/named.conf.local
         content: |
-          zone "enterprise.lab" {
+          zone "{{ dns_zone }}" {
               type master;
-              file "/etc/bind/db.enterprise.lab";
+              file "/etc/bind/db.{{ dns_zone }}";
           };
 
     - name: Configure DNS zone
       copy:
-        dest: /etc/bind/db.enterprise.lab
+        dest: /etc/bind/db.{{ dns_zone }}
         content: |
           $TTL 604800
-          @ IN SOA dns1.enterprise.lab. root.enterprise.lab. (
+          @ IN SOA dns1.{{ dns_zone }}. root.{{ dns_zone }}. (
               2
               604800
               86400
               2419200
               604800 )
 
-          @ IN NS dns1.enterprise.lab.
+          @ IN NS dns1.{{ dns_zone }}.
 
-          dns1 IN A 10.10.10.53
-          dhcp1 IN A 10.10.10.10
-          backup1 IN A 10.10.10.20
-          client1 IN A 10.10.10.100
+          {% for vm in vms %}
+          {{ vm.name }} IN A {{ vm.ip }}
+          {% endfor %}
 
     - name: Restart bind9
       systemd:
