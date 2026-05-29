@@ -1,7 +1,7 @@
 ---
 - import_playbook: 00_create_enterprise_network.yml
 - import_playbook: create_vms.yml
-- import_playbook: configure_dhcp.yml
 - import_playbook: configure_dns.yml
+- import_playbook: configure_dhcp.yml
 - import_playbook: configure_backup.yml
 - import_playbook: snapshots.yml

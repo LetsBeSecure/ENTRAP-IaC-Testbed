@@ -4,34 +4,22 @@
   become: true
   gather_facts: false
 
-  vars:
-
-    vm_storage: /var/lib/libvirt/images
-    base_image: /opt/vm_images/jammy-server-cloudimg-amd64.img
-
-    vms:
-      - name: dhcp1
-        ip: 10.10.10.10
-
-      - name: dns1
-        ip: 10.10.10.53
-
-      - name: backup1
-        ip: 10.10.10.20
-
-      - name: client1
-        ip: 10.10.10.100
-
   tasks:
+
+    - name: Ensure VM storage directory exists
+      file:
+        path: "{{ vm_storage_dir }}"
+        state: directory
+        mode: '0755'
 
     - name: Create qcow2 disks
       command: >
         qemu-img create -f qcow2
         -F qcow2
         -b {{ base_image }}
-        {{ vm_storage }}/{{ item.name }}.qcow2 20G
+        {{ vm_storage_dir }}/{{ item.name }}.qcow2 20G
       args:
-        creates: "{{ vm_storage }}/{{ item.name }}.qcow2"
+        creates: "{{ vm_storage_dir }}/{{ item.name }}.qcow2"
       loop: "{{ vms }}"
 
     - name: Create cloud-init folders
@@ -82,17 +70,15 @@
                 network:
                   version: 2
                   ethernets:
-                    enp1s0:
+                    {{ vm_interface }}:
                       dhcp4: false
                       addresses:
                         - {{ item.ip }}/24
                       routes:
                         - to: default
-                          via: 10.10.10.1
+                          via: {{ enterprise_gateway }}
                       nameservers:
-                        addresses:
-                          - 8.8.8.8
-                          - 1.1.1.1
+                        addresses: {{ external_dns | to_json }}
 
           runcmd:
             - netplan apply
@@ -102,7 +88,7 @@
     - name: Generate cloud-init ISOs
       command: >
         genisoimage
-        -output {{ vm_storage }}/{{ item.name }}-seed.iso
+        -output {{ vm_storage_dir }}/{{ item.name }}-seed.iso
         -volid cidata
         -joliet
         -rock
@@ -121,11 +107,11 @@
       command: >
         virt-install
         --name {{ item.item.name }}
-        --memory 2048
-        --vcpus 2
-        --disk {{ vm_storage }}/{{ item.item.name }}.qcow2
-        --disk {{ vm_storage }}/{{ item.item.name }}-seed.iso,device=cdrom
-        --network network=enterprise-net
+        --memory {{ item.item.memory }}
+        --vcpus {{ item.item.vcpus }}
+        --disk {{ vm_storage_dir }}/{{ item.item.name }}.qcow2
+        --disk {{ vm_storage_dir }}/{{ item.item.name }}-seed.iso,device=cdrom
+        --network network={{ enterprise_network_name }}
         --os-variant ubuntu22.04
         --graphics none
         --import
@@ -142,4 +128,5 @@
         host: "{{ item.ip }}"
         port: 22
         timeout: 600
+        delay: 10
       loop: "{{ vms }}"

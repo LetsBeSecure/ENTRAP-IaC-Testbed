@@ -20,26 +20,26 @@
           {
             "Dhcp4": {
               "interfaces-config": {
-                "interfaces": [ "ens3" ]
+                "interfaces": [ "{{ dhcp_interface }}" ]
               },
 
               "subnet4": [
                 {
-                  "subnet": "10.10.10.0/24",
+                  "subnet": "{{ enterprise_subnet }}",
                   "pools": [
                     {
-                      "pool": "10.10.10.150 - 10.10.10.200"
+                      "pool": "{{ dhcp_pool_start }} - {{ dhcp_pool_end }}"
                     }
                   ],
 
                   "option-data": [
                     {
                       "name": "routers",
-                      "data": "10.10.10.1"
+                      "data": "{{ enterprise_gateway }}"
                     },
                     {
                       "name": "domain-name-servers",
-                      "data": "10.10.10.53"
+                      "data": "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
                     }
                   ]
                 }

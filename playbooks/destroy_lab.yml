@@ -6,29 +6,22 @@
   become_method: sudo
   gather_facts: false
 
-  vars:
-    vms:
-      - dhcp1
-      - dns1
-      - backup1
-      - client1
-
   tasks:
 
     - name: Destroy VMs
       shell: virsh destroy {{ item }}
-      loop: "{{ vms }}"
+      loop: "{{ vms | map(attribute='name') | list }}"
       ignore_errors: true
 
     - name: Undefine VMs
       shell: virsh undefine {{ item }} --remove-all-storage
-      loop: "{{ vms }}"
+      loop: "{{ vms | map(attribute='name') | list }}"
       ignore_errors: true
 
     - name: Destroy network
-      shell: virsh net-destroy enterprise-net
+      shell: virsh net-destroy {{ enterprise_network_name }}
       ignore_errors: true
 
     - name: Undefine network
-      shell: virsh net-undefine enterprise-net
+      shell: virsh net-undefine {{ enterprise_network_name }}
       ignore_errors: true
