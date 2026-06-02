@@ -14,7 +14,12 @@
       ignore_errors: true
 
     - name: Undefine VMs
-      shell: virsh undefine {{ item }} --remove-all-storage
+      shell: virsh undefine {{ item }} --snapshots-metadata
+      loop: "{{ vms | map(attribute='name') | list }}"
+      ignore_errors: true
+
+    - name: Remove VM disk and seed ISO files
+      shell: "rm -f {{ vm_storage_dir }}/{{ item }}.qcow2 {{ vm_storage_dir }}/{{ item }}-seed.iso"
       loop: "{{ vms | map(attribute='name') | list }}"
       ignore_errors: true
 
