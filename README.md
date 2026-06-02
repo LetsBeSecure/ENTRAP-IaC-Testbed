@@ -329,13 +329,6 @@ Tear down all VMs and the enterprise network:
 sudo ansible-playbook playbooks/destroy_lab.yml
 ```
 
-### Remove Leftover Disk Images
-
-```bash
-sudo rm -f /var/lib/libvirt/images/ransomware_lab/*.qcow2
-sudo rm -f /var/lib/libvirt/images/ransomware_lab/*-seed.iso
-```
-
 ### Redeploy
 
 ```bash
