@@ -1,8 +1,11 @@
 ---
-- name: Create enterprise VMs
+- name: Create infrastructure VMs (dns1, dhcp1, backup1)
   hosts: localhost
   become: true
   gather_facts: false
+
+  vars:
+    infra_vms: "{{ vms | selectattr('role', 'equalto', 'infra') | list }}"
 
   tasks:
 
@@ -20,13 +23,13 @@
         {{ vm_storage_dir }}/{{ item.name }}.qcow2 20G
       args:
         creates: "{{ vm_storage_dir }}/{{ item.name }}.qcow2"
-      loop: "{{ vms }}"
+      loop: "{{ infra_vms }}"
 
     - name: Create cloud-init folders
       file:
         path: "/tmp/{{ item.name }}"
         state: directory
-      loop: "{{ vms }}"
+      loop: "{{ infra_vms }}"
 
     - name: Create meta-data
       copy:
@@ -34,7 +37,7 @@
         content: |
           instance-id: {{ item.name }}
           local-hostname: {{ item.name }}
-      loop: "{{ vms }}"
+      loop: "{{ infra_vms }}"
 
     - name: Create user-data
       copy:
@@ -63,27 +66,24 @@
           package_update: false
           package_upgrade: false
 
-          write_files:
-            - path: /etc/netplan/01-netcfg.yaml
-              permissions: '0600'
-              content: |
-                network:
-                  version: 2
-                  ethernets:
-                    {{ vm_interface }}:
-                      dhcp4: false
-                      addresses:
-                        - {{ item.ip }}/24
-                      routes:
-                        - to: default
-                          via: {{ enterprise_gateway }}
-                      nameservers:
-                        addresses: {{ external_dns | to_json }}
+      loop: "{{ infra_vms }}"
 
-          runcmd:
-            - netplan apply
-
-      loop: "{{ vms }}"
+    - name: Create network-config
+      copy:
+        dest: "/tmp/{{ item.name }}/network-config"
+        content: |
+          version: 2
+          ethernets:
+            {{ vm_interface }}:
+              dhcp4: false
+              addresses:
+                - {{ item.ip }}/24
+              routes:
+                - to: default
+                  via: {{ enterprise_gateway }}
+              nameservers:
+                addresses: {{ external_dns | to_json }}
+      loop: "{{ infra_vms }}"
 
     - name: Generate cloud-init ISOs
       command: >
@@ -94,14 +94,15 @@
         -rock
         /tmp/{{ item.name }}/user-data
         /tmp/{{ item.name }}/meta-data
-      loop: "{{ vms }}"
+        /tmp/{{ item.name }}/network-config
+      loop: "{{ infra_vms }}"
 
     - name: Check if VM already exists
       shell: virsh dominfo {{ item.name }}
       register: vm_check
       failed_when: false
       changed_when: false
-      loop: "{{ vms }}"
+      loop: "{{ infra_vms }}"
 
     - name: Create VMs
       command: >
@@ -119,9 +120,9 @@
       when: item.rc != 0
       loop: "{{ vm_check.results }}"
 
-    - name: Wait 120 seconds for cloud-init
-      pause:
-        seconds: 120
+    - name: Enable VM autostart on host reboot
+      command: virsh autostart {{ item.name }}
+      loop: "{{ infra_vms }}"
 
     - name: Wait for SSH
       wait_for:
@@ -129,4 +130,4 @@
         port: 22
         timeout: 600
         delay: 10
-      loop: "{{ vms }}"
+      loop: "{{ infra_vms }}"

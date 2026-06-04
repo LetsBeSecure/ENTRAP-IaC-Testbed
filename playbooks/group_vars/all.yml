@@ -18,32 +18,36 @@ network_xml: "{{ project_root }}/configs/network/enterprise-net.xml"
 dns_zone: "enterprise.lab"
 dhcp_pool_start: "10.10.10.150"
 dhcp_pool_end: "10.10.10.200"
-dhcp_interface: "ens3"
+dhcp_interface: "enp1s0"
 vm_interface: "enp1s0"
 backup_share_path: "/srv/backups"
 snapshot_name: "clean-state"
 
 external_dns:
+  - "192.168.36.53"
   - "8.8.8.8"
   - "1.1.1.1"
 
 vms:
   - name: dns1
+    role: infra
     ip: 10.10.10.53
     memory: 2048
     vcpus: 2
 
   - name: dhcp1
+    role: infra
     ip: 10.10.10.2
     memory: 2048
     vcpus: 2
 
-  - name: client1
-    ip: 10.10.10.100
+  - name: backup1
+    role: infra
+    ip: 10.10.10.20
     memory: 2048
     vcpus: 2
 
-  - name: backup1
-    ip: 10.10.10.20
+  - name: client1
+    role: client
     memory: 2048
     vcpus: 2

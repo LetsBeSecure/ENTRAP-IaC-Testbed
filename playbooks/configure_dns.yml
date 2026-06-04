@@ -13,6 +13,25 @@
         update_cache: true
         state: present
 
+    - name: Configure named.conf.options
+      copy:
+        dest: /etc/bind/named.conf.options
+        content: |
+          options {
+              directory "/var/cache/bind";
+
+              forwarders {
+                  {% for dns in external_dns %}
+                  {{ dns }};
+                  {% endfor %}
+              };
+
+              forward only;
+
+              dnssec-validation no;
+              listen-on { any; };
+          };
+
     - name: Configure named.conf.local
       copy:
         dest: /etc/bind/named.conf.local
@@ -36,7 +55,7 @@
 
           @ IN NS dns1.{{ dns_zone }}.
 
-          {% for vm in vms %}
+          {% for vm in vms | selectattr('ip', 'defined') | list %}
           {{ vm.name }} IN A {{ vm.ip }}
           {% endfor %}
 
