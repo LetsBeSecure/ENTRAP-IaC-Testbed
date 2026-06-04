@@ -1,0 +1,27 @@
+---
+- name: Destroy client VMs only
+  hosts: localhost
+  connection: local
+  become: true
+  become_method: sudo
+  gather_facts: false
+
+  vars:
+    client_vms: "{{ vms | selectattr('role', 'equalto', 'client') | list }}"
+
+  tasks:
+
+    - name: Destroy client VMs
+      shell: virsh destroy {{ item.name }}
+      loop: "{{ client_vms }}"
+      ignore_errors: true
+
+    - name: Undefine client VMs
+      shell: virsh undefine {{ item.name }} --snapshots-metadata
+      loop: "{{ client_vms }}"
+      ignore_errors: true
+
+    - name: Remove client disk and seed ISO files
+      shell: "rm -f {{ vm_storage_dir }}/{{ item.name }}.qcow2 {{ vm_storage_dir }}/{{ item.name }}-seed.iso"
+      loop: "{{ client_vms }}"
+      ignore_errors: true
