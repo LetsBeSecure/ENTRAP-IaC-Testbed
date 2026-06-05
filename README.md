@@ -29,10 +29,10 @@ The testbed allows researchers to safely evaluate:
 
 | VM       | Role           | Technology  | IP Address     |
 |----------|----------------|-------------|----------------|
-| dhcp1    | DHCP Server    | Kea DHCP    | 10.10.10.10    |
+| dhcp1    | DHCP Server    | Kea DHCP    | 10.10.10.2    |
 | dns1     | DNS Server     | BIND9       | 10.10.10.53    |
 | backup1  | Backup Server  | Samba       | 10.10.10.20    |
-| client1  | Enterprise Client | Ubuntu   | 10.10.10.100   |
+| client1  | Enterprise Client | Ubuntu   | Dynamic   |
 
 ### Underlying Stack
 
@@ -178,7 +178,7 @@ File: `inventory/hosts.ini`
 
 ```ini
 [dhcp]
-10.10.10.10
+10.10.10.2
 
 [dns]
 10.10.10.53
@@ -187,8 +187,7 @@ File: `inventory/hosts.ini`
 10.10.10.20
 
 [clients]
-10.10.10.100
-
+# since clients will get IP dynamically using dora by dhcp server
 [all:vars]
 ansible_user=student
 ansible_password=student
@@ -274,7 +273,7 @@ Default credentials:
 Example:
 
 ```bash
-ssh student@10.10.10.10
+ssh student@10.10.10.2
 ```
 
 ### Access a VM Console
