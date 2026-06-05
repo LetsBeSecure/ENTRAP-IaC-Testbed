@@ -23,6 +23,14 @@
                 "interfaces": [ "{{ dhcp_interface }}" ]
               },
 
+              "lease-database": {
+                  "type": "memfile",
+                  "persist": true,
+                  "name": "/tmp/kea-leases4.csv",
+                  "lfc-interval": 1800,
+                  "max-row-errors": 100
+              },
+
               "subnet4": [
                 {
                   "subnet": "{{ enterprise_subnet }}",
@@ -42,6 +50,18 @@
                       "data": "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
                     }
                   ]
+                }
+              ],
+                                
+              "loggers": [
+                {
+                  "name": "kea-dhcp4",
+                  "output_options": [
+                    {
+                      "output": "/var/log/kea/kea-dhcp4.log"
+                    }
+                  ],
+                  "severity": "INFO"
                 }
               ]
             }
