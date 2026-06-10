@@ -1,0 +1,4 @@
+<network>
+  <name>client-net</name>
+  <bridge name='virbr11' stp='on' delay='0'/>
+</network>
