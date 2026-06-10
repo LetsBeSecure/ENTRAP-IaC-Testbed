@@ -50,6 +50,25 @@
                       "data": "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
                     }
                   ]
+                },
+                {
+                  "subnet": "{{ client_subnet }}",
+                  "pools": [
+                    {
+                      "pool": "{{ client_dhcp_pool_start }} - {{ client_dhcp_pool_end }}"
+                    }
+                  ],
+
+                  "option-data": [
+                    {
+                      "name": "routers",
+                      "data": "{{ client_gateway }}"
+                    },
+                    {
+                      "name": "domain-name-servers",
+                      "data": "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
+                    }
+                  ]
                 }
               ],
                                 

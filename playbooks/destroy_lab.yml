@@ -6,6 +6,11 @@
   become_method: sudo
   gather_facts: false
 
+  vars:
+    all_networks:
+      - "{{ enterprise_network_name }}"
+      - "{{ client_network_name }}"
+
   tasks:
 
     - name: Destroy VMs
@@ -23,10 +28,12 @@
       loop: "{{ vms | map(attribute='name') | list }}"
       ignore_errors: true
 
-    - name: Destroy network
-      shell: virsh net-destroy {{ enterprise_network_name }}
+    - name: Destroy networks
+      shell: virsh net-destroy {{ item }}
+      loop: "{{ all_networks }}"
       ignore_errors: true
 
-    - name: Undefine network
-      shell: virsh net-undefine {{ enterprise_network_name }}
+    - name: Undefine networks
+      shell: virsh net-undefine {{ item }}
+      loop: "{{ all_networks }}"
       ignore_errors: true

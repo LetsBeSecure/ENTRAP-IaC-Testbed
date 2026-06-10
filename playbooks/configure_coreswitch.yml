@@ -1,0 +1,63 @@
+---
+- name: Configure coreswitch routing and DHCP relay
+  hosts: coreswitch
+  become: true
+
+  tasks:
+
+    - name: Enable IP forwarding
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: true
+        state: present
+        reload: true
+
+    - name: Install iptables-persistent and isc-dhcp-relay
+      apt:
+        name:
+          - iptables-persistent
+          - isc-dhcp-relay
+        update_cache: true
+        state: present
+
+    - name: Check NAT masquerade rule (client -> internet only, infra excluded)
+      command: iptables -t nat -C POSTROUTING -o enp1s0 ! -d {{ enterprise_subnet }} -j MASQUERADE
+      register: nat_check
+      failed_when: false
+      changed_when: false
+
+    - name: Add NAT masquerade rule (client -> internet only, infra excluded)
+      command: iptables -t nat -A POSTROUTING -o enp1s0 ! -d {{ enterprise_subnet }} -j MASQUERADE
+      when: nat_check.rc != 0
+
+    - name: Allow FORWARD client -> infra/internet
+      iptables:
+        chain: FORWARD
+        in_interface: enp2s0
+        out_interface: enp1s0
+        jump: ACCEPT
+
+    - name: Allow FORWARD infra/internet -> client
+      iptables:
+        chain: FORWARD
+        in_interface: enp1s0
+        out_interface: enp2s0
+        jump: ACCEPT
+
+    - name: Save iptables rules
+      command: netfilter-persistent save
+
+    - name: Configure DHCP relay
+      copy:
+        dest: /etc/default/isc-dhcp-relay
+        content: |
+          SERVERS="{{ (vms | selectattr('name', 'equalto', 'dhcp1') | first).ip }}"
+          INTERFACES="enp1s0 enp2s0"
+          OPTIONS=""
+
+    - name: Restart DHCP relay
+      systemd:
+        name: isc-dhcp-relay
+        enabled: true
+        state: restarted

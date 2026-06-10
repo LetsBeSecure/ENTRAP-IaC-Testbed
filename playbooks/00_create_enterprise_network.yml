@@ -1,25 +1,36 @@
 ---
-- name: Create enterprise libvirt network
+- name: Create libvirt networks
   hosts: localhost
   become: true
   gather_facts: false
 
+  vars:
+    networks:
+      - name: "{{ enterprise_network_name }}"
+        xml: "{{ network_xml }}"
+      - name: "{{ client_network_name }}"
+        xml: "{{ network_xml_dir }}/client-net.xml"
+
   tasks:
 
     - name: Check if network exists
-      shell: virsh net-list --all | grep {{ enterprise_network_name }}
-      register: network_check
+      shell: virsh net-list --all | grep -w {{ item.name }}
+      register: network_checks
       failed_when: false
       changed_when: false
+      loop: "{{ networks }}"
 
-    - name: Define network
-      command: virsh net-define {{ network_xml }}
-      when: network_check.rc != 0
+    - name: Define networks
+      command: virsh net-define {{ item.item.xml }}
+      when: item.rc != 0
+      loop: "{{ network_checks.results }}"
 
-    - name: Start network
-      command: virsh net-start {{ enterprise_network_name }}
-      when: network_check.rc != 0
+    - name: Start networks
+      command: virsh net-start {{ item.item.name }}
+      when: item.rc != 0
+      loop: "{{ network_checks.results }}"
 
     - name: Enable autostart
-      command: virsh net-autostart {{ enterprise_network_name }}
-      when: network_check.rc != 0
+      command: virsh net-autostart {{ item.item.name }}
+      when: item.rc != 0
+      loop: "{{ network_checks.results }}"

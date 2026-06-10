@@ -8,16 +8,26 @@ enterprise_subnet: 10.10.10.0/24
 
 enterprise_netmask: 255.255.255.0
 
+# Client network (isolated bridge — coreswitch routes/relays for this subnet)
+client_network_name: client-net
+client_bridge_name: virbr11
+client_subnet: 10.10.20.0/24
+client_gateway: 10.10.20.1
+client_netmask: 255.255.255.0
+
 project_root: "{{ playbook_dir }}/.."
 vm_storage_dir: "/var/lib/libvirt/images/ransomware_lab"
 base_image: "{{ vm_storage_dir }}/jammy-server-cloudimg-amd64.img"
 cloud_init_dir: "{{ project_root }}/cloud_init"
 
 network_xml: "{{ project_root }}/configs/network/enterprise-net.xml"
+network_xml_dir: "{{ project_root }}/configs/network"
 
 dns_zone: "enterprise.lab"
 dhcp_pool_start: "10.10.10.150"
 dhcp_pool_end: "10.10.10.200"
+client_dhcp_pool_start: "10.10.20.150"
+client_dhcp_pool_end: "10.10.20.200"
 dhcp_interface: "enp1s0"
 vm_interface: "enp1s0"
 backup_share_path: "/srv/backups"
@@ -38,14 +48,24 @@ vms:
   - name: dhcp1
     role: infra
     ip: 10.10.10.2
+    dns_server: 10.10.10.53
     memory: 2048
     vcpus: 2
 
   - name: backup1
     role: infra
     ip: 10.10.10.20
+    dns_server: 10.10.10.53
     memory: 2048
     vcpus: 2
+
+  - name: coreswitch
+    role: router
+    ip: 10.10.10.10
+    ip_client: 10.10.20.1
+    dns_server: 10.10.10.53
+    memory: 1024
+    vcpus: 1
 
   - name: client1
     role: client

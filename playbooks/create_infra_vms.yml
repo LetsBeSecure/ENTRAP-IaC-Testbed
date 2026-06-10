@@ -81,8 +81,10 @@
               routes:
                 - to: default
                   via: {{ enterprise_gateway }}
+                - to: {{ client_subnet }}
+                  via: {{ (vms | selectattr('name', 'equalto', 'coreswitch') | first).ip }}
               nameservers:
-                addresses: {{ external_dns | to_json }}
+                addresses: {{ ([item.dns_server] if item.dns_server is defined else external_dns) | to_json }}
       loop: "{{ infra_vms }}"
 
     - name: Generate cloud-init ISOs

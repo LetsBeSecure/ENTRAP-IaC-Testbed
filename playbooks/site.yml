@@ -4,4 +4,6 @@
 - import_playbook: configure_dns.yml
 - import_playbook: configure_dhcp.yml
 - import_playbook: configure_backup.yml
+- import_playbook: create_coreswitch_vm.yml
+- import_playbook: configure_coreswitch.yml
 - import_playbook: create_client_vms.yml
