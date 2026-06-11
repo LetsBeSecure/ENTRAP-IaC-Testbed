@@ -30,6 +30,8 @@
 
               dnssec-validation no;
               listen-on { any; };
+
+              allow-recursion { {{ enterprise_subnet }}; {{ client_subnet }}; };
           };
 
     - name: Configure named.conf.local
