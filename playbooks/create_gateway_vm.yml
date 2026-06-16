@@ -1,0 +1,127 @@
+---
+- name: Create gateway VM
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  vars:
+    gw: "{{ vms | selectattr('role', 'equalto', 'gateway') | first }}"
+
+  tasks:
+
+    - name: Ensure VM storage directory exists
+      file:
+        path: "{{ vm_storage_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create qcow2 disk
+      command: >
+        qemu-img create -f qcow2
+        -F qcow2
+        -b {{ base_image }}
+        {{ vm_storage_dir }}/{{ gw.name }}.qcow2 20G
+      args:
+        creates: "{{ vm_storage_dir }}/{{ gw.name }}.qcow2"
+
+    - name: Create cloud-init folder
+      file:
+        path: "/tmp/{{ gw.name }}"
+        state: directory
+
+    - name: Create meta-data
+      copy:
+        dest: "/tmp/{{ gw.name }}/meta-data"
+        content: |
+          instance-id: {{ gw.name }}
+          local-hostname: {{ gw.name }}
+
+    - name: Create user-data
+      copy:
+        dest: "/tmp/{{ gw.name }}/user-data"
+        content: |
+          #cloud-config
+
+          hostname: {{ gw.name }}
+
+          users:
+            - name: student
+              groups: sudo
+              shell: /bin/bash
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              plain_text_passwd: student
+              lock_passwd: false
+
+          ssh_pwauth: true
+          disable_root: false
+
+          chpasswd:
+            list: |
+              student:student
+            expire: false
+
+          package_update: false
+          package_upgrade: false
+
+    - name: Create network-config
+      copy:
+        dest: "/tmp/{{ gw.name }}/network-config"
+        content: |
+          version: 2
+          ethernets:
+            enp1s0:
+              dhcp4: false
+              addresses:
+                - {{ gw.ip }}/24
+            enp2s0:
+              dhcp4: false
+              addresses:
+                - {{ gw.wan_ip }}/24
+              routes:
+                - to: default
+                  via: {{ wan_host_ip }}
+              nameservers:
+                addresses: {{ external_dns | to_json }}
+
+    - name: Generate cloud-init ISO
+      command: >
+        genisoimage
+        -output {{ vm_storage_dir }}/{{ gw.name }}-seed.iso
+        -volid cidata
+        -joliet
+        -rock
+        /tmp/{{ gw.name }}/user-data
+        /tmp/{{ gw.name }}/meta-data
+        /tmp/{{ gw.name }}/network-config
+
+    - name: Check if VM already exists
+      shell: virsh dominfo {{ gw.name }}
+      register: vm_check
+      failed_when: false
+      changed_when: false
+
+    - name: Create gateway VM (2 NICs - LAN + WAN)
+      command: >
+        virt-install
+        --name {{ gw.name }}
+        --memory {{ gw.memory }}
+        --vcpus {{ gw.vcpus }}
+        --disk {{ vm_storage_dir }}/{{ gw.name }}.qcow2
+        --disk {{ vm_storage_dir }}/{{ gw.name }}-seed.iso,device=cdrom
+        --network network={{ link_network_name }}
+        --network network={{ wan_network_name }}
+        --os-variant ubuntu22.04
+        --graphics none
+        --import
+        --noautoconsole
+      when: vm_check.rc != 0
+
+    - name: Enable VM autostart
+      command: virsh autostart {{ gw.name }}
+
+    - name: Wait for SSH
+      wait_for:
+        host: "{{ gw.wan_ip }}"
+        port: 22
+        timeout: 600
+        delay: 10

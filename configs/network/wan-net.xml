@@ -1,0 +1,10 @@
+<network>
+  <name>wan-net</name>
+
+  <forward mode='nat'/>
+
+  <bridge name='virbr1' stp='on' delay='0'/>
+
+  <ip address='173.168.0.1' netmask='255.255.255.0'>
+  </ip>
+</network>

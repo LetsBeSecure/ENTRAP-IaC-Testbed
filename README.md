@@ -25,32 +25,54 @@ The testbed allows researchers to safely evaluate:
 
 ## 🏗️ Lab Architecture
 
-### Infrastructure Components
+### Virtual Machines
 
-| VM       | Role           | Technology  | IP Address     |
-|----------|----------------|-------------|----------------|
-| dhcp1    | DHCP Server    | Kea DHCP    | 10.10.10.2    |
-| dns1     | DNS Server     | BIND9       | 10.10.10.53    |
-| backup1  | Backup Server  | Samba       | 10.10.10.20    |
-| client1  | Enterprise Client | Ubuntu   | Dynamic   |
-
-### Underlying Stack
-
-| Layer            | Technology       |
-|------------------|------------------|
-| Virtualization   | KVM/QEMU         |
-| VM Management    | Libvirt          |
-| Automation       | Ansible          |
-| VM Bootstrap     | Cloud-init       |
-| Base Image       | Ubuntu 22.04 Cloud Image |
+| VM          | Role              | Technology         | IP Address        | Network        |
+|-------------|-------------------|--------------------|-------------------|----------------|
+| gateway1    | NAT Router        | nftables           | 10.10.0.1 / 173.168.0.10 | link-net / wan-net |
+| coreswitch  | Internal Router   | iptables + DHCP relay | 10.10.10.1 / 10.10.20.1 / 10.10.0.2 | infra-net / client-net / link-net |
+| dns1        | DNS Server        | BIND9              | 10.10.10.53       | infra-net      |
+| dhcp1       | DHCP Server       | Kea DHCP           | 10.10.10.2        | infra-net      |
+| backup1     | Backup Server     | Samba              | 10.10.10.20       | infra-net      |
+| client1     | Enterprise Client | Ubuntu             | Dynamic (10.10.20.150–200) | client-net |
 
 ### Network Topology
 
-- **Network Name:** `enterprise-net`
-- **Subnet:** `10.10.10.0/24`
-- **Gateway:** `10.10.10.1`
-- **Bridge:** `virbr10`
-- **Network Mode:** NAT
+```
+Host Machine
+    │
+    ├── virbr1 (wan-net, 173.168.0.0/24) ──── gateway1 (enp2s0, 173.168.0.10)
+    │                                              │
+    │                                          gateway1 (enp1s0, 10.10.0.1)
+    │                                              │  NAT + nftables
+    ├── virbr2 (link-net, 10.10.0.0/24) ─────────┤
+    │                                              │
+    │                                         coreswitch (enp3s0, 10.10.0.2)
+    │                                         routes: infra ↔ client ↔ uplink
+    │                                              │
+    ├── virbr3 (infra-net, 10.10.10.0/24) ────────┤── dns1 (.53), dhcp1 (.2), backup1 (.20)
+    │                                              │
+    └── virbr4 (client-net, 10.10.20.0/24) ───────┘── client1 (dynamic)
+```
+
+- **gateway1** is the sole NAT/internet exit (masquerades on wan-net)
+- **coreswitch** routes between infra-net, client-net, and uplink to gateway1 — no NAT
+- **All internal bridges are isolated** (no libvirt host IP/forwarding) — host has no direct route to infra/client nets
+- **Ansible reaches infra VMs via ProxyJump** through gateway1 (173.168.0.10)
+
+### Underlying Stack
+
+| Layer            | Technology               |
+|------------------|--------------------------|
+| Virtualization   | KVM/QEMU                 |
+| VM Management    | Libvirt                  |
+| Automation       | Ansible                  |
+| VM Bootstrap     | Cloud-init               |
+| Base Image       | Ubuntu 22.04 Cloud Image |
+| Routing/NAT      | nftables (gateway1), iptables (coreswitch) |
+| DHCP             | Kea DHCP4                |
+| DNS              | BIND9                    |
+| File Sharing     | Samba                    |
 
 ---
 
@@ -58,27 +80,34 @@ The testbed allows researchers to safely evaluate:
 
 ```text
 RansomwareTestbed/
-├── captures/
-├── cloud_init/
 ├── configs/
+│   ├── firewall/
+│   │   └── gateway.nft
 │   └── network/
-│       └── enterprise-net.xml
+│       ├── wan-net.xml
+│       ├── link-net.xml
+│       ├── infra-net.xml
+│       └── client-net.xml
 ├── inventory/
 │   └── hosts.ini
 ├── playbooks/
 │   ├── group_vars/
 │   │   └── all.yml
 │   ├── site.yml
-│   ├── 00_create_enterprise_network.yml
-│   ├── create_vms.yml
-│   ├── configure_dhcp.yml
+│   ├── 00_create_networks.yml
+│   ├── create_gateway_vm.yml
+│   ├── create_coreswitch_vm.yml
+│   ├── create_infra_vms.yml
+│   ├── create_client_vms.yml
+│   ├── configure_gateway.yml
+│   ├── configure_coreswitch.yml
 │   ├── configure_dns.yml
+│   ├── configure_dhcp.yml
 │   ├── configure_backup.yml
 │   ├── snapshots.yml
+│   ├── destroy_clients.yml
 │   └── destroy_lab.yml
-├── qcow2/
-├── scripts/
-└── vm_images/
+└── captures/
 ```
 
 ---
@@ -172,11 +201,17 @@ cd /var/lib/libvirt/images/ransomware_lab
 sudo wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 ```
 
-### 3. Configure Inventory
+### 3. Inventory
 
 File: `inventory/hosts.ini`
 
 ```ini
+[gateway]
+10.10.0.1 ansible_host=173.168.0.10
+
+[coreswitch]
+10.10.10.1
+
 [dhcp]
 10.10.10.2
 
@@ -187,12 +222,23 @@ File: `inventory/hosts.ini`
 10.10.10.20
 
 [clients]
-# since clients will get IP dynamically using dora by dhcp server
+# clients get dynamic IPs from DHCP - add manually after deployment
+
+[infra_net:children]
+coreswitch
+dhcp
+dns
+backup
+
+[infra_net:vars]
+ansible_ssh_common_args='-o ProxyCommand="sshpass -p student ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p student@173.168.0.10"'
+
 [all:vars]
 ansible_user=student
 ansible_password=student
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ```
+
+> **Note:** Infra-net and client-net are isolated bridges — the host has no direct route there. Ansible reaches all internal VMs (coreswitch, dns1, dhcp1, backup1, clients) via ProxyJump through gateway1 (173.168.0.10). gateway1 is reachable directly on its WAN interface.
 
 ---
 
@@ -200,7 +246,7 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 ### Deploy the Complete Lab
 
-Run the following command to deploy the entire enterprise testbed:
+Run the following command to deploy the entire testbed:
 
 ```bash
 sudo ansible-playbook -i inventory/hosts.ini playbooks/site.yml
@@ -208,44 +254,52 @@ sudo ansible-playbook -i inventory/hosts.ini playbooks/site.yml
 
 This automatically performs the following steps in order:
 
-1. Creates the enterprise network
-2. Provisions virtual machines
-3. Configures static networking
-4. Deploys the DHCP server
-5. Deploys the DNS server
-6. Deploys the backup server
-7. Creates clean-state snapshots
+1. Creates all 4 libvirt networks (wan-net, link-net, infra-net, client-net)
+2. Creates and configures gateway1 (NAT router)
+3. Creates and configures coreswitch (internal router + DHCP relay)
+4. Provisions infra VMs (dns1, dhcp1, backup1)
+5. Configures DNS, DHCP, and backup services
+6. Provisions client VMs
 
-> **Note:** During first boot, cloud-init initialization may take 1–3 minutes depending on system resources. Wait until cloud-init finishes before attempting SSH.
+> **Note:** During first boot, cloud-init initialization may take 1–3 minutes depending on system resources.
 
 ### Individual Playbooks
 
-Each step can also be executed independently for granular control or debugging:
+Each step can also be executed independently:
 
 ```bash
-# Create the enterprise network
-sudo ansible-playbook playbooks/00_create_enterprise_network.yml
+# Create all networks
+sudo ansible-playbook -i inventory/hosts.ini playbooks/00_create_networks.yml
 
-# Create virtual machines
-sudo ansible-playbook playbooks/create_vms.yml
+# Create gateway VM
+sudo ansible-playbook -i inventory/hosts.ini playbooks/create_gateway_vm.yml
 
-# Configure DHCP server
-sudo ansible-playbook -i inventory/hosts.ini playbooks/configure_dhcp.yml
+# Configure gateway (IP forwarding, NAT, static routes)
+sudo ansible-playbook -i inventory/hosts.ini playbooks/configure_gateway.yml
+
+# Create coreswitch VM
+sudo ansible-playbook -i inventory/hosts.ini playbooks/create_coreswitch_vm.yml
+
+# Configure coreswitch (routing, DHCP relay)
+sudo ansible-playbook -i inventory/hosts.ini playbooks/configure_coreswitch.yml
+
+# Create infra VMs (dns1, dhcp1, backup1)
+sudo ansible-playbook -i inventory/hosts.ini playbooks/create_infra_vms.yml
 
 # Configure DNS server
 sudo ansible-playbook -i inventory/hosts.ini playbooks/configure_dns.yml
 
+# Configure DHCP server
+sudo ansible-playbook -i inventory/hosts.ini playbooks/configure_dhcp.yml
+
 # Configure backup server
 sudo ansible-playbook -i inventory/hosts.ini playbooks/configure_backup.yml
-
-# Create snapshots
-sudo ansible-playbook playbooks/snapshots.yml
 ```
 
 ### Verify Deployment
 
 ```bash
-# List enterprise network
+# List all networks
 sudo virsh net-list --all
 
 # List virtual machines
@@ -254,8 +308,10 @@ sudo virsh list --all
 
 Expected virtual machines:
 
-- `dhcp1`
+- `gateway1`
+- `coreswitch`
 - `dns1`
+- `dhcp1`
 - `backup1`
 - `client1`
 
@@ -265,15 +321,21 @@ Expected virtual machines:
 
 ### SSH Access
 
-Default credentials:
+Default credentials for all VMs:
 
 - **Username:** `student`
 - **Password:** `student`
 
-Example:
+gateway1 is directly reachable on its WAN interface:
 
 ```bash
-ssh student@10.10.10.2
+ssh student@173.168.0.10
+```
+
+All other VMs (infra-net/client-net) require ProxyJump through gateway1:
+
+```bash
+ssh -o ProxyCommand="sshpass -p student ssh -o StrictHostKeyChecking=no -W %h:%p student@173.168.0.10" student@10.10.10.2
 ```
 
 ### Access a VM Console
@@ -292,7 +354,7 @@ Exit the console with `CTRL + ]`.
 
 ### Snapshot Management
 
-Snapshots are automatically created with the name `clean-state`, which is useful for ransomware rollback, malware experimentation, forensic recovery, and repeatable testing.
+Snapshots are automatically created with the name `clean-state`, useful for ransomware rollback, malware experimentation, forensic recovery, and repeatable testing.
 
 Restore a VM to its clean state:
 
@@ -302,10 +364,10 @@ sudo virsh snapshot-revert client1 clean-state
 
 ### Ransomware Experimentation Workflow
 
-A typical evaluation workflow consists of the following steps:
+A typical evaluation workflow:
 
 1. Deploy the enterprise infrastructure.
-2. Confirm that clean-state VM snapshots exist.
+2. Confirm clean-state VM snapshots exist.
 3. Transfer ransomware samples into `client1`.
 4. Execute the samples inside the isolated environment.
 5. Monitor:
@@ -322,10 +384,10 @@ A typical evaluation workflow consists of the following steps:
 
 ### Destroy the Lab
 
-Tear down all VMs and the enterprise network:
+Tear down all VMs and networks:
 
 ```bash
-sudo ansible-playbook playbooks/destroy_lab.yml
+sudo ansible-playbook -i inventory/hosts.ini playbooks/destroy_lab.yml
 ```
 
 ### Redeploy
@@ -336,63 +398,11 @@ sudo ansible-playbook -i inventory/hosts.ini playbooks/site.yml
 
 ---
 
----
-
 # 🌐 Internal Enterprise DNS Validation
 
-After deployment, the enterprise infrastructure can be configured to use the internally deployed DNS server:
+After deployment, the enterprise infrastructure uses the internally deployed DNS server (`10.10.10.53`) for name resolution within infra-net and client-net.
 
-```text
-10.10.10.53
-```
-
-instead of public DNS resolvers.
-
-Example `netplan` configuration on `client1`:
-
-```yaml
-network:
-  version: 2
-  ethernets:
-    enp1s0:
-      dhcp4: false
-      addresses:
-        - 10.10.10.100/24
-      routes:
-        - to: default
-          via: 10.10.10.1
-      nameservers:
-        addresses:
-          - 10.10.10.53
-```
-
-Apply configuration:
-
-```bash
-sudo netplan apply
-```
-
----
-
-## 🔍 Verify DNS Resolver
-
-```bash
-resolvectl status
-```
-
-Expected output:
-
-```text
-Link 2 (enp1s0)
-Current Scopes: DNS
-DNS Servers: 10.10.10.53
-```
-
----
-
-## 🧪 Validate Internal DNS Resolution
-
-Example:
+Validate from a VM:
 
 ```bash
 dig dns1.enterprise.lab
@@ -408,9 +418,7 @@ Additional examples:
 
 ```bash
 dig backup1.enterprise.lab
-
 dig dhcp1.enterprise.lab
-
 ping dns1.enterprise.lab
 ```
 
@@ -426,13 +434,7 @@ Therefore, commands such as `dig` may show:
 SERVER: 127.0.0.53
 ```
 
-This is normal behavior.
-
-The local resolver forwards DNS requests internally to the configured enterprise DNS server:
-
-```text
-10.10.10.53
-```
+This is normal behavior. The local resolver forwards DNS requests to the configured enterprise DNS server (`10.10.10.53`).
 
 ---
 
@@ -444,12 +446,7 @@ During `netplan apply`, Ubuntu may display:
 WARNING:root:Cannot call Open vSwitch: ovsdb-server.service is not running.
 ```
 
-This warning is harmless in this project because the ransomware testbed uses:
-
-- libvirt NAT networking
-- standard Linux bridges
-
-and does NOT depend on Open vSwitch.
+This warning is harmless. The testbed uses libvirt isolated bridges and standard Linux bridges — no Open vSwitch dependency.
 
 ---
 
@@ -460,27 +457,23 @@ and does NOT depend on Open vSwitch.
 If a VM definition blocks redeployment, remove it manually:
 
 ```bash
-sudo virsh undefine <vm-name> --remove-all-storage
+sudo virsh destroy <vm-name>
+sudo virsh undefine <vm-name> --snapshots-metadata
+sudo rm -f /var/lib/libvirt/images/ransomware_lab/<vm-name>.qcow2
+sudo rm -f /var/lib/libvirt/images/ransomware_lab/<vm-name>-seed.iso
 ```
-
-Example:
-
-```bash
-sudo virsh undefine dhcp1 --remove-all-storage
-```
-
-If multiple VMs are stale, use the teardown workflow described in the [Redeployment & Teardown](#-redeployment--teardown) section.
 
 ### Common Issues
 
-| Issue                  | Possible Cause                  | Solution                                  |
-|------------------------|---------------------------------|-------------------------------------------|
-| SSH timeout            | cloud-init still running        | Wait 1–3 minutes after boot               |
-| VM creation fails      | Existing VM definitions         | Undefine old VMs                          |
-| Disk already in use    | Stale libvirt definitions       | Remove old VM disk images                 |
-| Network unreachable    | `enterprise-net` not active     | Restart libvirt network                   |
-| Ansible SSH failure    | `sshpass` missing               | Install `sshpass`                         |
-| No VM IP address       | netplan configuration issue     | Verify the `enp1s0` interface             |
+| Issue                        | Possible Cause                          | Solution                                         |
+|------------------------------|-----------------------------------------|--------------------------------------------------|
+| SSH timeout to infra VMs     | cloud-init still running                | Wait 1–3 minutes after boot                      |
+| Ansible can't reach infra VM | ProxyJump misconfigured or gateway down | Verify gateway1 SSH works (`ssh student@173.168.0.10`) |
+| VM creation fails            | Existing VM definitions                 | Undefine old VMs (see above)                     |
+| Disk already in use          | Stale libvirt definitions               | Remove old VM disk images                        |
+| Network unreachable          | libvirt network not active              | `sudo virsh net-start <network-name>`            |
+| No VM IP address             | netplan configuration issue             | Check cloud-init logs: `sudo cloud-init status`  |
+| No internet from infra VMs   | gateway1 NAT or routes missing          | Re-run `configure_gateway.yml`                   |
 
 ---
 

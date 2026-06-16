@@ -73,15 +73,22 @@
               dhcp4: false
               addresses:
                 - {{ cs.ip }}/24
-              routes:
-                - to: default
-                  via: {{ enterprise_gateway }}
+              # uses external_dns for now - dns1 not deployed/reachable yet
+              # at VM-creation time. Switch to cs.dns_server (dns1) later
+              # once infra VMs are confirmed up.
               nameservers:
-                addresses: ["{{ cs.dns_server }}"]
+                addresses: {{ external_dns | to_json }}
             enp2s0:
               dhcp4: false
               addresses:
                 - {{ cs.ip_client }}/24
+            enp3s0:
+              dhcp4: false
+              addresses:
+                - {{ cs.ip_link }}/24
+              routes:
+                - to: default
+                  via: {{ link_gateway }}
 
     - name: Generate cloud-init ISO
       command: >
@@ -100,7 +107,7 @@
       failed_when: false
       changed_when: false
 
-    - name: Create coreswitch VM (2 NICs)
+    - name: Create coreswitch VM (3 NICs)
       command: >
         virt-install
         --name {{ cs.name }}
@@ -108,8 +115,9 @@
         --vcpus {{ cs.vcpus }}
         --disk {{ vm_storage_dir }}/{{ cs.name }}.qcow2
         --disk {{ vm_storage_dir }}/{{ cs.name }}-seed.iso,device=cdrom
-        --network network={{ enterprise_network_name }}
+        --network network={{ infra_network_name }}
         --network network={{ client_network_name }}
+        --network network={{ link_network_name }}
         --os-variant ubuntu22.04
         --graphics none
         --import
@@ -119,9 +127,11 @@
     - name: Enable VM autostart
       command: virsh autostart {{ cs.name }}
 
-    - name: Wait for SSH
-      wait_for:
-        host: "{{ cs.ip }}"
-        port: 22
+- name: Wait for coreswitch SSH
+  hosts: coreswitch
+  gather_facts: false
+  tasks:
+    - name: Wait for SSH (via ProxyJump)
+      wait_for_connection:
         timeout: 600
         delay: 10
