@@ -21,27 +21,49 @@
         update_cache: true
         state: present
 
-    - name: Check NAT masquerade rule (client -> internet only, infra excluded)
-      command: iptables -t nat -C POSTROUTING -o enp1s0 ! -d {{ enterprise_subnet }} -j MASQUERADE
-      register: nat_check
-      failed_when: false
-      changed_when: false
+    # No NAT here - gateway1 (enp2s0/WAN side, virbr1) is the sole NAT
+    # point. coreswitch just routes/forwards between infra (enp1s0),
+    # client (enp2s0) and the uplink to gateway1 (enp3s0/link-net).
 
-    - name: Add NAT masquerade rule (client -> internet only, infra excluded)
-      command: iptables -t nat -A POSTROUTING -o enp1s0 ! -d {{ enterprise_subnet }} -j MASQUERADE
-      when: nat_check.rc != 0
-
-    - name: Allow FORWARD client -> infra/internet
+    - name: Allow FORWARD client -> infra
       iptables:
         chain: FORWARD
         in_interface: enp2s0
         out_interface: enp1s0
         jump: ACCEPT
 
-    - name: Allow FORWARD infra/internet -> client
+    - name: Allow FORWARD infra -> client
       iptables:
         chain: FORWARD
         in_interface: enp1s0
+        out_interface: enp2s0
+        jump: ACCEPT
+
+    - name: Allow FORWARD infra -> uplink (gateway1)
+      iptables:
+        chain: FORWARD
+        in_interface: enp1s0
+        out_interface: enp3s0
+        jump: ACCEPT
+
+    - name: Allow FORWARD uplink (gateway1) -> infra
+      iptables:
+        chain: FORWARD
+        in_interface: enp3s0
+        out_interface: enp1s0
+        jump: ACCEPT
+
+    - name: Allow FORWARD client -> uplink (gateway1)
+      iptables:
+        chain: FORWARD
+        in_interface: enp2s0
+        out_interface: enp3s0
+        jump: ACCEPT
+
+    - name: Allow FORWARD uplink (gateway1) -> client
+      iptables:
+        chain: FORWARD
+        in_interface: enp3s0
         out_interface: enp2s0
         jump: ACCEPT
 

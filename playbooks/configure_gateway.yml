@@ -1,0 +1,49 @@
+---
+- name: Configure gateway VM (IP forwarding + NAT/firewall)
+  hosts: gateway
+  become: true
+
+  tasks:
+
+    - name: Enable IP forwarding
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: true
+        state: present
+        reload: true
+
+    - name: Install nftables
+      apt:
+        name: nftables
+        update_cache: true
+        state: present
+
+    - name: Copy gateway firewall/NAT ruleset
+      copy:
+        src: "{{ project_root }}/configs/firewall/gateway.nft"
+        dest: /etc/nftables.conf
+
+    - name: Enable and apply nftables
+      systemd:
+        name: nftables
+        enabled: true
+        state: restarted
+
+    - name: Add static routes to infra/client subnets via coreswitch
+      copy:
+        dest: /etc/netplan/90-routes.yaml
+        content: |
+          network:
+            version: 2
+            ethernets:
+              enp1s0:
+                routes:
+                  - to: {{ infra_subnet }}
+                    via: {{ (vms | selectattr('name', 'equalto', 'coreswitch') | first).ip_link }}
+                  - to: {{ client_subnet }}
+                    via: {{ (vms | selectattr('name', 'equalto', 'coreswitch') | first).ip_link }}
+        mode: '0600'
+
+    - name: Apply netplan
+      command: netplan apply

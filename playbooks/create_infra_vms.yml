@@ -80,7 +80,7 @@
                 - {{ item.ip }}/24
               routes:
                 - to: default
-                  via: {{ enterprise_gateway }}
+                  via: {{ infra_gateway }}
                 - to: {{ client_subnet }}
                   via: {{ (vms | selectattr('name', 'equalto', 'coreswitch') | first).ip }}
               nameservers:
@@ -114,7 +114,7 @@
         --vcpus {{ item.item.vcpus }}
         --disk {{ vm_storage_dir }}/{{ item.item.name }}.qcow2
         --disk {{ vm_storage_dir }}/{{ item.item.name }}-seed.iso,device=cdrom
-        --network network={{ enterprise_network_name }}
+        --network network={{ infra_network_name }}
         --os-variant ubuntu22.04
         --graphics none
         --import
@@ -126,10 +126,11 @@
       command: virsh autostart {{ item.name }}
       loop: "{{ infra_vms }}"
 
-    - name: Wait for SSH
-      wait_for:
-        host: "{{ item.ip }}"
-        port: 22
+- name: Wait for infra VMs SSH
+  hosts: infra_vms
+  gather_facts: false
+  tasks:
+    - name: Wait for SSH (via ProxyJump)
+      wait_for_connection:
         timeout: 600
         delay: 10
-      loop: "{{ infra_vms }}"

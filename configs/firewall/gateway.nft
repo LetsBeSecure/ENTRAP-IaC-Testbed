@@ -1,0 +1,19 @@
+#!/usr/sbin/nft -f
+
+# Default/placeholder ruleset for gateway1 (NAT + firewall VM).
+# Policy: accept everything, just NAT LAN -> WAN via masquerade.
+# Tighten incrementally (egress allow-lists, C2 detection, etc.)
+# by editing this file and re-running configure_gateway.yml.
+
+flush ruleset
+
+table inet fw {
+    chain forward {
+        type filter hook forward priority filter; policy accept;
+    }
+
+    chain postrouting {
+        type nat hook postrouting priority srcnat; policy accept;
+        oifname "enp2s0" masquerade
+    }
+}

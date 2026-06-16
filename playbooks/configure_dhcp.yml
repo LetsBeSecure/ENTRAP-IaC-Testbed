@@ -33,7 +33,7 @@
 
               "subnet4": [
                 {
-                  "subnet": "{{ enterprise_subnet }}",
+                  "subnet": "{{ infra_subnet }}",
                   "pools": [
                     {
                       "pool": "{{ dhcp_pool_start }} - {{ dhcp_pool_end }}"
@@ -43,7 +43,7 @@
                   "option-data": [
                     {
                       "name": "routers",
-                      "data": "{{ enterprise_gateway }}"
+                      "data": "{{ infra_gateway }}"
                     },
                     {
                       "name": "domain-name-servers",

@@ -1,16 +1,29 @@
-enterprise_network_name: enterprise-net
+# WAN/uplink network for the gateway VM (NAT #2 leg, host -> eno2)
+# See playbooks/00_create_networks.yml for why this exists.
+wan_network_name: wan-net
+wan_bridge_name: virbr1
+wan_subnet: 173.168.0.0/24
+wan_host_ip: 173.168.0.1
+network_xml_wan: "{{ network_xml_dir }}/wan-net.xml"
 
-enterprise_bridge_name: virbr10
+# Link network: gateway1 <-> coreswitch. Isolated (no host IP/forward) -
+# gateway1 owns 10.10.0.1, does its own NAT via nft.
+link_network_name: link-net
+link_bridge_name: virbr2
+link_subnet: 10.10.0.0/24
+link_gateway: 10.10.0.1
+network_xml_link: "{{ network_xml_dir }}/link-net.xml"
 
-enterprise_gateway: 10.10.10.1
-
-enterprise_subnet: 10.10.10.0/24
-
-enterprise_netmask: 255.255.255.0
+# Infra network (isolated bridge — coreswitch routes/relays for this subnet)
+infra_network_name: infra-net
+infra_bridge_name: virbr3
+infra_gateway: 10.10.10.1
+infra_subnet: 10.10.10.0/24
+infra_netmask: 255.255.255.0
 
 # Client network (isolated bridge — coreswitch routes/relays for this subnet)
 client_network_name: client-net
-client_bridge_name: virbr11
+client_bridge_name: virbr4
 client_subnet: 10.10.20.0/24
 client_gateway: 10.10.20.1
 client_netmask: 255.255.255.0
@@ -20,7 +33,7 @@ vm_storage_dir: "/var/lib/libvirt/images/ransomware_lab"
 base_image: "{{ vm_storage_dir }}/jammy-server-cloudimg-amd64.img"
 cloud_init_dir: "{{ project_root }}/cloud_init"
 
-network_xml: "{{ project_root }}/configs/network/enterprise-net.xml"
+network_xml: "{{ project_root }}/configs/network/infra-net.xml"
 network_xml_dir: "{{ project_root }}/configs/network"
 
 dns_zone: "enterprise.lab"
@@ -61,8 +74,9 @@ vms:
 
   - name: coreswitch
     role: router
-    ip: 10.10.10.10
+    ip: 10.10.10.1
     ip_client: 10.10.20.1
+    ip_link: 10.10.0.2
     dns_server: 10.10.10.53
     memory: 1024
     vcpus: 1
@@ -71,3 +85,13 @@ vms:
     role: client
     memory: 2048
     vcpus: 2
+
+  - name: gateway1
+    role: gateway
+    ip: 10.10.0.1
+    wan_ip: 173.168.0.10
+    # uses external_dns (IITH/public resolvers) for now - dns1 sits
+    # behind this gateway, not yet wired as resolver. Switch to dns1
+    # later once the gateway cutover is done.
+    memory: 1024
+    vcpus: 1

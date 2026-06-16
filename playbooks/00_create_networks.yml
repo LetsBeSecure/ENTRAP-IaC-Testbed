@@ -1,0 +1,83 @@
+---
+# =====================================================================
+# 00_create_networks.yml — define/start ALL libvirt virtual networks
+# =====================================================================
+#
+# Single entry point for every virbr used by this testbed. Run first,
+# before any VM-creation playbook.
+#
+#   virbr1  (wan-net)    173.168.0.0/24  - gateway1 WAN leg, host NATs
+#                                           this -> eno2 (NAT #2). See
+#                                           comments below for why.
+#   virbr2  (link-net)   10.10.0.0/24    - gateway1 <-> coreswitch link.
+#                                           isolated (no host IP, no
+#                                           forward) - gateway1 owns
+#                                           10.10.0.1, does its own NAT
+#                                           via nft. coreswitch's other
+#                                           leg.
+#   virbr10 (infra-net)  10.10.10.0/24   - infra subnet (dns1/dhcp1/
+#                                           backup1). isolated, coreswitch
+#                                           is gateway, dhcp1 serves DHCP.
+#   virbr20 (client-net) 10.10.20.0/24   - client subnet, isolated,
+#                                           coreswitch relays DHCP.
+#
+#   naming convention: virbrXY <-> 10.10.X0.0/24 (virbr10=infra,
+#   virbr20=client).
+#
+# WHY TWO NATs FOR wan-net (NAT #2 + gateway1's own NAT #1)?
+#   An IP can only be rewritten-to by the device that owns it on its
+#   own L2 segment, because that's the only device that can receive
+#   the REPLY packets (ARP/conntrack).
+#     - gateway1 NATs internal IPs -> its own wan-net IP (NAT #1, it
+#       owns that IP, tracks replies).
+#     - host NATs wan-net IP -> eno2's IP (NAT #2, host owns eno2,
+#       tracks replies from IITH).
+#   gateway1 cannot NAT directly to eno2's IP: it doesn't sit on eno2's
+#   wire, so replies to that IP would never reach it.
+#
+# CAN WE AVOID wan-net / NAT #2 ENTIRELY?
+#   Yes, IF gateway1 gets a dedicated NIC via PCI passthrough (owns
+#   eno2 directly, single NAT). Needs IOMMU/VT-d, host loses eno2.
+#   Until then, wan-net stays as the host-NAT'd WAN leg.
+#
+# =====================================================================
+
+- name: Create libvirt networks
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  vars:
+    networks:
+      - name: "{{ wan_network_name }}"
+        xml: "{{ network_xml_wan }}"
+      - name: "{{ link_network_name }}"
+        xml: "{{ network_xml_link }}"
+      - name: "{{ infra_network_name }}"
+        xml: "{{ network_xml }}"
+      - name: "{{ client_network_name }}"
+        xml: "{{ network_xml_dir }}/client-net.xml"
+
+  tasks:
+
+    - name: Check if network exists
+      shell: virsh net-list --all | grep -w {{ item.name }}
+      register: network_checks
+      failed_when: false
+      changed_when: false
+      loop: "{{ networks }}"
+
+    - name: Define networks
+      command: virsh net-define {{ item.item.xml }}
+      when: item.rc != 0
+      loop: "{{ network_checks.results }}"
+
+    - name: Start networks
+      command: virsh net-start {{ item.item.name }}
+      when: item.rc != 0
+      loop: "{{ network_checks.results }}"
+
+    - name: Enable autostart
+      command: virsh net-autostart {{ item.item.name }}
+      when: item.rc != 0
+      loop: "{{ network_checks.results }}"

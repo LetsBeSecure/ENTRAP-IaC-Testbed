@@ -1,0 +1,4 @@
+<network>
+  <name>infra-net</name>
+  <bridge name='virbr3' stp='on' delay='0'/>
+</network>
