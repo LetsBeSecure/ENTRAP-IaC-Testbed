@@ -1,15 +1,19 @@
 #!/usr/sbin/nft -f
 
-# Default/placeholder ruleset for gateway1 (NAT + firewall VM).
-# Policy: accept everything, just NAT LAN -> WAN via masquerade.
-# Tighten incrementally (egress allow-lists, C2 detection, etc.)
-# by editing this file and re-running configure_gateway.yml.
+# Edge firewall for gateway1 (internet boundary). Policy: drop forward,
+# only internal-initiated traffic (and its replies) crosses. Nothing
+# unsolicited from wan-net reaches link-net/coreswitch/infra/client.
 
 flush ruleset
 
 table inet fw {
     chain forward {
-        type filter hook forward priority filter; policy accept;
+        type filter hook forward priority filter; policy drop;
+
+        ct state established,related accept
+
+        # internal network (everything behind coreswitch) -> internet
+        iifname "enp1s0" oifname "enp2s0" accept
     }
 
     chain postrouting {
