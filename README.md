@@ -189,7 +189,7 @@ sudo systemctl status libvirtd
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/RansomwareTestbed.git
+git clone https://github.com/LetsBeSecure/RansomwareTestbed.git
 cd RansomwareTestbed
 ```
 

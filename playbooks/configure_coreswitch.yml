@@ -3,6 +3,10 @@
   hosts: coreswitch
   become: true
 
+  vars:
+    dns_ip: "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
+    backup_ip: "{{ (vms | selectattr('name', 'equalto', 'backup1') | first).ip }}"
+
   tasks:
 
     - name: Enable IP forwarding
@@ -22,50 +26,100 @@
         state: present
 
     # No NAT here - gateway1 (enp2s0/WAN side, virbr1) is the sole NAT
-    # point. coreswitch just routes/forwards between infra (enp1s0),
-    # client (enp2s0) and the uplink to gateway1 (enp3s0/link-net).
+    # point. coreswitch enforces the DMZ boundary between infra-net
+    # (servers, enp1s0) and client-net (workstations, enp2s0): client
+    # -> infra is allowed on the ports each server actually offers,
+    # infra -> client is NOT (a popped dns1/backup1 can't pivot into
+    # client-net). Admin SSH (ProxyJump via gateway1/enp3s0) is allowed
+    # into both legs regardless, so the lab stays manageable.
 
-    - name: Allow FORWARD client -> infra
+    - name: Flush FORWARD chain (idempotent re-run)
+      iptables:
+        chain: FORWARD
+        flush: true
+
+    - name: Allow established/related (return traffic)
+      iptables:
+        chain: FORWARD
+        ctstate: ESTABLISHED,RELATED
+        jump: ACCEPT
+
+    - name: Allow ICMP everywhere (diagnostics)
+      # ponytail: lab-wide ping for troubleshooting loosens DMZ isolation
+      # slightly (infra can ping client). Drop this if testing pivot
+      # detection needs ICMP blocked too.
+      iptables:
+        chain: FORWARD
+        protocol: icmp
+        jump: ACCEPT
+
+    - name: Allow client -> dns1 (DNS)
       iptables:
         chain: FORWARD
         in_interface: enp2s0
         out_interface: enp1s0
+        destination: "{{ dns_ip }}"
+        protocol: "{{ item }}"
+        destination_port: '53'
         jump: ACCEPT
+      loop: [udp, tcp]
 
-    - name: Allow FORWARD infra -> client
+    - name: Allow client -> backup1 (SMB)
       iptables:
         chain: FORWARD
-        in_interface: enp1s0
-        out_interface: enp2s0
+        in_interface: enp2s0
+        out_interface: enp1s0
+        destination: "{{ backup_ip }}"
+        protocol: tcp
+        destination_port: "{{ item }}"
         jump: ACCEPT
+      loop: ['445', '139']
 
-    - name: Allow FORWARD infra -> uplink (gateway1)
+    - name: Allow admin SSH, uplink -> infra/client (ProxyJump management)
+      iptables:
+        chain: FORWARD
+        in_interface: enp3s0
+        out_interface: "{{ item }}"
+        protocol: tcp
+        destination_port: '22'
+        jump: ACCEPT
+      loop: [enp1s0, enp2s0]
+
+    - name: Allow infra -> uplink (DNS forwarding, package updates, NTP)
       iptables:
         chain: FORWARD
         in_interface: enp1s0
         out_interface: enp3s0
+        protocol: "{{ item.proto }}"
+        destination_port: "{{ item.port }}"
         jump: ACCEPT
+      loop:
+        - { proto: udp, port: '53' }
+        - { proto: tcp, port: '53' }
+        - { proto: tcp, port: '80' }
+        - { proto: tcp, port: '443' }
+        - { proto: udp, port: '123' }
 
-    - name: Allow FORWARD uplink (gateway1) -> infra
-      iptables:
-        chain: FORWARD
-        in_interface: enp3s0
-        out_interface: enp1s0
-        jump: ACCEPT
-
-    - name: Allow FORWARD client -> uplink (gateway1)
+    - name: Allow client -> uplink (general internet egress)
       iptables:
         chain: FORWARD
         in_interface: enp2s0
         out_interface: enp3s0
         jump: ACCEPT
 
-    - name: Allow FORWARD uplink (gateway1) -> client
+    - name: Log dropped infra -> client traffic (lateral-movement detection)
       iptables:
         chain: FORWARD
-        in_interface: enp3s0
+        in_interface: enp1s0
         out_interface: enp2s0
-        jump: ACCEPT
+        jump: LOG
+        log_prefix: "DMZ-PIVOT-BLOCKED: "
+        limit: 5/min
+
+    - name: Default-drop FORWARD (deny anything not explicitly allowed)
+      iptables:
+        chain: FORWARD
+        policy: DROP
 
     - name: Save iptables rules
       command: netfilter-persistent save
