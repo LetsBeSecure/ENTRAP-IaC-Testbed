@@ -1,0 +1,46 @@
+---
+- name: Discover active clients from DHCP leases
+  hosts: dhcp
+  gather_facts: false
+
+  tasks:
+    - name: Read active client IPs from kea lease file
+      shell: "awk -F',' 'NR>1 && $10==\"0\" {print $1}' /var/lib/kea/kea-leases4.csv"
+      register: discovered_ips
+      changed_when: false
+
+    - name: Add discovered clients to dynamic inventory
+      add_host:
+        name: "{{ item }}"
+        groups: discovered_clients
+        ansible_user: student
+        ansible_password: student
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="sshpass -p student ssh
+          -o StrictHostKeyChecking=no
+          -o UserKnownHostsFile=/dev/null
+          -W %h:%p student@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
+      loop: "{{ discovered_ips.stdout_lines }}"
+      when: discovered_ips.stdout_lines | length > 0
+
+- name: Configure discovered clients
+  hosts: discovered_clients
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Wait for SSH (clients may still be booting)
+      wait_for_connection:
+        timeout: 300
+        delay: 10
+
+    - name: Read backup pubkey from backup1
+      slurp:
+        src: /home/student/.ssh/backup_id_ed25519.pub
+      delegate_to: "{{ groups['backup'][0] }}"
+      register: backup_pubkey_b64
+
+    - name: Authorize backup1 SSH key on client
+      authorized_key:
+        user: student
+        key: "{{ backup_pubkey_b64.content | b64decode | trim }}"

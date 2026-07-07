@@ -26,7 +26,7 @@
               "lease-database": {
                   "type": "memfile",
                   "persist": true,
-                  "name": "/tmp/kea-leases4.csv",
+                  "name": "/var/lib/kea/kea-leases4.csv",
                   "lfc-interval": 1800,
                   "max-row-errors": 100
               },

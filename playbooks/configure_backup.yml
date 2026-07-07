@@ -3,15 +3,21 @@
   hosts: backup
   become: true
 
+  vars:
+    dns_ip: "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
+    dhcp_ip: "{{ (vms | selectattr('name', 'equalto', 'dhcp1') | first).ip }}"
+
   tasks:
 
-    - name: Install samba
+    - name: Install samba and rsync
       apt:
-        name: samba
+        name:
+          - samba
+          - rsync
         update_cache: true
         state: present
 
-    - name: Create backup share
+    - name: Create backup share directory
       file:
         path: "{{ backup_share_path }}"
         state: directory
@@ -38,3 +44,115 @@
         name: smbd
         enabled: true
         state: restarted
+
+    - name: Generate backup SSH keypair (ed25519, idempotent)
+      openssh_keypair:
+        path: /home/student/.ssh/backup_id_ed25519
+        type: ed25519
+        owner: student
+        group: student
+        mode: '0600'
+
+    - name: Read backup pubkey into memory
+      slurp:
+        src: /home/student/.ssh/backup_id_ed25519.pub
+      register: backup_pubkey_b64
+
+    - name: Cache pubkey on controller (used by create_client_vms.yml)
+      delegate_to: localhost
+      set_fact:
+        backup_pubkey: "{{ backup_pubkey_b64.content | b64decode | trim }}"
+        cacheable: true
+
+    - name: Deploy backup script
+      copy:
+        dest: /usr/local/bin/backup-lab.sh
+        mode: '0755'
+        content: |
+          #!/usr/bin/env bash
+          # Server-pull backup: infra configs (bind, kea) + active client home dirs.
+          # --link-dest: unchanged files are hardlinked from the previous run
+          # rather than re-copied, giving time-series storage efficiency per host.
+          # ponytail: file-level rsync, no cross-client dedup. Switch to restic
+          #           when clients > ~20 or backup1 storage measurably saturates.
+          set -euo pipefail
+
+          BACKUP_ROOT="{{ backup_share_path }}"
+          TIMESTAMP=$(date +%Y-%m-%d_%H-%M)
+          DNS1="{{ dns_ip }}"
+          DHCP1="{{ dhcp_ip }}"
+          LEASE_FILE="/var/lib/kea/kea-leases4.csv"
+          SSH_KEY="/home/student/.ssh/backup_id_ed25519"
+          SSH_CMD="ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=10"
+
+          log() { echo "[$(date +%T)] $*" | tee -a /var/log/backup-lab.log; }
+
+          pull() {
+              local host=$1 src=$2 dest=$3 prev=${4:-}
+              local link_arg=""
+              [[ -n "$prev" && -d "$prev" ]] && link_arg="--link-dest=${prev}"
+              mkdir -p "$dest"
+              # shellcheck disable=SC2086
+              rsync -az --delete ${link_arg} -e "${SSH_CMD}" \
+                  "student@${host}:${src}" "${dest}/" \
+                  && log "OK   ${host}:${src}" \
+                  || log "WARN ${host}:${src} skipped (host unreachable)"
+          }
+
+          log "=== backup start: ${TIMESTAMP} ==="
+
+          # infra: dns1 — zone files and named config
+          pull "${DNS1}"  /etc/bind/ \
+              "${BACKUP_ROOT}/dns1/${TIMESTAMP}" \
+              "${BACKUP_ROOT}/dns1/latest"
+          ln -sfn "${BACKUP_ROOT}/dns1/${TIMESTAMP}" "${BACKUP_ROOT}/dns1/latest"
+
+          # infra: dhcp1 — kea config + leases (leases = who has what IP)
+          pull "${DHCP1}" /etc/kea/ \
+              "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}/conf" \
+              "${BACKUP_ROOT}/dhcp1/latest/conf"
+          pull "${DHCP1}" /var/lib/kea/ \
+              "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}/leases" \
+              "${BACKUP_ROOT}/dhcp1/latest/leases"
+          ln -sfn "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}" "${BACKUP_ROOT}/dhcp1/latest"
+
+          # clients: read active leases from dhcp1, pull /home/student per client
+          log "discovering active clients from kea leases..."
+          CLIENTS=$(${SSH_CMD} "student@${DHCP1}" \
+              "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' ${LEASE_FILE}" 2>/dev/null || true)
+
+          [[ -z "$CLIENTS" ]] && log "WARN no active clients found in lease file"
+
+          for ip in $CLIENTS; do
+              pull "${ip}" /home/student/ \
+                  "${BACKUP_ROOT}/clients/${ip}/${TIMESTAMP}" \
+                  "${BACKUP_ROOT}/clients/${ip}/latest"
+              ln -sfn "${BACKUP_ROOT}/clients/${ip}/${TIMESTAMP}" \
+                  "${BACKUP_ROOT}/clients/${ip}/latest"
+          done
+
+          log "=== backup complete ==="
+
+    - name: Schedule nightly backup at 02:00
+      cron:
+        name: lab-backup
+        hour: '2'
+        minute: '0'
+        job: /usr/local/bin/backup-lab.sh
+        user: root
+
+- name: Authorize backup1 SSH key on infra targets (dns1, dhcp1)
+  hosts: dns:dhcp
+  become: true
+
+  tasks:
+    - name: Read backup pubkey from backup1
+      slurp:
+        src: /home/student/.ssh/backup_id_ed25519.pub
+      delegate_to: "{{ groups['backup'][0] }}"
+      register: backup_pubkey_b64
+
+    - name: Add backup1 pubkey to student authorized_keys
+      authorized_key:
+        user: student
+        key: "{{ backup_pubkey_b64.content | b64decode | trim }}"

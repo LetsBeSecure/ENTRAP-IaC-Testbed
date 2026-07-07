@@ -107,6 +107,16 @@
         out_interface: enp3s0
         jump: ACCEPT
 
+    - name: Allow backup1 -> client-net SSH (server-pull backup)
+      iptables:
+        chain: FORWARD
+        in_interface: enp1s0
+        out_interface: enp2s0
+        source: "{{ backup_ip }}"
+        protocol: tcp
+        destination_port: '22'
+        jump: ACCEPT
+
     - name: Log dropped infra -> client traffic (lateral-movement detection)
       iptables:
         chain: FORWARD

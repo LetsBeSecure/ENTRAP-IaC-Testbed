@@ -6,6 +6,7 @@
 
   vars:
     client_vms: "{{ vms | selectattr('role', 'equalto', 'client') | list }}"
+    backup_pubkey: "{{ hostvars['localhost']['backup_pubkey'] | default('') }}"
 
   tasks:
 
@@ -54,6 +55,10 @@
               sudo: ALL=(ALL) NOPASSWD:ALL
               plain_text_passwd: student
               lock_passwd: false
+          {% if backup_pubkey %}
+              ssh_authorized_keys:
+                - {{ backup_pubkey }}
+          {% endif %}
 
           ssh_pwauth: true
           disable_root: false
