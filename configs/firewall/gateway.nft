@@ -7,13 +7,23 @@
 flush ruleset
 
 table inet fw {
+    chain input {
+        type filter hook input priority filter; policy accept;
+        # All inbound traffic to gateway1 itself through Suricata IPS.
+        # SSH brute rule has threshold (5/60s) — normal single admin SSH won't trigger.
+        # bypass = fail-open: Ansible can always reach gateway1 if Suricata is down.
+        queue num 0 bypass
+    }
+
     chain forward {
         type filter hook forward priority filter; policy drop;
 
-        ct state established,related accept
-
-        # internal network (everything behind coreswitch) -> internet
-        iifname "enp1s0" oifname "enp2s0" accept
+        # All forwarded traffic through Suricata IPS queue — both directions.
+        # Both sides required: libhtp (HTTP) and other app-layer parsers need
+        # request + response to establish session context for UA, body, TLS matching.
+        # One-sided queue breaks http.user_agent, stream_size, TLS SNI detection.
+        # bypass = fail-open: if Suricata is down, traffic passes through.
+        queue num 0 bypass
     }
 
     chain postrouting {
