@@ -5,7 +5,7 @@
   gather_facts: false
 
   vars:
-    client_vms: "{{ vms | selectattr('role', 'equalto', 'client') | list }}"
+    client_vms: "{{ range(1, client_count + 1) | list }}"
     backup_pubkey: "{{ hostvars['localhost']['backup_pubkey'] | default('') }}"
 
   tasks:
@@ -21,32 +21,32 @@
         qemu-img create -f qcow2
         -F qcow2
         -b {{ base_image }}
-        {{ vm_storage_dir }}/{{ item.name }}.qcow2 20G
+        {{ vm_storage_dir }}/client{{ item }}.qcow2 20G
       args:
-        creates: "{{ vm_storage_dir }}/{{ item.name }}.qcow2"
+        creates: "{{ vm_storage_dir }}/client{{ item }}.qcow2"
       loop: "{{ client_vms }}"
 
     - name: Create cloud-init folders
       file:
-        path: "/tmp/{{ item.name }}"
+        path: "/tmp/client{{ item }}"
         state: directory
       loop: "{{ client_vms }}"
 
     - name: Create meta-data
       copy:
-        dest: "/tmp/{{ item.name }}/meta-data"
+        dest: "/tmp/client{{ item }}/meta-data"
         content: |
-          instance-id: {{ item.name }}
-          local-hostname: {{ item.name }}
+          instance-id: client{{ item }}
+          local-hostname: client{{ item }}
       loop: "{{ client_vms }}"
 
     - name: Create user-data
       copy:
-        dest: "/tmp/{{ item.name }}/user-data"
+        dest: "/tmp/client{{ item }}/user-data"
         content: |
           #cloud-config
 
-          hostname: {{ item.name }}
+          hostname: client{{ item }}
 
           users:
             - name: student
@@ -75,7 +75,7 @@
 
     - name: Create network-config
       copy:
-        dest: "/tmp/{{ item.name }}/network-config"
+        dest: "/tmp/client{{ item }}/network-config"
         content: |
           version: 2
           ethernets:
@@ -86,17 +86,17 @@
     - name: Generate cloud-init ISOs
       command: >
         genisoimage
-        -output {{ vm_storage_dir }}/{{ item.name }}-seed.iso
+        -output {{ vm_storage_dir }}/client{{ item }}-seed.iso
         -volid cidata
         -joliet
         -rock
-        /tmp/{{ item.name }}/user-data
-        /tmp/{{ item.name }}/meta-data
-        /tmp/{{ item.name }}/network-config
+        /tmp/client{{ item }}/user-data
+        /tmp/client{{ item }}/meta-data
+        /tmp/client{{ item }}/network-config
       loop: "{{ client_vms }}"
 
     - name: Check if VM already exists
-      shell: virsh dominfo {{ item.name }}
+      shell: virsh dominfo client{{ item }}
       register: vm_check
       failed_when: false
       changed_when: false
@@ -105,11 +105,11 @@
     - name: Create VMs
       command: >
         virt-install
-        --name {{ item.item.name }}
-        --memory {{ item.item.memory }}
-        --vcpus {{ item.item.vcpus }}
-        --disk {{ vm_storage_dir }}/{{ item.item.name }}.qcow2
-        --disk {{ vm_storage_dir }}/{{ item.item.name }}-seed.iso,device=cdrom
+        --name client{{ item.item }}
+        --memory {{ client_memory }}
+        --vcpus {{ client_vcpus }}
+        --disk {{ vm_storage_dir }}/client{{ item.item }}.qcow2
+        --disk {{ vm_storage_dir }}/client{{ item.item }}-seed.iso,device=cdrom
         --network network={{ client_network_name }}
         --os-variant ubuntu22.04
         --graphics none

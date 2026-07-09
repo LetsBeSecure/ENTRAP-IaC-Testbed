@@ -12,22 +12,23 @@
       - "{{ link_network_name }}"
       - "{{ infra_network_name }}"
       - "{{ client_network_name }}"
+    all_vm_names: "{{ (vms | map(attribute='name') | list) + (range(1, client_count + 1) | map('regex_replace', '^(.*)$', 'client\\1') | list) }}"
 
   tasks:
 
     - name: Destroy VMs
       shell: virsh destroy {{ item }}
-      loop: "{{ vms | map(attribute='name') | list }}"
+      loop: "{{ all_vm_names }}"
       ignore_errors: true
 
     - name: Undefine VMs
       shell: virsh undefine {{ item }} --snapshots-metadata
-      loop: "{{ vms | map(attribute='name') | list }}"
+      loop: "{{ all_vm_names }}"
       ignore_errors: true
 
     - name: Remove VM disk and seed ISO files
       shell: "rm -f {{ vm_storage_dir }}/{{ item }}.qcow2 {{ vm_storage_dir }}/{{ item }}-seed.iso"
-      loop: "{{ vms | map(attribute='name') | list }}"
+      loop: "{{ all_vm_names }}"
       ignore_errors: true
 
     - name: Destroy networks
