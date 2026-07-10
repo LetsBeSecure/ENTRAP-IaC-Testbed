@@ -1,33 +1,72 @@
 #!/usr/sbin/nft -f
 
-# Edge firewall for gateway1 (internet boundary). Policy: drop forward,
-# only internal-initiated traffic (and its replies) crosses. Nothing
-# unsolicited from wan-net reaches link-net/coreswitch/infra/client.
+# Enterprise edge firewall + Suricata IPS for gateway1.
+#
+# Interfaces:
+#   enp2s0 = WAN (wan-net 173.168.0.0/24 — hypervisor virbr1, simulated internet)
+#   enp1s0 = LAN (link-net 10.10.0.0/24 → coreswitch → infra/client nets)
+#
+# Threat model: ransomware enters via compromised/rogue LAN client (phishing,
+# drive-by download, insider). C2 beacons outbound LAN→WAN. Suricata detects
+# and drops. Unsolicited inbound WAN→LAN new connections blocked at firewall —
+# no internal services are exposed to WAN.
+#
+# Firewall logs visible via: journalctl -k --grep "nft-" -f
+#   or: dmesg | grep "nft-"
 
 flush ruleset
 
+define WAN_IF   = "enp2s0"
+define LAN_IF   = "enp1s0"
+define MGMT_NET = 173.168.0.0/24
+
 table inet fw {
+
     chain input {
-        type filter hook input priority filter; policy accept;
-        # All inbound traffic to gateway1 itself through Suricata IPS.
-        # SSH brute rule has threshold (5/60s) — normal single admin SSH won't trigger.
-        # bypass = fail-open: Ansible can always reach gateway1 if Suricata is down.
-        queue num 0 bypass
+        type filter hook input priority filter; policy drop;
+
+        iifname "lo" accept
+
+        ct state invalid log prefix "nft-INPUT-invalid: " drop
+
+        # Return traffic for gateway1-initiated outbound (apt, DNS, NTP)
+        ct state { established, related } accept
+
+        # SSH from hypervisor management network (wan-net / virbr1).
+        # Ansible connects directly to 173.168.0.10 — no ProxyJump for gateway1 itself.
+        iifname $WAN_IF ip saddr $MGMT_NET tcp dport 22 ct state new accept
+
+        # SSH from LAN side (link-net admin access)
+        iifname $LAN_IF tcp dport 22 ct state new accept
+
+        # ICMP echo from LAN for diagnostics
+        iifname $LAN_IF icmp type echo-request accept
+
+        # All else dropped — log for audit, then policy drop
+        log prefix "nft-INPUT-drop: "
     }
 
     chain forward {
         type filter hook forward priority filter; policy drop;
 
-        # All forwarded traffic through Suricata IPS queue — both directions.
-        # Both sides required: libhtp (HTTP) and other app-layer parsers need
-        # request + response to establish session context for UA, body, TLS matching.
-        # One-sided queue breaks http.user_agent, stream_size, TLS SNI detection.
-        # bypass = fail-open: if Suricata is down, traffic passes through.
+        # Discard malformed/out-of-window packets before queuing
+        ct state invalid log prefix "nft-FWD-invalid: " drop
+
+        # Enterprise inbound policy: block unsolicited WAN→LAN new sessions.
+        # Internal hosts never accept connections initiated from WAN.
+        # Attack path is LAN-outbound: phishing click → download → C2 beacon out.
+        iifname $WAN_IF oifname $LAN_IF ct state new log prefix "nft-FWD-inbound-drop: " drop
+
+        # All remaining traffic → Suricata NFQUEUE IPS (both directions).
+        # Covers: LAN→WAN new outbound + established/related both ways.
+        # Both directions required: libhtp HTTP response bodies, TLS cert inspection,
+        # and stream_size exfil rules need request + response to build session context.
+        # bypass = fail-open: traffic passes if Suricata is down (prefer availability).
         queue num 0 bypass
     }
 
     chain postrouting {
         type nat hook postrouting priority srcnat; policy accept;
-        oifname "enp2s0" masquerade
+        oifname $WAN_IF masquerade
     }
 }
