@@ -8,18 +8,35 @@
 #
 # Threat model: ransomware enters via compromised/rogue LAN client (phishing,
 # drive-by download, insider). C2 beacons outbound LAN→WAN. Suricata detects
-# and drops. Unsolicited inbound WAN→LAN new connections blocked at firewall —
-# no internal services are exposed to WAN.
+# and drops. Only web1:80 exposed to WAN via DNAT; all other inbound blocked.
 #
-# Firewall logs visible via: journalctl -k --grep "nft-" -f
-#   or: dmesg | grep "nft-"
+# Firewall logs: journalctl -k --grep "nft-" -f
 
 flush ruleset
 
-define WAN_IF   = "enp2s0"
-define LAN_IF   = "enp1s0"
-define MGMT_NET = 173.168.0.0/24
+define WAN_IF    = "enp2s0"
+define LAN_IF    = "enp1s0"
+define MGMT_NET  = 173.168.0.0/24
+define WEB_SRV   = 10.10.10.10
 
+# NAT in table ip (IPv4-only) — dnat/masquerade require ip family on Ubuntu 22.04 nftables.
+table ip nat {
+
+    chain prerouting {
+        type nat hook prerouting priority dstnat; policy accept;
+
+        # DNAT: HTTP on WAN IP → web1 (enterprise.lab web server).
+        # Suricata inspects in FORWARD chain after DNAT rewrites destination.
+        iifname $WAN_IF tcp dport 80 dnat ip to $WEB_SRV:80
+    }
+
+    chain postrouting {
+        type nat hook postrouting priority srcnat; policy accept;
+        oifname $WAN_IF masquerade
+    }
+}
+
+# Stateful filter in table inet (IPv4 + IPv6).
 table inet fw {
 
     chain input {
@@ -42,8 +59,8 @@ table inet fw {
         # ICMP echo from LAN for diagnostics
         iifname $LAN_IF icmp type echo-request accept
 
-        # All else dropped — log for audit, then policy drop
-        log prefix "nft-INPUT-drop: "
+        # All else: log then drop (policy)
+        log prefix "nft-INPUT-drop: " drop
     }
 
     chain forward {
@@ -52,21 +69,16 @@ table inet fw {
         # Discard malformed/out-of-window packets before queuing
         ct state invalid log prefix "nft-FWD-invalid: " drop
 
-        # Enterprise inbound policy: block unsolicited WAN→LAN new sessions.
-        # Internal hosts never accept connections initiated from WAN.
-        # Attack path is LAN-outbound: phishing click → download → C2 beacon out.
+        # WAN→web1:80 (DNAT'd HTTP): send through Suricata for web attack inspection.
+        # Must be before the blanket inbound-drop rule.
+        iifname $WAN_IF oifname $LAN_IF ip daddr $WEB_SRV tcp dport 80 ct state new queue num 0 bypass
+
+        # Block all other unsolicited WAN→LAN new sessions.
         iifname $WAN_IF oifname $LAN_IF ct state new log prefix "nft-FWD-inbound-drop: " drop
 
-        # All remaining traffic → Suricata NFQUEUE IPS (both directions).
-        # Covers: LAN→WAN new outbound + established/related both ways.
-        # Both directions required: libhtp HTTP response bodies, TLS cert inspection,
-        # and stream_size exfil rules need request + response to build session context.
-        # bypass = fail-open: traffic passes if Suricata is down (prefer availability).
+        # All remaining → Suricata NFQUEUE IPS (both directions).
+        # Both directions required: HTTP response bodies, TLS, stream_size exfil detection.
+        # bypass = fail-open if Suricata down.
         queue num 0 bypass
-    }
-
-    chain postrouting {
-        type nat hook postrouting priority srcnat; policy accept;
-        oifname $WAN_IF masquerade
     }
 }
