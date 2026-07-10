@@ -1,0 +1,46 @@
+---
+# Deploy attack scripts to specified client VMs.
+#
+# Edit target_ips below to choose which clients receive the scripts.
+# Find client IPs on dhcp1:
+#   awk -F',' 'NR>1 && $10=="0" {print $1}' /var/lib/kea/kea-leases4.csv
+
+- name: Stage attack scripts on target clients
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    target_ips:
+      - 10.10.20.151     # client2
+
+  tasks:
+    - name: Add target clients to dynamic inventory
+      add_host:
+        name: "{{ item }}"
+        groups: attack_targets
+        ansible_user: student
+        ansible_password: student
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="sshpass -p student ssh
+          -o StrictHostKeyChecking=no
+          -o UserKnownHostsFile=/dev/null
+          -W %h:%p student@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
+      loop: "{{ target_ips }}"
+
+- name: Deploy attack scripts
+  hosts: attack_targets
+  become: false
+  gather_facts: false
+
+  tasks:
+    - name: Create attacks directory on client
+      file:
+        path: /home/student/attacks
+        state: directory
+        mode: '0755'
+
+    - name: Copy all attack scripts to client
+      copy:
+        src: "{{ project_root }}/attacks/"
+        dest: /home/student/attacks/
+        mode: '0755'
