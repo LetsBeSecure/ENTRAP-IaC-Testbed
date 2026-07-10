@@ -9,3 +9,4 @@
 - import_playbook: configure_dhcp.yml
 - import_playbook: configure_backup.yml
 - import_playbook: create_client_vms.yml
+- import_playbook: configure_clients.yml

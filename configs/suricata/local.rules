@@ -1,0 +1,127 @@
+# Local Suricata IDS rules for RansomwareTestbed
+# Deployed to /etc/suricata/rules/local.rules on gateway1
+#
+# drop actions are inert in AF_PACKET IDS mode (behave as alert).
+# They take effect if gateway1 is later switched to inline/NFQUEUE IPS mode.
+
+# =====================================================================
+# STAGE 1: RECONNAISSANCE
+# =====================================================================
+
+# Nmap SYN scan — flow:stateless because SYN has no established session yet
+alert tcp any any -> $HOME_NET any (msg:"RECON: Nmap SYN Scan Detected"; flags:S; flow:stateless; threshold:type threshold, track by_src, count 15, seconds 3; classtype:attempted-recon; sid:1000060; rev:2;)
+
+# UDP port scan — exclude port 53 to avoid false-positives on normal DNS traffic
+alert udp any any -> $HOME_NET !53 (msg:"RECON: UDP Port Scan Detected"; threshold:type threshold, track by_dst, count 40, seconds 5; classtype:attempted-recon; sid:1000052; rev:2;)
+
+# =====================================================================
+# STAGE 2: BRUTE FORCE
+# =====================================================================
+
+# SSH brute force — count new connection SYNs, not packets on existing session
+# flow:stateless + flags:S = one alert per connection attempt, not per packet
+alert tcp any any -> any 22 (msg:"ATTACK: SSH Brute Force Attempt Detected"; flags:S; flow:to_server,stateless; threshold:type threshold, track by_src, count 5, seconds 10; classtype:attempted-recon; sid:1000021; rev:4;)
+
+# FTP brute force — same logic
+alert tcp any any -> any 21 (msg:"ATTACK: FTP Brute Force Attempt Detected"; flags:S; flow:to_server,stateless; threshold:type threshold, track by_src, count 5, seconds 10; classtype:attempted-recon; sid:1000064; rev:3;)
+
+# =====================================================================
+# STAGE 3: DENIAL OF SERVICE
+# =====================================================================
+
+# TCP SYN flood — 100 SYNs/sec from single source
+alert tcp any any -> $HOME_NET any (msg:"ATTACK: TCP SYN Flood Detected"; flags:S; flow:stateless; threshold:type threshold, track by_src, count 100, seconds 1; classtype:attempted-dos; sid:1000020; rev:2;)
+
+# UDP flood — 500 UDP/sec to single destination
+alert udp any any -> $HOME_NET any (msg:"ATTACK: UDP Flood Detected"; threshold:type threshold, track by_dst, count 500, seconds 1; classtype:attempted-dos; sid:1000022; rev:1;)
+
+# ICMP ping flood — external only (internal ICMP allowed for lab diagnostics)
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ATTACK: ICMP Ping Flood Detected"; itype:8; threshold:type threshold, track by_dst, count 200, seconds 1; classtype:attempted-dos; sid:1000044; rev:1;)
+
+# HTTP request flood
+alert http any any -> $HTTP_SERVERS any (msg:"ATTACK: HTTP Request Flood Detected"; flow:to_server,established; threshold:type threshold, track by_src, count 200, seconds 2; classtype:attempted-dos; sid:1000050; rev:1;)
+
+# Possible Slowloris — sustained request volume from single src over 60s window
+# ponytail: counts requests not open connections; true Slowloris needs conn-count
+#           tracking at app-layer; this catches volumetric variant only
+alert tcp any any -> $HOME_NET 80 (msg:"ATTACK: Possible Slowloris DoS Detected"; flow:to_server,established; threshold:type threshold, track by_src, count 30, seconds 60; classtype:attempted-dos; sid:1000053; rev:2;)
+
+# Aggregate DDoS — 500 SYNs to single destination across all sources within 2s
+alert tcp any any -> $HOME_NET any (msg:"ATTACK: Possible DDoS Aggregate SYN Volume"; flags:S; flow:stateless; threshold:type threshold, track by_dst, count 500, seconds 2; classtype:attempted-dos; sid:1000045; rev:1;)
+
+# =====================================================================
+# STAGE 4: WEB EXPLOITATION
+# =====================================================================
+
+# SQL injection — UNION SELECT in HTTP URI (distance:0 = SELECT anywhere after UNION)
+drop http any any -> $HTTP_SERVERS any (msg:"ATTACK: SQL Injection UNION SELECT Detected"; flow:to_server,established; content:"UNION"; http_uri; nocase; content:"SELECT"; http_uri; nocase; distance:0; classtype:web-application-attack; sid:1000041; rev:2;)
+
+# Directory traversal — literal path and URL-encoded variant in URI
+drop http any any -> $HTTP_SERVERS any (msg:"ATTACK: Directory Traversal Attempt Detected"; flow:to_server,established; content:"../../../"; http_uri; nocase; classtype:web-application-attack; sid:1000068; rev:1;)
+
+# PowerShell HTTP User-Agent — unobfuscated PowerShell making outbound HTTP
+# catches Meterpreter, Empire, and most commodity ransomware droppers that don't spoof UA
+drop http $HOME_NET any -> $EXTERNAL_NET any (msg:"ATTACK: PowerShell HTTP User-Agent - Possible C2 Downloader"; flow:to_server,established; http.user_agent; content:"PowerShell"; nocase; classtype:bad-unknown; sid:1000042; rev:2;)
+
+# =====================================================================
+# STAGE 5: DATA EXFILTRATION
+# =====================================================================
+
+# Large outbound TCP stream — >50MB per session; once per src per 5 minutes
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"EXFIL: Large Outbound Data Transfer Detected (>50MB)"; flow:established,to_server; stream_size:client,>,50000000; threshold:type limit, track by_src, count 1, seconds 300; classtype:policy-violation; sid:1000032; rev:1;)
+
+# ICMP covert channel — standard ping = 56 bytes; payload >1000 bytes is tool-generated
+alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg:"EXFIL: Oversized ICMP Payload - Possible Covert Channel"; itype:8; icode:0; dsize:>1000; classtype:bad-unknown; sid:1000040; rev:1;)
+
+# =====================================================================
+# STAGE 6: RANSOMWARE / C2 INDICATORS
+# =====================================================================
+
+# TOR .onion DNS queries — ransomware frequently uses TOR for C2 and payment pages
+alert dns any any -> any 53 (msg:"MALWARE: DNS Query for .onion Domain - Possible TOR C2"; dns.query; content:".onion"; nocase; endswith; classtype:trojan-activity; sid:1000070; rev:1;)
+
+# Crypto miner — Stratum protocol on common pool ports (often co-deployed with ransomware)
+alert tcp $HOME_NET any -> $EXTERNAL_NET [3333,3334] (msg:"MALWARE: Crypto Miner Stratum Pool Connection (port 3333/3334)"; flow:to_server; classtype:policy-violation; sid:1000072; rev:1;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET [4444,14444,45560] (msg:"MALWARE: Crypto Miner Stratum Protocol Port Detected"; flow:to_server; classtype:policy-violation; sid:1000073; rev:1;)
+
+# =====================================================================
+# STAGE 7: LATERAL MOVEMENT + RANSOMWARE EXECUTION INDICATORS
+# =====================================================================
+
+# RDP brute force (port 3389)
+# RDP is the #1 ransomware initial access vector (exposed RDP + weak password).
+# Rule counts new TCP SYN connection attempts to 3389 from a single source.
+# flags:S + flow:stateless = one alert per attempt, not per packet on session.
+# Threshold: 5 attempts in 60s from same src → alert.
+alert tcp any any -> $HOME_NET 3389 (msg:"ATTACK: RDP Brute Force Attempt Detected"; flags:S; flow:to_server,stateless; threshold:type threshold, track by_src, count 5, seconds 10; classtype:attempted-recon; sid:1000074; rev:3;)
+
+# DNS tunneling — oversized DNS query packet
+# Tools like iodine and dnscat2 encode data inside DNS query names, producing
+# abnormally large DNS packets. Standard DNS queries are <100 bytes total payload.
+# dsize:>100 matches UDP payload size as a proxy for long query names.
+# ponytail: dsize = packet payload, not query name length; encodes the same signal
+#           for lab purposes; proper detection needs dns.query + pcre length check.
+alert dns any any -> any 53 (msg:"EXFIL: Possible DNS Tunneling - Oversized DNS Query"; dsize:>100; threshold:type threshold, track by_src, count 5, seconds 10; classtype:bad-unknown; sid:1000075; rev:1;)
+
+# DGA beaconing — high DNS query volume from a single internal host
+# DGA malware queries hundreds of random-looking domains per minute looking for live C2.
+# This detects the query storm from the infected client side rather than NXDOMAIN responses
+# (dns.rcode response-code matching requires Suricata 7+; this lab runs Suricata 6.0.x).
+# Threshold: 50 DNS queries from one src in 10s → alert. Normal browsing = 5-15/10s.
+alert dns $HOME_NET any -> any 53 (msg:"MALWARE: Possible DGA Beaconing - High DNS Query Volume"; threshold:type threshold, track by_src, count 50, seconds 10; classtype:trojan-activity; sid:1000076; rev:2;)
+
+# VSS shadow copy deletion via HTTP/webshell
+# Before encrypting files, ransomware deletes Volume Shadow Copies to prevent recovery.
+# The classic command is: vssadmin delete shadows /all /quiet
+# This rule catches that command string appearing in an HTTP request body —
+# typical of webshell execution or RCE payloads delivered over HTTP.
+# http.request_body sticky buffer inspects the POST/PUT request body, not the URI.
+alert http $HOME_NET any -> any any (msg:"MALWARE: VSS Shadow Copy Deletion Command in HTTP Body"; flow:to_server,established; http.request_body; content:"vssadmin"; nocase; content:"delete shadows"; nocase; distance:0; classtype:trojan-activity; sid:1000077; rev:1;)
+
+# Cleartext credentials submitted via HTTP POST
+# Attackers use cleartext HTTP forms for credential harvesting or to test stolen creds.
+# This rule matches the literal string "password=" in any HTTP POST body,
+# which is the standard HTML form field name for password inputs.
+# Also useful for detecting misconfigured internal apps sending passwords unencrypted.
+alert http any any -> $HTTP_SERVERS any (msg:"POLICY: Cleartext Credentials in HTTP POST Body"; flow:to_server,established; http.request_body; content:"password="; nocase; classtype:policy-violation; sid:1000078; rev:1;)

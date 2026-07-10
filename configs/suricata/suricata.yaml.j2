@@ -1,0 +1,206 @@
+%YAML 1.1
+---
+# Suricata IDS config for gateway1 — managed by Ansible, do not edit manually.
+# AF_PACKET passive mode on enp2s0 (WAN). Split EVE logs per protocol.
+
+vars:
+  address-groups:
+    HOME_NET: "[{{ infra_subnet }},{{ client_subnet }},{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}]"
+    EXTERNAL_NET: "!$HOME_NET"
+    HTTP_SERVERS: "$HOME_NET"
+    SMTP_SERVERS: "$HOME_NET"
+    SQL_SERVERS: "$HOME_NET"
+    DNS_SERVERS: "$HOME_NET"
+    TELNET_SERVERS: "$HOME_NET"
+    AIM_SERVERS: "$HOME_NET"
+    DC_SERVERS: "$HOME_NET"
+    DNP3_SERVER: "$HOME_NET"
+    DNP3_CLIENT: "$HOME_NET"
+    MODBUS_CLIENT: "$HOME_NET"
+    MODBUS_SERVER: "$HOME_NET"
+    ENIP_CLIENT: "$HOME_NET"
+    ENIP_SERVER: "$HOME_NET"
+
+  port-groups:
+    HTTP_PORTS: "80"
+    SHELLCODE_PORTS: "!80"
+    ORACLE_PORTS: 1521
+    SSH_PORTS: 22
+    DNP3_PORTS: 20000
+    MODBUS_PORTS: 502
+    FILE_DATA_PORTS: "[$HTTP_PORTS,110,143]"
+    FTP_PORTS: 21
+    VXLAN_PORTS: 4789
+    TEREDO_PORTS: 3544
+
+default-log-dir: /var/log/suricata/
+
+stats:
+  enabled: yes
+  interval: 8
+
+outputs:
+  # Human-readable single-line alert summary — quick triage without JSON parsing
+  - fast:
+      enabled: yes
+      filename: fast.log
+      append: yes
+
+  # Split EVE JSON logs by protocol type.
+  # One file per type makes grep, jq, and SIEM ingestion much faster than
+  # parsing a single mixed stream that grows at combined protocol rates.
+
+  # Alerts only — the primary forensic log, kept 30 days
+  - eve-log:
+      enabled: yes
+      filename: eve-alert.json
+      community-id: true
+      community-id-seed: 0
+      types:
+        - alert:
+            payload: yes
+            payload-buffer-size: 4kb
+            payload-printable: yes
+            packet: yes
+            metadata: yes
+            tagged-packets: yes
+
+  # DNS — every query and response; essential for DGA and TOR detection
+  - eve-log:
+      enabled: yes
+      filename: eve-dns.json
+      types:
+        - dns
+
+  # HTTP — full extended fields (user-agent, referrer, content-type)
+  - eve-log:
+      enabled: yes
+      filename: eve-http.json
+      types:
+        - http:
+            extended: yes
+
+  # TLS — cipher, SNI, certificate subject; catches malicious cert patterns
+  - eve-log:
+      enabled: yes
+      filename: eve-tls.json
+      types:
+        - tls:
+            extended: yes
+
+  # Anomalies — malformed packets, protocol violations; early exploit indicator
+  - eve-log:
+      enabled: yes
+      filename: eve-anomaly.json
+      types:
+        - anomaly:
+            enabled: yes
+            types:
+              applayer: yes
+              stream: yes
+              packet: yes
+
+# NFQUEUE inline IPS mode.
+# nftables FORWARD chain sends all routed packets to queue 0.
+# Suricata verdicts each packet: accept or drop.
+# MASQUERADE happens in POSTROUTING (after FORWARD), so Suricata sees real
+# internal src IPs on outbound traffic — same visibility as enp1s0 AF_PACKET had.
+# fail-open: yes — if Suricata dies, nftables bypass flag passes traffic through.
+nfq:
+  mode: accept
+  fail-open: yes
+
+# Application layer decoders — enables protocol-aware rules (http_uri, dns.query, etc.)
+app-layer:
+  protocols:
+    tls:
+      enabled: yes
+      detection-ports:
+        dp: 443
+    http:
+      enabled: yes
+      libhtp:
+        default-config:
+          personality: IDS
+          request-body-limit: 100kb
+          response-body-limit: 100kb
+          double-decode-path: yes
+          double-decode-query: yes
+    dns:
+      tcp:
+        enabled: yes
+        detection-ports:
+          dp: 53
+      udp:
+        enabled: yes
+        detection-ports:
+          dp: 53
+    ftp:
+      enabled: yes
+    ssh:
+      enabled: yes
+    smtp:
+      enabled: yes
+    smb:
+      enabled: yes
+    dcerpc:
+      enabled: yes
+    dnp3:
+      enabled: yes
+      detection-ports:
+        dp: 20000
+    modbus:
+      enabled: yes
+      detection-ports:
+        dp: 502
+
+logging:
+  default-log-level: notice
+  outputs:
+    - console:
+        enabled: yes
+    - file:
+        enabled: yes
+        level: info
+        filename: /var/log/suricata/suricata.log
+
+# Memory limits — sized for a lab VM (adjust if gateway1 has more RAM)
+stream:
+  memcap: 64mb
+  inline: yes
+  reassembly:
+    memcap: 256mb
+    depth: 1mb
+    randomize-chunk-size: yes
+
+flow:
+  memcap: 128mb
+  hash-size: 65536
+  prealloc: 10000
+  emergency-recovery: 30
+
+defrag:
+  memcap: 32mb
+  hash-size: 65536
+  trackers: 65535
+  max-frags: 65535
+  prealloc: yes
+  timeout: 60
+
+detect:
+  profile: medium
+  sgh-mpm-context: auto
+  inspection-recursion-limit: 3000
+
+max-pending-packets: 1024
+host-mode: auto
+
+default-rule-path: /var/lib/suricata/rules
+
+rule-files:
+  - suricata.rules
+  - /etc/suricata/rules/local.rules
+
+classification-file: /etc/suricata/classification.config
+reference-config-file: /etc/suricata/reference.config
+threshold-file: /etc/suricata/threshold.config

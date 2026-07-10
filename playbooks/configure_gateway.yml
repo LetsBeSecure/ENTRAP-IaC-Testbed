@@ -47,3 +47,93 @@
 
     - name: Apply netplan
       command: netplan apply
+
+    # --- Suricata IDS (AF_PACKET passive mode on enp2s0 WAN) ---
+
+    - name: Install suricata
+      apt:
+        name: suricata
+        state: present
+        update_cache: true
+
+    - name: Deploy suricata config (split logs, HOME_NET, interface, rule paths)
+      template:
+        src: "{{ project_root }}/configs/suricata/suricata.yaml.j2"
+        dest: /etc/suricata/suricata.yaml
+        owner: root
+        group: root
+        mode: '0640'
+
+    - name: Create suricata local rules directory
+      file:
+        path: /etc/suricata/rules
+        state: directory
+        mode: '0755'
+
+    - name: Deploy local detection rules
+      copy:
+        src: "{{ project_root }}/configs/suricata/local.rules"
+        dest: /etc/suricata/rules/local.rules
+
+    - name: Deploy suricata logrotate config (daily rotation, 30d retention, 500MB cap)
+      copy:
+        src: "{{ project_root }}/configs/suricata/logrotate.conf"
+        dest: /etc/logrotate.d/suricata
+        owner: root
+        group: root
+        mode: '0644'
+
+    # Add community threat intel sources before pulling rules.
+    # suricata-update add-source is idempotent — safe to re-run on every playbook run.
+    # ET Open is enabled by default; these three add abuse.ch feeds alongside it.
+
+    - name: Add Feodo Tracker source (Emotet/TrickBot/QakBot botnet C2 IPs)
+      command: suricata-update add-source feodo https://feodotracker.abuse.ch/downloads/feodotracker.rules
+      register: feodo_result
+      changed_when: false
+      failed_when: feodo_result.rc != 0 and 'already exists' not in feodo_result.stderr
+
+    - name: Add abuse.ch SSL blacklist source (known-malicious TLS certificate fingerprints)
+      command: suricata-update add-source abuse-ssl https://sslbl.abuse.ch/blacklist/sslblacklist.rules
+      register: abuse_ssl_result
+      changed_when: false
+      failed_when: abuse_ssl_result.rc != 0 and 'already exists' not in abuse_ssl_result.stderr
+
+    - name: Add URLhaus source (active malware distribution URLs)
+      command: suricata-update add-source urlhaus https://urlhaus.abuse.ch/downloads/ids/
+      register: urlhaus_result
+      changed_when: false
+      failed_when: urlhaus_result.rc != 0 and 'already exists' not in urlhaus_result.stderr
+
+    - name: Pull ET Open + all community sources via suricata-update (skipped if already present)
+      command: suricata-update
+      args:
+        creates: /var/lib/suricata/rules/suricata.rules
+
+    - name: Create suricata systemd override directory
+      file:
+        path: /etc/systemd/system/suricata.service.d
+        state: directory
+        mode: '0755'
+
+    - name: Override suricata ExecStart for NFQUEUE IPS mode
+      copy:
+        dest: /etc/systemd/system/suricata.service.d/nfqueue.conf
+        content: |
+          [Service]
+          Type=simple
+          ExecStart=
+          ExecStart=/usr/bin/suricata -c /etc/suricata/suricata.yaml --pidfile /run/suricata.pid -q 0
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload systemd daemon after override
+      systemd:
+        daemon_reload: true
+
+    - name: Enable and start suricata IPS
+      systemd:
+        name: suricata
+        enabled: true
+        state: restarted

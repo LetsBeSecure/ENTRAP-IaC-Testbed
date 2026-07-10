@@ -46,6 +46,10 @@ vm_interface: "enp1s0"
 backup_share_path: "/srv/backups"
 snapshot_name: "clean-state"
 
+client_count: 2 
+client_memory: 2048
+client_vcpus: 2
+
 external_dns:
   - "192.168.36.53"
   - "8.8.8.8"
@@ -80,11 +84,6 @@ vms:
     dns_server: 10.10.10.53
     memory: 1024
     vcpus: 1
-
-  - name: client1
-    role: client
-    memory: 2048
-    vcpus: 2
 
   - name: gateway1
     role: gateway
