@@ -6,6 +6,7 @@
   vars:
     dns_ip: "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
     backup_ip: "{{ (vms | selectattr('name', 'equalto', 'backup1') | first).ip }}"
+    web_ip: "{{ (vms | selectattr('name', 'equalto', 'web1') | first).ip }}"
 
   tasks:
 
@@ -84,6 +85,26 @@
         destination_port: '22'
         jump: ACCEPT
       loop: [enp1s0, enp2s0]
+
+    - name: Allow client -> web1 (HTTP - internal web access)
+      iptables:
+        chain: FORWARD
+        in_interface: enp2s0
+        out_interface: enp1s0
+        destination: "{{ web_ip }}"
+        protocol: tcp
+        destination_port: '80'
+        jump: ACCEPT
+
+    - name: Allow uplink -> web1 (HTTP - DNAT'd traffic from WAN via gateway1)
+      iptables:
+        chain: FORWARD
+        in_interface: enp3s0
+        out_interface: enp1s0
+        destination: "{{ web_ip }}"
+        protocol: tcp
+        destination_port: '80'
+        jump: ACCEPT
 
     - name: Allow infra -> uplink (DNS forwarding, package updates, NTP)
       iptables:

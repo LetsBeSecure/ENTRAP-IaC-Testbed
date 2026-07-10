@@ -60,6 +60,8 @@
           {% for vm in vms | selectattr('ip', 'defined') | list %}
           {{ vm.name }} IN A {{ vm.ip }}
           {% endfor %}
+          @ IN A {{ (vms | selectattr('name', 'equalto', 'web1') | first).ip }}
+          www IN A {{ (vms | selectattr('name', 'equalto', 'web1') | first).ip }}
 
     - name: Restart bind9
       systemd:

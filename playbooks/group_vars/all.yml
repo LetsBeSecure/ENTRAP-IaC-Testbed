@@ -76,6 +76,13 @@ vms:
     memory: 2048
     vcpus: 2
 
+  - name: web1
+    role: infra
+    ip: 10.10.10.10
+    dns_server: 10.10.10.53
+    memory: 2048
+    vcpus: 2
+
   - name: coreswitch
     role: router
     ip: 10.10.10.1

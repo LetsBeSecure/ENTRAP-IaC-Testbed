@@ -1,0 +1,98 @@
+---
+- name: Configure web server (enterprise.lab HTTP)
+  hosts: web
+  become: true
+
+  tasks:
+
+    - name: Install apache2 and php
+      apt:
+        name:
+          - apache2
+          - php
+          - libapache2-mod-php
+        state: present
+        update_cache: true
+
+    - name: Deploy index.html (enterprise homepage)
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head><title>Enterprise Lab Portal</title></head>
+          <body>
+            <h1>Welcome to Enterprise Lab</h1>
+            <p>Internal portal for enterprise.lab employees.</p>
+            <ul>
+              <li><a href="/login.php">Employee Login</a></li>
+              <li><a href="/search.php">Document Search</a></li>
+            </ul>
+          </body>
+          </html>
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Deploy login.php (triggers Suricata cleartext-credential rule 1000078)
+      copy:
+        dest: /var/www/html/login.php
+        content: |
+          <?php
+          $msg = '';
+          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+              $user = htmlspecialchars($_POST['username'] ?? '');
+              $pass = htmlspecialchars($_POST['password'] ?? '');
+              // ponytail: plaintext auth — intentional for testbed credential detection rule
+              $msg = ($user === 'admin' && $pass === 'admin123')
+                  ? 'Login successful.' : 'Invalid credentials.';
+          }
+          ?>
+          <!DOCTYPE html>
+          <html>
+          <head><title>Login - Enterprise Lab</title></head>
+          <body>
+            <h2>Employee Login</h2>
+            <?php if ($msg): ?><p><?= $msg ?></p><?php endif; ?>
+            <form method="POST">
+              <label>Username: <input name="username" type="text"></label><br>
+              <label>Password: <input name="password" type="password"></label><br>
+              <button type="submit">Login</button>
+            </form>
+          </body>
+          </html>
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Deploy search.php (triggers Suricata SQLi rule 1000041 on URI)
+      copy:
+        dest: /var/www/html/search.php
+        content: |
+          <?php
+          // ponytail: no real DB — just reflects the query for SQLi rule testing
+          $q = htmlspecialchars($_GET['q'] ?? '');
+          ?>
+          <!DOCTYPE html>
+          <html>
+          <head><title>Search - Enterprise Lab</title></head>
+          <body>
+            <h2>Document Search</h2>
+            <form method="GET">
+              <input name="q" type="text" value="<?= $q ?>">
+              <button type="submit">Search</button>
+            </form>
+            <?php if ($q): ?>
+            <p>Results for: <?= $q ?></p>
+            <?php endif; ?>
+          </body>
+          </html>
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Enable and start apache2
+      systemd:
+        name: apache2
+        enabled: true
+        state: started
