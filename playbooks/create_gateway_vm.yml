@@ -44,21 +44,31 @@
 
           hostname: {{ gw.name }}
 
+          groups:
+            - {{ infra_admin_user }}
+
           users:
-            - name: student
+            - name: {{ infra_admin_user }}
+              primary_group: {{ infra_admin_user }}
               groups: sudo
               shell: /bin/bash
               sudo: ALL=(ALL) NOPASSWD:ALL
-              plain_text_passwd: student
               lock_passwd: false
+              ssh_authorized_keys:
+                - {{ lookup('file', infra_ssh_key_path) }}
 
+          # ssh_pwauth: enabled for lab/dev convenience (direct SSH with password).
+          # Production: set to false to enforce key-only SSH on infra VMs.
           ssh_pwauth: true
+
           disable_root: false
 
           chpasswd:
-            list: |
-              student:student
             expire: false
+            users:
+              - name: {{ infra_admin_user }}
+                password: "{{ infra_admin_password }}"
+                type: text
 
           package_update: false
           package_upgrade: false
@@ -118,6 +128,12 @@
 
     - name: Enable VM autostart
       command: virsh autostart {{ gw.name }}
+
+    - name: Remove stale known_hosts entries for gateway WAN IP
+      shell: |
+        ssh-keygen -R {{ gw.wan_ip }} 2>/dev/null || true
+        runuser -l {{ lookup('pipe', 'echo ${SUDO_USER:-$USER}') }} -c "ssh-keygen -R {{ gw.wan_ip }}" 2>/dev/null || true
+      changed_when: false
 
     - name: Wait for SSH
       wait_for:

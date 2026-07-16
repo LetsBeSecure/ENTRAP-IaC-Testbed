@@ -47,15 +47,15 @@
 
     - name: Generate backup SSH keypair (ed25519, idempotent)
       openssh_keypair:
-        path: /home/student/.ssh/backup_id_ed25519
+        path: /home/{{ infra_admin_user }}/.ssh/backup_id_ed25519
         type: ed25519
-        owner: student
-        group: student
+        owner: "{{ infra_admin_user }}"
+        group: "{{ infra_admin_user }}"
         mode: '0600'
 
     - name: Read backup pubkey into memory
       slurp:
-        src: /home/student/.ssh/backup_id_ed25519.pub
+        src: /home/{{ infra_admin_user }}/.ssh/backup_id_ed25519.pub
       register: backup_pubkey_b64
 
     - name: Cache pubkey on controller (used by create_client_vms.yml)
@@ -82,19 +82,19 @@
           DNS1="{{ dns_ip }}"
           DHCP1="{{ dhcp_ip }}"
           LEASE_FILE="/var/lib/kea/kea-leases4.csv"
-          SSH_KEY="/home/student/.ssh/backup_id_ed25519"
+          SSH_KEY="/home/{{ infra_admin_user }}/.ssh/backup_id_ed25519"
           SSH_CMD="ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=10"
 
           log() { echo "[$(date +%T)] $*" | tee -a /var/log/backup-lab.log; }
 
           pull() {
-              local host=$1 src=$2 dest=$3 prev=${4:-}
+              local user=$1 host=$2 src=$3 dest=$4 prev=${5:-}
               local link_arg=""
               [[ -n "$prev" && -d "$prev" ]] && link_arg="--link-dest=${prev}"
               mkdir -p "$dest"
               # shellcheck disable=SC2086
               rsync -az --delete ${link_arg} -e "${SSH_CMD}" \
-                  "student@${host}:${src}" "${dest}/" \
+                  "${user}@${host}:${src}" "${dest}/" \
                   && log "OK   ${host}:${src}" \
                   || log "WARN ${host}:${src} skipped (host unreachable)"
           }
@@ -102,29 +102,29 @@
           log "=== backup start: ${TIMESTAMP} ==="
 
           # infra: dns1 — zone files and named config
-          pull "${DNS1}"  /etc/bind/ \
+          pull {{ infra_admin_user }} "${DNS1}"  /etc/bind/ \
               "${BACKUP_ROOT}/dns1/${TIMESTAMP}" \
               "${BACKUP_ROOT}/dns1/latest"
           ln -sfn "${BACKUP_ROOT}/dns1/${TIMESTAMP}" "${BACKUP_ROOT}/dns1/latest"
 
           # infra: dhcp1 — kea config + leases (leases = who has what IP)
-          pull "${DHCP1}" /etc/kea/ \
+          pull {{ infra_admin_user }} "${DHCP1}" /etc/kea/ \
               "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}/conf" \
               "${BACKUP_ROOT}/dhcp1/latest/conf"
-          pull "${DHCP1}" /var/lib/kea/ \
+          pull {{ infra_admin_user }} "${DHCP1}" /var/lib/kea/ \
               "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}/leases" \
               "${BACKUP_ROOT}/dhcp1/latest/leases"
           ln -sfn "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}" "${BACKUP_ROOT}/dhcp1/latest"
 
-          # clients: read active leases from dhcp1, pull /home/student per client
+          # clients: read active leases from dhcp1, pull /home/{{ client_user }} per client
           log "discovering active clients from kea leases..."
-          CLIENTS=$(${SSH_CMD} "student@${DHCP1}" \
+          CLIENTS=$(${SSH_CMD} "{{ infra_admin_user }}@${DHCP1}" \
               "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' ${LEASE_FILE}" 2>/dev/null || true)
 
           [[ -z "$CLIENTS" ]] && log "WARN no active clients found in lease file"
 
           for ip in $CLIENTS; do
-              pull "${ip}" /home/student/ \
+              pull {{ client_user }} "${ip}" /home/{{ client_user }}/ \
                   "${BACKUP_ROOT}/clients/${ip}/${TIMESTAMP}" \
                   "${BACKUP_ROOT}/clients/${ip}/latest"
               ln -sfn "${BACKUP_ROOT}/clients/${ip}/${TIMESTAMP}" \
@@ -148,11 +148,11 @@
   tasks:
     - name: Read backup pubkey from backup1
       slurp:
-        src: /home/student/.ssh/backup_id_ed25519.pub
+        src: /home/{{ infra_admin_user }}/.ssh/backup_id_ed25519.pub
       delegate_to: "{{ groups['backup'][0] }}"
       register: backup_pubkey_b64
 
-    - name: Add backup1 pubkey to student authorized_keys
+    - name: Add backup1 pubkey to admin authorized_keys on infra VMs
       authorized_key:
-        user: student
+        user: "{{ infra_admin_user }}"
         key: "{{ backup_pubkey_b64.content | b64decode | trim }}"
