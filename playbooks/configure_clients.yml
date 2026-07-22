@@ -13,13 +13,13 @@
       add_host:
         name: "{{ item }}"
         groups: discovered_clients
-        ansible_user: student
-        ansible_password: student
+        ansible_user: "{{ client_user }}"
+        ansible_password: "{{ client_password }}"
         ansible_ssh_common_args: >-
-          -o ProxyCommand="sshpass -p student ssh
+          -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
           -o StrictHostKeyChecking=no
           -o UserKnownHostsFile=/dev/null
-          -W %h:%p student@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
+          -W %h:%p {{ infra_admin_user }}@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
       loop: "{{ discovered_ips.stdout_lines }}"
       when: discovered_ips.stdout_lines | length > 0
 
@@ -36,11 +36,11 @@
 
     - name: Read backup pubkey from backup1
       slurp:
-        src: /home/student/.ssh/backup_id_ed25519.pub
+        src: /home/{{ infra_admin_user }}/.ssh/backup_id_ed25519.pub
       delegate_to: "{{ groups['backup'][0] }}"
       register: backup_pubkey_b64
 
     - name: Authorize backup1 SSH key on client
       authorized_key:
-        user: student
+        user: "{{ client_user }}"
         key: "{{ backup_pubkey_b64.content | b64decode | trim }}"

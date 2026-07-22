@@ -18,13 +18,13 @@
       add_host:
         name: "{{ item }}"
         groups: attack_targets
-        ansible_user: student
-        ansible_password: student
+        ansible_user: "{{ client_user }}"
+        ansible_password: "{{ client_password }}"
         ansible_ssh_common_args: >-
-          -o ProxyCommand="sshpass -p student ssh
+          -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
           -o StrictHostKeyChecking=no
           -o UserKnownHostsFile=/dev/null
-          -W %h:%p student@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
+          -W %h:%p {{ infra_admin_user }}@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
       loop: "{{ target_ips }}"
 
 - name: Deploy attack scripts
@@ -35,12 +35,12 @@
   tasks:
     - name: Create attacks directory on client
       file:
-        path: /home/student/attacks
+        path: /home/{{ client_user }}/attacks
         state: directory
         mode: '0755'
 
     - name: Copy all attack scripts to client
       copy:
         src: "{{ project_root }}/attacks/"
-        dest: /home/student/attacks/
+        dest: /home/{{ client_user }}/attacks/
         mode: '0755'
