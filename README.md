@@ -221,6 +221,9 @@ File: `inventory/hosts.ini`
 [backup]
 10.10.10.20
 
+[web]
+10.10.10.10
+
 [clients]
 # clients get dynamic IPs from DHCP - add manually after deployment
 
@@ -229,13 +232,20 @@ coreswitch
 dhcp
 dns
 backup
+web
 
 [infra_net:vars]
-ansible_ssh_common_args='-o ProxyCommand="sshpass -p student ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p student@173.168.0.10"'
+ansible_ssh_common_args='-o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p {{ infra_admin_user }}@173.168.0.10"'
 
 [all:vars]
-ansible_user=student
-ansible_password=student
+ansible_user={{ infra_admin_user }}
+ansible_ssh_private_key_file={{ infra_ssh_private_key_path }}
+
+# Client VMs: intentionally weak credentials (attack surface)
+[clients:vars]
+ansible_user={{ client_user }}
+ansible_password={{ client_password }}
+ansible_ssh_common_args='-o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p {{ infra_admin_user }}@173.168.0.10"'
 ```
 
 > **Note:** Infra-net and client-net are isolated bridges — the host has no direct route there. Ansible reaches all internal VMs (coreswitch, dns1, dhcp1, backup1, clients) via ProxyJump through gateway1 (173.168.0.10). gateway1 is reachable directly on its WAN interface.
@@ -321,21 +331,40 @@ Expected virtual machines:
 
 ### SSH Access
 
-Default credentials for all VMs:
+Credentials are split by VM group:
 
-- **Username:** `student`
-- **Password:** `student`
+| Group | User | Auth |
+|-------|------|------|
+| gateway1, coreswitch, dns1, dhcp1, backup1, web1 | `admin` | SSH key (`~/.ssh/id_ed25519`) |
+| client1, client2, … | `student` | password `student` |
 
-gateway1 is directly reachable on its WAN interface:
+**gateway1** — direct on WAN interface:
 
 ```bash
-ssh student@173.168.0.10
+ssh -i ~/.ssh/id_ed25519 admin@173.168.0.10
 ```
 
-All other VMs (infra-net/client-net) require ProxyJump through gateway1:
+**Infra VMs** (coreswitch, dns1, dhcp1, backup1, web1) — ProxyJump through gateway1:
 
 ```bash
-ssh -o ProxyCommand="sshpass -p student ssh -o StrictHostKeyChecking=no -W %h:%p student@173.168.0.10" student@10.10.10.2
+# pattern: ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@<IP>
+ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@10.10.10.53   # dns1
+ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@10.10.10.2    # dhcp1
+ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@10.10.10.20   # backup1
+ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@10.10.10.10   # web1
+ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@10.10.10.1    # coreswitch
+```
+
+**Client VMs** — dynamic IPs; find them first, then ProxyJump through gateway1:
+
+```bash
+# List active client IPs from dhcp1 lease file
+ssh -i ~/.ssh/id_ed25519 -o ProxyJump=admin@173.168.0.10 admin@10.10.10.2 \
+  "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' /var/lib/kea/kea-leases4.csv"
+
+# Connect to a client (replace IP; enter password: student)
+ssh -o ProxyCommand="ssh -i ~/.ssh/id_ed25519 -W %h:%p admin@173.168.0.10" \
+    -o StrictHostKeyChecking=no student@10.10.20.151
 ```
 
 ### Access a VM Console
@@ -468,7 +497,7 @@ sudo rm -f /var/lib/libvirt/images/ransomware_lab/<vm-name>-seed.iso
 | Issue                        | Possible Cause                          | Solution                                         |
 |------------------------------|-----------------------------------------|--------------------------------------------------|
 | SSH timeout to infra VMs     | cloud-init still running                | Wait 1–3 minutes after boot                      |
-| Ansible can't reach infra VM | ProxyJump misconfigured or gateway down | Verify gateway1 SSH works (`ssh student@173.168.0.10`) |
+| Ansible can't reach infra VM | ProxyJump misconfigured or gateway down | Verify gateway1 SSH works (`ssh -i ~/.ssh/id_ed25519 admin@173.168.0.10`) |
 | VM creation fails            | Existing VM definitions                 | Undefine old VMs (see above)                     |
 | Disk already in use          | Stale libvirt definitions               | Remove old VM disk images                        |
 | Network unreachable          | libvirt network not active              | `sudo virsh net-start <network-name>`            |
