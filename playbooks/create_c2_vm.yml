@@ -1,0 +1,135 @@
+---
+- name: Create C2 server VM
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  vars:
+    c2: "{{ vms | selectattr('role', 'equalto', 'c2') | first }}"
+
+  tasks:
+
+    - name: Ensure VM storage directory exists
+      file:
+        path: "{{ vm_storage_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create qcow2 disk
+      command: >
+        qemu-img create -f qcow2
+        -F qcow2
+        -b {{ base_image }}
+        {{ vm_storage_dir }}/{{ c2.name }}.qcow2 20G
+      args:
+        creates: "{{ vm_storage_dir }}/{{ c2.name }}.qcow2"
+
+    - name: Create cloud-init folder
+      file:
+        path: "/tmp/{{ c2.name }}"
+        state: directory
+
+    - name: Create meta-data
+      copy:
+        dest: "/tmp/{{ c2.name }}/meta-data"
+        content: |
+          instance-id: {{ c2.name }}
+          local-hostname: {{ c2.name }}
+
+    - name: Create user-data
+      copy:
+        dest: "/tmp/{{ c2.name }}/user-data"
+        content: |
+          #cloud-config
+
+          hostname: {{ c2.name }}
+
+          groups:
+            - {{ infra_admin_user }}
+
+          users:
+            - name: {{ infra_admin_user }}
+              primary_group: {{ infra_admin_user }}
+              groups: sudo
+              shell: /bin/bash
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              lock_passwd: false
+              ssh_authorized_keys:
+                - {{ lookup('file', infra_ssh_key_path) }}
+
+          ssh_pwauth: true
+          disable_root: false
+
+          chpasswd:
+            expire: false
+            users:
+              - name: {{ infra_admin_user }}
+                password: "{{ infra_admin_password }}"
+                type: text
+
+          package_update: false
+          package_upgrade: false
+
+    - name: Create network-config
+      copy:
+        dest: "/tmp/{{ c2.name }}/network-config"
+        content: |
+          version: 2
+          ethernets:
+            enp1s0:
+              dhcp4: false
+              addresses:
+                - {{ c2.wan_ip }}/24
+              routes:
+                - to: default
+                  via: {{ wan_host_ip }}
+              nameservers:
+                addresses: {{ external_dns | to_json }}
+
+    - name: Generate cloud-init ISO
+      command: >
+        genisoimage
+        -output {{ vm_storage_dir }}/{{ c2.name }}-seed.iso
+        -volid cidata
+        -joliet
+        -rock
+        /tmp/{{ c2.name }}/user-data
+        /tmp/{{ c2.name }}/meta-data
+        /tmp/{{ c2.name }}/network-config
+
+    - name: Check if VM already exists
+      shell: virsh dominfo {{ c2.name }}
+      register: vm_check
+      failed_when: false
+      changed_when: false
+
+    - name: Create C2 VM (1 NIC on wan-net)
+      command: >
+        virt-install
+        --name {{ c2.name }}
+        --memory {{ c2.memory }}
+        --vcpus {{ c2.vcpus }}
+        --disk {{ vm_storage_dir }}/{{ c2.name }}.qcow2
+        --disk {{ vm_storage_dir }}/{{ c2.name }}-seed.iso,device=cdrom
+        --network network={{ wan_network_name }}
+        --os-variant ubuntu22.04
+        --graphics none
+        --import
+        --noautoconsole
+      when: vm_check.rc != 0
+
+    - name: Enable VM autostart
+      command: virsh autostart {{ c2.name }}
+
+    - name: Remove stale known_hosts entries for C2 IP
+      shell: |
+        ssh-keygen -R {{ c2.wan_ip }} 2>/dev/null || true
+        runuser -l {{ lookup('pipe', 'echo ${SUDO_USER:-$USER}') }} -c "ssh-keygen -R {{ c2.wan_ip }}" 2>/dev/null || true
+      changed_when: false
+
+    - name: Wait for SSH
+      wait_for:
+        host: "{{ c2.wan_ip }}"
+        port: 22
+        timeout: 600
+        delay: 10

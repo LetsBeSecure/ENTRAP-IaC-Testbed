@@ -1,0 +1,81 @@
+---
+- name: Configure GonnaCry C2 server
+  hosts: c2
+  become: true
+  gather_facts: false
+
+  vars:
+    c2_dir: /opt/gonnacry-server
+    gonnacry_server_src: "{{ project_root }}/GonnaCry/src/Server"
+
+  tasks:
+
+    - name: Wait for cloud-init to finish
+      wait_for_connection:
+        timeout: 300
+        delay: 5
+
+    - name: Install python3-pip
+      apt:
+        name: python3-pip
+        update_cache: true
+        state: present
+
+    - name: Install Python dependencies
+      pip:
+        name:
+          - pycryptodome
+          - flask
+          - requests
+        executable: pip3
+
+    - name: Create C2 server directory
+      file:
+        path: "{{ c2_dir }}"
+        state: directory
+        mode: '0700'
+
+    - name: Deploy server.py
+      copy:
+        src: "{{ gonnacry_server_src }}/server.py"
+        dest: "{{ c2_dir }}/server.py"
+        mode: '0600'
+
+    - name: Deploy RSA key pair
+      copy:
+        src: "{{ gonnacry_server_src }}/{{ item }}"
+        dest: "{{ c2_dir }}/{{ item }}"
+        mode: '0600'
+      loop:
+        - private_key.key
+        - public_key.key
+
+    - name: Install gonnacry-server systemd service
+      copy:
+        dest: /etc/systemd/system/gonnacry-server.service
+        content: |
+          [Unit]
+          Description=GonnaCry C2 Server
+          After=network.target
+
+          [Service]
+          WorkingDirectory={{ c2_dir }}
+          ExecStart=/usr/bin/python3 {{ c2_dir }}/server.py
+          Restart=on-failure
+          RestartSec=5
+
+          [Install]
+          WantedBy=multi-user.target
+
+    - name: Enable and start gonnacry-server
+      systemd:
+        name: gonnacry-server
+        daemon_reload: true
+        enabled: true
+        state: started
+
+    - name: Verify server is listening on port {{ gonnacry_server_port }}
+      wait_for:
+        host: 127.0.0.1
+        port: "{{ gonnacry_server_port }}"
+        timeout: 30

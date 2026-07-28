@@ -11,3 +11,5 @@
 - import_playbook: configure_web.yml
 - import_playbook: create_client_vms.yml
 - import_playbook: configure_clients.yml
+- import_playbook: create_c2_vm.yml
+- import_playbook: configure_c2.yml

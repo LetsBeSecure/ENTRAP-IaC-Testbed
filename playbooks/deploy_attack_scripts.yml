@@ -1,5 +1,6 @@
 ---
-# Deploy attack scripts to specified client VMs.
+# Deploy general attack scripts to specified client VMs.
+# For GonnaCry ransomware deployment use deploy_gonnacry.yml instead.
 #
 # Edit target_ips below to choose which clients receive the scripts.
 # Find client IPs on dhcp1:
@@ -29,7 +30,7 @@
 
 - name: Deploy attack scripts
   hosts: attack_targets
-  become: false
+  become: true
   gather_facts: false
 
   tasks:
@@ -37,10 +38,12 @@
       file:
         path: /home/{{ client_user }}/attacks
         state: directory
+        owner: "{{ client_user }}"
         mode: '0755'
 
     - name: Copy all attack scripts to client
       copy:
         src: "{{ project_root }}/attacks/"
         dest: /home/{{ client_user }}/attacks/
+        owner: "{{ client_user }}"
         mode: '0755'

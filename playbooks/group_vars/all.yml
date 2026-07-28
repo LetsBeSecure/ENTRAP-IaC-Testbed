@@ -64,6 +64,10 @@ infra_ssh_private_key_path: "{{ _real_home }}/.ssh/id_ed25519"
 client_user: student
 client_password: student
 
+# C2 server — simulates attacker's "internet-facing" server on wan-net
+c2server_ip: 173.168.0.50
+gonnacry_server_port: 8000
+
 external_dns:
   - "192.168.36.53"
   - "8.8.8.8"
@@ -113,5 +117,11 @@ vms:
     # uses external_dns (IITH/public resolvers) for now - dns1 sits
     # behind this gateway, not yet wired as resolver. Switch to dns1
     # later once the gateway cutover is done.
+    memory: 1024
+    vcpus: 1
+
+  - name: c2server
+    role: c2
+    wan_ip: "{{ c2server_ip }}"
     memory: 1024
     vcpus: 1
