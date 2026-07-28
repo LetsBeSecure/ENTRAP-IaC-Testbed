@@ -8,8 +8,8 @@
 #   pip3 install python3 -m PyInstaller pycryptodome requests
 #
 # After build, copy binaries to this repo and commit:
-#   cp dist/gonnacry dist/decryptor <repo>/GonnaCry/src/Server/binaries/
-#   git add GonnaCry/src/Server/binaries/
+#   cp dist/gonnacry dist/decryptor <repo>/attacks/GonnaCry/src/Server/binaries/
+#   git add attacks/GonnaCry/src/Server/binaries/
 #   Then redeploy C2: ansible-playbook -i inventory/hosts.ini playbooks/configure_c2.yml -e "project_root=$(pwd)"
 
 set -e
@@ -48,7 +48,7 @@ echo "=== Done ==="
 ls -lh "$OUT_DIR/gonnacry" "$OUT_DIR/decryptor"
 echo ""
 echo "Next steps:"
-echo "  1. Commit:    git add src/Server/binaries/ && git commit"
+echo "  1. Commit:    git add attacks/GonnaCry/src/Server/binaries/ && git commit"
 echo "  2. Deploy C2: ansible-playbook -i inventory/hosts.ini playbooks/configure_c2.yml -e 'project_root=\$(pwd)'"
 echo ""
 echo "Phishing delivery on victim:"

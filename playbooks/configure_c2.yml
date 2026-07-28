@@ -6,7 +6,7 @@
 
   vars:
     c2_dir: /opt/gonnacry-server
-    gonnacry_server_src: "{{ project_root }}/GonnaCry/src/Server"
+    gonnacry_server_src: "{{ project_root }}/attacks/GonnaCry/src/Server"
 
   tasks:
 

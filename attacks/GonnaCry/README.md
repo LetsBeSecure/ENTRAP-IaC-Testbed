@@ -131,7 +131,7 @@ pip3 install pyinstaller pycryptodome requests
 Outputs to `src/Server/binaries/`. Commit and redeploy C2:
 
 ```bash
-git add src/Server/binaries/
+git add attacks/GonnaCry/src/Server/binaries/
 ansible-playbook -i inventory/hosts.ini playbooks/configure_c2.yml -e "project_root=$(pwd)"
 ```
 

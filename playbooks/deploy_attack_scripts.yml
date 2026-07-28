@@ -1,6 +1,6 @@
 ---
 # Deploy general attack scripts to specified client VMs.
-# For GonnaCry ransomware deployment use deploy_gonnacry.yml instead.
+# For GonnaCry RaaS delivery see attacks/GonnaCry/README.md.
 #
 # Edit target_ips below to choose which clients receive the scripts.
 # Find client IPs on dhcp1:
