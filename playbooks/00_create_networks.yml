@@ -31,7 +31,7 @@
 #     - gateway1 NATs internal IPs -> its own wan-net IP (NAT #1, it
 #       owns that IP, tracks replies).
 #     - host NATs wan-net IP -> eno2's IP (NAT #2, host owns eno2,
-#       tracks replies from IITH).
+#       tracks replies from Local Network).
 #   gateway1 cannot NAT directly to eno2's IP: it doesn't sit on eno2's
 #   wire, so replies to that IP would never reach it.
 #

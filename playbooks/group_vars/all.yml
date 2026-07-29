@@ -114,7 +114,7 @@ vms:
     role: gateway
     ip: 10.10.0.1
     wan_ip: 173.168.0.10
-    # uses external_dns (IITH/public resolvers) for now - dns1 sits
+    # uses external_dns (Enterprise resolvers/Local resolvers/public resolvers) for now - dns1 sits
     # behind this gateway, not yet wired as resolver. Switch to dns1
     # later once the gateway cutover is done.
     memory: 1024
