@@ -119,7 +119,7 @@
           # clients: read active leases from dhcp1, pull /home/{{ client_user }} per client
           log "discovering active clients from kea leases..."
           CLIENTS=$(${SSH_CMD} "{{ infra_admin_user }}@${DHCP1}" \
-              "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' ${LEASE_FILE}" 2>/dev/null || true)
+              "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' ${LEASE_FILE} ${LEASE_FILE}.2 2>/dev/null | sort -u" 2>/dev/null || true)
 
           [[ -z "$CLIENTS" ]] && log "WARN no active clients found in lease file"
 

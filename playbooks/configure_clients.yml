@@ -5,7 +5,7 @@
 
   tasks:
     - name: Read active client IPs from kea lease file
-      shell: "awk -F',' 'NR>1 && $10==\"0\" {print $1}' /var/lib/kea/kea-leases4.csv"
+      shell: "awk -F',' 'NR>1 && $10==\"0\" {print $1}' /var/lib/kea/kea-leases4.csv /var/lib/kea/kea-leases4.csv.2 2>/dev/null | sort -u"
       register: discovered_ips
       changed_when: false
 
@@ -44,3 +44,93 @@
       authorized_key:
         user: "{{ client_user }}"
         key: "{{ backup_pubkey_b64.content | b64decode | trim }}"
+
+    - name: Create sample document directories
+      file:
+        path: "/home/{{ client_user }}/{{ item }}"
+        state: directory
+        owner: "{{ client_user }}"
+        mode: '0755'
+      loop:
+        - Documents
+        - Desktop
+        - Pictures
+
+    - name: Create sample enterprise documents
+      copy:
+        dest: "/home/{{ client_user }}/{{ item.path }}"
+        content: "{{ item.content }}"
+        owner: "{{ client_user }}"
+        mode: '0644'
+      loop:
+        - path: Documents/Q3_financial_report.txt
+          content: |
+            ENTERPRISE FINANCIAL REPORT — Q3 2026
+            ======================================
+            Revenue:        $4,820,000
+            Operating Cost: $3,150,000
+            Net Profit:     $1,670,000
+            Headcount:      247
+
+        - path: Documents/employee_records.csv
+          content: |
+            id,name,department,salary,email
+            1001,Alice A,Engineering,95000,alice@enterprise.lab
+            1002,Bob B,Finance,82000,bob@enterprise.lab
+            1003,Carol C,HR,74000,carol@enterprise.lab
+            1004,David D,Engineering,98000,david@enterprise.lab
+            1005,Eve E,Sales,71000,eve@enterprise.lab
+
+        - path: Documents/network_inventory.csv
+          content: |
+            hostname,ip,role,os
+            gateway1,173.168.0.10,NAT Router,Ubuntu 22.04
+            dns1,10.10.10.53,DNS Server,Ubuntu 22.04
+            dhcp1,10.10.10.2,DHCP Server,Ubuntu 22.04
+            backup1,10.10.10.20,Backup Server,Ubuntu 22.04
+            client1,10.10.20.151,Workstation,Ubuntu 22.04
+
+        - path: Documents/project_notes.txt
+          content: |
+            Project: ERP Migration — Phase 2
+            Owner: IT Infrastructure Team
+            Deadline: 2026-09-30
+
+            Status: In Progress
+            Blockers:
+            - Legacy DB schema migration pending sign-off
+            - Network segmentation review scheduled for Aug
+
+            Credentials vault: KeePass at //backup1/secure/vault.kdbx
+            DO NOT share outside IT.
+
+        - path: Documents/backup_policy.txt
+          content: |
+            BACKUP POLICY — ENTERPRISE IT
+            ==============================
+            Schedule: Nightly at 02:00
+            Retention: 30 days
+            Target: backup1 (10.10.10.20) via Samba
+            Scope: All client home directories + infra configs
+            Verify: Monthly restore test
+
+        - path: Desktop/TODO.txt
+          content: |
+            - Submit expense report by Friday
+            - Review VPN access requests
+            - Update antivirus definitions on all workstations
+            - Meeting with security team: Mon 10:00
+
+        - path: Desktop/credentials_draft.txt
+          content: |
+            DRAFT — Move to KeePass before EOD
+            ====================================
+            Dev DB: postgres://devadmin:Dev@2026!@10.10.10.30:5432/appdb
+            Staging API key: sk-stage-a8f3c92b1d4e7f06
+            Jenkins: admin / Jenkins#Lab2026
+
+        - path: Pictures/org_chart.png.txt
+          content: |
+            [placeholder - org chart image]
+            Org: enterprise.lab
+            Last updated: 2026-07-01
