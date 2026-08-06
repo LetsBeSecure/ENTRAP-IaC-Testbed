@@ -6,6 +6,7 @@
   vars:
     dns_ip: "{{ (vms | selectattr('name', 'equalto', 'dns1') | first).ip }}"
     dhcp_ip: "{{ (vms | selectattr('name', 'equalto', 'dhcp1') | first).ip }}"
+    web1_ip: "{{ (vms | selectattr('name', 'equalto', 'web1') | first).ip }}"
 
   tasks:
 
@@ -81,6 +82,7 @@
           TIMESTAMP=$(date +%Y-%m-%d_%H-%M)
           DNS1="{{ dns_ip }}"
           DHCP1="{{ dhcp_ip }}"
+          WEB1="{{ web1_ip }}"
           LEASE_FILE="/var/lib/kea/kea-leases4.csv"
           SSH_KEY="/home/{{ infra_admin_user }}/.ssh/backup_id_ed25519"
           SSH_CMD="ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=10"
@@ -116,6 +118,12 @@
               "${BACKUP_ROOT}/dhcp1/latest/leases"
           ln -sfn "${BACKUP_ROOT}/dhcp1/${TIMESTAMP}" "${BACKUP_ROOT}/dhcp1/latest"
 
+          # infra: web1 — web root
+          pull {{ infra_admin_user }} "${WEB1}" /var/www/html/ \
+              "${BACKUP_ROOT}/web1/${TIMESTAMP}" \
+              "${BACKUP_ROOT}/web1/latest"
+          ln -sfn "${BACKUP_ROOT}/web1/${TIMESTAMP}" "${BACKUP_ROOT}/web1/latest"
+
           # clients: read active leases from dhcp1, pull /home/{{ client_user }} per client
           log "discovering active clients from kea leases..."
           CLIENTS=$(${SSH_CMD} "{{ infra_admin_user }}@${DHCP1}" \
@@ -141,8 +149,8 @@
         job: /usr/local/bin/backup-lab.sh
         user: root
 
-- name: Authorize backup1 SSH key on infra targets (dns1, dhcp1)
-  hosts: dns:dhcp
+- name: Authorize backup1 SSH key on infra targets (dns1, dhcp1, web1)
+  hosts: dns:dhcp:web
   become: true
 
   tasks:

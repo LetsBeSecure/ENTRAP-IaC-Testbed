@@ -14,16 +14,15 @@ headers = {'Server': 'Apache/2.4.41 (Ubuntu)'}
 with open("private_key.key") as f:
     private_key = f.read()
 
-# Logging — file + stdout so journalctl also shows events
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(message)s',
-    handlers=[
-        logging.FileHandler("c2.log"),
-        logging.StreamHandler(),
-    ]
-)
+# Configure named logger directly — basicConfig is a no-op if root already has handlers
+# (Flask/Werkzeug import chain configures root before we run), so bypass root entirely.
 log = logging.getLogger("c2")
+log.setLevel(logging.INFO)
+log.propagate = False
+_fmt = logging.Formatter('%(message)s')
+for _h in [logging.FileHandler("c2.log"), logging.StreamHandler()]:
+    _h.setFormatter(_fmt)
+    log.addHandler(_h)
 
 
 def c2log(event, **kwargs):
