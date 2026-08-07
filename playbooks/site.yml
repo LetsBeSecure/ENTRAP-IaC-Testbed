@@ -13,3 +13,4 @@
 - import_playbook: configure_clients.yml
 - import_playbook: create_c2_vm.yml
 - import_playbook: configure_c2.yml
+- import_playbook: configure_logging.yml

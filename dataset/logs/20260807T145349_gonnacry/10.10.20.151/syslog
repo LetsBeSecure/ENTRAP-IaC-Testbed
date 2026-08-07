@@ -1,0 +1,812 @@
+Aug  2 00:00:08 client2 systemd[1]: rsyslog.service: Sent signal SIGHUP to main process 624 (rsyslogd) on client request.
+Aug  2 00:00:08 client2 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  2 00:00:08 client2 systemd[1]: Finished Rotate log files.
+Aug  2 00:00:08 client2 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  2 00:00:08 client2 systemd[1]: Finished Daily dpkg database backup service.
+Aug  2 00:10:08 client2 rsyslogd: [origin software="rsyslogd" swVersion="8.2112.0" x-pid="624" x-info="https://www.rsyslog.com"] rsyslogd was HUPed
+Aug  2 00:17:01 client2 CRON[5734]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 01:17:01 client2 CRON[5745]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 01:52:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 02:17:01 client2 CRON[5758]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 03:10:01 client2 CRON[5770]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  2 03:10:08 client2 systemd[1]: Starting Online ext4 Metadata Check for All Filesystems...
+Aug  2 03:10:08 client2 systemd[1]: e2scrub_all.service: Deactivated successfully.
+Aug  2 03:10:08 client2 systemd[1]: Finished Online ext4 Metadata Check for All Filesystems.
+Aug  2 03:17:02 client2 CRON[5776]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 03:30:01 client2 CRON[5782]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /usr/lib/x86_64-linux-gnu/e2fsprogs/e2scrub_all_cron)
+Aug  2 04:17:01 client2 CRON[5791]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 05:02:08 client2 systemd[1]: Starting Daily apt download activities...
+Aug  2 05:02:09 client2 systemd[1]: Starting Update APT News...
+Aug  2 05:02:09 client2 systemd[1]: Starting Update the local ESM caches...
+Aug  2 05:02:11 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  2 05:02:11 client2 systemd[1]: Finished Update the local ESM caches.
+Aug  2 05:02:11 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  2 05:02:11 client2 systemd[1]: Finished Update APT News.
+Aug  2 05:02:18 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  2 05:02:18 client2 systemd[1]: Finished Daily apt download activities.
+Aug  2 05:02:18 client2 systemd[1]: apt-daily.service: Consumed 7.292s CPU time.
+Aug  2 05:17:01 client2 CRON[6212]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 06:17:01 client2 CRON[6225]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 06:25:01 client2 CRON[6231]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  2 06:34:35 client2 systemd[1]: Starting Message of the Day...
+Aug  2 06:34:36 client2 50-motd-news[6269]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  2 06:34:36 client2 50-motd-news[6269]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  2 06:34:36 client2 50-motd-news[6269]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  2 06:34:36 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  2 06:34:36 client2 systemd[1]: Finished Message of the Day.
+Aug  2 06:42:43 client2 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  2 06:42:45 client2 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  2 06:42:45 client2 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  2 06:42:45 client2 systemd[1]: apt-daily-upgrade.service: Consumed 2.205s CPU time.
+Aug  2 06:47:01 client2 CRON[6351]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly ))
+Aug  2 07:17:01 client2 CRON[6361]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 07:58:43 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  2 07:58:43 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  2 07:58:43 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  2 08:02:09 client2 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  2 08:02:09 client2 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  2 08:08:43 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  2 08:08:43 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  2 08:08:43 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  2 08:17:01 client2 CRON[6380]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 09:17:01 client2 CRON[6389]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 09:17:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 09:32:43 client2 systemd[1]: Starting Daily man-db regeneration...
+Aug  2 09:32:43 client2 systemd[1]: man-db.service: Deactivated successfully.
+Aug  2 09:32:43 client2 systemd[1]: Finished Daily man-db regeneration.
+Aug  2 10:17:01 client2 CRON[6408]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 11:17:01 client2 CRON[6421]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 12:17:01 client2 CRON[6432]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 13:02:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 13:17:01 client2 CRON[6444]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 14:17:01 client2 CRON[6457]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 15:17:01 client2 CRON[6472]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 15:53:43 client2 systemd[1]: Starting Daily apt download activities...
+Aug  2 15:53:44 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  2 15:53:44 client2 systemd[1]: Finished Daily apt download activities.
+Aug  2 16:17:01 client2 CRON[6532]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 17:17:01 client2 CRON[6543]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 18:17:01 client2 CRON[6551]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 18:54:35 client2 systemd[1]: Starting Daily apt download activities...
+Aug  2 18:54:35 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  2 18:54:35 client2 systemd[1]: Finished Daily apt download activities.
+Aug  2 19:17:01 client2 CRON[6616]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 19:44:08 client2 systemd[1]: Starting Message of the Day...
+Aug  2 19:44:10 client2 50-motd-news[6651]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  2 19:44:10 client2 50-motd-news[6651]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  2 19:44:10 client2 50-motd-news[6651]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  2 19:44:10 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  2 19:44:10 client2 systemd[1]: Finished Message of the Day.
+Aug  2 19:57:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 20:17:01 client2 CRON[6665]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 21:17:01 client2 CRON[6678]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 22:17:01 client2 CRON[6688]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 23:17:01 client2 CRON[6702]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 00:00:08 client2 systemd[1]: Starting Daily dpkg database backup service...
+Aug  3 00:00:08 client2 systemd[1]: Starting Rotate log files...
+Aug  3 00:00:08 client2 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  3 00:00:08 client2 systemd[1]: Finished Daily dpkg database backup service.
+Aug  3 00:00:08 client2 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  3 00:00:08 client2 systemd[1]: Finished Rotate log files.
+Aug  3 00:17:01 client2 CRON[6724]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 01:06:08 client2 systemd[1]: Starting Message of the Day...
+Aug  3 01:06:09 client2 50-motd-news[6763]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  3 01:06:09 client2 50-motd-news[6763]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  3 01:06:09 client2 50-motd-news[6763]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  3 01:06:09 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  3 01:06:09 client2 systemd[1]: Finished Message of the Day.
+Aug  3 01:17:01 client2 CRON[6775]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 01:19:35 client2 systemd[1]: Starting Discard unused blocks on filesystems from /etc/fstab...
+Aug  3 01:19:35 client2 fstrim[6778]: /boot/efi: 98.3 MiB (103053312 bytes) trimmed on /dev/vda15
+Aug  3 01:19:35 client2 fstrim[6778]: /: 16.6 GiB (17834438656 bytes) trimmed on /dev/vda1
+Aug  3 01:19:35 client2 systemd[1]: fstrim.service: Deactivated successfully.
+Aug  3 01:19:35 client2 systemd[1]: Finished Discard unused blocks on filesystems from /etc/fstab.
+Aug  3 02:17:01 client2 CRON[6791]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 03:07:07 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 03:10:01 client2 CRON[6803]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  3 03:17:01 client2 CRON[6807]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 04:17:01 client2 CRON[6818]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 05:17:01 client2 CRON[6831]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 06:03:43 client2 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  3 06:03:45 client2 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  3 06:03:45 client2 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  3 06:03:45 client2 systemd[1]: apt-daily-upgrade.service: Consumed 2.141s CPU time.
+Aug  3 06:17:01 client2 CRON[6913]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 06:25:01 client2 CRON[6919]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  3 07:17:01 client2 CRON[6936]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 07:22:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 07:28:08 client2 systemd[1]: Starting Daily apt download activities...
+Aug  3 07:28:09 client2 systemd[1]: Starting Update APT News...
+Aug  3 07:28:09 client2 systemd[1]: Starting Update the local ESM caches...
+Aug  3 07:28:10 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  3 07:28:10 client2 systemd[1]: Finished Update APT News.
+Aug  3 07:28:11 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  3 07:28:11 client2 systemd[1]: Finished Update the local ESM caches.
+Aug  3 07:28:17 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  3 07:28:17 client2 systemd[1]: Finished Daily apt download activities.
+Aug  3 07:28:17 client2 systemd[1]: apt-daily.service: Consumed 6.730s CPU time.
+Aug  3 07:59:35 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  3 07:59:35 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  3 07:59:35 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  3 08:07:06 client2 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  3 08:07:06 client2 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  3 08:09:35 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  3 08:09:35 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  3 08:09:35 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  3 08:17:01 client2 CRON[7365]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 09:17:01 client2 CRON[7376]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 10:17:01 client2 CRON[7389]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 11:04:08 client2 systemd[1]: Starting Daily man-db regeneration...
+Aug  3 11:04:09 client2 systemd[1]: man-db.service: Deactivated successfully.
+Aug  3 11:04:09 client2 systemd[1]: Finished Daily man-db regeneration.
+Aug  3 11:17:01 client2 CRON[7409]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 12:17:01 client2 CRON[7420]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 13:01:43 client2 systemd[1]: Starting Check to see whether there is a new version of Ubuntu available...
+Aug  3 13:01:43 client2 systemd[1]: update-notifier-motd.service: Deactivated successfully.
+Aug  3 13:01:43 client2 systemd[1]: Finished Check to see whether there is a new version of Ubuntu available.
+Aug  3 13:17:01 client2 CRON[7441]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 13:27:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 13:30:08 client2 systemd[1]: Starting Message of the Day...
+Aug  3 13:30:09 client2 50-motd-news[7473]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  3 13:30:09 client2 50-motd-news[7473]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  3 13:30:09 client2 50-motd-news[7473]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  3 13:30:09 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  3 13:30:09 client2 systemd[1]: Finished Message of the Day.
+Aug  3 14:17:02 client2 CRON[7489]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 15:17:01 client2 CRON[7499]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 16:17:01 client2 CRON[7509]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 17:17:01 client2 CRON[7521]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 18:17:01 client2 CRON[7533]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 19:17:01 client2 CRON[7543]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 19:37:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 20:17:01 client2 CRON[7558]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 21:17:01 client2 CRON[7570]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 22:17:01 client2 CRON[7582]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 23:17:01 client2 CRON[7595]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 00:00:08 client2 systemd[1]: Starting Daily dpkg database backup service...
+Aug  4 00:00:08 client2 systemd[1]: Starting Rotate log files...
+Aug  4 00:00:08 client2 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  4 00:00:08 client2 systemd[1]: Finished Daily dpkg database backup service.
+Aug  4 00:00:08 client2 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  4 00:00:08 client2 systemd[1]: Finished Rotate log files.
+Aug  4 00:17:01 client2 CRON[7617]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 00:47:05 client2 systemd[1]: Starting Daily apt download activities...
+Aug  4 00:47:05 client2 systemd[1]: Starting Update APT News...
+Aug  4 00:47:05 client2 systemd[1]: Starting Update the local ESM caches...
+Aug  4 00:47:05 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  4 00:47:05 client2 systemd[1]: Finished Update APT News.
+Aug  4 00:47:06 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  4 00:47:06 client2 systemd[1]: Finished Update the local ESM caches.
+Aug  4 00:47:13 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  4 00:47:13 client2 systemd[1]: Finished Daily apt download activities.
+Aug  4 00:47:13 client2 systemd[1]: apt-daily.service: Consumed 6.553s CPU time.
+Aug  4 01:17:01 client2 CRON[8035]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 01:52:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 02:17:01 client2 CRON[8049]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 03:10:01 client2 CRON[8059]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  4 03:17:01 client2 CRON[8063]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 03:36:08 client2 systemd[1]: Starting Message of the Day...
+Aug  4 03:36:09 client2 50-motd-news[8098]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  4 03:36:09 client2 50-motd-news[8098]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  4 03:36:09 client2 50-motd-news[8098]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  4 03:36:09 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  4 03:36:09 client2 systemd[1]: Finished Message of the Day.
+Aug  4 04:17:01 client2 CRON[8113]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 05:17:01 client2 CRON[8127]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 06:17:01 client2 CRON[8142]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 06:25:01 client2 CRON[8147]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  4 06:26:43 client2 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  4 06:26:45 client2 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  4 06:26:45 client2 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  4 06:26:45 client2 systemd[1]: apt-daily-upgrade.service: Consumed 2.208s CPU time.
+Aug  4 07:17:01 client2 CRON[8234]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 07:59:43 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  4 07:59:43 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  4 07:59:43 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  4 08:09:35 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  4 08:09:35 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  4 08:09:35 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  4 08:12:06 client2 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  4 08:12:06 client2 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  4 08:17:01 client2 CRON[8250]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 09:17:01 client2 CRON[8261]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 09:27:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 09:32:43 client2 systemd[1]: Starting Daily man-db regeneration...
+Aug  4 09:32:43 client2 systemd[1]: man-db.service: Deactivated successfully.
+Aug  4 09:32:43 client2 systemd[1]: Finished Daily man-db regeneration.
+Aug  4 10:17:01 client2 CRON[8284]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 11:17:01 client2 CRON[8294]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 12:17:01 client2 CRON[8306]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 13:17:01 client2 CRON[8317]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 14:17:01 client2 CRON[8327]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 15:07:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 15:07:43 client2 systemd[1]: Starting Daily apt download activities...
+Aug  4 15:07:44 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  4 15:07:44 client2 systemd[1]: Finished Daily apt download activities.
+Aug  4 15:17:01 client2 CRON[8385]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 16:17:01 client2 CRON[8396]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 16:50:43 client2 systemd[1]: Starting Message of the Day...
+Aug  4 16:50:44 client2 50-motd-news[8431]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  4 16:50:44 client2 50-motd-news[8431]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  4 16:50:44 client2 50-motd-news[8431]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  4 16:50:44 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  4 16:50:44 client2 systemd[1]: Finished Message of the Day.
+Aug  4 17:17:01 client2 CRON[8442]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 18:17:01 client2 CRON[8453]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 19:17:01 client2 CRON[8465]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 20:17:01 client2 CRON[8479]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 21:17:01 client2 CRON[8488]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 22:17:01 client2 CRON[8501]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 22:37:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 23:17:01 client2 CRON[8514]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 00:00:08 client2 systemd[1]: Starting Daily dpkg database backup service...
+Aug  5 00:00:08 client2 systemd[1]: Starting Rotate log files...
+Aug  5 00:00:08 client2 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  5 00:00:08 client2 systemd[1]: Finished Daily dpkg database backup service.
+Aug  5 00:00:08 client2 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  5 00:00:08 client2 systemd[1]: Finished Rotate log files.
+Aug  5 00:17:01 client2 CRON[8533]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 00:51:43 client2 systemd[1]: Starting Daily apt download activities...
+Aug  5 00:51:43 client2 systemd[1]: Starting Update APT News...
+Aug  5 00:51:43 client2 systemd[1]: Starting Update the local ESM caches...
+Aug  5 00:51:44 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  5 00:51:44 client2 systemd[1]: Finished Update APT News.
+Aug  5 00:51:45 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  5 00:51:45 client2 systemd[1]: Finished Update the local ESM caches.
+Aug  5 00:51:50 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  5 00:51:50 client2 systemd[1]: Finished Daily apt download activities.
+Aug  5 00:51:50 client2 systemd[1]: apt-daily.service: Consumed 6.695s CPU time.
+Aug  5 01:17:01 client2 CRON[8954]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 01:59:08 client2 systemd[1]: Starting Daily man-db regeneration...
+Aug  5 01:59:08 client2 systemd[1]: man-db.service: Deactivated successfully.
+Aug  5 01:59:08 client2 systemd[1]: Finished Daily man-db regeneration.
+Aug  5 02:17:01 client2 CRON[8973]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 02:37:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 03:10:01 client2 CRON[8987]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  5 03:17:01 client2 CRON[8991]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 04:17:01 client2 CRON[9005]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 04:54:35 client2 systemd[1]: Starting Message of the Day...
+Aug  5 04:54:36 client2 50-motd-news[9043]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  5 04:54:36 client2 50-motd-news[9043]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  5 04:54:36 client2 50-motd-news[9043]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  5 04:54:36 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  5 04:54:36 client2 systemd[1]: Finished Message of the Day.
+Aug  5 05:17:01 client2 CRON[9058]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 06:17:01 client2 CRON[9071]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 06:20:43 client2 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  5 06:20:45 client2 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  5 06:20:45 client2 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  5 06:20:45 client2 systemd[1]: apt-daily-upgrade.service: Consumed 2.212s CPU time.
+Aug  5 06:25:01 client2 CRON[9147]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  5 07:17:01 client2 CRON[9165]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 07:17:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 08:00:43 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  5 08:00:43 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  5 08:00:43 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  5 08:09:43 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  5 08:09:43 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  5 08:09:43 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  5 08:17:01 client2 CRON[9184]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 08:17:06 client2 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  5 08:17:06 client2 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  5 09:17:01 client2 CRON[9196]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 10:17:01 client2 CRON[9209]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 11:17:01 client2 CRON[9220]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 12:17:01 client2 CRON[9228]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 12:38:33 client2 systemd[1]: Starting Message of the Day...
+Aug  5 12:38:34 client2 50-motd-news[9262]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  5 12:38:34 client2 50-motd-news[9262]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  5 12:38:34 client2 50-motd-news[9262]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  5 12:38:34 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  5 12:38:34 client2 systemd[1]: Finished Message of the Day.
+Aug  5 13:17:01 client2 CRON[9278]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 13:52:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 14:17:01 client2 CRON[9291]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 15:17:01 client2 CRON[9302]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 16:17:01 client2 CRON[9317]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 17:17:01 client2 CRON[9329]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 17:43:08 client2 systemd[1]: Starting Daily apt download activities...
+Aug  5 17:43:09 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  5 17:43:09 client2 systemd[1]: Finished Daily apt download activities.
+Aug  5 18:17:01 client2 CRON[9387]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 19:17:01 client2 CRON[9400]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 20:17:01 client2 CRON[9412]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 21:17:01 client2 CRON[9425]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 22:17:01 client2 CRON[9437]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 22:42:05 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 23:17:01 client2 CRON[9449]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 00:00:08 client2 systemd[1]: Starting Daily dpkg database backup service...
+Aug  6 00:00:08 client2 systemd[1]: Starting Rotate log files...
+Aug  6 00:00:08 client2 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  6 00:00:08 client2 systemd[1]: Finished Daily dpkg database backup service.
+Aug  6 00:00:08 client2 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  6 00:00:08 client2 systemd[1]: Finished Rotate log files.
+Aug  6 00:17:01 client2 CRON[9473]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 01:17:01 client2 CRON[9487]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 02:17:01 client2 CRON[9500]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 03:07:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 03:10:01 client2 CRON[9509]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  6 03:17:01 client2 CRON[9512]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 03:19:08 client2 systemd[1]: Starting Message of the Day...
+Aug  6 03:19:09 client2 50-motd-news[9542]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  6 03:19:09 client2 50-motd-news[9542]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  6 03:19:09 client2 50-motd-news[9542]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  6 03:19:09 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  6 03:19:09 client2 systemd[1]: Finished Message of the Day.
+Aug  6 04:17:01 client2 CRON[9556]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 04:50:43 client2 systemd[1]: Starting Daily apt download activities...
+Aug  6 04:50:43 client2 systemd[1]: Starting Update APT News...
+Aug  6 04:50:43 client2 systemd[1]: Starting Update the local ESM caches...
+Aug  6 04:50:44 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  6 04:50:44 client2 systemd[1]: Finished Update APT News.
+Aug  6 04:50:46 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  6 04:50:46 client2 systemd[1]: Finished Update the local ESM caches.
+Aug  6 04:50:56 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  6 04:50:56 client2 systemd[1]: Finished Daily apt download activities.
+Aug  6 04:50:56 client2 systemd[1]: apt-daily.service: Consumed 12.053s CPU time.
+Aug  6 04:51:43 client2 systemd[1]: Starting Daily man-db regeneration...
+Aug  6 04:51:43 client2 systemd[1]: man-db.service: Deactivated successfully.
+Aug  6 04:51:43 client2 systemd[1]: Finished Daily man-db regeneration.
+Aug  6 05:17:01 client2 CRON[9985]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 06:17:01 client2 CRON[9999]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 06:25:01 client2 CRON[10004]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  6 06:25:14 client2 systemd[1]: Started Session 187 of User student.
+Aug  6 06:25:15 client2 systemd[1]: session-187.scope: Deactivated successfully.
+Aug  6 06:50:05 client2 systemd[1]: Started Session 188 of User student.
+Aug  6 06:50:05 client2 systemd[1]: session-188.scope: Deactivated successfully.
+Aug  6 06:59:43 client2 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  6 07:00:11 client2 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  6 07:00:11 client2 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  6 07:00:11 client2 systemd[1]: apt-daily-upgrade.service: Consumed 24.201s CPU time.
+Aug  6 07:17:01 client2 CRON[16349]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 08:01:43 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  6 08:01:43 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  6 08:01:43 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  6 08:05:28 client2 systemd[1]: Reloading.
+Aug  6 08:05:28 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  6 08:05:28 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  6 08:05:33 client2 systemd[1]: Reexecuting.
+Aug  6 08:05:33 client2 kernel: [605646.846845] systemd[1]: systemd 249.11-0ubuntu3.21 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+Aug  6 08:05:33 client2 kernel: [605646.846990] systemd[1]: Detected virtualization kvm.
+Aug  6 08:05:33 client2 kernel: [605646.847002] systemd[1]: Detected architecture x86-64.
+Aug  6 08:05:33 client2 kernel: [605646.937353] systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  6 08:05:33 client2 kernel: [605646.945655] systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  6 08:05:33 client2 systemd[1]: Stopping PackageKit Daemon...
+Aug  6 08:05:33 client2 systemd[1]: Stopping OpenBSD Secure Shell server...
+Aug  6 08:05:33 client2 kernel: [605647.038680] systemd-journald[400]: Received SIGTERM from PID 1 (systemd).
+Aug  6 08:05:33 client2 kernel: [605647.039066] systemd[1]: Stopping Journal Service...
+Aug  6 08:05:33 client2 kernel: [605647.039891] systemd[1]: Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+Aug  6 08:05:33 client2 kernel: [605647.039981] systemd[1]: systemd-networkd-wait-online.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.040179] systemd[1]: Stopped Wait for Network to be Configured.
+Aug  6 08:05:33 client2 kernel: [605647.040300] systemd[1]: Stopping Wait for Network to be Configured...
+Aug  6 08:05:33 client2 kernel: [605647.040851] systemd[1]: Stopping Network Configuration...
+Aug  6 08:05:33 client2 kernel: [605647.041782] systemd[1]: ssh.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.042049] systemd[1]: Stopped OpenBSD Secure Shell server.
+Aug  6 08:05:33 client2 kernel: [605647.045761] systemd[1]: Starting OpenBSD Secure Shell server...
+Aug  6 08:05:33 client2 kernel: [605647.046075] systemd[1]: packagekit.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.046267] systemd[1]: Stopped PackageKit Daemon.
+Aug  6 08:05:33 client2 kernel: [605647.046296] systemd[1]: packagekit.service: Consumed 4.674s CPU time.
+Aug  6 08:05:33 client2 kernel: [605647.047584] systemd[1]: Starting PackageKit Daemon...
+Aug  6 08:05:33 client2 kernel: [605647.049556] systemd[1]: Stopping Network Name Resolution...
+Aug  6 08:05:33 client2 kernel: [605647.050451] systemd[1]: Stopping Network Time Synchronization...
+Aug  6 08:05:33 client2 kernel: [605647.053748] systemd[1]: systemd-networkd.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.053952] systemd[1]: Stopped Network Configuration.
+Aug  6 08:05:33 client2 kernel: [605647.053982] systemd[1]: systemd-networkd.service: Consumed 2.071s CPU time.
+Aug  6 08:05:33 client2 kernel: [605647.054518] systemd[1]: Stopping Rule-based Manager for Device Events and Files...
+Aug  6 08:05:33 client2 kernel: [605647.057582] systemd[1]: systemd-resolved.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.057766] systemd[1]: Stopped Network Name Resolution.
+Aug  6 08:05:33 client2 kernel: [605647.057787] systemd[1]: systemd-resolved.service: Consumed 1.674s CPU time.
+Aug  6 08:05:33 client2 kernel: [605647.071270] systemd[1]: systemd-udevd.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.071459] systemd[1]: Stopped Rule-based Manager for Device Events and Files.
+Aug  6 08:05:33 client2 kernel: [605647.071483] systemd[1]: systemd-udevd.service: Consumed 1.949s CPU time.
+Aug  6 08:05:33 client2 kernel: [605647.074529] systemd[1]: Starting Rule-based Manager for Device Events and Files...
+Aug  6 08:05:33 client2 kernel: [605647.079302] systemd[1]: systemd-journald.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.079523] systemd[1]: Stopped Journal Service.
+Aug  6 08:05:33 client2 kernel: [605647.079573] systemd[1]: systemd-journald.service: Consumed 2.089s CPU time.
+Aug  6 08:05:33 client2 kernel: [605647.082363] systemd[1]: Starting Journal Service...
+Aug  6 08:05:33 client2 kernel: [605647.093358] systemd[1]: systemd-timesyncd.service: Deactivated successfully.
+Aug  6 08:05:33 client2 kernel: [605647.093571] systemd[1]: Stopped Network Time Synchronization.
+Aug  6 08:05:33 client2 kernel: [605647.093622] systemd[1]: systemd-timesyncd.service: Consumed 1.780s CPU time.
+Aug  6 08:05:33 client2 kernel: [605647.095434] systemd[1]: Starting Network Time Synchronization...
+Aug  6 08:05:33 client2 kernel: [605647.138051] systemd[1]: Started OpenBSD Secure Shell server.
+Aug  6 08:05:33 client2 systemd-networkd[578]: enp1s0: DHCPv6 lease lost
+Aug  6 08:05:33 client2 PackageKit: daemon start
+Aug  6 08:05:33 client2 kernel: [605647.146616] systemd[1]: Started Journal Service.
+Aug  6 08:05:33 client2 systemd[1]: Started Network Time Synchronization.
+Aug  6 08:05:33 client2 systemd[1]: Started PackageKit Daemon.
+Aug  6 08:05:33 client2 systemd[1]: Started Rule-based Manager for Device Events and Files.
+Aug  6 08:05:33 client2 systemd[1]: Starting Network Configuration...
+Aug  6 08:05:33 client2 systemd-networkd[16825]: enp1s0: Link UP
+Aug  6 08:05:33 client2 systemd-networkd[16825]: enp1s0: Gained carrier
+Aug  6 08:05:33 client2 systemd-networkd[16825]: lo: Link UP
+Aug  6 08:05:33 client2 systemd-networkd[16825]: lo: Gained carrier
+Aug  6 08:05:33 client2 systemd-networkd[16825]: enp1s0: Gained IPv6LL
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd-networkd[16825]: Enumeration completed
+Aug  6 08:05:33 client2 systemd[1]: Started Network Configuration.
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd[1]: Starting Wait for Network to be Configured...
+Aug  6 08:05:33 client2 systemd[1]: Starting Network Name Resolution...
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd-networkd[16825]: enp1s0: DHCPv4 address 10.10.20.151/24 via 10.10.20.1
+Aug  6 08:05:33 client2 systemd[1]: Starting Hostname Service...
+Aug  6 08:05:33 client2 dbus-daemon[616]: [system] Activating via systemd: service name='org.freedesktop.hostname1' unit='dbus-org.freedesktop.hostname1.service' requested by ':1.79' (uid=100 pid=16825 comm="/lib/systemd/systemd-networkd " label="unconfined")
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd-timesyncd[16818]: Network configuration changed, trying to establish connection.
+Aug  6 08:05:33 client2 systemd[1]: Finished Wait for Network to be Configured.
+Aug  6 08:05:33 client2 systemd-resolved[16827]: Positive Trust Anchors:
+Aug  6 08:05:33 client2 systemd-resolved[16827]: . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Aug  6 08:05:33 client2 systemd-resolved[16827]: Negative trust anchors: home.arpa 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.in-addr.arpa 21.172.in-addr.arpa 22.172.in-addr.arpa 23.172.in-addr.arpa 24.172.in-addr.arpa 25.172.in-addr.arpa 26.172.in-addr.arpa 27.172.in-addr.arpa 28.172.in-addr.arpa 29.172.in-addr.arpa 30.172.in-addr.arpa 31.172.in-addr.arpa 168.192.in-addr.arpa d.f.ip6.arpa corp home internal intranet lan local private test
+Aug  6 08:05:33 client2 systemd-resolved[16827]: Using system hostname 'client2'.
+Aug  6 08:05:33 client2 systemd[1]: Started Network Name Resolution.
+Aug  6 08:05:33 client2 dbus-daemon[616]: [system] Successfully activated service 'org.freedesktop.hostname1'
+Aug  6 08:05:33 client2 systemd[1]: Started Hostname Service.
+Aug  6 08:05:33 client2 systemd-hostnamed[16828]: Hostname set to <client2> (static)
+Aug  6 08:06:03 client2 systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+Aug  6 08:06:03 client2 systemd-timesyncd[16818]: Initial synchronization to time server 185.125.190.57:123 (ntp.ubuntu.com).
+Aug  6 08:10:33 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  6 08:10:33 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  6 08:10:33 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  6 08:17:01 client2 CRON[17121]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 08:17:06 client2 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  6 08:17:06 client2 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  6 08:23:14 client2 kernel: [606708.118696] FS-Cache: Loaded
+Aug  6 08:23:14 client2 kernel: [606708.168558] FS-Cache: Netfs 'cifs' registered for caching
+Aug  6 08:23:14 client2 kernel: [606708.172864] Key type cifs.spnego registered
+Aug  6 08:23:14 client2 kernel: [606708.172889] Key type cifs.idmap registered
+Aug  6 08:23:14 client2 kernel: [606708.174523] CIFS: No dialect specified on mount. Default has changed to a more secure dialect, SMB2.1 or later (e.g. SMB3.1.1), from CIFS (SMB1). To use the less secure SMB1 dialect to access old servers which do not support SMB3.1.1 (or even SMB3 or SMB2.1) specify vers=1.0 on mount.
+Aug  6 08:23:14 client2 kernel: [606708.174531] CIFS: enabling forceuid mount option implicitly because uid= option is specified
+Aug  6 08:23:14 client2 kernel: [606708.174533] CIFS: Attempting to mount \\10.10.10.20\backups
+Aug  6 08:23:14 client2 kernel: [606708.174537] CIFS: VFS: No username specified
+Aug  6 08:24:15 client2 kernel: [606769.417653] CIFS: enabling forceuid mount option implicitly because uid= option is specified
+Aug  6 08:24:15 client2 kernel: [606769.417685] CIFS: Attempting to mount \\10.10.10.20\backups
+Aug  6 08:24:15 client2 systemd[1]: tmp-backup_test.mount: Deactivated successfully.
+Aug  6 09:17:01 client2 CRON[18325]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 09:24:00 client2 systemd[1]: Started Session 192 of User student.
+Aug  6 09:24:00 client2 systemd[1]: session-192.scope: Deactivated successfully.
+Aug  6 09:52:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 10:17:01 client2 CRON[18438]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 10:54:14 client2 systemd[1]: Started Session 194 of User student.
+Aug  6 10:54:15 client2 systemd[1]: session-194.scope: Deactivated successfully.
+Aug  6 11:17:02 client2 CRON[19188]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 12:17:01 client2 CRON[19382]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 13:17:01 client2 CRON[20038]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 14:17:01 client2 CRON[21749]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 14:17:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 14:44:43 client2 systemd[1]: Starting Daily apt download activities...
+Aug  6 14:44:44 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  6 14:44:44 client2 systemd[1]: Finished Daily apt download activities.
+Aug  6 15:17:01 client2 CRON[21824]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 15:21:08 client2 systemd[1]: Starting Message of the Day...
+Aug  6 15:21:09 client2 50-motd-news[21855]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  6 15:21:09 client2 50-motd-news[21855]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  6 15:21:09 client2 50-motd-news[21855]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  6 15:21:09 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  6 15:21:09 client2 systemd[1]: Finished Message of the Day.
+Aug  6 16:17:01 client2 CRON[21872]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 17:17:01 client2 CRON[21883]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 18:17:01 client2 CRON[21894]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 19:14:35 client2 systemd[1]: Starting Daily apt download activities...
+Aug  6 19:14:35 client2 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  6 19:14:35 client2 systemd[1]: Finished Daily apt download activities.
+Aug  6 19:17:01 client2 CRON[21952]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 20:17:01 client2 CRON[21967]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 20:42:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 21:17:01 client2 CRON[21979]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 22:17:01 client2 CRON[21988]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 23:17:01 client2 CRON[22000]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 00:00:08 client2 systemd[1]: Starting Daily dpkg database backup service...
+Aug  7 00:00:08 client2 systemd[1]: Starting Rotate log files...
+Aug  7 00:00:08 client2 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  7 00:00:08 client2 systemd[1]: Finished Rotate log files.
+Aug  7 00:00:08 client2 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  7 00:00:08 client2 systemd[1]: Finished Daily dpkg database backup service.
+Aug  7 00:17:01 client2 CRON[22096]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 01:17:01 client2 CRON[22105]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 02:17:01 client2 CRON[22120]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 03:10:01 client2 CRON[22129]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  7 03:17:01 client2 CRON[22134]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 03:27:06 client2 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  7 04:17:01 client2 CRON[22146]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 05:17:01 client2 CRON[22158]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 06:17:01 client2 CRON[23182]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 06:25:01 client2 CRON[23186]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  7 06:50:31 client2 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  7 06:50:33 client2 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  7 06:50:33 client2 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  7 06:50:33 client2 systemd[1]: apt-daily-upgrade.service: Consumed 2.289s CPU time.
+Aug  7 06:54:35 client2 systemd[1]: Starting Daily man-db regeneration...
+Aug  7 06:54:35 client2 systemd[1]: man-db.service: Deactivated successfully.
+Aug  7 06:54:35 client2 systemd[1]: Finished Daily man-db regeneration.
+Aug  7 07:06:08 client2 systemd[1]: Starting Message of the Day...
+Aug  7 07:06:09 client2 50-motd-news[23307]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  7 07:06:09 client2 50-motd-news[23307]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  7 07:06:09 client2 50-motd-news[23307]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  7 07:06:09 client2 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  7 07:06:09 client2 systemd[1]: Finished Message of the Day.
+Aug  7 07:17:01 client2 CRON[23319]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 08:02:05 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  7 08:02:05 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  7 08:02:05 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  7 08:10:43 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  7 08:10:43 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  7 08:10:43 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  7 08:17:01 client2 CRON[23339]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 08:22:05 client2 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  7 08:22:05 client2 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  7 08:56:48 client2 systemd[1]: Started Session 219 of User student.
+Aug  7 08:56:49 client2 systemd[1]: Started Session 220 of User student.
+Aug  7 08:56:49 client2 systemd[1]: session-220.scope: Deactivated successfully.
+Aug  7 08:56:50 client2 systemd[1]: Started Session 221 of User student.
+Aug  7 08:56:50 client2 systemd[1]: session-221.scope: Deactivated successfully.
+Aug  7 08:56:50 client2 systemd[1]: session-219.scope: Deactivated successfully.
+Aug  7 08:56:50 client2 systemd[1]: Started Session 222 of User student.
+Aug  7 08:56:50 client2 systemd[1]: session-222.scope: Deactivated successfully.
+Aug  7 08:56:51 client2 systemd[1]: Started Session 223 of User student.
+Aug  7 08:56:51 client2 systemd[1]: session-223.scope: Deactivated successfully.
+Aug  7 08:56:51 client2 systemd[1]: Started Session 224 of User student.
+Aug  7 08:56:52 client2 python3.10[23692]: ansible-ansible.legacy.ping Invoked with data=pong
+Aug  7 08:56:52 client2 systemd[1]: session-224.scope: Deactivated successfully.
+Aug  7 08:56:52 client2 systemd[1]: Started Session 225 of User student.
+Aug  7 08:56:52 client2 systemd[1]: session-225.scope: Deactivated successfully.
+Aug  7 08:56:53 client2 systemd[1]: Started Session 226 of User student.
+Aug  7 08:56:53 client2 systemd[1]: session-226.scope: Deactivated successfully.
+Aug  7 08:56:53 client2 systemd[1]: Started Session 227 of User student.
+Aug  7 08:56:54 client2 systemd[1]: session-227.scope: Deactivated successfully.
+Aug  7 08:56:54 client2 systemd[1]: Started Session 228 of User student.
+Aug  7 08:56:54 client2 systemd[1]: session-228.scope: Deactivated successfully.
+Aug  7 08:56:55 client2 systemd[1]: Started Session 229 of User student.
+Aug  7 08:56:55 client2 systemd[1]: session-229.scope: Deactivated successfully.
+Aug  7 08:56:55 client2 systemd[1]: Started Session 230 of User student.
+Aug  7 08:56:55 client2 systemd[1]: session-230.scope: Deactivated successfully.
+Aug  7 08:56:56 client2 systemd[1]: Started Session 231 of User student.
+Aug  7 08:56:56 client2 python3.10[24049]: ansible-apt Invoked with name=['auditd', 'audispd-plugins'] state=present update_cache=True package=['auditd', 'audispd-plugins'] update_cache_retries=5 update_cache_retry_max_delay=12 cache_valid_time=0 purge=False force=False upgrade=no dpkg_options=force-confdef,force-confold autoremove=False autoclean=False fail_on_autoremove=False only_upgrade=False force_apt_get=False clean=False allow_unauthenticated=False allow_downgrade=False allow_change_held_packages=False lock_timeout=60 auto_install_module_deps=True deb=None default_release=None install_recommends=None policy_rc_d=None
+Aug  7 08:56:56 client2 systemd[1]: Starting Update APT News...
+Aug  7 08:56:56 client2 systemd[1]: Starting Update the local ESM caches...
+Aug  7 08:56:57 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  7 08:56:57 client2 systemd[1]: Finished Update APT News.
+Aug  7 08:56:58 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  7 08:56:58 client2 systemd[1]: Finished Update the local ESM caches.
+Aug  7 08:57:08 client2 systemd[1]: Reloading.
+Aug  7 08:57:08 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  7 08:57:08 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  7 08:57:08 client2 systemd[1]: Reloading.
+Aug  7 08:57:08 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  7 08:57:08 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  7 08:57:08 client2 systemd[1]: Reloading.
+Aug  7 08:57:08 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  7 08:57:08 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  7 08:57:08 client2 systemd[1]: Starting Security Auditing Service...
+Aug  7 08:57:08 client2 auditd[24606]: No plugins found, not dispatching events
+Aug  7 08:57:08 client2 auditd[24606]: Init complete, auditd 3.0.7 listening for events (startup state enable)
+Aug  7 08:57:08 client2 augenrules[24609]: /sbin/augenrules: No change
+Aug  7 08:57:08 client2 augenrules[24619]: No rules
+Aug  7 08:57:08 client2 augenrules[24619]: enabled 1
+Aug  7 08:57:08 client2 augenrules[24619]: failure 1
+Aug  7 08:57:08 client2 augenrules[24619]: pid 24606
+Aug  7 08:57:08 client2 augenrules[24619]: rate_limit 0
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_limit 8192
+Aug  7 08:57:08 client2 augenrules[24619]: lost 0
+Aug  7 08:57:08 client2 augenrules[24619]: backlog 3
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_wait_time 15000
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_wait_time_actual 0
+Aug  7 08:57:08 client2 augenrules[24619]: enabled 1
+Aug  7 08:57:08 client2 augenrules[24619]: failure 1
+Aug  7 08:57:08 client2 augenrules[24619]: pid 24606
+Aug  7 08:57:08 client2 augenrules[24619]: rate_limit 0
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_limit 8192
+Aug  7 08:57:08 client2 augenrules[24619]: lost 0
+Aug  7 08:57:08 client2 augenrules[24619]: backlog 2
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_wait_time 15000
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_wait_time_actual 0
+Aug  7 08:57:08 client2 augenrules[24619]: enabled 1
+Aug  7 08:57:08 client2 augenrules[24619]: failure 1
+Aug  7 08:57:08 client2 augenrules[24619]: pid 24606
+Aug  7 08:57:08 client2 augenrules[24619]: rate_limit 0
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_limit 8192
+Aug  7 08:57:08 client2 augenrules[24619]: lost 0
+Aug  7 08:57:08 client2 augenrules[24619]: backlog 1
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_wait_time 60000
+Aug  7 08:57:08 client2 augenrules[24619]: backlog_wait_time_actual 0
+Aug  7 08:57:08 client2 systemd[1]: Started Security Auditing Service.
+Aug  7 08:57:11 client2 systemd[1]: session-231.scope: Deactivated successfully.
+Aug  7 08:57:11 client2 systemd[1]: session-231.scope: Consumed 10.556s CPU time.
+Aug  7 08:57:12 client2 systemd[1]: Started Session 232 of User student.
+Aug  7 08:57:12 client2 systemd[1]: session-232.scope: Deactivated successfully.
+Aug  7 08:57:12 client2 systemd[1]: Started Session 233 of User student.
+Aug  7 08:57:13 client2 systemd[1]: session-233.scope: Deactivated successfully.
+Aug  7 08:57:13 client2 systemd[1]: Started Session 234 of User student.
+Aug  7 08:57:13 client2 systemd[1]: session-234.scope: Deactivated successfully.
+Aug  7 08:57:14 client2 systemd[1]: Started Session 235 of User student.
+Aug  7 08:57:14 client2 systemd[1]: session-235.scope: Deactivated successfully.
+Aug  7 08:57:14 client2 systemd[1]: Started Session 236 of User student.
+Aug  7 08:57:14 client2 systemd[1]: session-236.scope: Deactivated successfully.
+Aug  7 08:57:15 client2 systemd[1]: Started Session 237 of User student.
+Aug  7 08:57:15 client2 python3.10[25019]: ansible-ansible.legacy.stat Invoked with path=/etc/audit/rules.d/lab.rules follow=False get_checksum=True get_size=False checksum_algorithm=sha1 get_mime=True get_attributes=True get_selinux_context=False
+Aug  7 08:57:15 client2 systemd[1]: session-237.scope: Deactivated successfully.
+Aug  7 08:57:15 client2 systemd[1]: Started Session 238 of User student.
+Aug  7 08:57:15 client2 systemd[1]: session-238.scope: Deactivated successfully.
+Aug  7 08:57:16 client2 systemd[1]: Started Session 239 of User student.
+Aug  7 08:57:16 client2 systemd[1]: session-239.scope: Deactivated successfully.
+Aug  7 08:57:17 client2 systemd[1]: Started Session 240 of User student.
+Aug  7 08:57:17 client2 systemd[1]: session-240.scope: Deactivated successfully.
+Aug  7 08:57:17 client2 systemd[1]: Started Session 241 of User student.
+Aug  7 08:57:17 client2 systemd[1]: session-241.scope: Deactivated successfully.
+Aug  7 08:57:18 client2 systemd[1]: Started Session 242 of User student.
+Aug  7 08:57:18 client2 python3.10[25270]: ansible-ansible.legacy.copy Invoked with dest=/etc/audit/rules.d/lab.rules src=/home/student/.ansible/tmp/ansible-tmp-1786093033.0010748-1935577-259056789170053/.source.rules _original_basename=.dsbxx_ef follow=False checksum=e59734a421da5dee42c981842e098068c1fe208b backup=False force=True remote_src=False unsafe_writes=False content=NOT_LOGGING_PARAMETER validate=None directory_mode=None local_follow=None mode=None owner=None group=None seuser=None serole=None selevel=None setype=None attributes=None
+Aug  7 08:57:18 client2 systemd[1]: session-242.scope: Deactivated successfully.
+Aug  7 08:57:18 client2 systemd[1]: Started Session 243 of User student.
+Aug  7 08:57:19 client2 systemd[1]: session-243.scope: Deactivated successfully.
+Aug  7 08:57:19 client2 systemd[1]: Started Session 244 of User student.
+Aug  7 08:57:19 client2 systemd[1]: session-244.scope: Deactivated successfully.
+Aug  7 08:57:20 client2 systemd[1]: Started Session 245 of User student.
+Aug  7 08:57:20 client2 systemd[1]: session-245.scope: Deactivated successfully.
+Aug  7 08:57:20 client2 systemd[1]: Started Session 246 of User student.
+Aug  7 08:57:20 client2 systemd[1]: session-246.scope: Deactivated successfully.
+Aug  7 08:57:21 client2 systemd[1]: Started Session 247 of User student.
+Aug  7 08:57:21 client2 systemd[1]: session-247.scope: Deactivated successfully.
+Aug  7 08:57:21 client2 systemd[1]: Started Session 248 of User student.
+Aug  7 08:57:22 client2 python3.10[25577]: ansible-systemd Invoked with enabled=True name=auditd state=restarted daemon_reload=False daemon_reexec=False scope=system no_block=False force=None masked=None
+Aug  7 08:57:22 client2 systemd[1]: Stopping Security Auditing Service...
+Aug  7 08:57:22 client2 auditd[24606]: The audit daemon is exiting.
+Aug  7 08:57:22 client2 systemd[1]: auditd.service: Deactivated successfully.
+Aug  7 08:57:22 client2 systemd[1]: Stopped Security Auditing Service.
+Aug  7 08:57:22 client2 systemd[1]: Starting Security Auditing Service...
+Aug  7 08:57:22 client2 kernel: [695157.128120] kauditd_printk_skb: 5 callbacks suppressed
+Aug  7 08:57:22 client2 kernel: [695157.128124] audit: type=1305 audit(1786093042.286:250): op=set audit_pid=0 old=24606 auid=4294967295 ses=4294967295 subj=unconfined res=1
+Aug  7 08:57:22 client2 kernel: [695157.128790] audit: type=1131 audit(1786093042.290:251): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=unconfined msg='unit=auditd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+Aug  7 08:57:22 client2 auditd[25584]: No plugins found, not dispatching events
+Aug  7 08:57:22 client2 kernel: [695157.143594] audit: type=1305 audit(1786093042.302:252): op=set audit_enabled=1 old=1 auid=4294967295 ses=4294967295 subj=unconfined res=1
+Aug  7 08:57:22 client2 auditd[25584]: Init complete, auditd 3.0.7 listening for events (startup state enable)
+Aug  7 08:57:22 client2 augenrules[25601]: No rules
+Aug  7 08:57:22 client2 augenrules[25601]: enabled 1
+Aug  7 08:57:22 client2 augenrules[25601]: failure 1
+Aug  7 08:57:22 client2 augenrules[25601]: pid 25584
+Aug  7 08:57:22 client2 augenrules[25601]: rate_limit 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_limit 8192
+Aug  7 08:57:22 client2 augenrules[25601]: lost 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_wait_time 60000
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_wait_time_actual 0
+Aug  7 08:57:22 client2 augenrules[25601]: enabled 1
+Aug  7 08:57:22 client2 augenrules[25601]: failure 1
+Aug  7 08:57:22 client2 augenrules[25601]: pid 25584
+Aug  7 08:57:22 client2 augenrules[25601]: rate_limit 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_limit 8192
+Aug  7 08:57:22 client2 augenrules[25601]: lost 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog 1
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_wait_time 60000
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_wait_time_actual 0
+Aug  7 08:57:22 client2 augenrules[25601]: enabled 1
+Aug  7 08:57:22 client2 augenrules[25601]: failure 1
+Aug  7 08:57:22 client2 augenrules[25601]: pid 25584
+Aug  7 08:57:22 client2 augenrules[25601]: rate_limit 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_limit 8192
+Aug  7 08:57:22 client2 augenrules[25601]: lost 0
+Aug  7 08:57:22 client2 augenrules[25601]: backlog 2
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_wait_time 60000
+Aug  7 08:57:22 client2 augenrules[25601]: backlog_wait_time_actual 0
+Aug  7 08:57:22 client2 systemd[1]: Started Security Auditing Service.
+Aug  7 08:57:22 client2 systemd[1]: session-248.scope: Deactivated successfully.
+Aug  7 08:57:22 client2 systemd[1]: Started Session 249 of User student.
+Aug  7 08:57:22 client2 systemd[1]: session-249.scope: Deactivated successfully.
+Aug  7 08:59:36 client2 systemd[1]: Started Session 250 of User student.
+Aug  7 08:59:36 client2 systemd[1]: session-250.scope: Deactivated successfully.
+Aug  7 08:59:37 client2 systemd[1]: Started Session 251 of User student.
+Aug  7 08:59:37 client2 systemd[1]: session-251.scope: Deactivated successfully.
+Aug  7 08:59:37 client2 systemd[1]: Started Session 252 of User student.
+Aug  7 08:59:38 client2 systemd[1]: session-252.scope: Deactivated successfully.
+Aug  7 08:59:38 client2 systemd[1]: Started Session 253 of User student.
+Aug  7 08:59:38 client2 systemd[1]: session-253.scope: Deactivated successfully.
+Aug  7 08:59:38 client2 systemd[1]: Started Session 254 of User student.
+Aug  7 08:59:39 client2 systemd[1]: session-254.scope: Deactivated successfully.
+Aug  7 08:59:39 client2 systemd[1]: Started Session 255 of User student.
+Aug  7 08:59:39 client2 python3.10[25981]: ansible-ansible.legacy.slurp Invoked with src=/var/log/audit/audit.log armor=True
+Aug  7 08:59:39 client2 systemd[1]: session-255.scope: Deactivated successfully.
+Aug  7 08:59:40 client2 systemd[1]: Started Session 256 of User student.
+Aug  7 08:59:40 client2 systemd[1]: session-256.scope: Deactivated successfully.
+Aug  7 08:59:40 client2 systemd[1]: Started Session 257 of User student.
+Aug  7 08:59:40 client2 systemd[1]: session-257.scope: Deactivated successfully.
+Aug  7 08:59:41 client2 systemd[1]: Started Session 258 of User student.
+Aug  7 08:59:41 client2 systemd[1]: session-258.scope: Deactivated successfully.
+Aug  7 08:59:41 client2 systemd[1]: Started Session 259 of User student.
+Aug  7 08:59:42 client2 systemd[1]: session-259.scope: Deactivated successfully.
+Aug  7 08:59:42 client2 systemd[1]: Started Session 260 of User student.
+Aug  7 08:59:42 client2 systemd[1]: session-260.scope: Deactivated successfully.
+Aug  7 08:59:43 client2 systemd[1]: Started Session 261 of User student.
+Aug  7 08:59:43 client2 systemd[1]: session-261.scope: Deactivated successfully.
+Aug  7 08:59:43 client2 systemd[1]: Started Session 262 of User student.
+Aug  7 08:59:44 client2 python3.10[26336]: ansible-ansible.legacy.slurp Invoked with src=/var/log/syslog armor=True
+Aug  7 08:59:44 client2 systemd[1]: session-262.scope: Deactivated successfully.
+Aug  7 08:59:44 client2 systemd[1]: Started Session 263 of User student.
+Aug  7 08:59:44 client2 systemd[1]: session-263.scope: Deactivated successfully.
+Aug  7 08:59:45 client2 systemd[1]: Started Session 264 of User student.
+Aug  7 08:59:45 client2 systemd[1]: session-264.scope: Deactivated successfully.
+Aug  7 08:59:45 client2 systemd[1]: Started Session 265 of User student.
+Aug  7 08:59:45 client2 systemd[1]: session-265.scope: Deactivated successfully.
+Aug  7 08:59:46 client2 systemd[1]: Started Session 266 of User student.
+Aug  7 08:59:46 client2 systemd[1]: session-266.scope: Deactivated successfully.
+Aug  7 08:59:46 client2 systemd[1]: Started Session 267 of User student.
+Aug  7 08:59:47 client2 systemd[1]: session-267.scope: Deactivated successfully.
+Aug  7 08:59:47 client2 systemd[1]: Started Session 268 of User student.
+Aug  7 08:59:47 client2 systemd[1]: session-268.scope: Deactivated successfully.
+Aug  7 08:59:48 client2 systemd[1]: Started Session 269 of User student.
+Aug  7 08:59:48 client2 python3.10[26693]: ansible-ansible.legacy.slurp Invoked with src=/var/log/auth.log armor=True
+Aug  7 08:59:48 client2 systemd[1]: session-269.scope: Deactivated successfully.
+Aug  7 08:59:48 client2 systemd[1]: Started Session 270 of User student.
+Aug  7 08:59:49 client2 systemd[1]: session-270.scope: Deactivated successfully.
+Aug  7 09:17:01 client2 CRON[27093]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 09:19:29 client2 systemd[1]: Started Session 272 of User student.
+Aug  7 09:19:30 client2 systemd[1]: session-272.scope: Deactivated successfully.
+Aug  7 09:19:30 client2 systemd[1]: Started Session 273 of User student.
+Aug  7 09:19:30 client2 systemd[1]: session-273.scope: Deactivated successfully.
+Aug  7 09:19:31 client2 systemd[1]: Started Session 274 of User student.
+Aug  7 09:19:31 client2 systemd[1]: session-274.scope: Deactivated successfully.
+Aug  7 09:19:31 client2 systemd[1]: Started Session 275 of User student.
+Aug  7 09:19:31 client2 systemd[1]: session-275.scope: Deactivated successfully.
+Aug  7 09:19:32 client2 systemd[1]: Started Session 276 of User student.
+Aug  7 09:19:32 client2 systemd[1]: session-276.scope: Deactivated successfully.
+Aug  7 09:19:32 client2 systemd[1]: Started Session 277 of User student.
+Aug  7 09:19:33 client2 python3.10[27411]: ansible-ansible.legacy.slurp Invoked with src=/var/log/audit/audit.log armor=True
+Aug  7 09:19:33 client2 systemd[1]: session-277.scope: Deactivated successfully.
+Aug  7 09:19:33 client2 systemd[1]: Started Session 278 of User student.
+Aug  7 09:19:34 client2 systemd[1]: session-278.scope: Deactivated successfully.
+Aug  7 09:19:34 client2 systemd[1]: Started Session 279 of User student.
+Aug  7 09:19:34 client2 systemd[1]: session-279.scope: Deactivated successfully.
+Aug  7 09:19:35 client2 systemd[1]: Started Session 280 of User student.
+Aug  7 09:19:35 client2 systemd[1]: session-280.scope: Deactivated successfully.
+Aug  7 09:19:35 client2 systemd[1]: Started Session 281 of User student.
+Aug  7 09:19:35 client2 systemd[1]: session-281.scope: Deactivated successfully.
+Aug  7 09:19:36 client2 systemd[1]: Started Session 282 of User student.
+Aug  7 09:19:36 client2 systemd[1]: session-282.scope: Deactivated successfully.
+Aug  7 09:19:36 client2 systemd[1]: Started Session 283 of User student.
+Aug  7 09:19:36 client2 systemd[1]: session-283.scope: Deactivated successfully.
+Aug  7 09:19:37 client2 systemd[1]: Started Session 284 of User student.
+Aug  7 09:19:37 client2 python3.10[27766]: ansible-ansible.legacy.slurp Invoked with src=/var/log/syslog armor=True
+Aug  7 09:19:37 client2 systemd[1]: session-284.scope: Deactivated successfully.
+Aug  7 09:19:37 client2 systemd[1]: Started Session 285 of User student.
+Aug  7 09:19:37 client2 systemd[1]: session-285.scope: Deactivated successfully.
+Aug  7 09:19:38 client2 systemd[1]: Started Session 286 of User student.
+Aug  7 09:19:38 client2 systemd[1]: session-286.scope: Deactivated successfully.
+Aug  7 09:19:38 client2 systemd[1]: Started Session 287 of User student.
+Aug  7 09:19:39 client2 systemd[1]: session-287.scope: Deactivated successfully.
+Aug  7 09:19:39 client2 systemd[1]: Started Session 288 of User student.
+Aug  7 09:19:39 client2 systemd[1]: session-288.scope: Deactivated successfully.
+Aug  7 09:19:39 client2 systemd[1]: Started Session 289 of User student.
+Aug  7 09:19:40 client2 systemd[1]: session-289.scope: Deactivated successfully.
+Aug  7 09:19:40 client2 systemd[1]: Started Session 290 of User student.
+Aug  7 09:19:40 client2 systemd[1]: session-290.scope: Deactivated successfully.
+Aug  7 09:19:41 client2 systemd[1]: Started Session 291 of User student.
+Aug  7 09:19:41 client2 python3.10[28121]: ansible-ansible.legacy.slurp Invoked with src=/var/log/auth.log armor=True
+Aug  7 09:19:41 client2 systemd[1]: session-291.scope: Deactivated successfully.
+Aug  7 09:19:41 client2 systemd[1]: Started Session 292 of User student.
+Aug  7 09:19:41 client2 systemd[1]: session-292.scope: Deactivated successfully.
+Aug  7 09:20:35 client2 auditd[25584]: Audit daemon rotating log files
+Aug  7 09:24:12 client2 systemd[1]: Started Session 293 of User student.
+Aug  7 09:24:12 client2 systemd[1]: session-293.scope: Deactivated successfully.
+Aug  7 09:24:12 client2 systemd[1]: Started Session 294 of User student.
+Aug  7 09:24:13 client2 systemd[1]: session-294.scope: Deactivated successfully.
+Aug  7 09:24:13 client2 systemd[1]: Started Session 295 of User student.
+Aug  7 09:24:13 client2 systemd[1]: session-295.scope: Deactivated successfully.
+Aug  7 09:24:14 client2 systemd[1]: Started Session 296 of User student.
+Aug  7 09:24:14 client2 systemd[1]: session-296.scope: Deactivated successfully.
+Aug  7 09:24:14 client2 systemd[1]: Started Session 297 of User student.
+Aug  7 09:24:14 client2 systemd[1]: session-297.scope: Deactivated successfully.
+Aug  7 09:24:15 client2 systemd[1]: Started Session 298 of User student.
+Aug  7 09:24:15 client2 python3.10[28830]: ansible-ansible.legacy.slurp Invoked with src=/var/log/audit/audit.log armor=True
+Aug  7 09:24:15 client2 systemd[1]: session-298.scope: Deactivated successfully.
+Aug  7 09:24:15 client2 systemd[1]: Started Session 299 of User student.
+Aug  7 09:24:16 client2 systemd[1]: session-299.scope: Deactivated successfully.
+Aug  7 09:24:16 client2 systemd[1]: Started Session 300 of User student.
+Aug  7 09:24:16 client2 systemd[1]: session-300.scope: Deactivated successfully.
+Aug  7 09:24:17 client2 systemd[1]: Started Session 301 of User student.
+Aug  7 09:24:17 client2 systemd[1]: session-301.scope: Deactivated successfully.
+Aug  7 09:24:17 client2 systemd[1]: Started Session 302 of User student.
+Aug  7 09:24:17 client2 systemd[1]: session-302.scope: Deactivated successfully.
+Aug  7 09:24:18 client2 systemd[1]: Started Session 303 of User student.
+Aug  7 09:24:18 client2 systemd[1]: session-303.scope: Deactivated successfully.
+Aug  7 09:24:18 client2 systemd[1]: Started Session 304 of User student.
+Aug  7 09:24:18 client2 systemd[1]: session-304.scope: Deactivated successfully.
+Aug  7 09:24:19 client2 systemd[1]: Started Session 305 of User student.

@@ -1,0 +1,2 @@
+address,hwaddr,client_id,valid_lifetime,expire,subnet_id,fqdn_fwd,fqdn_rev,hostname,state,user_context
+10.10.20.151,52:54:00:2e:4c:f2,ff:56:50:4d:98:00:02:00:00:ab:11:be:ed:a9:a9:96:84:06:b9,7200,1786100735,2,0,0,client2,0,

@@ -88,6 +88,21 @@ outputs:
         - tls:
             extended: yes
 
+  # Flows — every completed connection with bytes/packets/duration.
+  # Primary ML feature source: connection volume, timing, directionality.
+  - eve-log:
+      enabled: yes
+      filename: eve-flow.json
+      types:
+        - flow
+
+  # SMB — lateral movement and backup encryption over Samba shares
+  - eve-log:
+      enabled: yes
+      filename: eve-smb.json
+      types:
+        - smb
+
   # Anomalies — malformed packets, protocol violations; early exploit indicator
   - eve-log:
       enabled: yes
