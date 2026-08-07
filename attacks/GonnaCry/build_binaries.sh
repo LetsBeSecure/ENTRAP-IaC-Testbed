@@ -5,7 +5,7 @@
 # Do NOT run on Arch Linux — glibc mismatch will crash binaries on Ubuntu clients.
 #
 # Prerequisites:
-#   pip3 install python3 -m PyInstaller pycryptodome requests
+#   pip3 install pyinstaller pycryptodome requests smbprotocol
 #
 # After build, copy binaries to this repo and commit:
 #   cp dist/gonnacry dist/decryptor <repo>/attacks/GonnaCry/src/Server/binaries/

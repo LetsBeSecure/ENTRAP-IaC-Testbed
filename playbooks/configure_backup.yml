@@ -32,6 +32,8 @@
           workgroup = WORKGROUP
           security = user
           map to guest = Bad User
+          server signing = disabled
+          server min protocol = SMB2
 
           [backups]
           path = {{ backup_share_path }}
@@ -39,6 +41,7 @@
           writable = yes
           guest ok = yes
           read only = no
+          force directory mode = 0777
 
     - name: Restart samba
       systemd:
@@ -95,7 +98,7 @@
               [[ -n "$prev" && -d "$prev" ]] && link_arg="--link-dest=${prev}"
               mkdir -p "$dest"
               # shellcheck disable=SC2086
-              rsync -az --delete ${link_arg} -e "${SSH_CMD}" \
+              rsync -az --no-perms --chmod=Da+rwx,Fa+rw --delete ${link_arg} -e "${SSH_CMD}" \
                   "${user}@${host}:${src}" "${dest}/" \
                   && log "OK   ${host}:${src}" \
                   || log "WARN ${host}:${src} skipped (host unreachable)"
@@ -139,6 +142,7 @@
                   "${BACKUP_ROOT}/clients/${ip}/latest"
           done
 
+          chmod -R a+rwX "${BACKUP_ROOT}"
           log "=== backup complete ==="
 
     - name: Schedule nightly backup at 02:00

