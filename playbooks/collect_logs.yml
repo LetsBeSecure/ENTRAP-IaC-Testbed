@@ -40,7 +40,7 @@
   tasks:
     - name: Read active client IPs
       shell: >
-        awk -F',' 'NR>1 && $10=="0" {print $1}'
+        awk -F',' 'NR>1 && $10=="0" && $9!="" {print $1}'
         /var/lib/kea/kea-leases4.csv /var/lib/kea/kea-leases4.csv.2
         2>/dev/null | sort -u
       register: discovered_ips
@@ -124,6 +124,21 @@
         flat: true
         fail_on_missing: false
 
+    - name: Find MitM pcap captures (mitm_intercept.sh or dhcp_attack_combined.sh INTERCEPT=1)
+      shell: "find /home/{{ client_user }} -maxdepth 2 -name 'mitm_capture_*.pcap' 2>/dev/null"
+      register: pcap_files
+      changed_when: false
+      failed_when: false
+
+    - name: Fetch MitM pcap captures
+      fetch:
+        src: "{{ item }}"
+        dest: "{{ run_dir }}/{{ inventory_hostname }}/"
+        flat: true
+        fail_on_missing: false
+      loop: "{{ pcap_files.stdout_lines }}"
+      when: pcap_files.stdout_lines | length > 0
+
 # ── Play 5: dns1 — BIND query log ────────────────────────────────────────────
 - name: Collect logs from dns1
   hosts: dns
@@ -156,7 +171,14 @@
     run_dir: "{{ hostvars['localhost']['run_dir'] }}"
 
   tasks:
-    - name: Fetch syslog (kea lease events)
+    - name: Fetch kea-dhcp4.log (DISCOVER/OFFER/REQUEST/ACK/NAK — shows pool exhaustion)
+      fetch:
+        src: /var/log/kea/kea-dhcp4.log
+        dest: "{{ run_dir }}/dhcp1/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch syslog (fallback — Kea itself logs to kea-dhcp4.log, not syslog)
       fetch:
         src: /var/log/syslog
         dest: "{{ run_dir }}/dhcp1/"
@@ -227,4 +249,4 @@
         msg: >
           Collection complete.
           Logs: {{ run_dir }}
-          Next: python3 scripts/export_dataset.py
+          Next: python3 scripts/export_dataset.py 

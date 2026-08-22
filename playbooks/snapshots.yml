@@ -5,10 +5,12 @@
 
   tasks:
 
-    - name: Create snapshots
-      command: >
-        virsh snapshot-create-as
-        {{ item }}
-        {{ snapshot_name }}
+    - name: Deleting existing snapshot if present
+      command: virsh snapshot-delete {{ item }} {{ snapshot_name }}
       loop: "{{ vms | map(attribute='name') | list }}"
       ignore_errors: true
+
+    - name: Create fresh snapshots
+      command: virsh snapshot-create-as {{ item }} {{ snapshot_name }} --live
+      loop: "{{ vms | map(attribute='name') | list }}"
+
