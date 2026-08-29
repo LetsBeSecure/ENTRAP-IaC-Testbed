@@ -34,3 +34,6 @@ tmp/
 
 # Raas files
 #GonnaCry
+comands.txt
+destroy_everything.sh
+scripts/collect_logs.sh

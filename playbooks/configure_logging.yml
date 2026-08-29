@@ -1,0 +1,145 @@
+---
+# configure_logging.yml
+# Installs host-based logging agents on all lab VMs.
+# Logs are written locally on each VM; collect with collect_logs.yml after attacks.
+#
+# Sources enabled:
+#   clients  — auditd: rename storm, exec, connect, home/tmp/cred access
+#   dns1     — BIND query log → /var/log/named/query.log
+#   backup1  — Samba VFS full_audit → /var/log/syslog (LOCAL7)
+
+# ── Play 1: Discover active clients ──────────────────────────────────────────
+- name: Discover active clients from DHCP leases
+  hosts: dhcp
+  gather_facts: false
+
+  tasks:
+    - name: Read active client IPs from kea lease file
+      shell: >
+        awk -F',' 'NR>1 && $10=="0" {print $1}'
+        /var/lib/kea/kea-leases4.csv /var/lib/kea/kea-leases4.csv.2
+        2>/dev/null | sort -u
+      register: discovered_ips
+      changed_when: false
+
+    - name: Add discovered clients to dynamic inventory
+      add_host:
+        name: "{{ item }}"
+        groups: logging_clients
+        ansible_user: "{{ client_user }}"
+        ansible_password: "{{ client_password }}"
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
+          -o StrictHostKeyChecking=no
+          -o UserKnownHostsFile=/dev/null
+          -W %h:%p {{ infra_admin_user }}@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
+      loop: "{{ discovered_ips.stdout_lines }}"
+      when: discovered_ips.stdout_lines | length > 0
+
+# ── Play 2: auditd on clients ─────────────────────────────────────────────────
+- name: Install and configure auditd on clients
+  hosts: logging_clients
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Wait for SSH
+      wait_for_connection:
+        timeout: 120
+        delay: 5
+
+    - name: Install auditd
+      apt:
+        name:
+          - auditd
+          - audispd-plugins
+        update_cache: true
+        state: present
+
+    - name: Deploy audit rules
+      copy:
+        dest: /etc/audit/rules.d/lab.rules
+        content: |
+          ## Ransomware: file rename storm (.GNNCRY extension append)
+          -a always,exit -F arch=b64 -S rename,renameat,renameat2 -k file_rename
+          ## Lateral movement / initial access: process execution (gonnacry, nmap, curl)
+          -a always,exit -F arch=b64 -S execve -k exec
+          ## C2 beacon / SMB pivot: outbound TCP connect
+          -a always,exit -F arch=b64 -S connect -k net_connect
+          ## Ransomware: high-value target directory
+          -w /home -p rwxa -k home_access
+          ## Dropper staging area
+          -w /tmp -p wxa -k tmp_write
+          ## Credential theft: passwd/shadow modification
+          -w /etc/passwd -p wa -k cred_file
+          -w /etc/shadow -p wa -k cred_file
+
+    - name: Restart auditd to load rules
+      systemd:
+        name: auditd
+        state: restarted
+        enabled: true
+
+# ── Play 3: DNS query logging on dns1 ────────────────────────────────────────
+- name: Enable BIND query logging on dns1
+  hosts: dns
+  become: true
+
+  tasks:
+    - name: Create named log directory
+      file:
+        path: /var/log/named
+        state: directory
+        owner: bind
+        group: bind
+        mode: '0750'
+
+    - name: Deploy named.conf.logging
+      copy:
+        dest: /etc/bind/named.conf.logging
+        content: |
+          logging {
+              channel query_log {
+                  file "/var/log/named/query.log" versions 5 size 20m;
+                  severity info;
+                  print-time yes;
+                  print-severity no;
+                  print-category no;
+              };
+              category queries { query_log; };
+          };
+
+    - name: Include logging config in named.conf (idempotent)
+      lineinfile:
+        path: /etc/bind/named.conf
+        line: 'include "/etc/bind/named.conf.logging";'
+        state: present
+
+    - name: Restart bind9
+      systemd:
+        name: named
+        state: restarted
+
+# ── Play 4: Samba VFS full_audit on backup1 ──────────────────────────────────
+- name: Enable Samba VFS audit logging on backup1
+  hosts: backup
+  become: true
+
+  tasks:
+    - name: Add VFS audit config to smb.conf [backups] section
+      blockinfile:
+        path: /etc/samba/smb.conf
+        marker: "# {mark} ANSIBLE MANAGED — VFS AUDIT"
+        insertafter: "force directory mode = 0777"
+        block: |
+          vfs objects = full_audit
+          full_audit:prefix = %u|%I|%m|%S
+          full_audit:success = open rename mkdir unlink write
+          full_audit:failure = open rename mkdir unlink write
+          full_audit:facility = local7
+          full_audit:priority = notice
+
+    - name: Restart samba
+      systemd:
+        name: smbd
+        state: restarted

@@ -125,3 +125,13 @@ vms:
     wan_ip: "{{ c2server_ip }}"
     memory: 1024
     vcpus: 1
+
+  - name: client1
+    role: client
+    memory: 2048
+    vcpus: 2
+
+  - name: client2
+    role: client
+    memory: 2048
+    vcpus: 2

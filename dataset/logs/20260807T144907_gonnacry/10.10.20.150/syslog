@@ -1,0 +1,1194 @@
+Aug  2 00:00:14 client1 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  2 00:00:14 client1 systemd[1]: Finished Rotate log files.
+Aug  2 00:00:14 client1 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  2 00:00:14 client1 systemd[1]: Finished Daily dpkg database backup service.
+Aug  2 00:10:14 client1 rsyslogd: [origin software="rsyslogd" swVersion="8.2112.0" x-pid="624" x-info="https://www.rsyslog.com"] rsyslogd was HUPed
+Aug  2 00:17:01 client1 CRON[4257]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 01:17:01 client1 CRON[4266]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 02:17:01 client1 CRON[4278]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 03:01:14 client1 systemd[1]: Starting Daily man-db regeneration...
+Aug  2 03:01:14 client1 systemd[1]: man-db.service: Deactivated successfully.
+Aug  2 03:01:14 client1 systemd[1]: Finished Daily man-db regeneration.
+Aug  2 03:10:01 client1 CRON[4298]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  2 03:10:39 client1 systemd[1]: Starting Online ext4 Metadata Check for All Filesystems...
+Aug  2 03:10:39 client1 systemd[1]: e2scrub_all.service: Deactivated successfully.
+Aug  2 03:10:39 client1 systemd[1]: Finished Online ext4 Metadata Check for All Filesystems.
+Aug  2 03:17:01 client1 CRON[4304]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 03:30:01 client1 CRON[4308]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /usr/lib/x86_64-linux-gnu/e2fsprogs/e2scrub_all_cron)
+Aug  2 04:02:04 client1 systemd[1]: Starting Daily apt download activities...
+Aug  2 04:02:04 client1 systemd[1]: Starting Update APT News...
+Aug  2 04:02:04 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  2 04:02:04 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  2 04:02:04 client1 systemd[1]: Finished Update APT News.
+Aug  2 04:02:07 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  2 04:02:07 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  2 04:02:12 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  2 04:02:12 client1 systemd[1]: Finished Daily apt download activities.
+Aug  2 04:02:12 client1 systemd[1]: apt-daily.service: Consumed 6.761s CPU time.
+Aug  2 04:17:01 client1 CRON[4726]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 04:32:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 05:17:01 client1 CRON[4739]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 06:17:01 client1 CRON[4750]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 06:25:01 client1 CRON[4757]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  2 06:41:14 client1 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  2 06:41:16 client1 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  2 06:41:16 client1 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  2 06:41:16 client1 systemd[1]: apt-daily-upgrade.service: Consumed 2.280s CPU time.
+Aug  2 06:47:01 client1 CRON[4841]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly ))
+Aug  2 07:17:01 client1 CRON[4851]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 07:57:14 client1 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  2 07:57:14 client1 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  2 07:57:14 client1 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  2 08:02:04 client1 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  2 08:02:04 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  2 08:09:14 client1 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  2 08:09:14 client1 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  2 08:09:14 client1 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  2 08:12:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 08:17:01 client1 CRON[4870]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 09:17:01 client1 CRON[4881]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 10:09:34 client1 systemd[1]: Starting Message of the Day...
+Aug  2 10:09:35 client1 50-motd-news[4917]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  2 10:09:35 client1 50-motd-news[4917]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  2 10:09:35 client1 50-motd-news[4917]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  2 10:09:35 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  2 10:09:35 client1 systemd[1]: Finished Message of the Day.
+Aug  2 10:17:01 client1 CRON[4927]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 11:17:01 client1 CRON[4938]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 12:17:01 client1 CRON[4951]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 13:17:01 client1 CRON[4964]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 14:17:01 client1 CRON[4975]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 14:17:39 client1 systemd[1]: Starting Check to see whether there is a new version of Ubuntu available...
+Aug  2 14:17:39 client1 systemd[1]: update-notifier-motd.service: Deactivated successfully.
+Aug  2 14:17:39 client1 systemd[1]: Finished Check to see whether there is a new version of Ubuntu available.
+Aug  2 15:17:01 client1 CRON[4993]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 15:28:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  2 15:28:15 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  2 15:28:15 client1 systemd[1]: Finished Daily apt download activities.
+Aug  2 15:47:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "snapd"
+Aug  2 15:47:17 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  2 15:47:18 client1 systemd[1]: Reloading.
+Aug  2 15:47:19 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  2 15:47:19 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  2 15:47:19 client1 systemd[1]: Starting Message of the Day...
+Aug  2 15:47:19 client1 systemd[1]: Mounting Mount unit for lxd, revision 40338...
+Aug  2 15:47:19 client1 kernel: [287748.906534] loop7: detected capacity change from 0 to 236048
+Aug  2 15:47:19 client1 systemd[1]: Mounted Mount unit for lxd, revision 40338.
+Aug  2 15:47:19 client1 systemd[1]: snap.lxd.daemon.unix.socket: Deactivated successfully.
+Aug  2 15:47:19 client1 systemd[1]: Closed Socket unix for snap application lxd.daemon.
+Aug  2 15:47:19 client1 systemd[1]: snap.lxd.user-daemon.unix.socket: Deactivated successfully.
+Aug  2 15:47:19 client1 systemd[1]: Closed Socket unix for snap application lxd.user-daemon.
+Aug  2 15:47:19 client1 systemd[1]: run-snapd-ns-lxd.mnt.mount: Deactivated successfully.
+Aug  2 15:47:19 client1 snapd[627]: services.go:1143: RemoveSnapServices - socket snap.lxd.user-daemon.unix.socket
+Aug  2 15:47:19 client1 snapd[627]: services.go:1167: RemoveSnapServices - disabling snap.lxd.user-daemon.service
+Aug  2 15:47:19 client1 snapd[627]: services.go:1167: RemoveSnapServices - disabling snap.lxd.activate.service
+Aug  2 15:47:19 client1 snapd[627]: services.go:1143: RemoveSnapServices - socket snap.lxd.daemon.unix.socket
+Aug  2 15:47:19 client1 snapd[627]: services.go:1167: RemoveSnapServices - disabling snap.lxd.daemon.service
+Aug  2 15:47:19 client1 systemd[1]: Reloading.
+Aug  2 15:47:19 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  2 15:47:19 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  2 15:47:20 client1 systemd[1]: Reloading.
+Aug  2 15:47:20 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  2 15:47:20 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  2 15:47:20 client1 snapd[627]: backend.go:285: reloading profiles of snap-confine provided by the system snap
+Aug  2 15:47:20 client1 kernel: [287750.092640] kauditd_printk_skb: 21 callbacks suppressed
+Aug  2 15:47:20 client1 kernel: [287750.092644] audit: type=1400 audit(1785685640.396:41): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/snap/snapd/27591/usr/lib/snapd/snap-confine" pid=5234 comm="apparmor_parser"
+Aug  2 15:47:20 client1 kernel: [287750.232336] audit: type=1400 audit(1785685640.536:42): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.activate" pid=5236 comm="apparmor_parser"
+Aug  2 15:47:20 client1 50-motd-news[5241]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  2 15:47:20 client1 50-motd-news[5241]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  2 15:47:20 client1 50-motd-news[5241]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  2 15:47:20 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  2 15:47:20 client1 systemd[1]: Finished Message of the Day.
+Aug  2 15:47:20 client1 kernel: [287750.391496] audit: type=1400 audit(1785685640.696:43): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.benchmark" pid=5237 comm="apparmor_parser"
+Aug  2 15:47:20 client1 kernel: [287750.495473] audit: type=1400 audit(1785685640.800:44): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.buginfo" pid=5248 comm="apparmor_parser"
+Aug  2 15:47:20 client1 kernel: [287750.615483] audit: type=1400 audit(1785685640.920:45): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.check-kernel" pid=5249 comm="apparmor_parser"
+Aug  2 15:47:21 client1 kernel: [287750.761486] audit: type=1400 audit(1785685641.064:46): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.daemon" pid=5250 comm="apparmor_parser"
+Aug  2 15:47:21 client1 kernel: [287750.891743] audit: type=1400 audit(1785685641.196:47): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.configure" pid=5251 comm="apparmor_parser"
+Aug  2 15:47:21 client1 kernel: [287750.977551] audit: type=1400 audit(1785685641.280:48): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.install" pid=5252 comm="apparmor_parser"
+Aug  2 15:47:21 client1 kernel: [287751.078892] audit: type=1400 audit(1785685641.384:49): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.hook.remove" pid=5253 comm="apparmor_parser"
+Aug  2 15:47:21 client1 kernel: [287751.176678] audit: type=1400 audit(1785685641.480:50): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.lxd.lxc" pid=5254 comm="apparmor_parser"
+Aug  2 15:47:22 client1 systemd[1]: Reloading.
+Aug  2 15:47:22 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  2 15:47:22 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  2 15:47:22 client1 systemd[1]: Listening on Socket unix for snap application lxd.user-daemon.
+Aug  2 15:47:22 client1 systemd[1]: Listening on Socket unix for snap application lxd.daemon.
+Aug  2 15:47:22 client1 systemd[1]: Starting Service for snap application lxd.activate...
+Aug  2 15:47:22 client1 systemd[1]: tmp-snap\x2dprivate\x2dtmp-snap.rootfs_KB66Fu.mount: Deactivated successfully.
+Aug  2 15:47:22 client1 lxd.activate[5293]: => Starting LXD activation
+Aug  2 15:47:22 client1 lxd.activate[5293]: ==> Loading snap configuration
+Aug  2 15:47:22 client1 lxd.activate[5293]: ==> Checking for socket activation support
+Aug  2 15:47:22 client1 lxd.activate[5293]: ==> Setting LXD socket ownership
+Aug  2 15:47:22 client1 lxd.activate[5293]: ==> Setting LXD user socket ownership
+Aug  2 15:47:22 client1 lxd.activate[5293]: ==> LXD never started on this system, no need to start it now
+Aug  2 15:47:22 client1 systemd[1]: snap.lxd.activate.service: Deactivated successfully.
+Aug  2 15:47:22 client1 systemd[1]: Finished Service for snap application lxd.activate.
+Aug  2 15:47:22 client1 systemd[1]: snap-lxd-38469.mount: Deactivated successfully.
+Aug  2 15:47:22 client1 systemd[1]: Reloading.
+Aug  2 15:47:22 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  2 15:47:22 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  2 15:47:22 client1 systemd[1]: Started snap.lxd.hook.configure-e94e717d-1f0e-4322-9a8a-7721dcc010ee.scope.
+Aug  2 15:47:23 client1 systemd[1]: snap.lxd.hook.configure-e94e717d-1f0e-4322-9a8a-7721dcc010ee.scope: Deactivated successfully.
+Aug  2 15:47:24 client1 snapd[627]: storehelpers.go:919: cannot refresh snap "lxd": snap has no updates available
+Aug  2 16:17:01 client1 CRON[5584]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 17:17:01 client1 CRON[5594]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 18:17:01 client1 CRON[5606]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 19:17:01 client1 CRON[5617]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 20:17:01 client1 CRON[5628]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 21:17:01 client1 CRON[5639]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 22:17:01 client1 CRON[5654]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  2 22:37:06 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  2 23:17:01 client1 CRON[5663]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 00:00:14 client1 systemd[1]: Starting Daily dpkg database backup service...
+Aug  3 00:00:14 client1 systemd[1]: Starting Rotate log files...
+Aug  3 00:00:14 client1 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  3 00:00:14 client1 systemd[1]: Finished Daily dpkg database backup service.
+Aug  3 00:00:14 client1 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  3 00:00:14 client1 systemd[1]: Finished Rotate log files.
+Aug  3 00:17:01 client1 CRON[5683]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 00:18:39 client1 systemd[1]: Starting Daily man-db regeneration...
+Aug  3 00:18:40 client1 systemd[1]: man-db.service: Deactivated successfully.
+Aug  3 00:18:40 client1 systemd[1]: Finished Daily man-db regeneration.
+Aug  3 00:38:14 client1 systemd[1]: Starting Discard unused blocks on filesystems from /etc/fstab...
+Aug  3 00:38:14 client1 fstrim[5695]: /boot/efi: 98.3 MiB (103053312 bytes) trimmed on /dev/vda15
+Aug  3 00:38:14 client1 fstrim[5695]: /: 16.5 GiB (17759551488 bytes) trimmed on /dev/vda1
+Aug  3 00:38:14 client1 systemd[1]: fstrim.service: Deactivated successfully.
+Aug  3 00:38:14 client1 systemd[1]: Finished Discard unused blocks on filesystems from /etc/fstab.
+Aug  3 01:07:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 01:17:01 client1 CRON[5708]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 02:17:01 client1 CRON[5719]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 03:10:01 client1 CRON[5732]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  3 03:17:01 client1 CRON[5736]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 04:14:34 client1 systemd[1]: Starting Daily apt download activities...
+Aug  3 04:14:34 client1 systemd[1]: Starting Update APT News...
+Aug  3 04:14:34 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  3 04:14:35 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  3 04:14:35 client1 systemd[1]: Finished Update APT News.
+Aug  3 04:14:36 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  3 04:14:36 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  3 04:14:42 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  3 04:14:42 client1 systemd[1]: Finished Daily apt download activities.
+Aug  3 04:14:42 client1 systemd[1]: apt-daily.service: Consumed 6.571s CPU time.
+Aug  3 04:17:01 client1 CRON[6155]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 05:17:01 client1 CRON[6166]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 06:10:14 client1 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  3 06:10:16 client1 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  3 06:10:16 client1 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  3 06:10:16 client1 systemd[1]: apt-daily-upgrade.service: Consumed 2.273s CPU time.
+Aug  3 06:17:01 client1 CRON[6246]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 06:25:01 client1 CRON[6251]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  3 07:08:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  3 07:08:15 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  3 07:08:15 client1 systemd[1]: Finished Daily apt download activities.
+Aug  3 07:17:01 client1 CRON[6318]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 07:58:14 client1 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  3 07:58:14 client1 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  3 07:58:14 client1 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  3 08:07:04 client1 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  3 08:07:04 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  3 08:09:34 client1 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  3 08:09:34 client1 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  3 08:09:34 client1 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  3 08:17:01 client1 CRON[6335]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 09:17:01 client1 CRON[6347]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 09:27:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 10:17:01 client1 CRON[6360]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 10:30:39 client1 systemd[1]: Starting Message of the Day...
+Aug  3 10:30:40 client1 50-motd-news[6393]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  3 10:30:40 client1 50-motd-news[6393]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  3 10:30:40 client1 50-motd-news[6393]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  3 10:30:40 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  3 10:30:40 client1 systemd[1]: Finished Message of the Day.
+Aug  3 11:17:01 client1 CRON[6410]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 12:17:01 client1 CRON[6423]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 13:17:01 client1 CRON[6436]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 14:17:01 client1 CRON[6449]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 15:17:01 client1 CRON[6462]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 16:17:01 client1 CRON[6473]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 16:37:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 17:17:01 client1 CRON[6486]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 18:17:01 client1 CRON[6496]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 18:52:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  3 19:17:01 client1 CRON[6510]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 20:17:01 client1 CRON[6519]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 21:17:01 client1 CRON[6531]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 22:17:02 client1 CRON[6540]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  3 23:00:14 client1 systemd[1]: Starting Message of the Day...
+Aug  3 23:00:15 client1 50-motd-news[6579]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  3 23:00:15 client1 50-motd-news[6579]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  3 23:00:15 client1 50-motd-news[6579]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  3 23:00:15 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  3 23:00:15 client1 systemd[1]: Finished Message of the Day.
+Aug  3 23:17:01 client1 CRON[6591]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 00:00:14 client1 systemd[1]: Starting Daily dpkg database backup service...
+Aug  4 00:00:14 client1 systemd[1]: Starting Rotate log files...
+Aug  4 00:00:14 client1 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  4 00:00:14 client1 systemd[1]: Finished Daily dpkg database backup service.
+Aug  4 00:00:14 client1 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  4 00:00:14 client1 systemd[1]: Finished Rotate log files.
+Aug  4 00:17:01 client1 CRON[6613]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 01:17:01 client1 CRON[6624]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 01:46:14 client1 systemd[1]: Starting Message of the Day...
+Aug  4 01:46:15 client1 50-motd-news[6658]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  4 01:46:15 client1 50-motd-news[6658]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  4 01:46:15 client1 50-motd-news[6658]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  4 01:46:15 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  4 01:46:15 client1 systemd[1]: Finished Message of the Day.
+Aug  4 02:17:01 client1 CRON[6671]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 03:10:01 client1 CRON[6678]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  4 03:11:14 client1 systemd[1]: Starting Daily man-db regeneration...
+Aug  4 03:11:14 client1 systemd[1]: man-db.service: Deactivated successfully.
+Aug  4 03:11:14 client1 systemd[1]: Finished Daily man-db regeneration.
+Aug  4 03:17:01 client1 CRON[6689]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 04:17:01 client1 CRON[6699]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 04:22:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 05:17:01 client1 CRON[6713]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 05:56:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  4 05:56:15 client1 systemd[1]: Starting Update APT News...
+Aug  4 05:56:15 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  4 05:56:16 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  4 05:56:16 client1 systemd[1]: Finished Update APT News.
+Aug  4 05:56:17 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  4 05:56:17 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  4 05:56:22 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  4 05:56:22 client1 systemd[1]: Finished Daily apt download activities.
+Aug  4 05:56:22 client1 systemd[1]: apt-daily.service: Consumed 6.690s CPU time.
+Aug  4 06:11:39 client1 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  4 06:11:42 client1 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  4 06:11:42 client1 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  4 06:11:42 client1 systemd[1]: apt-daily-upgrade.service: Consumed 2.192s CPU time.
+Aug  4 06:17:01 client1 CRON[7203]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 06:25:01 client1 CRON[7209]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  4 07:17:01 client1 CRON[7228]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 07:26:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  4 07:26:15 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  4 07:26:15 client1 systemd[1]: Finished Daily apt download activities.
+Aug  4 07:59:14 client1 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  4 07:59:14 client1 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  4 07:59:14 client1 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  4 08:10:14 client1 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  4 08:10:14 client1 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  4 08:10:14 client1 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  4 08:12:04 client1 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  4 08:12:04 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  4 08:17:01 client1 CRON[7298]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 09:17:01 client1 CRON[7308]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 10:17:01 client1 CRON[7321]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 11:17:01 client1 CRON[7334]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 11:52:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 12:17:01 client1 CRON[7345]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 13:17:01 client1 CRON[7355]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 14:17:01 client1 CRON[7364]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 15:17:01 client1 CRON[7377]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 16:02:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 16:17:01 client1 CRON[7388]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 17:17:01 client1 CRON[7398]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 18:17:01 client1 CRON[7409]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 19:17:01 client1 CRON[7421]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 19:47:04 client1 systemd[1]: Starting Message of the Day...
+Aug  4 19:47:05 client1 50-motd-news[7454]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  4 19:47:05 client1 50-motd-news[7454]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  4 19:47:05 client1 50-motd-news[7454]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  4 19:47:05 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  4 19:47:05 client1 systemd[1]: Finished Message of the Day.
+Aug  4 20:17:01 client1 CRON[7466]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 21:17:01 client1 CRON[7476]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 21:17:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  4 22:17:01 client1 CRON[7485]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  4 23:17:01 client1 CRON[7494]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 00:00:14 client1 systemd[1]: Starting Daily dpkg database backup service...
+Aug  5 00:00:14 client1 systemd[1]: Starting Rotate log files...
+Aug  5 00:00:14 client1 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  5 00:00:14 client1 systemd[1]: Finished Daily dpkg database backup service.
+Aug  5 00:00:14 client1 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  5 00:00:14 client1 systemd[1]: Finished Rotate log files.
+Aug  5 00:17:01 client1 CRON[7515]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 00:17:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 01:17:01 client1 CRON[7526]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 02:17:01 client1 CRON[7538]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 02:59:14 client1 systemd[1]: Starting Daily man-db regeneration...
+Aug  5 02:59:14 client1 systemd[1]: man-db.service: Deactivated successfully.
+Aug  5 02:59:14 client1 systemd[1]: Finished Daily man-db regeneration.
+Aug  5 03:10:01 client1 CRON[7558]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  5 03:17:01 client1 CRON[7562]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 04:13:39 client1 systemd[1]: Starting Daily apt download activities...
+Aug  5 04:13:40 client1 systemd[1]: Starting Update APT News...
+Aug  5 04:13:40 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  5 04:13:40 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  5 04:13:40 client1 systemd[1]: Finished Update APT News.
+Aug  5 04:13:41 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  5 04:13:41 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  5 04:13:47 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  5 04:13:47 client1 systemd[1]: Finished Daily apt download activities.
+Aug  5 04:13:47 client1 systemd[1]: apt-daily.service: Consumed 6.605s CPU time.
+Aug  5 04:17:01 client1 CRON[7978]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 05:17:01 client1 CRON[7990]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 06:17:01 client1 CRON[8000]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 06:25:01 client1 CRON[8005]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  5 06:26:14 client1 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  5 06:26:16 client1 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  5 06:26:16 client1 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  5 06:26:16 client1 systemd[1]: apt-daily-upgrade.service: Consumed 2.255s CPU time.
+Aug  5 07:17:02 client1 CRON[8091]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 07:59:34 client1 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  5 07:59:34 client1 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  5 07:59:34 client1 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  5 08:11:14 client1 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  5 08:11:14 client1 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  5 08:11:14 client1 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  5 08:17:01 client1 CRON[8106]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 08:17:04 client1 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  5 08:17:04 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  5 08:53:39 client1 systemd[1]: Starting Message of the Day...
+Aug  5 08:53:40 client1 50-motd-news[8143]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  5 08:53:40 client1 50-motd-news[8143]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  5 08:53:40 client1 50-motd-news[8143]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  5 08:53:40 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  5 08:53:40 client1 systemd[1]: Finished Message of the Day.
+Aug  5 09:17:01 client1 CRON[8154]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 09:33:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  5 09:33:15 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  5 09:33:15 client1 systemd[1]: Finished Daily apt download activities.
+Aug  5 09:42:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 10:17:01 client1 CRON[8215]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 11:17:01 client1 CRON[8227]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 12:17:01 client1 CRON[8240]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 13:17:01 client1 CRON[8254]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 14:17:01 client1 CRON[8265]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 15:17:01 client1 CRON[8276]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 15:37:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 16:17:01 client1 CRON[8287]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 17:17:01 client1 CRON[8298]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 18:17:01 client1 CRON[8307]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 18:37:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  5 18:56:39 client1 systemd[1]: Starting Message of the Day...
+Aug  5 18:56:40 client1 50-motd-news[8342]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  5 18:56:40 client1 50-motd-news[8342]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  5 18:56:40 client1 50-motd-news[8342]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  5 18:56:40 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  5 18:56:40 client1 systemd[1]: Finished Message of the Day.
+Aug  5 19:17:01 client1 CRON[8356]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 20:17:01 client1 CRON[8367]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 20:37:39 client1 systemd[1]: Starting Daily apt download activities...
+Aug  5 20:37:40 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  5 20:37:40 client1 systemd[1]: Finished Daily apt download activities.
+Aug  5 21:17:01 client1 CRON[8427]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 22:17:01 client1 CRON[8441]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  5 23:17:01 client1 CRON[8452]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 00:00:14 client1 systemd[1]: Starting Daily dpkg database backup service...
+Aug  6 00:00:14 client1 systemd[1]: Starting Rotate log files...
+Aug  6 00:00:14 client1 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  6 00:00:14 client1 systemd[1]: Finished Daily dpkg database backup service.
+Aug  6 00:00:14 client1 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  6 00:00:14 client1 systemd[1]: Finished Rotate log files.
+Aug  6 00:17:01 client1 CRON[8473]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 01:17:01 client1 CRON[8483]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 02:17:01 client1 CRON[8493]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 03:10:01 client1 CRON[8504]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  6 03:17:01 client1 CRON[8508]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 03:27:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 04:17:01 client1 CRON[8522]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 05:17:01 client1 CRON[8534]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 06:16:14 client1 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  6 06:16:16 client1 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  6 06:16:16 client1 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  6 06:16:16 client1 systemd[1]: apt-daily-upgrade.service: Consumed 2.245s CPU time.
+Aug  6 06:17:01 client1 CRON[8614]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 06:25:01 client1 CRON[8619]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  6 06:25:13 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  6 06:25:13 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  6 06:25:13 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  6 06:25:13 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  6 06:25:13 client1 systemd[8631]: Queued start job for default target Main User Target.
+Aug  6 06:25:13 client1 systemd[8631]: Created slice User Application Slice.
+Aug  6 06:25:13 client1 systemd[8631]: Reached target Paths.
+Aug  6 06:25:13 client1 systemd[8631]: Reached target Timers.
+Aug  6 06:25:13 client1 systemd[8631]: Starting D-Bus User Message Bus Socket...
+Aug  6 06:25:13 client1 systemd[8631]: Listening on GnuPG network certificate management daemon.
+Aug  6 06:25:13 client1 systemd[8631]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 06:25:13 client1 systemd[8631]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 06:25:13 client1 systemd[8631]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 06:25:13 client1 systemd[8631]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  6 06:25:13 client1 systemd[8631]: Listening on debconf communication socket.
+Aug  6 06:25:13 client1 systemd[8631]: Listening on REST API socket for snapd user session agent.
+Aug  6 06:25:13 client1 systemd[8631]: Listening on D-Bus User Message Bus Socket.
+Aug  6 06:25:13 client1 systemd[8631]: Reached target Sockets.
+Aug  6 06:25:13 client1 systemd[8631]: Reached target Basic System.
+Aug  6 06:25:13 client1 systemd[8631]: Reached target Main User Target.
+Aug  6 06:25:13 client1 systemd[8631]: Startup finished in 70ms.
+Aug  6 06:25:13 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  6 06:25:13 client1 systemd[1]: Started Session 185 of User student.
+Aug  6 06:25:20 client1 systemd[1]: session-185.scope: Deactivated successfully.
+Aug  6 06:25:30 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  6 06:25:30 client1 systemd[8631]: Stopped target Main User Target.
+Aug  6 06:25:30 client1 systemd[8631]: Stopped target Basic System.
+Aug  6 06:25:30 client1 systemd[8631]: Stopped target Paths.
+Aug  6 06:25:30 client1 systemd[8631]: Stopped target Sockets.
+Aug  6 06:25:30 client1 systemd[8631]: Stopped target Timers.
+Aug  6 06:25:30 client1 systemd[8631]: Closed D-Bus User Message Bus Socket.
+Aug  6 06:25:30 client1 systemd[8631]: Closed GnuPG network certificate management daemon.
+Aug  6 06:25:30 client1 systemd[8631]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 06:25:30 client1 systemd[8631]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 06:25:30 client1 systemd[8631]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 06:25:30 client1 systemd[8631]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  6 06:25:30 client1 systemd[8631]: Closed debconf communication socket.
+Aug  6 06:25:30 client1 systemd[8631]: Closed REST API socket for snapd user session agent.
+Aug  6 06:25:30 client1 systemd[8631]: Removed slice User Application Slice.
+Aug  6 06:25:30 client1 systemd[8631]: Reached target Shutdown.
+Aug  6 06:25:30 client1 systemd[8631]: Finished Exit the Session.
+Aug  6 06:25:30 client1 systemd[8631]: Reached target Exit the Session.
+Aug  6 06:25:30 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  6 06:25:30 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  6 06:25:30 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  6 06:25:30 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  6 06:25:30 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  6 06:25:30 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  6 06:25:30 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  6 06:25:30 client1 systemd[1]: user-1000.slice: Consumed 1.041s CPU time.
+Aug  6 06:50:04 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  6 06:50:04 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  6 06:50:04 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  6 06:50:04 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  6 06:50:04 client1 systemd[8733]: Queued start job for default target Main User Target.
+Aug  6 06:50:04 client1 systemd[8733]: Created slice User Application Slice.
+Aug  6 06:50:04 client1 systemd[8733]: Reached target Paths.
+Aug  6 06:50:04 client1 systemd[8733]: Reached target Timers.
+Aug  6 06:50:04 client1 systemd[8733]: Starting D-Bus User Message Bus Socket...
+Aug  6 06:50:04 client1 systemd[8733]: Listening on GnuPG network certificate management daemon.
+Aug  6 06:50:04 client1 systemd[8733]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 06:50:04 client1 systemd[8733]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 06:50:04 client1 systemd[8733]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 06:50:04 client1 systemd[8733]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  6 06:50:04 client1 systemd[8733]: Listening on debconf communication socket.
+Aug  6 06:50:04 client1 systemd[8733]: Listening on REST API socket for snapd user session agent.
+Aug  6 06:50:04 client1 systemd[8733]: Listening on D-Bus User Message Bus Socket.
+Aug  6 06:50:04 client1 systemd[8733]: Reached target Sockets.
+Aug  6 06:50:04 client1 systemd[8733]: Reached target Basic System.
+Aug  6 06:50:04 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  6 06:50:04 client1 systemd[1]: Started Session 187 of User student.
+Aug  6 06:50:04 client1 systemd[8733]: Reached target Main User Target.
+Aug  6 06:50:04 client1 systemd[8733]: Startup finished in 110ms.
+Aug  6 06:50:05 client1 systemd[1]: session-187.scope: Deactivated successfully.
+Aug  6 06:50:15 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  6 06:50:15 client1 systemd[8733]: Stopped target Main User Target.
+Aug  6 06:50:15 client1 systemd[8733]: Stopped target Basic System.
+Aug  6 06:50:15 client1 systemd[8733]: Stopped target Paths.
+Aug  6 06:50:15 client1 systemd[8733]: Stopped target Sockets.
+Aug  6 06:50:15 client1 systemd[8733]: Stopped target Timers.
+Aug  6 06:50:15 client1 systemd[8733]: Closed D-Bus User Message Bus Socket.
+Aug  6 06:50:15 client1 systemd[8733]: Closed GnuPG network certificate management daemon.
+Aug  6 06:50:15 client1 systemd[8733]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 06:50:15 client1 systemd[8733]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 06:50:15 client1 systemd[8733]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 06:50:15 client1 systemd[8733]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  6 06:50:15 client1 systemd[8733]: Closed debconf communication socket.
+Aug  6 06:50:15 client1 systemd[8733]: Closed REST API socket for snapd user session agent.
+Aug  6 06:50:15 client1 systemd[8733]: Removed slice User Application Slice.
+Aug  6 06:50:15 client1 systemd[8733]: Reached target Shutdown.
+Aug  6 06:50:15 client1 systemd[8733]: Finished Exit the Session.
+Aug  6 06:50:15 client1 systemd[8733]: Reached target Exit the Session.
+Aug  6 06:50:15 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  6 06:50:15 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  6 06:50:15 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  6 06:50:15 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  6 06:50:15 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  6 06:50:15 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  6 06:50:15 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  6 07:01:14 client1 systemd[1]: Starting Daily man-db regeneration...
+Aug  6 07:01:14 client1 systemd[1]: man-db.service: Deactivated successfully.
+Aug  6 07:01:14 client1 systemd[1]: Finished Daily man-db regeneration.
+Aug  6 07:17:01 client1 CRON[8814]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 08:00:14 client1 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  6 08:00:14 client1 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  6 08:00:14 client1 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  6 08:12:04 client1 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  6 08:12:04 client1 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  6 08:12:04 client1 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  6 08:12:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 08:17:01 client1 CRON[8830]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 08:17:04 client1 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  6 08:17:04 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  6 08:51:14 client1 systemd[1]: Starting Message of the Day...
+Aug  6 08:51:15 client1 50-motd-news[8866]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  6 08:51:15 client1 50-motd-news[8866]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  6 08:51:15 client1 50-motd-news[8866]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  6 08:51:15 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  6 08:51:15 client1 systemd[1]: Finished Message of the Day.
+Aug  6 09:17:01 client1 CRON[8879]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 09:23:59 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  6 09:23:59 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  6 09:23:59 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  6 09:23:59 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  6 09:23:59 client1 systemd[8886]: Queued start job for default target Main User Target.
+Aug  6 09:23:59 client1 systemd[8886]: Created slice User Application Slice.
+Aug  6 09:23:59 client1 systemd[8886]: Reached target Paths.
+Aug  6 09:23:59 client1 systemd[8886]: Reached target Timers.
+Aug  6 09:23:59 client1 systemd[8886]: Starting D-Bus User Message Bus Socket...
+Aug  6 09:23:59 client1 systemd[8886]: Listening on GnuPG network certificate management daemon.
+Aug  6 09:23:59 client1 systemd[8886]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 09:23:59 client1 systemd[8886]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 09:23:59 client1 systemd[8886]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 09:23:59 client1 systemd[8886]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  6 09:23:59 client1 systemd[8886]: Listening on debconf communication socket.
+Aug  6 09:23:59 client1 systemd[8886]: Listening on REST API socket for snapd user session agent.
+Aug  6 09:23:59 client1 systemd[8886]: Listening on D-Bus User Message Bus Socket.
+Aug  6 09:23:59 client1 systemd[8886]: Reached target Sockets.
+Aug  6 09:23:59 client1 systemd[8886]: Reached target Basic System.
+Aug  6 09:23:59 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  6 09:23:59 client1 systemd[1]: Started Session 192 of User student.
+Aug  6 09:23:59 client1 systemd[8886]: Reached target Main User Target.
+Aug  6 09:23:59 client1 systemd[8886]: Startup finished in 107ms.
+Aug  6 09:23:59 client1 systemd[1]: session-192.scope: Deactivated successfully.
+Aug  6 09:24:09 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  6 09:24:09 client1 systemd[8886]: Stopped target Main User Target.
+Aug  6 09:24:09 client1 systemd[8886]: Stopped target Basic System.
+Aug  6 09:24:09 client1 systemd[8886]: Stopped target Paths.
+Aug  6 09:24:09 client1 systemd[8886]: Stopped target Sockets.
+Aug  6 09:24:09 client1 systemd[8886]: Stopped target Timers.
+Aug  6 09:24:09 client1 systemd[8886]: Closed D-Bus User Message Bus Socket.
+Aug  6 09:24:09 client1 systemd[8886]: Closed GnuPG network certificate management daemon.
+Aug  6 09:24:09 client1 systemd[8886]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 09:24:09 client1 systemd[8886]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 09:24:09 client1 systemd[8886]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 09:24:09 client1 systemd[8886]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  6 09:24:09 client1 systemd[8886]: Closed debconf communication socket.
+Aug  6 09:24:09 client1 systemd[8886]: Closed REST API socket for snapd user session agent.
+Aug  6 09:24:09 client1 systemd[8886]: Removed slice User Application Slice.
+Aug  6 09:24:09 client1 systemd[8886]: Reached target Shutdown.
+Aug  6 09:24:09 client1 systemd[8886]: Finished Exit the Session.
+Aug  6 09:24:09 client1 systemd[8886]: Reached target Exit the Session.
+Aug  6 09:24:09 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  6 09:24:09 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  6 09:24:09 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  6 09:24:10 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  6 09:24:10 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  6 09:24:10 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  6 09:24:10 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  6 10:17:01 client1 CRON[8982]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 10:54:14 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  6 10:54:14 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  6 10:54:14 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  6 10:54:14 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  6 10:54:14 client1 systemd[8993]: Queued start job for default target Main User Target.
+Aug  6 10:54:14 client1 systemd[8993]: Created slice User Application Slice.
+Aug  6 10:54:14 client1 systemd[8993]: Reached target Paths.
+Aug  6 10:54:14 client1 systemd[8993]: Reached target Timers.
+Aug  6 10:54:14 client1 systemd[8993]: Starting D-Bus User Message Bus Socket...
+Aug  6 10:54:14 client1 systemd[8993]: Listening on GnuPG network certificate management daemon.
+Aug  6 10:54:14 client1 systemd[8993]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 10:54:14 client1 systemd[8993]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 10:54:14 client1 systemd[8993]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 10:54:14 client1 systemd[8993]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  6 10:54:14 client1 systemd[8993]: Listening on debconf communication socket.
+Aug  6 10:54:14 client1 systemd[8993]: Listening on REST API socket for snapd user session agent.
+Aug  6 10:54:14 client1 systemd[8993]: Listening on D-Bus User Message Bus Socket.
+Aug  6 10:54:14 client1 systemd[8993]: Reached target Sockets.
+Aug  6 10:54:14 client1 systemd[8993]: Reached target Basic System.
+Aug  6 10:54:14 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  6 10:54:14 client1 systemd[1]: Started Session 195 of User student.
+Aug  6 10:54:14 client1 systemd[8993]: Reached target Main User Target.
+Aug  6 10:54:14 client1 systemd[8993]: Startup finished in 104ms.
+Aug  6 10:54:14 client1 systemd[1]: session-195.scope: Deactivated successfully.
+Aug  6 10:54:24 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  6 10:54:24 client1 systemd[8993]: Stopped target Main User Target.
+Aug  6 10:54:24 client1 systemd[8993]: Stopped target Basic System.
+Aug  6 10:54:24 client1 systemd[8993]: Stopped target Paths.
+Aug  6 10:54:24 client1 systemd[8993]: Stopped target Sockets.
+Aug  6 10:54:24 client1 systemd[8993]: Stopped target Timers.
+Aug  6 10:54:24 client1 systemd[8993]: Closed D-Bus User Message Bus Socket.
+Aug  6 10:54:24 client1 systemd[8993]: Closed GnuPG network certificate management daemon.
+Aug  6 10:54:24 client1 systemd[8993]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  6 10:54:24 client1 systemd[8993]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  6 10:54:24 client1 systemd[8993]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  6 10:54:24 client1 systemd[8993]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  6 10:54:24 client1 systemd[8993]: Closed debconf communication socket.
+Aug  6 10:54:24 client1 systemd[8993]: Closed REST API socket for snapd user session agent.
+Aug  6 10:54:24 client1 systemd[8993]: Removed slice User Application Slice.
+Aug  6 10:54:24 client1 systemd[8993]: Reached target Shutdown.
+Aug  6 10:54:24 client1 systemd[8993]: Finished Exit the Session.
+Aug  6 10:54:24 client1 systemd[8993]: Reached target Exit the Session.
+Aug  6 10:54:25 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  6 10:54:25 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  6 10:54:25 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  6 10:54:25 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  6 10:54:25 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  6 10:54:25 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  6 10:54:25 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  6 11:17:01 client1 CRON[9087]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 12:17:01 client1 CRON[9098]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 13:17:01 client1 CRON[9113]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 14:17:02 client1 CRON[9122]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 15:17:01 client1 CRON[9132]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 15:47:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 16:17:01 client1 CRON[9145]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 16:44:14 client1 systemd[1]: Starting Message of the Day...
+Aug  6 16:44:15 client1 50-motd-news[9182]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  6 16:44:15 client1 50-motd-news[9182]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  6 16:44:15 client1 50-motd-news[9182]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  6 16:44:15 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  6 16:44:15 client1 systemd[1]: Finished Message of the Day.
+Aug  6 17:17:01 client1 CRON[9195]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 17:30:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  6 17:30:15 client1 systemd[1]: Starting Update APT News...
+Aug  6 17:30:15 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  6 17:30:15 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  6 17:30:15 client1 systemd[1]: Finished Update APT News.
+Aug  6 17:30:16 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  6 17:30:16 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  6 17:30:31 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  6 17:30:31 client1 systemd[1]: Finished Daily apt download activities.
+Aug  6 17:30:31 client1 systemd[1]: apt-daily.service: Consumed 12.415s CPU time.
+Aug  6 18:17:01 client1 CRON[9619]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 18:57:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  6 19:17:01 client1 CRON[9633]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 20:17:01 client1 CRON[9643]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 21:17:01 client1 CRON[9657]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 22:17:01 client1 CRON[9668]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  6 23:17:01 client1 CRON[9681]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 00:00:10 client1 systemd[1]: Starting Daily dpkg database backup service...
+Aug  7 00:00:10 client1 systemd[1]: Starting Rotate log files...
+Aug  7 00:00:10 client1 systemd[1]: dpkg-db-backup.service: Deactivated successfully.
+Aug  7 00:00:10 client1 systemd[1]: Finished Daily dpkg database backup service.
+Aug  7 00:00:10 client1 systemd[1]: logrotate.service: Deactivated successfully.
+Aug  7 00:00:10 client1 systemd[1]: Finished Rotate log files.
+Aug  7 00:17:01 client1 CRON[9700]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 01:17:01 client1 CRON[9712]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 02:00:04 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  7 02:00:04 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  7 02:00:04 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  7 02:00:04 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  7 02:00:04 client1 systemd[9723]: Queued start job for default target Main User Target.
+Aug  7 02:00:04 client1 systemd[9723]: Created slice User Application Slice.
+Aug  7 02:00:04 client1 systemd[9723]: Reached target Paths.
+Aug  7 02:00:04 client1 systemd[9723]: Reached target Timers.
+Aug  7 02:00:04 client1 systemd[9723]: Starting D-Bus User Message Bus Socket...
+Aug  7 02:00:04 client1 systemd[9723]: Listening on GnuPG network certificate management daemon.
+Aug  7 02:00:04 client1 systemd[9723]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 02:00:04 client1 systemd[9723]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 02:00:04 client1 systemd[9723]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 02:00:04 client1 systemd[9723]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  7 02:00:04 client1 systemd[9723]: Listening on debconf communication socket.
+Aug  7 02:00:04 client1 systemd[9723]: Listening on REST API socket for snapd user session agent.
+Aug  7 02:00:04 client1 systemd[9723]: Listening on D-Bus User Message Bus Socket.
+Aug  7 02:00:04 client1 systemd[9723]: Reached target Sockets.
+Aug  7 02:00:04 client1 systemd[9723]: Reached target Basic System.
+Aug  7 02:00:04 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  7 02:00:04 client1 systemd[1]: Started Session 212 of User student.
+Aug  7 02:00:04 client1 systemd[9723]: Reached target Main User Target.
+Aug  7 02:00:04 client1 systemd[9723]: Startup finished in 65ms.
+Aug  7 02:00:04 client1 systemd[1]: session-212.scope: Deactivated successfully.
+Aug  7 02:00:14 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  7 02:00:14 client1 systemd[9723]: Stopped target Main User Target.
+Aug  7 02:00:14 client1 systemd[9723]: Stopped target Basic System.
+Aug  7 02:00:14 client1 systemd[9723]: Stopped target Paths.
+Aug  7 02:00:14 client1 systemd[9723]: Stopped target Sockets.
+Aug  7 02:00:14 client1 systemd[9723]: Stopped target Timers.
+Aug  7 02:00:14 client1 systemd[9723]: Closed D-Bus User Message Bus Socket.
+Aug  7 02:00:14 client1 systemd[9723]: Closed GnuPG network certificate management daemon.
+Aug  7 02:00:14 client1 systemd[9723]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 02:00:14 client1 systemd[9723]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 02:00:14 client1 systemd[9723]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 02:00:14 client1 systemd[9723]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  7 02:00:14 client1 systemd[9723]: Closed debconf communication socket.
+Aug  7 02:00:14 client1 systemd[9723]: Closed REST API socket for snapd user session agent.
+Aug  7 02:00:14 client1 systemd[9723]: Removed slice User Application Slice.
+Aug  7 02:00:14 client1 systemd[9723]: Reached target Shutdown.
+Aug  7 02:00:14 client1 systemd[9723]: Finished Exit the Session.
+Aug  7 02:00:14 client1 systemd[9723]: Reached target Exit the Session.
+Aug  7 02:00:14 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  7 02:00:14 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  7 02:00:14 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  7 02:00:14 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  7 02:00:14 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  7 02:00:14 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  7 02:00:14 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  7 02:17:01 client1 CRON[9816]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 02:40:14 client1 systemd[1]: Starting Daily man-db regeneration...
+Aug  7 02:40:14 client1 systemd[1]: man-db.service: Deactivated successfully.
+Aug  7 02:40:14 client1 systemd[1]: Finished Daily man-db regeneration.
+Aug  7 03:10:01 client1 CRON[9835]: (root) CMD (test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r)
+Aug  7 03:17:01 client1 CRON[9839]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 03:34:39 client1 systemd[1]: Starting Message of the Day...
+Aug  7 03:34:40 client1 50-motd-news[9872]:  * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+Aug  7 03:34:40 client1 50-motd-news[9872]:    just raised the bar for easy, resilient and secure K8s cluster deployment.
+Aug  7 03:34:40 client1 50-motd-news[9872]:    https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+Aug  7 03:34:40 client1 systemd[1]: motd-news.service: Deactivated successfully.
+Aug  7 03:34:40 client1 systemd[1]: Finished Message of the Day.
+Aug  7 03:37:04 client1 systemd[1]: Starting Daily apt download activities...
+Aug  7 03:37:04 client1 systemd[1]: Starting Update APT News...
+Aug  7 03:37:04 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  7 03:37:04 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  7 03:37:04 client1 systemd[1]: Finished Update APT News.
+Aug  7 03:37:05 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  7 03:37:05 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  7 03:37:16 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  7 03:37:16 client1 systemd[1]: Finished Daily apt download activities.
+Aug  7 03:37:16 client1 systemd[1]: apt-daily.service: Consumed 8.649s CPU time.
+Aug  7 04:17:01 client1 CRON[10295]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 05:17:01 client1 CRON[10307]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 05:22:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  7 05:52:04 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  7 05:52:04 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  7 05:52:04 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  7 05:52:04 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  7 05:52:04 client1 systemd[10318]: Queued start job for default target Main User Target.
+Aug  7 05:52:04 client1 systemd[10318]: Created slice User Application Slice.
+Aug  7 05:52:04 client1 systemd[10318]: Reached target Paths.
+Aug  7 05:52:04 client1 systemd[10318]: Reached target Timers.
+Aug  7 05:52:04 client1 systemd[10318]: Starting D-Bus User Message Bus Socket...
+Aug  7 05:52:04 client1 systemd[10318]: Listening on GnuPG network certificate management daemon.
+Aug  7 05:52:04 client1 systemd[10318]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 05:52:04 client1 systemd[10318]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 05:52:04 client1 systemd[10318]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 05:52:04 client1 systemd[10318]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  7 05:52:04 client1 systemd[10318]: Listening on debconf communication socket.
+Aug  7 05:52:04 client1 systemd[10318]: Listening on REST API socket for snapd user session agent.
+Aug  7 05:52:04 client1 systemd[10318]: Listening on D-Bus User Message Bus Socket.
+Aug  7 05:52:04 client1 systemd[10318]: Reached target Sockets.
+Aug  7 05:52:04 client1 systemd[10318]: Reached target Basic System.
+Aug  7 05:52:04 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  7 05:52:04 client1 systemd[1]: Started Session 219 of User student.
+Aug  7 05:52:04 client1 systemd[10318]: Reached target Main User Target.
+Aug  7 05:52:04 client1 systemd[10318]: Startup finished in 90ms.
+Aug  7 05:52:05 client1 systemd[1]: session-219.scope: Deactivated successfully.
+Aug  7 05:52:15 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  7 05:52:15 client1 systemd[10318]: Stopped target Main User Target.
+Aug  7 05:52:15 client1 systemd[10318]: Stopped target Basic System.
+Aug  7 05:52:15 client1 systemd[10318]: Stopped target Paths.
+Aug  7 05:52:15 client1 systemd[10318]: Stopped target Sockets.
+Aug  7 05:52:15 client1 systemd[10318]: Stopped target Timers.
+Aug  7 05:52:15 client1 systemd[10318]: Closed D-Bus User Message Bus Socket.
+Aug  7 05:52:15 client1 systemd[10318]: Closed GnuPG network certificate management daemon.
+Aug  7 05:52:15 client1 systemd[10318]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 05:52:15 client1 systemd[10318]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 05:52:15 client1 systemd[10318]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 05:52:15 client1 systemd[10318]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  7 05:52:15 client1 systemd[10318]: Closed debconf communication socket.
+Aug  7 05:52:15 client1 systemd[10318]: Closed REST API socket for snapd user session agent.
+Aug  7 05:52:15 client1 systemd[10318]: Removed slice User Application Slice.
+Aug  7 05:52:15 client1 systemd[10318]: Reached target Shutdown.
+Aug  7 05:52:15 client1 systemd[10318]: Finished Exit the Session.
+Aug  7 05:52:15 client1 systemd[10318]: Reached target Exit the Session.
+Aug  7 05:52:15 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  7 05:52:15 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  7 05:52:15 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  7 05:52:15 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  7 05:52:15 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  7 05:52:15 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  7 05:52:15 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  7 06:08:04 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  7 06:08:04 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  7 06:08:04 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  7 06:08:04 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  7 06:08:05 client1 systemd[10415]: Queued start job for default target Main User Target.
+Aug  7 06:08:05 client1 systemd[10415]: Created slice User Application Slice.
+Aug  7 06:08:05 client1 systemd[10415]: Reached target Paths.
+Aug  7 06:08:05 client1 systemd[10415]: Reached target Timers.
+Aug  7 06:08:05 client1 systemd[10415]: Starting D-Bus User Message Bus Socket...
+Aug  7 06:08:05 client1 systemd[10415]: Listening on GnuPG network certificate management daemon.
+Aug  7 06:08:05 client1 systemd[10415]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 06:08:05 client1 systemd[10415]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 06:08:05 client1 systemd[10415]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 06:08:05 client1 systemd[10415]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  7 06:08:05 client1 systemd[10415]: Listening on debconf communication socket.
+Aug  7 06:08:05 client1 systemd[10415]: Listening on REST API socket for snapd user session agent.
+Aug  7 06:08:05 client1 systemd[10415]: Listening on D-Bus User Message Bus Socket.
+Aug  7 06:08:05 client1 systemd[10415]: Reached target Sockets.
+Aug  7 06:08:05 client1 systemd[10415]: Reached target Basic System.
+Aug  7 06:08:05 client1 systemd[10415]: Reached target Main User Target.
+Aug  7 06:08:05 client1 systemd[10415]: Startup finished in 107ms.
+Aug  7 06:08:05 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  7 06:08:05 client1 systemd[1]: Started Session 221 of User student.
+Aug  7 06:08:05 client1 systemd[1]: session-221.scope: Deactivated successfully.
+Aug  7 06:08:15 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  7 06:08:15 client1 systemd[10415]: Stopped target Main User Target.
+Aug  7 06:08:15 client1 systemd[10415]: Stopped target Basic System.
+Aug  7 06:08:15 client1 systemd[10415]: Stopped target Paths.
+Aug  7 06:08:15 client1 systemd[10415]: Stopped target Sockets.
+Aug  7 06:08:15 client1 systemd[10415]: Stopped target Timers.
+Aug  7 06:08:15 client1 systemd[10415]: Closed D-Bus User Message Bus Socket.
+Aug  7 06:08:15 client1 systemd[10415]: Closed GnuPG network certificate management daemon.
+Aug  7 06:08:15 client1 systemd[10415]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 06:08:15 client1 systemd[10415]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 06:08:15 client1 systemd[10415]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 06:08:15 client1 systemd[10415]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  7 06:08:15 client1 systemd[10415]: Closed debconf communication socket.
+Aug  7 06:08:15 client1 systemd[10415]: Closed REST API socket for snapd user session agent.
+Aug  7 06:08:15 client1 systemd[10415]: Removed slice User Application Slice.
+Aug  7 06:08:15 client1 systemd[10415]: Reached target Shutdown.
+Aug  7 06:08:15 client1 systemd[10415]: Finished Exit the Session.
+Aug  7 06:08:15 client1 systemd[10415]: Reached target Exit the Session.
+Aug  7 06:08:15 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  7 06:08:15 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  7 06:08:15 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  7 06:08:15 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  7 06:08:15 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  7 06:08:15 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  7 06:08:15 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  7 06:17:01 client1 CRON[10487]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 06:25:01 client1 CRON[10492]: (root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))
+Aug  7 06:47:39 client1 systemd[1]: Starting Daily apt upgrade and clean activities...
+Aug  7 06:48:11 client1 systemd[1]: apt-daily-upgrade.service: Deactivated successfully.
+Aug  7 06:48:11 client1 systemd[1]: Finished Daily apt upgrade and clean activities.
+Aug  7 06:48:11 client1 systemd[1]: apt-daily-upgrade.service: Consumed 26.941s CPU time.
+Aug  7 06:57:05 client1 snapd[627]: storehelpers.go:919: cannot refresh: snap has no updates available: "core20", "core22", "lxd", "snapd"
+Aug  7 07:17:01 client1 CRON[16726]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 08:01:14 client1 systemd[1]: Starting Download data for packages that failed at package install time...
+Aug  7 08:01:14 client1 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Aug  7 08:01:14 client1 systemd[1]: Finished Download data for packages that failed at package install time.
+Aug  7 08:12:14 client1 systemd[1]: Starting Cleanup of Temporary Directories...
+Aug  7 08:12:14 client1 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Aug  7 08:12:14 client1 systemd[1]: Finished Cleanup of Temporary Directories.
+Aug  7 08:17:01 client1 CRON[16743]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 08:22:04 client1 snapd[627]: snapmgr.go:1675: performing periodic snap downloads cache cleanup
+Aug  7 08:22:04 client1 snapd[627]: cache.go:320: removed 0 entries/    0 from downloads cache
+Aug  7 08:51:14 client1 systemd[1]: Starting Daily apt download activities...
+Aug  7 08:51:15 client1 systemd[1]: apt-daily.service: Deactivated successfully.
+Aug  7 08:51:15 client1 systemd[1]: Finished Daily apt download activities.
+Aug  7 08:56:48 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  7 08:56:48 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  7 08:56:48 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  7 08:56:48 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  7 08:56:49 client1 systemd[16820]: Queued start job for default target Main User Target.
+Aug  7 08:56:49 client1 systemd[16820]: Created slice User Application Slice.
+Aug  7 08:56:49 client1 systemd[16820]: Reached target Paths.
+Aug  7 08:56:49 client1 systemd[16820]: Reached target Timers.
+Aug  7 08:56:49 client1 systemd[16820]: Starting D-Bus User Message Bus Socket...
+Aug  7 08:56:49 client1 systemd[16820]: Listening on GnuPG network certificate management daemon.
+Aug  7 08:56:49 client1 systemd[16820]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 08:56:49 client1 systemd[16820]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 08:56:49 client1 systemd[16820]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 08:56:49 client1 systemd[16820]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  7 08:56:49 client1 systemd[16820]: Listening on debconf communication socket.
+Aug  7 08:56:49 client1 systemd[16820]: Listening on REST API socket for snapd user session agent.
+Aug  7 08:56:49 client1 systemd[16820]: Listening on D-Bus User Message Bus Socket.
+Aug  7 08:56:49 client1 systemd[16820]: Reached target Sockets.
+Aug  7 08:56:49 client1 systemd[16820]: Reached target Basic System.
+Aug  7 08:56:49 client1 systemd[16820]: Reached target Main User Target.
+Aug  7 08:56:49 client1 systemd[16820]: Startup finished in 68ms.
+Aug  7 08:56:49 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  7 08:56:49 client1 systemd[1]: Started Session 227 of User student.
+Aug  7 08:56:49 client1 systemd[1]: Started Session 229 of User student.
+Aug  7 08:56:50 client1 systemd[1]: session-229.scope: Deactivated successfully.
+Aug  7 08:56:50 client1 systemd[1]: Started Session 230 of User student.
+Aug  7 08:56:50 client1 systemd[1]: session-227.scope: Deactivated successfully.
+Aug  7 08:56:50 client1 systemd[1]: session-230.scope: Deactivated successfully.
+Aug  7 08:56:50 client1 systemd[1]: Started Session 231 of User student.
+Aug  7 08:56:51 client1 systemd[1]: session-231.scope: Deactivated successfully.
+Aug  7 08:56:51 client1 systemd[1]: Started Session 232 of User student.
+Aug  7 08:56:51 client1 systemd[1]: session-232.scope: Deactivated successfully.
+Aug  7 08:56:51 client1 systemd[1]: Started Session 233 of User student.
+Aug  7 08:56:52 client1 python3.10[17168]: ansible-ansible.legacy.ping Invoked with data=pong
+Aug  7 08:56:52 client1 systemd[1]: session-233.scope: Deactivated successfully.
+Aug  7 08:56:52 client1 systemd[1]: Started Session 234 of User student.
+Aug  7 08:56:52 client1 systemd[1]: session-234.scope: Deactivated successfully.
+Aug  7 08:56:53 client1 systemd[1]: Started Session 235 of User student.
+Aug  7 08:56:53 client1 systemd[1]: session-235.scope: Deactivated successfully.
+Aug  7 08:56:53 client1 systemd[1]: Started Session 236 of User student.
+Aug  7 08:56:54 client1 systemd[1]: session-236.scope: Deactivated successfully.
+Aug  7 08:56:54 client1 systemd[1]: Started Session 237 of User student.
+Aug  7 08:56:54 client1 systemd[1]: session-237.scope: Deactivated successfully.
+Aug  7 08:56:55 client1 systemd[1]: Started Session 238 of User student.
+Aug  7 08:56:55 client1 systemd[1]: session-238.scope: Deactivated successfully.
+Aug  7 08:56:55 client1 systemd[1]: Started Session 239 of User student.
+Aug  7 08:56:55 client1 systemd[1]: session-239.scope: Deactivated successfully.
+Aug  7 08:56:56 client1 systemd[1]: Started Session 240 of User student.
+Aug  7 08:56:56 client1 python3.10[17523]: ansible-apt Invoked with name=['auditd', 'audispd-plugins'] state=present update_cache=True package=['auditd', 'audispd-plugins'] update_cache_retries=5 update_cache_retry_max_delay=12 cache_valid_time=0 purge=False force=False upgrade=no dpkg_options=force-confdef,force-confold autoremove=False autoclean=False fail_on_autoremove=False only_upgrade=False force_apt_get=False clean=False allow_unauthenticated=False allow_downgrade=False allow_change_held_packages=False lock_timeout=60 auto_install_module_deps=True deb=None default_release=None install_recommends=None policy_rc_d=None
+Aug  7 08:56:56 client1 systemd[1]: Starting Update APT News...
+Aug  7 08:56:56 client1 systemd[1]: Starting Update the local ESM caches...
+Aug  7 08:56:57 client1 systemd[1]: apt-news.service: Deactivated successfully.
+Aug  7 08:56:57 client1 systemd[1]: Finished Update APT News.
+Aug  7 08:56:58 client1 systemd[1]: esm-cache.service: Deactivated successfully.
+Aug  7 08:56:58 client1 systemd[1]: Finished Update the local ESM caches.
+Aug  7 08:57:08 client1 systemd[1]: Reloading.
+Aug  7 08:57:08 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  7 08:57:08 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  7 08:57:08 client1 systemd[1]: Reloading.
+Aug  7 08:57:08 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  7 08:57:08 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  7 08:57:08 client1 systemd[1]: Reloading.
+Aug  7 08:57:08 client1 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Aug  7 08:57:08 client1 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug  7 08:57:08 client1 systemd[1]: Starting Security Auditing Service...
+Aug  7 08:57:08 client1 auditd[18057]: No plugins found, not dispatching events
+Aug  7 08:57:08 client1 auditd[18057]: Init complete, auditd 3.0.7 listening for events (startup state enable)
+Aug  7 08:57:08 client1 augenrules[18060]: /sbin/augenrules: No change
+Aug  7 08:57:08 client1 augenrules[18070]: No rules
+Aug  7 08:57:08 client1 augenrules[18070]: enabled 1
+Aug  7 08:57:08 client1 augenrules[18070]: failure 1
+Aug  7 08:57:08 client1 augenrules[18070]: pid 18057
+Aug  7 08:57:08 client1 augenrules[18070]: rate_limit 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_limit 8192
+Aug  7 08:57:08 client1 augenrules[18070]: lost 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_wait_time 15000
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_wait_time_actual 0
+Aug  7 08:57:08 client1 augenrules[18070]: enabled 1
+Aug  7 08:57:08 client1 augenrules[18070]: failure 1
+Aug  7 08:57:08 client1 augenrules[18070]: pid 18057
+Aug  7 08:57:08 client1 augenrules[18070]: rate_limit 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_limit 8192
+Aug  7 08:57:08 client1 augenrules[18070]: lost 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_wait_time 15000
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_wait_time_actual 0
+Aug  7 08:57:08 client1 augenrules[18070]: enabled 1
+Aug  7 08:57:08 client1 augenrules[18070]: failure 1
+Aug  7 08:57:08 client1 augenrules[18070]: pid 18057
+Aug  7 08:57:08 client1 augenrules[18070]: rate_limit 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_limit 8192
+Aug  7 08:57:08 client1 augenrules[18070]: lost 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog 0
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_wait_time 60000
+Aug  7 08:57:08 client1 augenrules[18070]: backlog_wait_time_actual 0
+Aug  7 08:57:08 client1 systemd[1]: Started Security Auditing Service.
+Aug  7 08:57:11 client1 systemd[1]: session-240.scope: Deactivated successfully.
+Aug  7 08:57:11 client1 systemd[1]: session-240.scope: Consumed 7.907s CPU time.
+Aug  7 08:57:12 client1 systemd[1]: Started Session 241 of User student.
+Aug  7 08:57:12 client1 systemd[1]: session-241.scope: Deactivated successfully.
+Aug  7 08:57:12 client1 systemd[1]: Started Session 242 of User student.
+Aug  7 08:57:12 client1 systemd[1]: session-242.scope: Deactivated successfully.
+Aug  7 08:57:13 client1 systemd[1]: Started Session 243 of User student.
+Aug  7 08:57:13 client1 systemd[1]: session-243.scope: Deactivated successfully.
+Aug  7 08:57:14 client1 systemd[1]: Started Session 244 of User student.
+Aug  7 08:57:14 client1 systemd[1]: session-244.scope: Deactivated successfully.
+Aug  7 08:57:14 client1 systemd[1]: Started Session 245 of User student.
+Aug  7 08:57:14 client1 systemd[1]: session-245.scope: Deactivated successfully.
+Aug  7 08:57:15 client1 systemd[1]: Started Session 246 of User student.
+Aug  7 08:57:15 client1 python3.10[18488]: ansible-ansible.legacy.stat Invoked with path=/etc/audit/rules.d/lab.rules follow=False get_checksum=True get_size=False checksum_algorithm=sha1 get_mime=True get_attributes=True get_selinux_context=False
+Aug  7 08:57:15 client1 systemd[1]: session-246.scope: Deactivated successfully.
+Aug  7 08:57:15 client1 systemd[1]: Started Session 247 of User student.
+Aug  7 08:57:15 client1 systemd[1]: session-247.scope: Deactivated successfully.
+Aug  7 08:57:16 client1 systemd[1]: Started Session 248 of User student.
+Aug  7 08:57:16 client1 systemd[1]: session-248.scope: Deactivated successfully.
+Aug  7 08:57:17 client1 systemd[1]: Started Session 249 of User student.
+Aug  7 08:57:17 client1 systemd[1]: session-249.scope: Deactivated successfully.
+Aug  7 08:57:17 client1 systemd[1]: Started Session 250 of User student.
+Aug  7 08:57:17 client1 systemd[1]: session-250.scope: Deactivated successfully.
+Aug  7 08:57:18 client1 systemd[1]: Started Session 251 of User student.
+Aug  7 08:57:18 client1 python3.10[18740]: ansible-ansible.legacy.copy Invoked with dest=/etc/audit/rules.d/lab.rules src=/home/student/.ansible/tmp/ansible-tmp-1786093032.9842796-1935576-28323878746988/.source.rules _original_basename=.q3ov68ri follow=False checksum=e59734a421da5dee42c981842e098068c1fe208b backup=False force=True remote_src=False unsafe_writes=False content=NOT_LOGGING_PARAMETER validate=None directory_mode=None local_follow=None mode=None owner=None group=None seuser=None serole=None selevel=None setype=None attributes=None
+Aug  7 08:57:18 client1 systemd[1]: session-251.scope: Deactivated successfully.
+Aug  7 08:57:18 client1 systemd[1]: Started Session 252 of User student.
+Aug  7 08:57:19 client1 systemd[1]: session-252.scope: Deactivated successfully.
+Aug  7 08:57:19 client1 systemd[1]: Started Session 253 of User student.
+Aug  7 08:57:19 client1 systemd[1]: session-253.scope: Deactivated successfully.
+Aug  7 08:57:19 client1 systemd[1]: Started Session 254 of User student.
+Aug  7 08:57:20 client1 systemd[1]: session-254.scope: Deactivated successfully.
+Aug  7 08:57:20 client1 systemd[1]: Started Session 255 of User student.
+Aug  7 08:57:20 client1 systemd[1]: session-255.scope: Deactivated successfully.
+Aug  7 08:57:21 client1 systemd[1]: Started Session 256 of User student.
+Aug  7 08:57:21 client1 systemd[1]: session-256.scope: Deactivated successfully.
+Aug  7 08:57:21 client1 systemd[1]: Started Session 257 of User student.
+Aug  7 08:57:22 client1 python3.10[19046]: ansible-systemd Invoked with enabled=True name=auditd state=restarted daemon_reload=False daemon_reexec=False scope=system no_block=False force=None masked=None
+Aug  7 08:57:22 client1 systemd[1]: Stopping Security Auditing Service...
+Aug  7 08:57:22 client1 auditd[18057]: The audit daemon is exiting.
+Aug  7 08:57:22 client1 systemd[1]: auditd.service: Deactivated successfully.
+Aug  7 08:57:22 client1 systemd[1]: Stopped Security Auditing Service.
+Aug  7 08:57:22 client1 systemd[1]: Starting Security Auditing Service...
+Aug  7 08:57:22 client1 kernel: [695157.664363] kauditd_printk_skb: 5 callbacks suppressed
+Aug  7 08:57:22 client1 kernel: [695157.664366] audit: type=1305 audit(1786093042.306:235): op=set audit_pid=0 old=18057 auid=4294967295 ses=4294967295 subj=unconfined res=1
+Aug  7 08:57:22 client1 kernel: [695157.664973] audit: type=1131 audit(1786093042.310:236): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=unconfined msg='unit=auditd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+Aug  7 08:57:22 client1 auditd[19053]: No plugins found, not dispatching events
+Aug  7 08:57:22 client1 auditd[19053]: Init complete, auditd 3.0.7 listening for events (startup state enable)
+Aug  7 08:57:22 client1 kernel: [695157.676574] audit: type=1305 audit(1786093042.322:237): op=set audit_enabled=1 old=1 auid=4294967295 ses=4294967295 subj=unconfined res=1
+Aug  7 08:57:22 client1 kernel: [695157.676644] audit: type=1300 audit(1786093042.322:237): arch=c000003e syscall=44 success=yes exit=60 a0=3 a1=7ffeda83a380 a2=3c a3=0 items=0 ppid=19052 pid=19053 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="auditd" exe="/usr/sbin/auditd" subj=unconfined key=(null)
+Aug  7 08:57:22 client1 kernel: [695157.676717] audit: type=1327 audit(1786093042.322:237): proctitle="/sbin/auditd"
+Aug  7 08:57:22 client1 augenrules[19070]: No rules
+Aug  7 08:57:22 client1 augenrules[19070]: enabled 1
+Aug  7 08:57:22 client1 augenrules[19070]: failure 1
+Aug  7 08:57:22 client1 augenrules[19070]: pid 19053
+Aug  7 08:57:22 client1 augenrules[19070]: rate_limit 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_limit 8192
+Aug  7 08:57:22 client1 augenrules[19070]: lost 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog 1
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_wait_time 60000
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_wait_time_actual 0
+Aug  7 08:57:22 client1 augenrules[19070]: enabled 1
+Aug  7 08:57:22 client1 augenrules[19070]: failure 1
+Aug  7 08:57:22 client1 augenrules[19070]: pid 19053
+Aug  7 08:57:22 client1 augenrules[19070]: rate_limit 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_limit 8192
+Aug  7 08:57:22 client1 augenrules[19070]: lost 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_wait_time 60000
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_wait_time_actual 0
+Aug  7 08:57:22 client1 augenrules[19070]: enabled 1
+Aug  7 08:57:22 client1 augenrules[19070]: failure 1
+Aug  7 08:57:22 client1 augenrules[19070]: pid 19053
+Aug  7 08:57:22 client1 augenrules[19070]: rate_limit 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_limit 8192
+Aug  7 08:57:22 client1 augenrules[19070]: lost 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog 0
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_wait_time 60000
+Aug  7 08:57:22 client1 augenrules[19070]: backlog_wait_time_actual 0
+Aug  7 08:57:22 client1 systemd[1]: Started Security Auditing Service.
+Aug  7 08:57:22 client1 systemd[1]: session-257.scope: Deactivated successfully.
+Aug  7 08:57:22 client1 systemd[1]: Started Session 258 of User student.
+Aug  7 08:57:22 client1 systemd[1]: session-258.scope: Deactivated successfully.
+Aug  7 08:57:32 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  7 08:57:32 client1 systemd[16820]: Stopped target Main User Target.
+Aug  7 08:57:32 client1 systemd[16820]: Stopped target Basic System.
+Aug  7 08:57:32 client1 systemd[16820]: Stopped target Paths.
+Aug  7 08:57:32 client1 systemd[16820]: Stopped target Sockets.
+Aug  7 08:57:32 client1 systemd[16820]: Stopped target Timers.
+Aug  7 08:57:32 client1 systemd[16820]: Closed D-Bus User Message Bus Socket.
+Aug  7 08:57:32 client1 systemd[16820]: Closed GnuPG network certificate management daemon.
+Aug  7 08:57:32 client1 systemd[16820]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 08:57:32 client1 systemd[16820]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 08:57:32 client1 systemd[16820]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 08:57:32 client1 systemd[16820]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  7 08:57:32 client1 systemd[16820]: Closed debconf communication socket.
+Aug  7 08:57:32 client1 systemd[16820]: Closed REST API socket for snapd user session agent.
+Aug  7 08:57:32 client1 systemd[16820]: Removed slice User Application Slice.
+Aug  7 08:57:32 client1 systemd[16820]: Reached target Shutdown.
+Aug  7 08:57:32 client1 systemd[16820]: Finished Exit the Session.
+Aug  7 08:57:32 client1 systemd[16820]: Reached target Exit the Session.
+Aug  7 08:57:32 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  7 08:57:32 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  7 08:57:32 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  7 08:57:32 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  7 08:57:32 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  7 08:57:32 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  7 08:57:33 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  7 08:57:33 client1 systemd[1]: user-1000.slice: Consumed 11.205s CPU time.
+Aug  7 08:59:36 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  7 08:59:36 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  7 08:59:36 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  7 08:59:36 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  7 08:59:36 client1 systemd[19133]: Queued start job for default target Main User Target.
+Aug  7 08:59:36 client1 systemd[19133]: Created slice User Application Slice.
+Aug  7 08:59:36 client1 systemd[19133]: Reached target Paths.
+Aug  7 08:59:36 client1 systemd[19133]: Reached target Timers.
+Aug  7 08:59:36 client1 systemd[19133]: Starting D-Bus User Message Bus Socket...
+Aug  7 08:59:36 client1 systemd[19133]: Listening on GnuPG network certificate management daemon.
+Aug  7 08:59:36 client1 systemd[19133]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 08:59:36 client1 systemd[19133]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 08:59:36 client1 systemd[19133]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 08:59:36 client1 systemd[19133]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  7 08:59:36 client1 systemd[19133]: Listening on debconf communication socket.
+Aug  7 08:59:36 client1 systemd[19133]: Listening on REST API socket for snapd user session agent.
+Aug  7 08:59:36 client1 systemd[19133]: Listening on D-Bus User Message Bus Socket.
+Aug  7 08:59:36 client1 systemd[19133]: Reached target Sockets.
+Aug  7 08:59:36 client1 systemd[19133]: Reached target Basic System.
+Aug  7 08:59:36 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  7 08:59:36 client1 systemd[1]: Started Session 259 of User student.
+Aug  7 08:59:36 client1 systemd[19133]: Reached target Main User Target.
+Aug  7 08:59:36 client1 systemd[19133]: Startup finished in 110ms.
+Aug  7 08:59:37 client1 systemd[1]: session-259.scope: Deactivated successfully.
+Aug  7 08:59:37 client1 systemd[1]: Started Session 261 of User student.
+Aug  7 08:59:37 client1 systemd[1]: session-261.scope: Deactivated successfully.
+Aug  7 08:59:37 client1 systemd[1]: Started Session 262 of User student.
+Aug  7 08:59:38 client1 systemd[1]: session-262.scope: Deactivated successfully.
+Aug  7 08:59:38 client1 systemd[1]: Started Session 263 of User student.
+Aug  7 08:59:38 client1 systemd[1]: session-263.scope: Deactivated successfully.
+Aug  7 08:59:39 client1 systemd[1]: Started Session 264 of User student.
+Aug  7 08:59:39 client1 systemd[1]: session-264.scope: Deactivated successfully.
+Aug  7 08:59:39 client1 systemd[1]: Started Session 265 of User student.
+Aug  7 08:59:39 client1 python3.10[19452]: ansible-ansible.legacy.slurp Invoked with src=/var/log/audit/audit.log armor=True
+Aug  7 08:59:39 client1 systemd[1]: session-265.scope: Deactivated successfully.
+Aug  7 08:59:40 client1 systemd[1]: Started Session 266 of User student.
+Aug  7 08:59:40 client1 systemd[1]: session-266.scope: Deactivated successfully.
+Aug  7 08:59:40 client1 systemd[1]: Started Session 267 of User student.
+Aug  7 08:59:40 client1 systemd[1]: session-267.scope: Deactivated successfully.
+Aug  7 08:59:41 client1 systemd[1]: Started Session 268 of User student.
+Aug  7 08:59:41 client1 systemd[1]: session-268.scope: Deactivated successfully.
+Aug  7 08:59:41 client1 systemd[1]: Started Session 269 of User student.
+Aug  7 08:59:42 client1 systemd[1]: session-269.scope: Deactivated successfully.
+Aug  7 08:59:42 client1 systemd[1]: Started Session 270 of User student.
+Aug  7 08:59:42 client1 systemd[1]: session-270.scope: Deactivated successfully.
+Aug  7 08:59:43 client1 systemd[1]: Started Session 271 of User student.
+Aug  7 08:59:43 client1 systemd[1]: session-271.scope: Deactivated successfully.
+Aug  7 08:59:43 client1 systemd[1]: Started Session 272 of User student.
+Aug  7 08:59:44 client1 python3.10[19807]: ansible-ansible.legacy.slurp Invoked with src=/var/log/syslog armor=True
+Aug  7 08:59:44 client1 systemd[1]: session-272.scope: Deactivated successfully.
+Aug  7 08:59:44 client1 systemd[1]: Started Session 273 of User student.
+Aug  7 08:59:44 client1 systemd[1]: session-273.scope: Deactivated successfully.
+Aug  7 08:59:45 client1 systemd[1]: Started Session 274 of User student.
+Aug  7 08:59:45 client1 systemd[1]: session-274.scope: Deactivated successfully.
+Aug  7 08:59:45 client1 systemd[1]: Started Session 275 of User student.
+Aug  7 08:59:45 client1 systemd[1]: session-275.scope: Deactivated successfully.
+Aug  7 08:59:46 client1 systemd[1]: Started Session 276 of User student.
+Aug  7 08:59:46 client1 systemd[1]: session-276.scope: Deactivated successfully.
+Aug  7 08:59:46 client1 systemd[1]: Started Session 277 of User student.
+Aug  7 08:59:47 client1 systemd[1]: session-277.scope: Deactivated successfully.
+Aug  7 08:59:47 client1 systemd[1]: Started Session 278 of User student.
+Aug  7 08:59:47 client1 systemd[1]: session-278.scope: Deactivated successfully.
+Aug  7 08:59:48 client1 systemd[1]: Started Session 279 of User student.
+Aug  7 08:59:48 client1 python3.10[20162]: ansible-ansible.legacy.slurp Invoked with src=/var/log/auth.log armor=True
+Aug  7 08:59:48 client1 systemd[1]: session-279.scope: Deactivated successfully.
+Aug  7 08:59:48 client1 systemd[1]: Started Session 280 of User student.
+Aug  7 08:59:48 client1 systemd[1]: session-280.scope: Deactivated successfully.
+Aug  7 08:59:58 client1 systemd[1]: Stopping User Manager for UID 1000...
+Aug  7 08:59:58 client1 systemd[19133]: Stopped target Main User Target.
+Aug  7 08:59:58 client1 systemd[19133]: Stopped target Basic System.
+Aug  7 08:59:58 client1 systemd[19133]: Stopped target Paths.
+Aug  7 08:59:58 client1 systemd[19133]: Stopped target Sockets.
+Aug  7 08:59:58 client1 systemd[19133]: Stopped target Timers.
+Aug  7 08:59:58 client1 systemd[19133]: Closed D-Bus User Message Bus Socket.
+Aug  7 08:59:58 client1 systemd[19133]: Closed GnuPG network certificate management daemon.
+Aug  7 08:59:58 client1 systemd[19133]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 08:59:58 client1 systemd[19133]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 08:59:58 client1 systemd[19133]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 08:59:58 client1 systemd[19133]: Closed GnuPG cryptographic agent and passphrase cache.
+Aug  7 08:59:58 client1 systemd[19133]: Closed debconf communication socket.
+Aug  7 08:59:58 client1 systemd[19133]: Closed REST API socket for snapd user session agent.
+Aug  7 08:59:58 client1 systemd[19133]: Removed slice User Application Slice.
+Aug  7 08:59:58 client1 systemd[19133]: Reached target Shutdown.
+Aug  7 08:59:58 client1 systemd[19133]: Finished Exit the Session.
+Aug  7 08:59:58 client1 systemd[19133]: Reached target Exit the Session.
+Aug  7 08:59:59 client1 systemd[1]: user@1000.service: Deactivated successfully.
+Aug  7 08:59:59 client1 systemd[1]: Stopped User Manager for UID 1000.
+Aug  7 08:59:59 client1 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Aug  7 08:59:59 client1 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Aug  7 08:59:59 client1 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Aug  7 08:59:59 client1 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Aug  7 08:59:59 client1 systemd[1]: Removed slice User Slice of UID 1000.
+Aug  7 08:59:59 client1 systemd[1]: user-1000.slice: Consumed 1.990s CPU time.
+Aug  7 09:17:01 client1 CRON[20219]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Aug  7 09:19:29 client1 systemd[1]: Created slice User Slice of UID 1000.
+Aug  7 09:19:29 client1 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Aug  7 09:19:29 client1 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Aug  7 09:19:29 client1 systemd[1]: Starting User Manager for UID 1000...
+Aug  7 09:19:29 client1 systemd[20224]: Queued start job for default target Main User Target.
+Aug  7 09:19:29 client1 systemd[20224]: Created slice User Application Slice.
+Aug  7 09:19:29 client1 systemd[20224]: Reached target Paths.
+Aug  7 09:19:29 client1 systemd[20224]: Reached target Timers.
+Aug  7 09:19:29 client1 systemd[20224]: Starting D-Bus User Message Bus Socket...
+Aug  7 09:19:29 client1 systemd[20224]: Listening on GnuPG network certificate management daemon.
+Aug  7 09:19:29 client1 systemd[20224]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Aug  7 09:19:29 client1 systemd[20224]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Aug  7 09:19:29 client1 systemd[20224]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Aug  7 09:19:29 client1 systemd[20224]: Listening on GnuPG cryptographic agent and passphrase cache.
+Aug  7 09:19:29 client1 systemd[20224]: Listening on debconf communication socket.
+Aug  7 09:19:29 client1 systemd[20224]: Listening on REST API socket for snapd user session agent.
+Aug  7 09:19:29 client1 systemd[20224]: Listening on D-Bus User Message Bus Socket.
+Aug  7 09:19:29 client1 systemd[20224]: Reached target Sockets.
+Aug  7 09:19:29 client1 systemd[20224]: Reached target Basic System.
+Aug  7 09:19:29 client1 systemd[20224]: Reached target Main User Target.
+Aug  7 09:19:29 client1 systemd[20224]: Startup finished in 58ms.
+Aug  7 09:19:29 client1 systemd[1]: Started User Manager for UID 1000.
+Aug  7 09:19:29 client1 systemd[1]: Started Session 282 of User student.
+Aug  7 09:19:30 client1 systemd[1]: session-282.scope: Deactivated successfully.
+Aug  7 09:19:30 client1 systemd[1]: Started Session 284 of User student.
+Aug  7 09:19:30 client1 systemd[1]: session-284.scope: Deactivated successfully.
+Aug  7 09:19:31 client1 systemd[1]: Started Session 285 of User student.
+Aug  7 09:19:31 client1 systemd[1]: session-285.scope: Deactivated successfully.
+Aug  7 09:19:31 client1 systemd[1]: Started Session 286 of User student.
+Aug  7 09:19:31 client1 systemd[1]: session-286.scope: Deactivated successfully.
+Aug  7 09:19:32 client1 systemd[1]: Started Session 287 of User student.
+Aug  7 09:19:32 client1 systemd[1]: session-287.scope: Deactivated successfully.
+Aug  7 09:19:32 client1 systemd[1]: Started Session 288 of User student.
+Aug  7 09:19:33 client1 python3.10[20545]: ansible-ansible.legacy.slurp Invoked with src=/var/log/audit/audit.log armor=True
+Aug  7 09:19:33 client1 systemd[1]: session-288.scope: Deactivated successfully.
+Aug  7 09:19:33 client1 systemd[1]: Started Session 289 of User student.
+Aug  7 09:19:34 client1 systemd[1]: session-289.scope: Deactivated successfully.
+Aug  7 09:19:34 client1 systemd[1]: Started Session 290 of User student.
+Aug  7 09:19:34 client1 systemd[1]: session-290.scope: Deactivated successfully.
+Aug  7 09:19:35 client1 systemd[1]: Started Session 291 of User student.
+Aug  7 09:19:35 client1 systemd[1]: session-291.scope: Deactivated successfully.
+Aug  7 09:19:35 client1 systemd[1]: Started Session 292 of User student.
+Aug  7 09:19:35 client1 systemd[1]: session-292.scope: Deactivated successfully.
+Aug  7 09:19:36 client1 systemd[1]: Started Session 293 of User student.
+Aug  7 09:19:36 client1 systemd[1]: session-293.scope: Deactivated successfully.
+Aug  7 09:19:36 client1 systemd[1]: Started Session 294 of User student.
+Aug  7 09:19:36 client1 systemd[1]: session-294.scope: Deactivated successfully.
+Aug  7 09:19:37 client1 systemd[1]: Started Session 295 of User student.
