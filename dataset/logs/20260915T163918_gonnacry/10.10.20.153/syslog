@@ -1,0 +1,1587 @@
+Sep 15 09:58:25 client2 systemd-fsck[409]: cloudimg-rootfs: clean, 74180/274176 files, 435475/548091 blocks
+Sep 15 09:58:25 client2 systemd[1]: Mounted Kernel Configuration File System.
+Sep 15 09:58:25 client2 systemd[1]: Starting Remount Root and Kernel File Systems...
+Sep 15 09:58:25 client2 systemd[1]: Finished Apply Kernel Variables.
+Sep 15 09:58:25 client2 systemd[1]: Finished Remount Root and Kernel File Systems.
+Sep 15 09:58:25 client2 systemd[1]: Starting Device-Mapper Multipath Device Controller...
+Sep 15 09:58:25 client2 systemd[1]: Starting Flush Journal to Persistent Storage...
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Starting Load/Save Random Seed...
+Sep 15 09:58:25 client2 systemd[1]: Starting Create System Users...
+Sep 15 09:58:25 client2 systemd[1]: Finished Coldplug All udev Devices.
+Sep 15 09:58:25 client2 systemd[1]: Finished Load/Save Random Seed.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in First Boot Complete being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Finished Create System Users.
+Sep 15 09:58:25 client2 systemd[1]: Finished Flush Journal to Persistent Storage.
+Sep 15 09:58:25 client2 systemd[1]: Starting Create Static Device Nodes in /dev...
+Sep 15 09:58:25 client2 systemd[1]: Finished Create Static Device Nodes in /dev.
+Sep 15 09:58:25 client2 systemd[1]: Starting Rule-based Manager for Device Events and Files...
+Sep 15 09:58:25 client2 multipathd[430]: --------start up--------
+Sep 15 09:58:25 client2 multipathd[430]: read /etc/multipath.conf
+Sep 15 09:58:25 client2 multipathd[430]: path checkers start up
+Sep 15 09:58:25 client2 systemd[1]: Started Device-Mapper Multipath Device Controller.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Preparation for Local File Systems.
+Sep 15 09:58:25 client2 systemd[1]: Mounting Mount unit for core20, revision 2717...
+Sep 15 09:58:25 client2 systemd[1]: Mounting Mount unit for lxd, revision 38469...
+Sep 15 09:58:25 client2 systemd[1]: Mounting Mount unit for snapd, revision 26382...
+Sep 15 09:58:25 client2 systemd[1]: Mounted Mount unit for core20, revision 2717.
+Sep 15 09:58:25 client2 systemd[1]: Mounted Mount unit for lxd, revision 38469.
+Sep 15 09:58:25 client2 systemd[1]: Mounted Mount unit for snapd, revision 26382.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Mounted snaps.
+Sep 15 09:58:25 client2 systemd[1]: Started Rule-based Manager for Device Events and Files.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Show Plymouth Boot Screen being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Forward Password Requests to Plymouth Directory Watch being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Local Encrypted Volumes.
+Sep 15 09:58:25 client2 systemd-udevd[444]: Using default interface naming scheme 'v249'.
+Sep 15 09:58:25 client2 systemd[1]: Found device /dev/ttyS0.
+Sep 15 09:58:25 client2 systemd[1]: Found device /dev/disk/by-label/UEFI.
+Sep 15 09:58:25 client2 systemd[1]: Starting File System Check on /dev/disk/by-label/UEFI...
+Sep 15 09:58:25 client2 systemd[1]: Listening on Load/Save RF Kill Switch Status /dev/rfkill Watch.
+Sep 15 09:58:25 client2 systemd-fsck[486]: fsck.fat 4.2 (2021-01-31)
+Sep 15 09:58:25 client2 systemd-fsck[486]: /dev/vda15: 12 files, 12387/213663 clusters
+Sep 15 09:58:25 client2 systemd[1]: Finished File System Check on /dev/disk/by-label/UEFI.
+Sep 15 09:58:25 client2 systemd[1]: Mounting /boot/efi...
+Sep 15 09:58:25 client2 systemd[1]: Mounted /boot/efi.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Local File Systems.
+Sep 15 09:58:25 client2 systemd[1]: Starting Load AppArmor profiles...
+Sep 15 09:58:25 client2 systemd[1]: Starting Set console font and keymap...
+Sep 15 09:58:25 client2 systemd[1]: Starting Create final runtime dir for shutdown pivot root...
+Sep 15 09:58:25 client2 systemd[1]: Starting Tell Plymouth To Write Out Runtime Data...
+Sep 15 09:58:25 client2 systemd[1]: Starting Set Up Additional Binary Formats...
+Sep 15 09:58:25 client2 apparmor.systemd[494]: Restarting AppArmor
+Sep 15 09:58:25 client2 apparmor.systemd[494]: Reloading AppArmor profiles
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Starting Commit a transient machine-id on disk...
+Sep 15 09:58:25 client2 systemd[1]: Starting Create Volatile Files and Directories...
+Sep 15 09:58:25 client2 systemd[1]: Starting Uncomplicated firewall...
+Sep 15 09:58:25 client2 systemd[1]: Finished Set console font and keymap.
+Sep 15 09:58:25 client2 systemd[1]: Finished Create final runtime dir for shutdown pivot root.
+Sep 15 09:58:25 client2 systemd[1]: Finished Tell Plymouth To Write Out Runtime Data.
+Sep 15 09:58:25 client2 systemd[1]: proc-sys-fs-binfmt_misc.automount: Got automount request for /proc/sys/fs/binfmt_misc, triggered by 506 (systemd-binfmt)
+Sep 15 09:58:25 client2 systemd[1]: Finished Create Volatile Files and Directories.
+Sep 15 09:58:25 client2 systemd[1]: Finished Uncomplicated firewall.
+Sep 15 09:58:25 client2 systemd[1]: Mounting Arbitrary Executable File Formats File System...
+Sep 15 09:58:25 client2 systemd[1]: Starting Network Time Synchronization...
+Sep 15 09:58:25 client2 systemd[1]: Starting Record System Boot/Shutdown in UTMP...
+Sep 15 09:58:25 client2 systemd[1]: Mounted Arbitrary Executable File Formats File System.
+Sep 15 09:58:25 client2 systemd[1]: Finished Set Up Additional Binary Formats.
+Sep 15 09:58:25 client2 systemd[1]: Finished Commit a transient machine-id on disk.
+Sep 15 09:58:25 client2 systemd[1]: Finished Record System Boot/Shutdown in UTMP.
+Sep 15 09:58:25 client2 systemd[1]: Started Network Time Synchronization.
+Sep 15 09:58:25 client2 systemd[1]: Reached target System Time Set.
+Sep 15 09:58:25 client2 systemd[1]: etc-machine\x2did.mount: Deactivated successfully.
+Sep 15 09:58:25 client2 apparmor.systemd[530]: Skipping profile in /etc/apparmor.d/disable: usr.sbin.rsyslogd
+Sep 15 09:58:25 client2 systemd[1]: Finished Load AppArmor profiles.
+Sep 15 09:58:25 client2 systemd[1]: Starting Load AppArmor profiles managed internally by snapd...
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Authentication service for virtual machines hosted on VMware being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Service for virtual machines hosted on VMware being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Starting Cloud-init: Local Stage (pre-network)...
+Sep 15 09:58:25 client2 snapd-apparmor[531]: main.go:146: Loading profiles [/var/lib/snapd/apparmor/profiles/snap-confine.snapd.26382 /var/lib/snapd/apparmor/profiles/snap-update-ns.lxd /var/lib/snapd/apparmor/profiles/snap.lxd.activate /var/lib/snapd/apparmor/profiles/snap.lxd.benchmark /var/lib/snapd/apparmor/profiles/snap.lxd.buginfo /var/lib/snapd/apparmor/profiles/snap.lxd.check-kernel /var/lib/snapd/apparmor/profiles/snap.lxd.daemon /var/lib/snapd/apparmor/profiles/snap.lxd.hook.configure /var/lib/snapd/apparmor/profiles/snap.lxd.hook.install /var/lib/snapd/apparmor/profiles/snap.lxd.hook.remove /var/lib/snapd/apparmor/profiles/snap.lxd.lxc /var/lib/snapd/apparmor/profiles/snap.lxd.lxc-to-lxd /var/lib/snapd/apparmor/profiles/snap.lxd.lxd /var/lib/snapd/apparmor/profiles/snap.lxd.migrate /var/lib/snapd/apparmor/profiles/snap.lxd.user-daemon]
+Sep 15 09:58:25 client2 cloud-init[560]: Cloud-init v. 25.3-0ubuntu1~22.04.1 running 'init-local' at Tue, 15 Sep 2026 09:58:21 +0000. Up 8.18 seconds.
+Sep 15 09:58:25 client2 systemd[1]: run-cloud\x2dinit-tmp-tmp8gky8bko.mount: Deactivated successfully.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+Sep 15 09:58:25 client2 kernel: [    0.000000] Linux version 5.15.0-173-generic (buildd@lcy02-amd64-034) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #183-Ubuntu SMP Fri Mar 6 13:29:34 UTC 2026 (Ubuntu 5.15.0-173.183-generic 5.15.198)
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Finished Load AppArmor profiles managed internally by snapd.
+Sep 15 09:58:25 client2 systemd[1]: Finished Cloud-init: Local Stage (pre-network).
+Sep 15 09:58:25 client2 kernel: [    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-173-generic root=LABEL=cloudimg-rootfs ro console=tty1 console=ttyS0
+Sep 15 09:58:25 client2 kernel: [    0.000000] KERNEL supported cpus:
+Sep 15 09:58:25 client2 kernel: [    0.000000]   Intel GenuineIntel
+Sep 15 09:58:25 client2 kernel: [    0.000000]   AMD AuthenticAMD
+Sep 15 09:58:25 client2 kernel: [    0.000000]   Hygon HygonGenuine
+Sep 15 09:58:25 client2 kernel: [    0.000000]   Centaur CentaurHauls
+Sep 15 09:58:25 client2 systemd[1]: Reached target Preparation for Network.
+Sep 15 09:58:25 client2 kernel: [    0.000000]   zhaoxin   Shanghai  
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-provided physical RAM map:
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+Sep 15 09:58:25 client2 systemd[1]: Starting Network Configuration...
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007ffdbfff] usable
+Sep 15 09:58:25 client2 systemd-networkd[586]: lo: Link UP
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x000000007ffdc000-0x000000007fffffff] reserved
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x00000000b0000000-0x00000000bfffffff] reserved
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x00000000fed1c000-0x00000000fed1ffff] reserved
+Sep 15 09:58:25 client2 systemd-networkd[586]: lo: Gained carrier
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+Sep 15 09:58:25 client2 kernel: [    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+Sep 15 09:58:25 client2 kernel: [    0.000000] NX (Execute Disable) protection: active
+Sep 15 09:58:25 client2 kernel: [    0.000000] SMBIOS 3.0.0 present.
+Sep 15 09:58:25 client2 systemd-networkd[586]: Enumeration completed
+Sep 15 09:58:25 client2 kernel: [    0.000000] DMI: QEMU Ubuntu 24.04 PC (Q35 + ICH9, 2009), BIOS 1.16.3-debian-1.16.3-2 04/01/2014
+Sep 15 09:58:25 client2 kernel: [    0.000000] Hypervisor detected: KVM
+Sep 15 09:58:25 client2 kernel: [    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+Sep 15 09:58:25 client2 kernel: [    0.000000] kvm-clock: cpu 0, msr 73201001, primary cpu clock
+Sep 15 09:58:25 client2 kernel: [    0.000001] kvm-clock: using sched offset of 3116250450 cycles
+Sep 15 09:58:25 client2 kernel: [    0.000004] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+Sep 15 09:58:25 client2 kernel: [    0.000009] tsc: Detected 2399.998 MHz processor
+Sep 15 09:58:25 client2 kernel: [    0.000519] e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+Sep 15 09:58:25 client2 kernel: [    0.000523] e820: remove [mem 0x000a0000-0x000fffff] usable
+Sep 15 09:58:25 client2 kernel: [    0.000530] last_pfn = 0x7ffdc max_arch_pfn = 0x10000000000
+Sep 15 09:58:25 client2 kernel: [    0.000609] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+Sep 15 09:58:25 client2 kernel: [    0.008491] found SMP MP-table at [mem 0x000f5460-0x000f546f]
+Sep 15 09:58:25 client2 kernel: [    0.008521] Using GB pages for direct mapping
+Sep 15 09:58:25 client2 kernel: [    0.008751] RAMDISK: [mem 0x33f83000-0x35fb8fff]
+Sep 15 09:58:25 client2 kernel: [    0.008754] ACPI: Early table checksum verification disabled
+Sep 15 09:58:25 client2 kernel: [    0.008759] ACPI: RSDP 0x00000000000F5240 000014 (v00 BOCHS )
+Sep 15 09:58:25 client2 kernel: [    0.008765] ACPI: RSDT 0x000000007FFE2C58 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Sep 15 09:58:25 client2 kernel: [    0.008772] ACPI: FACP 0x000000007FFE2A80 0000F4 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+Sep 15 09:58:25 client2 kernel: [    0.008779] ACPI: DSDT 0x000000007FFE0040 002A40 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Sep 15 09:58:25 client2 kernel: [    0.008784] ACPI: FACS 0x000000007FFE0000 000040
+Sep 15 09:58:25 client2 kernel: [    0.008788] ACPI: APIC 0x000000007FFE2B74 000080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+Sep 15 09:58:25 client2 kernel: [    0.008792] ACPI: MCFG 0x000000007FFE2BF4 00003C (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Sep 15 09:58:25 client2 kernel: [    0.008796] ACPI: WAET 0x000000007FFE2C30 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+Sep 15 09:58:25 client2 kernel: [    0.008800] ACPI: Reserving FACP table memory at [mem 0x7ffe2a80-0x7ffe2b73]
+Sep 15 09:58:25 client2 kernel: [    0.008802] ACPI: Reserving DSDT table memory at [mem 0x7ffe0040-0x7ffe2a7f]
+Sep 15 09:58:25 client2 kernel: [    0.008803] ACPI: Reserving FACS table memory at [mem 0x7ffe0000-0x7ffe003f]
+Sep 15 09:58:25 client2 kernel: [    0.008805] ACPI: Reserving APIC table memory at [mem 0x7ffe2b74-0x7ffe2bf3]
+Sep 15 09:58:25 client2 kernel: [    0.008806] ACPI: Reserving MCFG table memory at [mem 0x7ffe2bf4-0x7ffe2c2f]
+Sep 15 09:58:25 client2 kernel: [    0.008807] ACPI: Reserving WAET table memory at [mem 0x7ffe2c30-0x7ffe2c57]
+Sep 15 09:58:25 client2 kernel: [    0.009274] No NUMA configuration found
+Sep 15 09:58:25 client2 kernel: [    0.009275] Faking a node at [mem 0x0000000000000000-0x000000007ffdbfff]
+Sep 15 09:58:25 client2 kernel: [    0.009286] NODE_DATA(0) allocated [mem 0x7ffb2000-0x7ffdbfff]
+Sep 15 09:58:25 client2 kernel: [    0.009798] Zone ranges:
+Sep 15 09:58:25 client2 kernel: [    0.009801]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+Sep 15 09:58:25 client2 kernel: [    0.009804]   DMA32    [mem 0x0000000001000000-0x000000007ffdbfff]
+Sep 15 09:58:25 client2 kernel: [    0.009806]   Normal   empty
+Sep 15 09:58:25 client2 kernel: [    0.009808]   Device   empty
+Sep 15 09:58:25 client2 kernel: [    0.009809] Movable zone start for each node
+Sep 15 09:58:25 client2 kernel: [    0.009826] Early memory node ranges
+Sep 15 09:58:25 client2 kernel: [    0.009827]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+Sep 15 09:58:25 client2 kernel: [    0.009829]   node   0: [mem 0x0000000000100000-0x000000007ffdbfff]
+Sep 15 09:58:25 client2 kernel: [    0.009831] Initmem setup node 0 [mem 0x0000000000001000-0x000000007ffdbfff]
+Sep 15 09:58:25 client2 kernel: [    0.009838] On node 0, zone DMA: 1 pages in unavailable ranges
+Sep 15 09:58:25 client2 kernel: [    0.009883] On node 0, zone DMA: 97 pages in unavailable ranges
+Sep 15 09:58:25 client2 kernel: [    0.015131] On node 0, zone DMA32: 36 pages in unavailable ranges
+Sep 15 09:58:25 client2 kernel: [    0.016822] ACPI: PM-Timer IO Port: 0x608
+Sep 15 09:58:25 client2 kernel: [    0.016842] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+Sep 15 09:58:25 client2 kernel: [    0.016899] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+Sep 15 09:58:25 client2 kernel: [    0.016903] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+Sep 15 09:58:25 client2 kernel: [    0.016905] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+Sep 15 09:58:25 client2 kernel: [    0.016907] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+Sep 15 09:58:25 client2 kernel: [    0.016909] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+Sep 15 09:58:25 client2 kernel: [    0.016910] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+Sep 15 09:58:25 client2 kernel: [    0.016915] ACPI: Using ACPI (MADT) for SMP configuration information
+Sep 15 09:58:25 client2 kernel: [    0.016917] TSC deadline timer available
+Sep 15 09:58:25 client2 kernel: [    0.016920] smpboot: Allowing 2 CPUs, 0 hotplug CPUs
+Sep 15 09:58:25 client2 kernel: [    0.016949] kvm-guest: KVM setup pv remote TLB flush
+Sep 15 09:58:25 client2 kernel: [    0.016957] kvm-guest: setup PV sched yield
+Sep 15 09:58:25 client2 kernel: [    0.016967] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+Sep 15 09:58:25 client2 kernel: [    0.016969] PM: hibernation: Registered nosave memory: [mem 0x0009f000-0x000fffff]
+Sep 15 09:58:25 client2 kernel: [    0.016972] [mem 0xc0000000-0xfed1bfff] available for PCI devices
+Sep 15 09:58:25 client2 kernel: [    0.016973] Booting paravirtualized kernel on KVM
+Sep 15 09:58:25 client2 kernel: [    0.016977] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+Sep 15 09:58:25 client2 kernel: [    0.016985] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:2 nr_cpu_ids:2 nr_node_ids:1
+Sep 15 09:58:25 client2 kernel: [    0.017584] percpu: Embedded 62 pages/cpu s217088 r8192 d28672 u1048576
+Sep 15 09:58:25 client2 kernel: [    0.017592] pcpu-alloc: s217088 r8192 d28672 u1048576 alloc=1*2097152
+Sep 15 09:58:25 client2 kernel: [    0.017596] pcpu-alloc: [0] 0 1 
+Sep 15 09:58:25 client2 kernel: [    0.017632] kvm-guest: setup async PF for cpu 0
+Sep 15 09:58:25 client2 kernel: [    0.017641] kvm-guest: stealtime: cpu 0, msr 7dc34080
+Sep 15 09:58:25 client2 kernel: [    0.017648] kvm-guest: PV spinlocks enabled
+Sep 15 09:58:25 client2 kernel: [    0.017651] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.017661] Built 1 zonelists, mobility grouping on.  Total pages: 515804
+Sep 15 09:58:25 client2 kernel: [    0.017664] Policy zone: DMA32
+Sep 15 09:58:25 client2 kernel: [    0.017665] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-173-generic root=LABEL=cloudimg-rootfs ro console=tty1 console=ttyS0
+Sep 15 09:58:25 client2 kernel: [    0.018249] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.018626] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.018695] mem auto-init: stack:off, heap alloc:on, heap free:off
+Sep 15 09:58:25 client2 kernel: [    0.024488] Memory: 1967804K/2096616K available (16393K kernel code, 4401K rwdata, 11000K rodata, 3296K init, 18768K bss, 128608K reserved, 0K cma-reserved)
+Sep 15 09:58:25 client2 kernel: [    0.024899] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+Sep 15 09:58:25 client2 kernel: [    0.024944] ftrace: allocating 50901 entries in 199 pages
+Sep 15 09:58:25 client2 kernel: [    0.056042] ftrace: allocated 199 pages with 5 groups
+Sep 15 09:58:25 client2 kernel: [    0.056195] rcu: Hierarchical RCU implementation.
+Sep 15 09:58:25 client2 kernel: [    0.056197] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=2.
+Sep 15 09:58:25 client2 kernel: [    0.056200] 	Rude variant of Tasks RCU enabled.
+Sep 15 09:58:25 client2 kernel: [    0.056201] 	Tracing variant of Tasks RCU enabled.
+Sep 15 09:58:25 client2 kernel: [    0.056202] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+Sep 15 09:58:25 client2 kernel: [    0.056204] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+Sep 15 09:58:25 client2 kernel: [    0.061513] NR_IRQS: 524544, nr_irqs: 440, preallocated irqs: 16
+Sep 15 09:58:25 client2 kernel: [    0.061746] random: crng init done
+Sep 15 09:58:25 client2 kernel: [    0.062615] Console: colour VGA+ 80x25
+Sep 15 09:58:25 client2 kernel: [    0.071998] printk: console [tty1] enabled
+Sep 15 09:58:25 client2 kernel: [    0.154747] printk: console [ttyS0] enabled
+Sep 15 09:58:25 client2 kernel: [    0.155384] ACPI: Core revision 20210730
+Sep 15 09:58:25 client2 kernel: [    0.156032] APIC: Switch to symmetric I/O mode setup
+Sep 15 09:58:25 client2 kernel: [    0.157075] x2apic enabled
+Sep 15 09:58:25 client2 kernel: [    0.157856] Switched APIC routing to physical x2apic.
+Sep 15 09:58:25 client2 kernel: [    0.158580] kvm-guest: setup PV IPIs
+Sep 15 09:58:25 client2 kernel: [    0.160396] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x229835b7123, max_idle_ns: 440795242976 ns
+Sep 15 09:58:25 client2 kernel: [    0.161807] Calibrating delay loop (skipped) preset value.. 4799.99 BogoMIPS (lpj=9599992)
+Sep 15 09:58:25 client2 kernel: [    0.163152] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+Sep 15 09:58:25 client2 kernel: [    0.164184] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+Sep 15 09:58:25 client2 kernel: [    0.164947] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+Sep 15 09:58:25 client2 kernel: [    0.165782] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+Sep 15 09:58:25 client2 kernel: [    0.165803] Spectre V2 : Spectre BHI mitigation: SW BHB clearing on vm exit
+Sep 15 09:58:25 client2 kernel: [    0.165803] Spectre V2 : Spectre BHI mitigation: SW BHB clearing on syscall
+Sep 15 09:58:25 client2 kernel: [    0.165803] Spectre V2 : Mitigation: Enhanced / Automatic IBRS
+Sep 15 09:58:25 client2 kernel: [    0.165803] Spectre V2 : Spectre v2 / PBRSB-eIBRS: Retire a single CALL on VMEXIT
+Sep 15 09:58:25 client2 kernel: [    0.165803] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+Sep 15 09:58:25 client2 kernel: [    0.165803] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl and seccomp
+Sep 15 09:58:25 client2 kernel: [    0.165803] TAA: Mitigation: TSX disabled
+Sep 15 09:58:25 client2 kernel: [    0.165803] MMIO Stale Data: Mitigation: Clear CPU buffers
+Sep 15 09:58:25 client2 kernel: [    0.165803] GDS: Unknown: Dependent on hypervisor status
+Sep 15 09:58:25 client2 kernel: [    0.165803] active return thunk: its_return_thunk
+Sep 15 09:58:25 client2 kernel: [    0.165803] ITS: Mitigation: Aligned branch/return thunks
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+Sep 15 09:58:25 client2 systemd[1]: Started Network Configuration.
+Sep 15 09:58:25 client2 systemd[1]: Starting Wait for Network to be Configured...
+Sep 15 09:58:25 client2 systemd-networkd[586]: enp1s0: Link UP
+Sep 15 09:58:25 client2 systemd[1]: Starting Network Name Resolution...
+Sep 15 09:58:25 client2 systemd-networkd[586]: enp1s0: Gained carrier
+Sep 15 09:58:25 client2 systemd-networkd[586]: enp1s0: DHCPv4 address 10.10.20.153/24 via 10.10.20.1
+Sep 15 09:58:25 client2 systemd-timesyncd[518]: Network configuration changed, trying to establish connection.
+Sep 15 09:58:25 client2 systemd-timesyncd[518]: Network configuration changed, trying to establish connection.
+Sep 15 09:58:25 client2 systemd-resolved[588]: Positive Trust Anchors:
+Sep 15 09:58:25 client2 systemd-resolved[588]: . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Sep 15 09:58:25 client2 systemd-resolved[588]: Negative trust anchors: home.arpa 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.in-addr.arpa 21.172.in-addr.arpa 22.172.in-addr.arpa 23.172.in-addr.arpa 24.172.in-addr.arpa 25.172.in-addr.arpa 26.172.in-addr.arpa 27.172.in-addr.arpa 28.172.in-addr.arpa 29.172.in-addr.arpa 30.172.in-addr.arpa 31.172.in-addr.arpa 168.192.in-addr.arpa d.f.ip6.arpa corp home internal intranet lan local private test
+Sep 15 09:58:25 client2 systemd-resolved[588]: Using system hostname 'client2'.
+Sep 15 09:58:25 client2 systemd[1]: Started Network Name Resolution.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Network.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Host and Network Name Lookups.
+Sep 15 09:58:25 client2 systemd-networkd[586]: enp1s0: Gained IPv6LL
+Sep 15 09:58:25 client2 systemd-timesyncd[518]: Network configuration changed, trying to establish connection.
+Sep 15 09:58:25 client2 systemd[1]: Finished Wait for Network to be Configured.
+Sep 15 09:58:25 client2 systemd[1]: Starting Cloud-init: Network Stage...
+Sep 15 09:58:25 client2 cloud-init[593]: Cloud-init v. 25.3-0ubuntu1~22.04.1 running 'init' at Tue, 15 Sep 2026 09:58:23 +0000. Up 10.35 seconds.
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: ++++++++++++++++++++++++++++++++++++++Net device info++++++++++++++++++++++++++++++++++++++
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +--------+------+----------------------------+---------------+--------+-------------------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: | Device |  Up  |          Address           |      Mask     | Scope  |     Hw-Address    |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +--------+------+----------------------------+---------------+--------+-------------------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: | enp1s0 | True |        10.10.20.153        | 255.255.255.0 | global | 52:54:00:e0:c1:39 |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: | enp1s0 | True | fe80::5054:ff:fee0:c139/64 |       .       |  link  | 52:54:00:e0:c1:39 |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   lo   | True |         127.0.0.1          |   255.0.0.0   |  host  |         .         |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   lo   | True |          ::1/128           |       .       |  host  |         .         |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +--------+------+----------------------------+---------------+--------+-------------------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +++++++++++++++++++++++++++++Route IPv4 info++++++++++++++++++++++++++++++
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +-------+-------------+------------+-----------------+-----------+-------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: | Route | Destination |  Gateway   |     Genmask     | Interface | Flags |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +-------+-------------+------------+-----------------+-----------+-------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   0   |   0.0.0.0   | 10.10.20.1 |     0.0.0.0     |   enp1s0  |   UG  |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   1   | 10.10.10.53 | 10.10.20.1 | 255.255.255.255 |   enp1s0  |  UGH  |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   2   |  10.10.20.0 |  0.0.0.0   |  255.255.255.0  |   enp1s0  |   U   |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   3   |  10.10.20.1 |  0.0.0.0   | 255.255.255.255 |   enp1s0  |   UH  |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +-------+-------------+------------+-----------------+-----------+-------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +++++++++++++++++++Route IPv6 info+++++++++++++++++++
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +-------+-------------+---------+-----------+-------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: | Route | Destination | Gateway | Interface | Flags |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +-------+-------------+---------+-----------+-------+
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   1   |  fe80::/64  |    ::   |   enp1s0  |   U   |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   3   |    local    |    ::   |   enp1s0  |   U   |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: |   4   |  multicast  |    ::   |   enp1s0  |   U   |
+Sep 15 09:58:25 client2 cloud-init[593]: ci-info: +-------+-------------+---------+-----------+-------+
+Sep 15 09:58:25 client2 cloud-init[593]: Generating public/private rsa key pair.
+Sep 15 09:58:25 client2 cloud-init[593]: Your identification has been saved in /etc/ssh/ssh_host_rsa_key
+Sep 15 09:58:25 client2 cloud-init[593]: Your public key has been saved in /etc/ssh/ssh_host_rsa_key.pub
+Sep 15 09:58:25 client2 cloud-init[593]: The key fingerprint is:
+Sep 15 09:58:25 client2 cloud-init[593]: SHA256:04UG0RL7/cd1T3sEZ2rpUuxAtAQIeCjpT1lcYx8nVg8 root@client2
+Sep 15 09:58:25 client2 cloud-init[593]: The key's randomart image is:
+Sep 15 09:58:25 client2 cloud-init[593]: +---[RSA 3072]----+
+Sep 15 09:58:25 client2 cloud-init[593]: |   . +.oB==oE    |
+Sep 15 09:58:25 client2 cloud-init[593]: |  o o +.o*.B +   |
+Sep 15 09:58:25 client2 cloud-init[593]: | . . +  ..+ + o o|
+Sep 15 09:58:25 client2 cloud-init[593]: |  . o    + + . * |
+Sep 15 09:58:25 client2 cloud-init[593]: |   o    S o o * =|
+Sep 15 09:58:25 client2 cloud-init[593]: |    .    .   B +=|
+Sep 15 09:58:25 client2 cloud-init[593]: |            . +.=|
+Sep 15 09:58:25 client2 cloud-init[593]: |             . ..|
+Sep 15 09:58:25 client2 cloud-init[593]: |                 |
+Sep 15 09:58:25 client2 cloud-init[593]: +----[SHA256]-----+
+Sep 15 09:58:25 client2 cloud-init[593]: Generating public/private ecdsa key pair.
+Sep 15 09:58:25 client2 cloud-init[593]: Your identification has been saved in /etc/ssh/ssh_host_ecdsa_key
+Sep 15 09:58:25 client2 cloud-init[593]: Your public key has been saved in /etc/ssh/ssh_host_ecdsa_key.pub
+Sep 15 09:58:25 client2 cloud-init[593]: The key fingerprint is:
+Sep 15 09:58:25 client2 cloud-init[593]: SHA256:/h9l6SMB9dp8Hqh9Xzc5fIxb2LMkUGpxkUZ/BlqroHM root@client2
+Sep 15 09:58:25 client2 cloud-init[593]: The key's randomart image is:
+Sep 15 09:58:25 client2 cloud-init[593]: +---[ECDSA 256]---+
+Sep 15 09:58:25 client2 cloud-init[593]: |            oo+  |
+Sep 15 09:58:25 client2 cloud-init[593]: |           . *oo |
+Sep 15 09:58:25 client2 cloud-init[593]: |          o.ooo.o|
+Sep 15 09:58:25 client2 cloud-init[593]: |         . o==.o.|
+Sep 15 09:58:25 client2 cloud-init[593]: |        S E++.*..|
+Sep 15 09:58:25 client2 cloud-init[593]: |       . o. +=.Bo|
+Sep 15 09:58:25 client2 cloud-init[593]: |        .  .oo=OO|
+Sep 15 09:58:25 client2 cloud-init[593]: |         .   o++X|
+Sep 15 09:58:25 client2 cloud-init[593]: |          ... ...|
+Sep 15 09:58:25 client2 cloud-init[593]: +----[SHA256]-----+
+Sep 15 09:58:25 client2 cloud-init[593]: Generating public/private ed25519 key pair.
+Sep 15 09:58:25 client2 cloud-init[593]: Your identification has been saved in /etc/ssh/ssh_host_ed25519_key
+Sep 15 09:58:25 client2 cloud-init[593]: Your public key has been saved in /etc/ssh/ssh_host_ed25519_key.pub
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Supporting XSAVE feature 0x200: 'Protection Keys User registers'
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: xstate_offset[5]:  832, xstate_sizes[5]:   64
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: xstate_offset[6]:  896, xstate_sizes[6]:  512
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: xstate_offset[7]: 1408, xstate_sizes[7]: 1024
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: xstate_offset[9]: 2432, xstate_sizes[9]:    8
+Sep 15 09:58:25 client2 kernel: [    0.165803] x86/fpu: Enabled xstate features 0x2e7, context size is 2440 bytes, using 'compacted' format.
+Sep 15 09:58:25 client2 kernel: [    0.165803] Freeing SMP alternatives memory: 44K
+Sep 15 09:58:25 client2 kernel: [    0.165803] pid_max: default: 32768 minimum: 301
+Sep 15 09:58:25 client2 kernel: [    0.165803] LSM: Security Framework initializing
+Sep 15 09:58:25 client2 kernel: [    0.165803] landlock: Up and running.
+Sep 15 09:58:25 client2 kernel: [    0.165803] Yama: becoming mindful.
+Sep 15 09:58:25 client2 kernel: [    0.165803] AppArmor: AppArmor initialized
+Sep 15 09:58:25 client2 kernel: [    0.165803] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.165803] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.165803] smpboot: CPU0: Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz (family: 0x6, model: 0x6a, stepping: 0x6)
+Sep 15 09:58:25 client2 kernel: [    0.165803] Performance Events: PEBS fmt0-, Icelake events, full-width counters, Intel PMU driver.
+Sep 15 09:58:25 client2 kernel: [    0.165803] ... version:                2
+Sep 15 09:58:25 client2 kernel: [    0.165803] ... bit width:              48
+Sep 15 09:58:25 client2 kernel: [    0.165803] ... generic registers:      8
+Sep 15 09:58:25 client2 kernel: [    0.165808] ... value mask:             0000ffffffffffff
+Sep 15 09:58:25 client2 kernel: [    0.166489] ... max period:             00007fffffffffff
+Sep 15 09:58:25 client2 kernel: [    0.167165] ... fixed-purpose events:   3
+Sep 15 09:58:25 client2 kernel: [    0.167710] ... event mask:             00000007000000ff
+Sep 15 09:58:25 client2 kernel: [    0.168491] signal: max sigframe size: 3632
+Sep 15 09:58:25 client2 kernel: [    0.169071] rcu: Hierarchical SRCU implementation.
+Sep 15 09:58:25 client2 kernel: [    0.170367] smp: Bringing up secondary CPUs ...
+Sep 15 09:58:25 client2 kernel: [    0.171118] x86: Booting SMP configuration:
+Sep 15 09:58:25 client2 kernel: [    0.171702] .... node  #0, CPUs:      #1
+Sep 15 09:58:25 client2 kernel: [    0.104067] kvm-clock: cpu 1, msr 73201041, secondary cpu clock
+Sep 15 09:58:25 client2 kernel: [    0.104067] smpboot: CPU 1 Converting physical 0 to logical die 1
+Sep 15 09:58:25 client2 kernel: [    0.177916] kvm-guest: setup async PF for cpu 1
+Sep 15 09:58:25 client2 kernel: [    0.179220] kvm-guest: stealtime: cpu 1, msr 7dd34080
+Sep 15 09:58:25 client2 kernel: [    0.180614] smp: Brought up 1 node, 2 CPUs
+Sep 15 09:58:25 client2 kernel: [    0.181823] smpboot: Max logical packages: 2
+Sep 15 09:58:25 client2 kernel: [    0.183489] smpboot: Total of 2 processors activated (9599.99 BogoMIPS)
+Sep 15 09:58:25 client2 kernel: [    0.184804] devtmpfs: initialized
+Sep 15 09:58:25 client2 kernel: [    0.184804] x86/mm: Memory block size: 128MB
+Sep 15 09:58:25 client2 kernel: [    0.186083] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+Sep 15 09:58:25 client2 kernel: [    0.187119] futex hash table entries: 512 (order: 3, 32768 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.188039] pinctrl core: initialized pinctrl subsystem
+Sep 15 09:58:25 client2 kernel: [    0.188897] PM: RTC time: 09:58:12, date: 2026-09-15
+Sep 15 09:58:25 client2 kernel: [    0.190012] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+Sep 15 09:58:25 client2 kernel: [    0.190899] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+Sep 15 09:58:25 client2 kernel: [    0.191825] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+Sep 15 09:58:25 client2 kernel: [    0.192830] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+Sep 15 09:58:25 client2 kernel: [    0.193821] audit: initializing netlink subsys (disabled)
+Sep 15 09:58:25 client2 kernel: [    0.194579] audit: type=2000 audit(1789466293.237:1): state=initialized audit_enabled=0 res=1
+Sep 15 09:58:25 client2 kernel: [    0.194579] thermal_sys: Registered thermal governor 'fair_share'
+Sep 15 09:58:25 client2 kernel: [    0.196476] thermal_sys: Registered thermal governor 'bang_bang'
+Sep 15 09:58:25 client2 kernel: [    0.197809] thermal_sys: Registered thermal governor 'step_wise'
+Sep 15 09:58:25 client2 kernel: [    0.198576] thermal_sys: Registered thermal governor 'user_space'
+Sep 15 09:58:25 client2 kernel: [    0.199336] thermal_sys: Registered thermal governor 'power_allocator'
+Sep 15 09:58:25 client2 kernel: [    0.200125] cpuidle: using governor ladder
+Sep 15 09:58:25 client2 kernel: [    0.201516] cpuidle: using governor menu
+Sep 15 09:58:25 client2 kernel: [    0.201995] ACPI: bus type PCI registered
+Sep 15 09:58:25 client2 kernel: [    0.202538] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+Sep 15 09:58:25 client2 kernel: [    0.203487] PCI: MMCONFIG for domain 0000 [bus 00-ff] at [mem 0xb0000000-0xbfffffff] (base 0xb0000000)
+Sep 15 09:58:25 client2 kernel: [    0.204637] PCI: MMCONFIG at [mem 0xb0000000-0xbfffffff] reserved in E820
+Sep 15 09:58:25 client2 kernel: [    0.205503] PCI: Using configuration type 1 for base access
+Sep 15 09:58:25 client2 kernel: [    0.207325] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+Sep 15 09:58:25 client2 kernel: [    0.208483] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+Sep 15 09:58:25 client2 kernel: [    0.208483] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+Sep 15 09:58:25 client2 kernel: [    0.214077] ACPI: Added _OSI(Module Device)
+Sep 15 09:58:25 client2 kernel: [    0.215467] ACPI: Added _OSI(Processor Device)
+Sep 15 09:58:25 client2 kernel: [    0.216063] ACPI: Added _OSI(Processor Aggregator Device)
+Sep 15 09:58:25 client2 kernel: [    0.216751] ACPI: Added _OSI(Linux-Dell-Video)
+Sep 15 09:58:25 client2 kernel: [    0.217347] ACPI: Added _OSI(Linux-Lenovo-NV-HDMI-Audio)
+Sep 15 09:58:25 client2 kernel: [    0.217829] ACPI: Added _OSI(Linux-HPI-Hybrid-Graphics)
+Sep 15 09:58:25 client2 kernel: [    0.220489] ACPI: 1 ACPI AML tables successfully acquired and loaded
+Sep 15 09:58:25 client2 kernel: [    0.223392] ACPI: Interpreter enabled
+Sep 15 09:58:25 client2 kernel: [    0.223935] ACPI: PM: (supports S0 S5)
+Sep 15 09:58:25 client2 kernel: [    0.224445] ACPI: Using IOAPIC for interrupt routing
+Sep 15 09:58:25 client2 kernel: [    0.225162] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+Sep 15 09:58:25 client2 kernel: [    0.225809] PCI: Using E820 reservations for host bridge windows
+Sep 15 09:58:25 client2 kernel: [    0.226733] ACPI: Enabled 2 GPEs in block 00 to 3F
+Sep 15 09:58:25 client2 kernel: [    0.230041] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+Sep 15 09:58:25 client2 kernel: [    0.230838] acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
+Sep 15 09:58:25 client2 kernel: [    0.232082] acpi PNP0A08:00: _OSC: platform does not support [PCIeHotplug LTR DPC]
+Sep 15 09:58:25 client2 kernel: [    0.233124] acpi PNP0A08:00: _OSC: OS now controls [SHPCHotplug PME AER PCIeCapability]
+Sep 15 09:58:25 client2 kernel: [    0.234113] PCI host bridge to bus 0000:00
+Sep 15 09:58:25 client2 kernel: [    0.234660] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+Sep 15 09:58:25 client2 kernel: [    0.235509] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+Sep 15 09:58:25 client2 kernel: [    0.236366] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+Sep 15 09:58:25 client2 kernel: [    0.237299] pci_bus 0000:00: root bus resource [mem 0x80000000-0xafffffff window]
+Sep 15 09:58:25 client2 kernel: [    0.237806] pci_bus 0000:00: root bus resource [mem 0xc0000000-0xfebfffff window]
+Sep 15 09:58:25 client2 kernel: [    0.238742] pci_bus 0000:00: root bus resource [mem 0x100000000-0x8ffffffff window]
+Sep 15 09:58:25 client2 kernel: [    0.239700] pci_bus 0000:00: root bus resource [bus 00-ff]
+Sep 15 09:58:25 client2 cloud-init[593]: The key fingerprint is:
+Sep 15 09:58:25 client2 kernel: [    0.240521] pci 0000:00:00.0: [8086:29c0] type 00 class 0x060000
+Sep 15 09:58:25 client2 kernel: [    0.242319] pci 0000:00:01.0: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.245823] pci 0000:00:01.0: reg 0x10: [mem 0xfce00000-0xfce00fff]
+Sep 15 09:58:25 client2 kernel: [    0.248554] pci 0000:00:01.1: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.252555] pci 0000:00:01.1: reg 0x10: [mem 0xfce01000-0xfce01fff]
+Sep 15 09:58:25 client2 kernel: [    0.255573] pci 0000:00:01.2: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.258787] pci 0000:00:01.2: reg 0x10: [mem 0xfce02000-0xfce02fff]
+Sep 15 09:58:25 client2 kernel: [    0.261727] pci 0000:00:01.3: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.269325] pci 0000:00:01.3: reg 0x10: [mem 0xfce03000-0xfce03fff]
+Sep 15 09:58:25 client2 kernel: [    0.271932] pci 0000:00:01.4: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 cloud-init[593]: SHA256:hrKr583nv0yuO3Jljqg3y0jPeuPlmzbNVIPonToBA4A root@client2
+Sep 15 09:58:25 client2 kernel: [    0.274617] pci 0000:00:01.4: reg 0x10: [mem 0xfce04000-0xfce04fff]
+Sep 15 09:58:25 client2 kernel: [    0.278482] pci 0000:00:01.5: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.281341] pci 0000:00:01.5: reg 0x10: [mem 0xfce05000-0xfce05fff]
+Sep 15 09:58:25 client2 kernel: [    0.283321] pci 0000:00:01.6: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 cloud-init[593]: The key's randomart image is:
+Sep 15 09:58:25 client2 cloud-init[593]: +--[ED25519 256]--+
+Sep 15 09:58:25 client2 kernel: [    0.288649] pci 0000:00:01.6: reg 0x10: [mem 0xfce06000-0xfce06fff]
+Sep 15 09:58:25 client2 cloud-init[593]: | ...             |
+Sep 15 09:58:25 client2 kernel: [    0.291262] pci 0000:00:01.7: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.293822] pci 0000:00:01.7: reg 0x10: [mem 0xfce07000-0xfce07fff]
+Sep 15 09:58:25 client2 kernel: [    0.296560] pci 0000:00:02.0: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.300617] pci 0000:00:02.0: reg 0x10: [mem 0xfce08000-0xfce08fff]
+Sep 15 09:58:25 client2 cloud-init[593]: |E   .            |
+Sep 15 09:58:25 client2 kernel: [    0.303026] pci 0000:00:02.1: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.305810] pci 0000:00:02.1: reg 0x10: [mem 0xfce09000-0xfce09fff]
+Sep 15 09:58:25 client2 kernel: [    0.308124] pci 0000:00:02.2: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.313834] pci 0000:00:02.2: reg 0x10: [mem 0xfce0a000-0xfce0afff]
+Sep 15 09:58:25 client2 kernel: [    0.317008] pci 0000:00:02.3: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 cloud-init[593]: |     .   . .     |
+Sep 15 09:58:25 client2 cloud-init[593]: |      o.. . o    |
+Sep 15 09:58:25 client2 cloud-init[593]: |    . .+S. o .   |
+Sep 15 09:58:25 client2 kernel: [    0.319412] pci 0000:00:02.3: reg 0x10: [mem 0xfce0b000-0xfce0bfff]
+Sep 15 09:58:25 client2 cloud-init[593]: |     o .o *      |
+Sep 15 09:58:25 client2 kernel: [    0.321727] pci 0000:00:02.4: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.324102] pci 0000:00:02.4: reg 0x10: [mem 0xfce0c000-0xfce0cfff]
+Sep 15 09:58:25 client2 kernel: [    0.326533] pci 0000:00:02.5: [1b36:000c] type 01 class 0x060400
+Sep 15 09:58:25 client2 kernel: [    0.329252] pci 0000:00:02.5: reg 0x10: [mem 0xfce0d000-0xfce0dfff]
+Sep 15 09:58:25 client2 kernel: [    0.345337] pci 0000:00:1f.0: [8086:2918] type 00 class 0x060100
+Sep 15 09:58:25 client2 kernel: [    0.346183] pci 0000:00:1f.0: quirk: [io  0x0600-0x067f] claimed by ICH6 ACPI/GPIO/TCO
+Sep 15 09:58:25 client2 kernel: [    0.347507] pci 0000:00:1f.2: [8086:2922] type 00 class 0x010601
+Sep 15 09:58:25 client2 kernel: [    0.349851] pci 0000:00:1f.2: reg 0x20: [io  0xc040-0xc05f]
+Sep 15 09:58:25 client2 kernel: [    0.350582] pci 0000:00:1f.2: reg 0x24: [mem 0xfce0e000-0xfce0efff]
+Sep 15 09:58:25 client2 kernel: [    0.351825] pci 0000:00:1f.3: [8086:2930] type 00 class 0x0c0500
+Sep 15 09:58:25 client2 kernel: [    0.353515] pci 0000:00:1f.3: reg 0x20: [io  0x0700-0x073f]
+Sep 15 09:58:25 client2 kernel: [    0.355000] acpiphp: Slot [0] registered
+Sep 15 09:58:25 client2 kernel: [    0.355714] pci 0000:01:00.0: [1af4:1041] type 00 class 0x020000
+Sep 15 09:58:25 client2 kernel: [    0.357828] pci 0000:01:00.0: reg 0x14: [mem 0xfcc80000-0xfcc80fff]
+Sep 15 09:58:25 client2 kernel: [    0.358674] pci 0000:01:00.0: reg 0x20: [mem 0xfea00000-0xfea03fff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.359577] pci 0000:01:00.0: reg 0x30: [mem 0xfcc00000-0xfcc7ffff pref]
+Sep 15 09:58:25 client2 kernel: [    0.375754] pci 0000:00:01.0: PCI bridge to [bus 01]
+Sep 15 09:58:25 client2 kernel: [    0.376439] pci 0000:00:01.0:   bridge window [mem 0xfcc00000-0xfcdfffff]
+Sep 15 09:58:25 client2 kernel: [    0.377312] pci 0000:00:01.0:   bridge window [mem 0xfea00000-0xfebfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.378887] acpiphp: Slot [0-2] registered
+Sep 15 09:58:25 client2 kernel: [    0.379583] pci 0000:02:00.0: [1b36:000d] type 00 class 0x0c0330
+Sep 15 09:58:25 client2 kernel: [    0.381212] pci 0000:02:00.0: reg 0x10: [mem 0xfca00000-0xfca03fff 64bit]
+Sep 15 09:58:25 client2 kernel: [    0.396810] pci 0000:00:01.1: PCI bridge to [bus 02]
+Sep 15 09:58:25 client2 kernel: [    0.397514] pci 0000:00:01.1:   bridge window [mem 0xfca00000-0xfcbfffff]
+Sep 15 09:58:25 client2 kernel: [    0.397836] pci 0000:00:01.1:   bridge window [mem 0xfe800000-0xfe9fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.399754] acpiphp: Slot [0-3] registered
+Sep 15 09:58:25 client2 kernel: [    0.400482] pci 0000:03:00.0: [1af4:1043] type 00 class 0x078000
+Sep 15 09:58:25 client2 kernel: [    0.402634] pci 0000:03:00.0: reg 0x14: [mem 0xfc800000-0xfc800fff]
+Sep 15 09:58:25 client2 kernel: [    0.405495] pci 0000:03:00.0: reg 0x20: [mem 0xfe600000-0xfe603fff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.421653] pci 0000:00:01.2: PCI bridge to [bus 03]
+Sep 15 09:58:25 client2 kernel: [    0.421837] pci 0000:00:01.2:   bridge window [mem 0xfc800000-0xfc9fffff]
+Sep 15 09:58:25 client2 kernel: [    0.422727] pci 0000:00:01.2:   bridge window [mem 0xfe600000-0xfe7fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.424740] acpiphp: Slot [0-4] registered
+Sep 15 09:58:25 client2 kernel: [    0.425485] pci 0000:04:00.0: [1af4:1042] type 00 class 0x010000
+Sep 15 09:58:25 client2 kernel: [    0.427702] pci 0000:04:00.0: reg 0x14: [mem 0xfc600000-0xfc600fff]
+Sep 15 09:58:25 client2 kernel: [    0.428537] pci 0000:04:00.0: reg 0x20: [mem 0xfe400000-0xfe403fff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.444832] pci 0000:00:01.3: PCI bridge to [bus 04]
+Sep 15 09:58:25 client2 kernel: [    0.445518] pci 0000:00:01.3:   bridge window [mem 0xfc600000-0xfc7fffff]
+Sep 15 09:58:25 client2 kernel: [    0.445837] pci 0000:00:01.3:   bridge window [mem 0xfe400000-0xfe5fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.447747] acpiphp: Slot [0-5] registered
+Sep 15 09:58:25 client2 kernel: [    0.448483] pci 0000:05:00.0: [1af4:1045] type 00 class 0x00ff00
+Sep 15 09:58:25 client2 kernel: [    0.450179] pci 0000:05:00.0: reg 0x20: [mem 0xfe200000-0xfe203fff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.466524] pci 0000:00:01.4: PCI bridge to [bus 05]
+Sep 15 09:58:25 client2 kernel: [    0.467238] pci 0000:00:01.4:   bridge window [mem 0xfc400000-0xfc5fffff]
+Sep 15 09:58:25 client2 kernel: [    0.468118] pci 0000:00:01.4:   bridge window [mem 0xfe200000-0xfe3fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.470016] acpiphp: Slot [0-6] registered
+Sep 15 09:58:25 client2 kernel: [    0.470746] pci 0000:06:00.0: [1af4:1044] type 00 class 0x00ff00
+Sep 15 09:58:25 client2 kernel: [    0.473022] pci 0000:06:00.0: reg 0x14: [mem 0xfc200000-0xfc200fff]
+Sep 15 09:58:25 client2 kernel: [    0.473839] pci 0000:06:00.0: reg 0x20: [mem 0xfe000000-0xfe003fff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.490224] pci 0000:00:01.5: PCI bridge to [bus 06]
+Sep 15 09:58:25 client2 kernel: [    0.490936] pci 0000:00:01.5:   bridge window [mem 0xfc200000-0xfc3fffff]
+Sep 15 09:58:25 client2 kernel: [    0.491829] pci 0000:00:01.5:   bridge window [mem 0xfe000000-0xfe1fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.493713] acpiphp: Slot [0-7] registered
+Sep 15 09:58:25 client2 kernel: [    0.507501] pci 0000:00:01.6: PCI bridge to [bus 07]
+Sep 15 09:58:25 client2 kernel: [    0.508184] pci 0000:00:01.6:   bridge window [mem 0xfc000000-0xfc1fffff]
+Sep 15 09:58:25 client2 kernel: [    0.509073] pci 0000:00:01.6:   bridge window [mem 0xfde00000-0xfdffffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.510870] acpiphp: Slot [0-8] registered
+Sep 15 09:58:25 client2 kernel: [    0.525083] pci 0000:00:01.7: PCI bridge to [bus 08]
+Sep 15 09:58:25 client2 kernel: [    0.525776] pci 0000:00:01.7:   bridge window [mem 0xfbe00000-0xfbffffff]
+Sep 15 09:58:25 client2 kernel: [    0.525836] pci 0000:00:01.7:   bridge window [mem 0xfdc00000-0xfddfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.527727] acpiphp: Slot [0-9] registered
+Sep 15 09:58:25 client2 kernel: [    0.541992] pci 0000:00:02.0: PCI bridge to [bus 09]
+Sep 15 09:58:25 client2 kernel: [    0.542683] pci 0000:00:02.0:   bridge window [mem 0xfbc00000-0xfbdfffff]
+Sep 15 09:58:25 client2 cloud-init[593]: |    o  ..@.      |
+Sep 15 09:58:25 client2 kernel: [    0.543558] pci 0000:00:02.0:   bridge window [mem 0xfda00000-0xfdbfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.545417] acpiphp: Slot [0-10] registered
+Sep 15 09:58:25 client2 kernel: [    0.560372] pci 0000:00:02.1: PCI bridge to [bus 0a]
+Sep 15 09:58:25 client2 kernel: [    0.561057] pci 0000:00:02.1:   bridge window [mem 0xfba00000-0xfbbfffff]
+Sep 15 09:58:25 client2 kernel: [    0.561836] pci 0000:00:02.1:   bridge window [mem 0xfd800000-0xfd9fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.563934] acpiphp: Slot [0-11] registered
+Sep 15 09:58:25 client2 kernel: [    0.578129] pci 0000:00:02.2: PCI bridge to [bus 0b]
+Sep 15 09:58:25 client2 kernel: [    0.578813] pci 0000:00:02.2:   bridge window [mem 0xfb800000-0xfb9fffff]
+Sep 15 09:58:25 client2 kernel: [    0.579696] pci 0000:00:02.2:   bridge window [mem 0xfd600000-0xfd7fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.581619] acpiphp: Slot [0-12] registered
+Sep 15 09:58:25 client2 kernel: [    0.595423] pci 0000:00:02.3: PCI bridge to [bus 0c]
+Sep 15 09:58:25 client2 kernel: [    0.597291] pci 0000:00:02.3:   bridge window [mem 0xfb600000-0xfb7fffff]
+Sep 15 09:58:25 client2 kernel: [    0.597839] pci 0000:00:02.3:   bridge window [mem 0xfd400000-0xfd5fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.599841] acpiphp: Slot [0-13] registered
+Sep 15 09:58:25 client2 kernel: [    0.614073] pci 0000:00:02.4: PCI bridge to [bus 0d]
+Sep 15 09:58:25 client2 kernel: [    0.614759] pci 0000:00:02.4:   bridge window [mem 0xfb400000-0xfb5fffff]
+Sep 15 09:58:25 client2 kernel: [    0.615643] pci 0000:00:02.4:   bridge window [mem 0xfd200000-0xfd3fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.617530] acpiphp: Slot [0-14] registered
+Sep 15 09:58:25 client2 kernel: [    0.631390] pci 0000:00:02.5: PCI bridge to [bus 0e]
+Sep 15 09:58:25 client2 kernel: [    0.632067] pci 0000:00:02.5:   bridge window [mem 0xfb200000-0xfb3fffff]
+Sep 15 09:58:25 client2 kernel: [    0.632940] pci 0000:00:02.5:   bridge window [mem 0xfd000000-0xfd1fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.646158] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+Sep 15 09:58:25 client2 kernel: [    0.647035] ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+Sep 15 09:58:25 client2 kernel: [    0.647880] ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+Sep 15 09:58:25 client2 kernel: [    0.648748] ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+Sep 15 09:58:25 client2 kernel: [    0.649596] ACPI: PCI: Interrupt link LNKE configured for IRQ 10
+Sep 15 09:58:25 client2 kernel: [    0.649897] ACPI: PCI: Interrupt link LNKF configured for IRQ 10
+Sep 15 09:58:25 client2 kernel: [    0.650756] ACPI: PCI: Interrupt link LNKG configured for IRQ 11
+Sep 15 09:58:25 client2 kernel: [    0.652571] ACPI: PCI: Interrupt link LNKH configured for IRQ 11
+Sep 15 09:58:25 client2 kernel: [    0.653406] ACPI: PCI: Interrupt link GSIA configured for IRQ 16
+Sep 15 09:58:25 client2 kernel: [    0.653819] ACPI: PCI: Interrupt link GSIB configured for IRQ 17
+Sep 15 09:58:25 client2 kernel: [    0.654621] ACPI: PCI: Interrupt link GSIC configured for IRQ 18
+Sep 15 09:58:25 client2 kernel: [    0.655436] ACPI: PCI: Interrupt link GSID configured for IRQ 19
+Sep 15 09:58:25 client2 kernel: [    0.656206] ACPI: PCI: Interrupt link GSIE configured for IRQ 20
+Sep 15 09:58:25 client2 kernel: [    0.656972] ACPI: PCI: Interrupt link GSIF configured for IRQ 21
+Sep 15 09:58:25 client2 kernel: [    0.657741] ACPI: PCI: Interrupt link GSIG configured for IRQ 22
+Sep 15 09:58:25 client2 kernel: [    0.657815] ACPI: PCI: Interrupt link GSIH configured for IRQ 23
+Sep 15 09:58:25 client2 kernel: [    0.658912] iommu: Default domain type: Translated 
+Sep 15 09:58:25 client2 kernel: [    0.658912] iommu: DMA domain TLB invalidation policy: lazy mode 
+Sep 15 09:58:25 client2 kernel: [    0.659418] SCSI subsystem initialized
+Sep 15 09:58:25 client2 kernel: [    0.659950] libata version 3.00 loaded.
+Sep 15 09:58:25 client2 kernel: [    0.659950] vgaarb: loaded
+Sep 15 09:58:25 client2 kernel: [    0.661832] ACPI: bus type USB registered
+Sep 15 09:58:25 client2 kernel: [    0.662389] usbcore: registered new interface driver usbfs
+Sep 15 09:58:25 client2 kernel: [    0.663093] usbcore: registered new interface driver hub
+Sep 15 09:58:25 client2 kernel: [    0.663782] usbcore: registered new device driver usb
+Sep 15 09:58:25 client2 kernel: [    0.664468] pps_core: LinuxPPS API ver. 1 registered
+Sep 15 09:58:25 client2 kernel: [    0.665110] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+Sep 15 09:58:25 client2 kernel: [    0.665808] PTP clock support registered
+Sep 15 09:58:25 client2 kernel: [    0.666365] EDAC MC: Ver: 3.0.0
+Sep 15 09:58:25 client2 kernel: [    0.666788] NetLabel: Initializing
+Sep 15 09:58:25 client2 kernel: [    0.666788] NetLabel:  domain hash size = 128
+Sep 15 09:58:25 client2 kernel: [    0.667040] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+Sep 15 09:58:25 client2 kernel: [    0.667772] NetLabel:  unlabeled traffic allowed by default
+Sep 15 09:58:25 client2 kernel: [    0.669841] PCI: Using ACPI for IRQ routing
+Sep 15 09:58:25 client2 kernel: [    0.836667] PCI: pci_cache_line_size set to 64 bytes
+Sep 15 09:58:25 client2 kernel: [    0.837049] e820: reserve RAM buffer [mem 0x0009fc00-0x0009ffff]
+Sep 15 09:58:25 client2 kernel: [    0.837054] e820: reserve RAM buffer [mem 0x7ffdc000-0x7fffffff]
+Sep 15 09:58:25 client2 kernel: [    0.837112] clocksource: Switched to clocksource kvm-clock
+Sep 15 09:58:25 client2 kernel: [    0.845449] VFS: Disk quotas dquot_6.6.0
+Sep 15 09:58:25 client2 kernel: [    0.850974] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Sep 15 09:58:25 client2 kernel: [    0.851944] AppArmor: AppArmor Filesystem Enabled
+Sep 15 09:58:25 client2 kernel: [    0.852576] pnp: PnP ACPI init
+Sep 15 09:58:25 client2 kernel: [    0.853207] system 00:04: [mem 0xb0000000-0xbfffffff window] has been reserved
+Sep 15 09:58:25 client2 kernel: [    0.854318] pnp: PnP ACPI: found 5 devices
+Sep 15 09:58:25 client2 kernel: [    0.864404] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+Sep 15 09:58:25 client2 kernel: [    0.865537] NET: Registered PF_INET protocol family
+Sep 15 09:58:25 client2 kernel: [    0.866227] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.867880] tcp_listen_portaddr_hash hash table entries: 1024 (order: 2, 16384 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.868995] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.869976] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.871012] TCP bind hash table entries: 16384 (order: 6, 262144 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.871929] TCP: Hash tables configured (established 16384 bind 16384)
+Sep 15 09:58:25 client2 kernel: [    0.872812] MPTCP token hash table entries: 2048 (order: 4, 49152 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.873731] UDP hash table entries: 1024 (order: 3, 32768 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.874561] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes, linear)
+Sep 15 09:58:25 client2 kernel: [    0.875456] NET: Registered PF_UNIX/PF_LOCAL protocol family
+Sep 15 09:58:25 client2 kernel: [    0.876177] NET: Registered PF_XDP protocol family
+Sep 15 09:58:25 client2 kernel: [    0.876807] pci 0000:00:01.0: bridge window [io  0x1000-0x0fff] to [bus 01] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.877798] pci 0000:00:01.1: bridge window [io  0x1000-0x0fff] to [bus 02] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.878788] pci 0000:00:01.2: bridge window [io  0x1000-0x0fff] to [bus 03] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.879778] pci 0000:00:01.3: bridge window [io  0x1000-0x0fff] to [bus 04] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.880777] pci 0000:00:01.4: bridge window [io  0x1000-0x0fff] to [bus 05] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.881766] pci 0000:00:01.5: bridge window [io  0x1000-0x0fff] to [bus 06] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.882756] pci 0000:00:01.6: bridge window [io  0x1000-0x0fff] to [bus 07] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.883744] pci 0000:00:01.7: bridge window [io  0x1000-0x0fff] to [bus 08] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.884744] pci 0000:00:02.0: bridge window [io  0x1000-0x0fff] to [bus 09] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.885734] pci 0000:00:02.1: bridge window [io  0x1000-0x0fff] to [bus 0a] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.886721] pci 0000:00:02.2: bridge window [io  0x1000-0x0fff] to [bus 0b] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.887708] pci 0000:00:02.3: bridge window [io  0x1000-0x0fff] to [bus 0c] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.888714] pci 0000:00:02.4: bridge window [io  0x1000-0x0fff] to [bus 0d] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.889702] pci 0000:00:02.5: bridge window [io  0x1000-0x0fff] to [bus 0e] add_size 1000
+Sep 15 09:58:25 client2 kernel: [    0.890706] pci 0000:00:01.0: BAR 13: assigned [io  0x1000-0x1fff]
+Sep 15 09:58:25 client2 kernel: [    0.891470] pci 0000:00:01.1: BAR 13: assigned [io  0x2000-0x2fff]
+Sep 15 09:58:25 client2 kernel: [    0.892244] pci 0000:00:01.2: BAR 13: assigned [io  0x3000-0x3fff]
+Sep 15 09:58:25 client2 kernel: [    0.893010] pci 0000:00:01.3: BAR 13: assigned [io  0x4000-0x4fff]
+Sep 15 09:58:25 client2 kernel: [    0.893779] pci 0000:00:01.4: BAR 13: assigned [io  0x5000-0x5fff]
+Sep 15 09:58:25 client2 kernel: [    0.894540] pci 0000:00:01.5: BAR 13: assigned [io  0x6000-0x6fff]
+Sep 15 09:58:25 client2 kernel: [    0.895305] pci 0000:00:01.6: BAR 13: assigned [io  0x7000-0x7fff]
+Sep 15 09:58:25 client2 kernel: [    0.896079] pci 0000:00:01.7: BAR 13: assigned [io  0x8000-0x8fff]
+Sep 15 09:58:25 client2 kernel: [    0.896843] pci 0000:00:02.0: BAR 13: assigned [io  0x9000-0x9fff]
+Sep 15 09:58:25 client2 kernel: [    0.897604] pci 0000:00:02.1: BAR 13: assigned [io  0xa000-0xafff]
+Sep 15 09:58:25 client2 kernel: [    0.898371] pci 0000:00:02.2: BAR 13: assigned [io  0xb000-0xbfff]
+Sep 15 09:58:25 client2 kernel: [    0.899136] pci 0000:00:02.3: BAR 13: assigned [io  0xd000-0xdfff]
+Sep 15 09:58:25 client2 kernel: [    0.899906] pci 0000:00:02.4: BAR 13: assigned [io  0xe000-0xefff]
+Sep 15 09:58:25 client2 kernel: [    0.900674] pci 0000:00:02.5: BAR 13: assigned [io  0xf000-0xffff]
+Sep 15 09:58:25 client2 kernel: [    0.901437] pci 0000:00:01.0: PCI bridge to [bus 01]
+Sep 15 09:58:25 client2 kernel: [    0.902093] pci 0000:00:01.0:   bridge window [io  0x1000-0x1fff]
+Sep 15 09:58:25 client2 kernel: [    0.904630] pci 0000:00:01.0:   bridge window [mem 0xfcc00000-0xfcdfffff]
+Sep 15 09:58:25 client2 kernel: [    0.906479] pci 0000:00:01.0:   bridge window [mem 0xfea00000-0xfebfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.909387] pci 0000:00:01.1: PCI bridge to [bus 02]
+Sep 15 09:58:25 client2 kernel: [    0.910048] pci 0000:00:01.1:   bridge window [io  0x2000-0x2fff]
+Sep 15 09:58:25 client2 kernel: [    0.912332] pci 0000:00:01.1:   bridge window [mem 0xfca00000-0xfcbfffff]
+Sep 15 09:58:25 client2 kernel: [    0.914246] pci 0000:00:01.1:   bridge window [mem 0xfe800000-0xfe9fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.917373] pci 0000:00:01.2: PCI bridge to [bus 03]
+Sep 15 09:58:25 client2 kernel: [    0.918026] pci 0000:00:01.2:   bridge window [io  0x3000-0x3fff]
+Sep 15 09:58:25 client2 kernel: [    0.919756] pci 0000:00:01.2:   bridge window [mem 0xfc800000-0xfc9fffff]
+Sep 15 09:58:25 client2 kernel: [    0.921476] pci 0000:00:01.2:   bridge window [mem 0xfe600000-0xfe7fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.924502] pci 0000:00:01.3: PCI bridge to [bus 04]
+Sep 15 09:58:25 client2 kernel: [    0.925151] pci 0000:00:01.3:   bridge window [io  0x4000-0x4fff]
+Sep 15 09:58:25 client2 kernel: [    0.930956] pci 0000:00:01.3:   bridge window [mem 0xfc600000-0xfc7fffff]
+Sep 15 09:58:25 client2 kernel: [    0.933111] pci 0000:00:01.3:   bridge window [mem 0xfe400000-0xfe5fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.935253] pci 0000:00:01.4: PCI bridge to [bus 05]
+Sep 15 09:58:25 client2 kernel: [    0.935911] pci 0000:00:01.4:   bridge window [io  0x5000-0x5fff]
+Sep 15 09:58:25 client2 kernel: [    0.937578] pci 0000:00:01.4:   bridge window [mem 0xfc400000-0xfc5fffff]
+Sep 15 09:58:25 client2 kernel: [    0.939960] pci 0000:00:01.4:   bridge window [mem 0xfe200000-0xfe3fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.941945] pci 0000:00:01.5: PCI bridge to [bus 06]
+Sep 15 09:58:25 client2 kernel: [    0.942587] pci 0000:00:01.5:   bridge window [io  0x6000-0x6fff]
+Sep 15 09:58:25 client2 kernel: [    0.944218] pci 0000:00:01.5:   bridge window [mem 0xfc200000-0xfc3fffff]
+Sep 15 09:58:25 client2 kernel: [    0.945660] pci 0000:00:01.5:   bridge window [mem 0xfe000000-0xfe1fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.947893] pci 0000:00:01.6: PCI bridge to [bus 07]
+Sep 15 09:58:25 client2 kernel: [    0.948546] pci 0000:00:01.6:   bridge window [io  0x7000-0x7fff]
+Sep 15 09:58:25 client2 kernel: [    0.952145] pci 0000:00:01.6:   bridge window [mem 0xfc000000-0xfc1fffff]
+Sep 15 09:58:25 client2 kernel: [    0.953825] pci 0000:00:01.6:   bridge window [mem 0xfde00000-0xfdffffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.955786] pci 0000:00:01.7: PCI bridge to [bus 08]
+Sep 15 09:58:25 client2 kernel: [    0.956436] pci 0000:00:01.7:   bridge window [io  0x8000-0x8fff]
+Sep 15 09:58:25 client2 kernel: [    0.958005] pci 0000:00:01.7:   bridge window [mem 0xfbe00000-0xfbffffff]
+Sep 15 09:58:25 client2 kernel: [    0.959517] pci 0000:00:01.7:   bridge window [mem 0xfdc00000-0xfddfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.963811] pci 0000:00:02.0: PCI bridge to [bus 09]
+Sep 15 09:58:25 client2 kernel: [    0.964591] pci 0000:00:02.0:   bridge window [io  0x9000-0x9fff]
+Sep 15 09:58:25 client2 kernel: [    0.966122] pci 0000:00:02.0:   bridge window [mem 0xfbc00000-0xfbdfffff]
+Sep 15 09:58:25 client2 kernel: [    0.967442] pci 0000:00:02.0:   bridge window [mem 0xfda00000-0xfdbfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.969419] pci 0000:00:02.1: PCI bridge to [bus 0a]
+Sep 15 09:58:25 client2 kernel: [    0.970068] pci 0000:00:02.1:   bridge window [io  0xa000-0xafff]
+Sep 15 09:58:25 client2 kernel: [    0.972374] pci 0000:00:02.1:   bridge window [mem 0xfba00000-0xfbbfffff]
+Sep 15 09:58:25 client2 kernel: [    0.976303] pci 0000:00:02.1:   bridge window [mem 0xfd800000-0xfd9fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.978426] pci 0000:00:02.2: PCI bridge to [bus 0b]
+Sep 15 09:58:25 client2 kernel: [    0.979071] pci 0000:00:02.2:   bridge window [io  0xb000-0xbfff]
+Sep 15 09:58:25 client2 kernel: [    0.980687] pci 0000:00:02.2:   bridge window [mem 0xfb800000-0xfb9fffff]
+Sep 15 09:58:25 client2 kernel: [    0.982056] pci 0000:00:02.2:   bridge window [mem 0xfd600000-0xfd7fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.984037] pci 0000:00:02.3: PCI bridge to [bus 0c]
+Sep 15 09:58:25 client2 kernel: [    0.985748] pci 0000:00:02.3:   bridge window [io  0xd000-0xdfff]
+Sep 15 09:58:25 client2 kernel: [    0.987482] pci 0000:00:02.3:   bridge window [mem 0xfb600000-0xfb7fffff]
+Sep 15 09:58:25 client2 kernel: [    0.989022] pci 0000:00:02.3:   bridge window [mem 0xfd400000-0xfd5fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.990951] pci 0000:00:02.4: PCI bridge to [bus 0d]
+Sep 15 09:58:25 client2 kernel: [    0.991591] pci 0000:00:02.4:   bridge window [io  0xe000-0xefff]
+Sep 15 09:58:25 client2 kernel: [    0.993138] pci 0000:00:02.4:   bridge window [mem 0xfb400000-0xfb5fffff]
+Sep 15 09:58:25 client2 kernel: [    0.994532] pci 0000:00:02.4:   bridge window [mem 0xfd200000-0xfd3fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    0.997102] pci 0000:00:02.5: PCI bridge to [bus 0e]
+Sep 15 09:58:25 client2 kernel: [    1.000650] pci 0000:00:02.5:   bridge window [io  0xf000-0xffff]
+Sep 15 09:58:25 client2 kernel: [    1.003948] pci 0000:00:02.5:   bridge window [mem 0xfb200000-0xfb3fffff]
+Sep 15 09:58:25 client2 kernel: [    1.005331] pci 0000:00:02.5:   bridge window [mem 0xfd000000-0xfd1fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.007280] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+Sep 15 09:58:25 client2 kernel: [    1.008059] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+Sep 15 09:58:25 client2 kernel: [    1.008852] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+Sep 15 09:58:25 client2 kernel: [    1.010694] pci_bus 0000:00: resource 7 [mem 0x80000000-0xafffffff window]
+Sep 15 09:58:25 client2 kernel: [    1.011604] pci_bus 0000:00: resource 8 [mem 0xc0000000-0xfebfffff window]
+Sep 15 09:58:25 client2 kernel: [    1.012542] pci_bus 0000:00: resource 9 [mem 0x100000000-0x8ffffffff window]
+Sep 15 09:58:25 client2 kernel: [    1.013479] pci_bus 0000:01: resource 0 [io  0x1000-0x1fff]
+Sep 15 09:58:25 client2 kernel: [    1.014241] pci_bus 0000:01: resource 1 [mem 0xfcc00000-0xfcdfffff]
+Sep 15 09:58:25 client2 kernel: [    1.015091] pci_bus 0000:01: resource 2 [mem 0xfea00000-0xfebfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.015981] pci_bus 0000:02: resource 0 [io  0x2000-0x2fff]
+Sep 15 09:58:25 client2 kernel: [    1.016691] pci_bus 0000:02: resource 1 [mem 0xfca00000-0xfcbfffff]
+Sep 15 09:58:25 client2 kernel: [    1.017467] pci_bus 0000:02: resource 2 [mem 0xfe800000-0xfe9fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.018364] pci_bus 0000:03: resource 0 [io  0x3000-0x3fff]
+Sep 15 09:58:25 client2 kernel: [    1.019066] pci_bus 0000:03: resource 1 [mem 0xfc800000-0xfc9fffff]
+Sep 15 09:58:25 client2 kernel: [    1.019845] pci_bus 0000:03: resource 2 [mem 0xfe600000-0xfe7fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.020747] pci_bus 0000:04: resource 0 [io  0x4000-0x4fff]
+Sep 15 09:58:25 client2 kernel: [    1.021447] pci_bus 0000:04: resource 1 [mem 0xfc600000-0xfc7fffff]
+Sep 15 09:58:25 client2 kernel: [    1.022224] pci_bus 0000:04: resource 2 [mem 0xfe400000-0xfe5fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.023115] pci_bus 0000:05: resource 0 [io  0x5000-0x5fff]
+Sep 15 09:58:25 client2 kernel: [    1.023825] pci_bus 0000:05: resource 1 [mem 0xfc400000-0xfc5fffff]
+Sep 15 09:58:25 client2 kernel: [    1.024607] pci_bus 0000:05: resource 2 [mem 0xfe200000-0xfe3fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.025498] pci_bus 0000:06: resource 0 [io  0x6000-0x6fff]
+Sep 15 09:58:25 client2 kernel: [    1.026205] pci_bus 0000:06: resource 1 [mem 0xfc200000-0xfc3fffff]
+Sep 15 09:58:25 client2 kernel: [    1.026992] pci_bus 0000:06: resource 2 [mem 0xfe000000-0xfe1fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.027884] pci_bus 0000:07: resource 0 [io  0x7000-0x7fff]
+Sep 15 09:58:25 client2 kernel: [    1.028592] pci_bus 0000:07: resource 1 [mem 0xfc000000-0xfc1fffff]
+Sep 15 09:58:25 client2 kernel: [    1.029372] pci_bus 0000:07: resource 2 [mem 0xfde00000-0xfdffffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.030264] pci_bus 0000:08: resource 0 [io  0x8000-0x8fff]
+Sep 15 09:58:25 client2 kernel: [    1.030970] pci_bus 0000:08: resource 1 [mem 0xfbe00000-0xfbffffff]
+Sep 15 09:58:25 client2 kernel: [    1.031756] pci_bus 0000:08: resource 2 [mem 0xfdc00000-0xfddfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.032653] pci_bus 0000:09: resource 0 [io  0x9000-0x9fff]
+Sep 15 09:58:25 client2 kernel: [    1.033348] pci_bus 0000:09: resource 1 [mem 0xfbc00000-0xfbdfffff]
+Sep 15 09:58:25 client2 kernel: [    1.034124] pci_bus 0000:09: resource 2 [mem 0xfda00000-0xfdbfffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.035017] pci_bus 0000:0a: resource 0 [io  0xa000-0xafff]
+Sep 15 09:58:25 client2 kernel: [    1.035716] pci_bus 0000:0a: resource 1 [mem 0xfba00000-0xfbbfffff]
+Sep 15 09:58:25 client2 kernel: [    1.036498] pci_bus 0000:0a: resource 2 [mem 0xfd800000-0xfd9fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.037388] pci_bus 0000:0b: resource 0 [io  0xb000-0xbfff]
+Sep 15 09:58:25 client2 kernel: [    1.038088] pci_bus 0000:0b: resource 1 [mem 0xfb800000-0xfb9fffff]
+Sep 15 09:58:25 client2 kernel: [    1.038861] pci_bus 0000:0b: resource 2 [mem 0xfd600000-0xfd7fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.039750] pci_bus 0000:0c: resource 0 [io  0xd000-0xdfff]
+Sep 15 09:58:25 client2 kernel: [    1.040454] pci_bus 0000:0c: resource 1 [mem 0xfb600000-0xfb7fffff]
+Sep 15 09:58:25 client2 kernel: [    1.041229] pci_bus 0000:0c: resource 2 [mem 0xfd400000-0xfd5fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.042116] pci_bus 0000:0d: resource 0 [io  0xe000-0xefff]
+Sep 15 09:58:25 client2 kernel: [    1.042817] pci_bus 0000:0d: resource 1 [mem 0xfb400000-0xfb5fffff]
+Sep 15 09:58:25 client2 kernel: [    1.043590] pci_bus 0000:0d: resource 2 [mem 0xfd200000-0xfd3fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.044492] pci_bus 0000:0e: resource 0 [io  0xf000-0xffff]
+Sep 15 09:58:25 client2 kernel: [    1.045192] pci_bus 0000:0e: resource 1 [mem 0xfb200000-0xfb3fffff]
+Sep 15 09:58:25 client2 kernel: [    1.045971] pci_bus 0000:0e: resource 2 [mem 0xfd000000-0xfd1fffff 64bit pref]
+Sep 15 09:58:25 client2 kernel: [    1.047413] ACPI: \_SB_.GSIF: Enabled at IRQ 21
+Sep 15 09:58:25 client2 kernel: [    1.049807] PCI: CLS 0 bytes, default 64
+Sep 15 09:58:25 client2 kernel: [    1.050399] Trying to unpack rootfs image as initramfs...
+Sep 15 09:58:25 client2 kernel: [    1.052384] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x229835b7123, max_idle_ns: 440795242976 ns
+Sep 15 09:58:25 client2 kernel: [    1.055702] Initialise system trusted keyrings
+Sep 15 09:58:25 client2 kernel: [    1.056306] Key type blacklist registered
+Sep 15 09:58:25 client2 kernel: [    1.056885] workingset: timestamp_bits=36 max_order=19 bucket_order=0
+Sep 15 09:58:25 client2 kernel: [    1.058933] zbud: loaded
+Sep 15 09:58:25 client2 kernel: [    1.059537] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Sep 15 09:58:25 client2 kernel: [    1.060427] fuse: init (API version 7.34)
+Sep 15 09:58:25 client2 kernel: [    1.061133] integrity: Platform Keyring initialized
+Sep 15 09:58:25 client2 kernel: [    1.074718] Key type asymmetric registered
+Sep 15 09:58:25 client2 kernel: [    1.075261] Asymmetric key parser 'x509' registered
+Sep 15 09:58:25 client2 kernel: [    1.075912] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+Sep 15 09:58:25 client2 kernel: [    1.076880] io scheduler mq-deadline registered
+Sep 15 09:58:25 client2 kernel: [    1.080283] pcieport 0000:00:01.0: PME: Signaling with IRQ 24
+Sep 15 09:58:25 client2 kernel: [    1.081212] pcieport 0000:00:01.0: AER: enabled with IRQ 24
+Sep 15 09:58:25 client2 kernel: [    1.083220] pcieport 0000:00:01.1: PME: Signaling with IRQ 25
+Sep 15 09:58:25 client2 kernel: [    1.084141] pcieport 0000:00:01.1: AER: enabled with IRQ 25
+Sep 15 09:58:25 client2 kernel: [    1.087635] pcieport 0000:00:01.2: PME: Signaling with IRQ 26
+Sep 15 09:58:25 client2 kernel: [    1.088537] pcieport 0000:00:01.2: AER: enabled with IRQ 26
+Sep 15 09:58:25 client2 kernel: [    1.091902] pcieport 0000:00:01.3: PME: Signaling with IRQ 27
+Sep 15 09:58:25 client2 kernel: [    1.092828] pcieport 0000:00:01.3: AER: enabled with IRQ 27
+Sep 15 09:58:25 client2 kernel: [    1.096936] pcieport 0000:00:01.4: PME: Signaling with IRQ 28
+Sep 15 09:58:25 client2 kernel: [    1.097938] pcieport 0000:00:01.4: AER: enabled with IRQ 28
+Sep 15 09:58:25 client2 kernel: [    1.100653] pcieport 0000:00:01.5: PME: Signaling with IRQ 29
+Sep 15 09:58:25 client2 kernel: [    1.101548] pcieport 0000:00:01.5: AER: enabled with IRQ 29
+Sep 15 09:58:25 client2 kernel: [    1.106339] pcieport 0000:00:01.6: PME: Signaling with IRQ 30
+Sep 15 09:58:25 client2 kernel: [    1.107249] pcieport 0000:00:01.6: AER: enabled with IRQ 30
+Sep 15 09:58:25 client2 kernel: [    1.109710] pcieport 0000:00:01.7: PME: Signaling with IRQ 31
+Sep 15 09:58:25 client2 kernel: [    1.110593] pcieport 0000:00:01.7: AER: enabled with IRQ 31
+Sep 15 09:58:25 client2 kernel: [    1.111842] ACPI: \_SB_.GSIG: Enabled at IRQ 22
+Sep 15 09:58:25 client2 kernel: [    1.113606] pcieport 0000:00:02.0: PME: Signaling with IRQ 32
+Sep 15 09:58:25 client2 kernel: [    1.114484] pcieport 0000:00:02.0: AER: enabled with IRQ 32
+Sep 15 09:58:25 client2 kernel: [    1.117538] pcieport 0000:00:02.1: PME: Signaling with IRQ 33
+Sep 15 09:58:25 client2 kernel: [    1.118443] pcieport 0000:00:02.1: AER: enabled with IRQ 33
+Sep 15 09:58:25 client2 kernel: [    1.120809] pcieport 0000:00:02.2: PME: Signaling with IRQ 34
+Sep 15 09:58:25 client2 kernel: [    1.121706] pcieport 0000:00:02.2: AER: enabled with IRQ 34
+Sep 15 09:58:25 client2 kernel: [    1.124119] pcieport 0000:00:02.3: PME: Signaling with IRQ 35
+Sep 15 09:58:25 client2 kernel: [    1.125000] pcieport 0000:00:02.3: AER: enabled with IRQ 35
+Sep 15 09:58:25 client2 kernel: [    1.129135] pcieport 0000:00:02.4: PME: Signaling with IRQ 36
+Sep 15 09:58:25 client2 kernel: [    1.130021] pcieport 0000:00:02.4: AER: enabled with IRQ 36
+Sep 15 09:58:25 client2 kernel: [    1.132305] pcieport 0000:00:02.5: PME: Signaling with IRQ 37
+Sep 15 09:58:25 client2 kernel: [    1.133205] pcieport 0000:00:02.5: AER: enabled with IRQ 37
+Sep 15 09:58:25 client2 kernel: [    1.134215] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+Sep 15 09:58:25 client2 kernel: [    1.135160] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+Sep 15 09:58:25 client2 kernel: [    1.136112] ACPI: button: Power Button [PWRF]
+Sep 15 09:58:25 client2 kernel: [    1.144047] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+Sep 15 09:58:25 client2 kernel: [    1.171342] 00:00: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+Sep 15 09:58:25 client2 kernel: [    1.185233] Linux agpgart interface v0.103
+Sep 15 09:58:25 client2 kernel: [    1.187242] loop: module loaded
+Sep 15 09:58:25 client2 kernel: [    1.187954] tun: Universal TUN/TAP device driver, 1.6
+Sep 15 09:58:25 client2 kernel: [    1.188650] PPP generic driver version 2.4.2
+Sep 15 09:58:25 client2 kernel: [    1.189245] VFIO - User Level meta-driver version: 0.3
+Sep 15 09:58:25 client2 kernel: [    1.190002] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+Sep 15 09:58:25 client2 kernel: [    1.190816] ehci-pci: EHCI PCI platform driver
+Sep 15 09:58:25 client2 kernel: [    1.191400] ehci-platform: EHCI generic platform driver
+Sep 15 09:58:25 client2 kernel: [    1.192089] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+Sep 15 09:58:25 client2 kernel: [    1.192871] ohci-pci: OHCI PCI platform driver
+Sep 15 09:58:25 client2 kernel: [    1.193453] ohci-platform: OHCI generic platform driver
+Sep 15 09:58:25 client2 kernel: [    1.194121] uhci_hcd: USB Universal Host Controller Interface driver
+Sep 15 09:58:25 client2 kernel: [    1.194973] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+Sep 15 09:58:25 client2 kernel: [    1.196728] serio: i8042 KBD port at 0x60,0x64 irq 1
+Sep 15 09:58:25 client2 cloud-init[593]: |   ..OBoX=+      |
+Sep 15 09:58:25 client2 cloud-init[593]: |  .+**OXBO=.     |
+Sep 15 09:58:25 client2 cloud-init[593]: +----[SHA256]-----+
+Sep 15 09:58:25 client2 systemd[1]: Finished Cloud-init: Network Stage.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Cloud-config availability.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Network is Online.
+Sep 15 09:58:25 client2 systemd[1]: Reached target System Initialization.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Process error reports when automatic reporting is enabled (file watch) being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Process error reports when automatic reporting is enabled (timer based) being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Started Daily apt download activities.
+Sep 15 09:58:25 client2 systemd[1]: Started Daily apt upgrade and clean activities.
+Sep 15 09:58:25 client2 systemd[1]: Started Daily dpkg database backup timer.
+Sep 15 09:58:25 client2 systemd[1]: Started Periodic ext4 Online Metadata Check for All Filesystems.
+Sep 15 09:58:25 client2 systemd[1]: Started Discard unused blocks once a week.
+Sep 15 09:58:25 client2 systemd[1]: Started Daily rotation of log files.
+Sep 15 09:58:25 client2 systemd[1]: Started Daily man-db regeneration.
+Sep 15 09:58:25 client2 systemd[1]: Started Message of the Day.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Timer to automatically fetch and run repair assertions being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Started Daily Cleanup of Temporary Directories.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Ubuntu Pro Timer for running repeated jobs being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Started Download data for packages that failed at package install time.
+Sep 15 09:58:25 client2 systemd[1]: Started Check to see whether there is a new version of Ubuntu available.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Path Units.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Timer Units.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Unix socket for apport crash forwarding being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Listening on cloud-init hotplug hook socket.
+Sep 15 09:58:25 client2 systemd[1]: Listening on D-Bus System Message Bus Socket.
+Sep 15 09:58:25 client2 systemd[1]: Listening on Open-iSCSI iscsid Socket.
+Sep 15 09:58:25 client2 systemd[1]: Starting Socket activation for snappy daemon...
+Sep 15 09:58:25 client2 systemd[1]: Listening on UUID daemon activation socket.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Login to default iSCSI targets being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Preparation for Remote File Systems.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Remote File Systems.
+Sep 15 09:58:25 client2 systemd[1]: Finished Availability of block devices.
+Sep 15 09:58:25 client2 systemd[1]: Listening on Socket activation for snappy daemon.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Socket Units.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Basic System.
+Sep 15 09:58:25 client2 systemd[1]: Starting LSB: automatic crash report generation...
+Sep 15 09:58:25 client2 systemd[1]: Started Regular background program processing daemon.
+Sep 15 09:58:25 client2 systemd[1]: Started D-Bus System Message Bus.
+Sep 15 09:58:25 client2 cron[673]: (CRON) INFO (pidfile fd = 3)
+Sep 15 09:58:25 client2 systemd[1]: Started Save initial kernel messages after boot.
+Sep 15 09:58:25 client2 systemd[1]: Starting Remove Stale Online ext4 Metadata Check Snapshots...
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in getty on tty2-tty6 if dbus and logind are not available being skipped.
+Sep 15 09:58:25 client2 cron[673]: (CRON) INFO (Running @reboot jobs)
+Sep 15 09:58:25 client2 systemd[1]: Starting Record successful boot for GRUB...
+Sep 15 09:58:25 client2 systemd[1]: Started irqbalance daemon.
+Sep 15 09:58:25 client2 systemd[1]: Starting Dispatcher daemon for systemd-networkd...
+Sep 15 09:58:25 client2 systemd[1]: Starting Pollinate to seed the pseudo random number generator...
+Sep 15 09:58:25 client2 systemd[1]: Starting System Logging Service...
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Secure Boot updates for DB and DBX being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Automatically repair incorrect owner/permissions on core devices being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Wait for the Ubuntu Core chooser trigger being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Reached target Preparation for Logins.
+Sep 15 09:58:25 client2 systemd[1]: Starting Wait until snapd is fully seeded...
+Sep 15 09:58:25 client2 systemd[1]: Starting Snap Daemon...
+Sep 15 09:58:25 client2 systemd[1]: Starting User Login Management...
+Sep 15 09:58:25 client2 systemd[1]: Starting Permit User Sessions...
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Ubuntu Pro reboot cmds being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Condition check resulted in Ubuntu Pro Background Auto Attach being skipped.
+Sep 15 09:58:25 client2 systemd[1]: Finished Permit User Sessions.
+Sep 15 09:58:25 client2 dbus-daemon[674]: [system] AppArmor D-Bus mediation is enabled
+Sep 15 09:58:25 client2 dbus-daemon[674]: [system] Activating systemd to hand-off: service name='org.freedesktop.hostname1' unit='dbus-org.freedesktop.hostname1.service' requested by ':1.2' (uid=100 pid=586 comm="/lib/systemd/systemd-networkd " label="unconfined")
+Sep 15 09:58:25 client2 systemd[1]: Starting Hold until boot process finishes up...
+Sep 15 09:58:25 client2 apport[672]:  * Starting automatic crash report generation: apport
+Sep 15 09:58:25 client2 systemd[1]: Starting Terminate Plymouth Boot Screen...
+Sep 15 09:58:25 client2 apport[672]:    ...done.
+Sep 15 09:58:25 client2 systemd[1]: Started LSB: automatic crash report generation.
+Sep 15 09:58:25 client2 systemd[1]: e2scrub_reap.service: Deactivated successfully.
+Sep 15 09:58:25 client2 systemd[1]: Finished Remove Stale Online ext4 Metadata Check Snapshots.
+Sep 15 09:58:25 client2 systemd[1]: Finished Hold until boot process finishes up.
+Sep 15 09:58:25 client2 pollinate[683]: client sent challenge to [https://entropy.ubuntu.com/]
+Sep 15 09:58:25 client2 systemd[1]: Finished Terminate Plymouth Boot Screen.
+Sep 15 09:58:25 client2 systemd[1]: grub-common.service: Deactivated successfully.
+Sep 15 09:58:25 client2 systemd[1]: Finished Record successful boot for GRUB.
+Sep 15 09:58:25 client2 rsyslogd: imuxsock: Acquired UNIX socket '/run/systemd/journal/syslog' (fd 3) from systemd.  [v8.2112.0]
+Sep 15 09:58:25 client2 rsyslogd: rsyslogd's groupid changed to 111
+Sep 15 09:58:25 client2 rsyslogd: rsyslogd's userid changed to 104
+Sep 15 09:58:25 client2 rsyslogd: [origin software="rsyslogd" swVersion="8.2112.0" x-pid="684" x-info="https://www.rsyslog.com"] start
+Sep 15 09:58:25 client2 kernel: [    1.197374] serio: i8042 AUX port at 0x60,0x64 irq 12
+Sep 15 09:58:25 client2 kernel: [    1.198129] mousedev: PS/2 mouse device common for all mice
+Sep 15 09:58:25 client2 kernel: [    1.199088] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+Sep 15 09:58:25 client2 kernel: [    1.200311] rtc_cmos 00:03: RTC can wake from S4
+Sep 15 09:58:25 client2 kernel: [    1.202188] rtc_cmos 00:03: registered as rtc0
+Sep 15 09:58:25 client2 kernel: [    1.202846] rtc_cmos 00:03: setting system clock to 2026-09-15T09:58:14 UTC (1789466294)
+Sep 15 09:58:25 client2 kernel: [    1.203914] rtc_cmos 00:03: alarms up to one day, y3k, 242 bytes nvram
+Sep 15 09:58:25 client2 kernel: [    1.204751] i2c_dev: i2c /dev entries driver
+Sep 15 09:58:25 client2 kernel: [    1.205339] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+Sep 15 09:58:25 client2 kernel: [    1.206838] device-mapper: uevent: version 1.0.3
+Sep 15 09:58:25 client2 kernel: [    1.207484] device-mapper: ioctl: 4.45.0-ioctl (2021-03-22) initialised: dm-devel@redhat.com
+Sep 15 09:58:25 client2 kernel: [    1.208531] intel_pstate: CPU model not supported
+Sep 15 09:58:25 client2 kernel: [    1.209170] ledtrig-cpu: registered to indicate activity on CPUs
+Sep 15 09:58:25 client2 kernel: [    1.210014] drop_monitor: Initializing network drop monitor service
+Sep 15 09:58:25 client2 kernel: [    1.210959] NET: Registered PF_INET6 protocol family
+Sep 15 09:58:25 client2 kernel: [    1.294005] Freeing initrd memory: 32984K
+Sep 15 09:58:25 client2 kernel: [    1.302708] Segment Routing with IPv6
+Sep 15 09:58:25 client2 kernel: [    1.303861] In-situ OAM (IOAM) with IPv6
+Sep 15 09:58:25 client2 kernel: [    1.305109] NET: Registered PF_PACKET protocol family
+Sep 15 09:58:25 client2 kernel: [    1.306803] Key type dns_resolver registered
+Sep 15 09:58:25 client2 kernel: [    1.307897] IPI shorthand broadcast: enabled
+Sep 15 09:58:25 client2 kernel: [    1.308468] sched_clock: Marking stable (1208375135, 100067654)->(1428654091, -120211302)
+Sep 15 09:58:25 client2 kernel: [    1.309673] registered taskstats version 1
+Sep 15 09:58:25 client2 kernel: [    1.310376] Loading compiled-in X.509 certificates
+Sep 15 09:58:25 client2 kernel: [    1.311775] Loaded X.509 cert 'Build time autogenerated kernel key: 405e7f0477227417f009abe98221ccdeeab94868'
+Sep 15 09:58:25 client2 kernel: [    1.313474] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+Sep 15 09:58:25 client2 kernel: [    1.315258] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+Sep 15 09:58:25 client2 kernel: [    1.316965] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+Sep 15 09:58:25 client2 kernel: [    1.318116] blacklist: Loading compiled-in revocation X.509 certificates
+Sep 15 09:58:25 client2 kernel: [    1.318926] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+Sep 15 09:58:25 client2 kernel: [    1.320089] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+Sep 15 09:58:25 client2 kernel: [    1.321294] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+Sep 15 09:58:25 client2 kernel: [    1.322537] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+Sep 15 09:58:25 client2 kernel: [    1.323756] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+Sep 15 09:58:25 client2 kernel: [    1.325003] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+Sep 15 09:58:25 client2 kernel: [    1.326237] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+Sep 15 09:58:25 client2 kernel: [    1.327472] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+Sep 15 09:58:25 client2 kernel: [    1.328885] zswap: loaded using pool lzo/zbud
+Sep 15 09:58:25 client2 kernel: [    1.329837] Key type .fscrypt registered
+Sep 15 09:58:25 client2 kernel: [    1.330340] Key type fscrypt-provisioning registered
+Sep 15 09:58:25 client2 kernel: [    1.334642] Key type encrypted registered
+Sep 15 09:58:25 client2 kernel: [    1.335726] AppArmor: AppArmor sha1 policy hashing enabled
+Sep 15 09:58:25 client2 kernel: [    1.337175] ima: No TPM chip found, activating TPM-bypass!
+Sep 15 09:58:25 client2 kernel: [    1.338297] Loading compiled-in module X.509 certificates
+Sep 15 09:58:25 client2 kernel: [    1.339530] Loaded X.509 cert 'Build time autogenerated kernel key: 405e7f0477227417f009abe98221ccdeeab94868'
+Sep 15 09:58:25 client2 kernel: [    1.340702] ima: Allocated hash algorithm: sha1
+Sep 15 09:58:25 client2 kernel: [    1.341273] ima: No architecture policies found
+Sep 15 09:58:25 client2 kernel: [    1.341853] evm: Initialising EVM extended attributes:
+Sep 15 09:58:25 client2 kernel: [    1.342482] evm: security.selinux
+Sep 15 09:58:25 client2 kernel: [    1.342927] evm: security.SMACK64
+Sep 15 09:58:25 client2 kernel: [    1.343362] evm: security.SMACK64EXEC
+Sep 15 09:58:25 client2 kernel: [    1.343837] evm: security.SMACK64TRANSMUTE
+Sep 15 09:58:25 client2 kernel: [    1.344363] evm: security.SMACK64MMAP
+Sep 15 09:58:25 client2 kernel: [    1.344838] evm: security.apparmor
+Sep 15 09:58:25 client2 kernel: [    1.345282] evm: security.ima
+Sep 15 09:58:25 client2 kernel: [    1.345682] evm: security.capability
+Sep 15 09:58:25 client2 kernel: [    1.346144] evm: HMAC attrs: 0x1
+Sep 15 09:58:25 client2 kernel: [    1.346871] PM:   Magic number: 10:541:980
+Sep 15 09:58:25 client2 kernel: [    1.347854] RAS: Correctable Errors collector initialized.
+Sep 15 09:58:25 client2 kernel: [    1.348562] clk: Disabling unused clocks
+Sep 15 09:58:25 client2 kernel: [    1.354442] Freeing unused decrypted memory: 2036K
+Sep 15 09:58:25 client2 kernel: [    1.355848] Freeing unused kernel image (initmem) memory: 3296K
+Sep 15 09:58:25 client2 kernel: [    1.356585] Write protecting the kernel read-only data: 30720k
+Sep 15 09:58:25 client2 kernel: [    1.357962] Freeing unused kernel image (text/rodata gap) memory: 2036K
+Sep 15 09:58:25 client2 kernel: [    1.359068] Freeing unused kernel image (rodata/data gap) memory: 1288K
+Sep 15 09:58:25 client2 kernel: [    1.374663] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+Sep 15 09:58:25 client2 kernel: [    1.375434] Run /init as init process
+Sep 15 09:58:25 client2 kernel: [    1.375912]   with arguments:
+Sep 15 09:58:25 client2 kernel: [    1.375913]     /init
+Sep 15 09:58:25 client2 kernel: [    1.375914]   with environment:
+Sep 15 09:58:25 client2 kernel: [    1.375915]     HOME=/
+Sep 15 09:58:25 client2 kernel: [    1.375916]     TERM=linux
+Sep 15 09:58:25 client2 kernel: [    1.468503] xhci_hcd 0000:02:00.0: xHCI Host Controller
+Sep 15 09:58:25 client2 kernel: [    1.469585] xhci_hcd 0000:02:00.0: new USB bus registered, assigned bus number 1
+Sep 15 09:58:25 client2 kernel: [    1.471546] xhci_hcd 0000:02:00.0: hcc params 0x00087001 hci version 0x100 quirks 0x0000000000000010
+Sep 15 09:58:25 client2 kernel: [    1.471865] virtio_blk virtio2: [vda] 41943040 512-byte logical blocks (21.5 GB/20.0 GiB)
+Sep 15 09:58:25 client2 kernel: [    1.475367] xhci_hcd 0000:02:00.0: xHCI Host Controller
+Sep 15 09:58:25 client2 kernel: [    1.476888] xhci_hcd 0000:02:00.0: new USB bus registered, assigned bus number 2
+Sep 15 09:58:25 client2 kernel: [    1.477822] xhci_hcd 0000:02:00.0: Host supports USB 3.0 SuperSpeed
+Sep 15 09:58:25 client2 kernel: [    1.478704] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.15
+Sep 15 09:58:25 client2 kernel: [    1.479740] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Sep 15 09:58:25 client2 kernel: [    1.480654] usb usb1: Product: xHCI Host Controller
+Sep 15 09:58:25 client2 kernel: [    1.481284] usb usb1: Manufacturer: Linux 5.15.0-173-generic xhci-hcd
+Sep 15 09:58:25 client2 kernel: [    1.482089] usb usb1: SerialNumber: 0000:02:00.0
+Sep 15 09:58:25 client2 kernel: [    1.486593] hub 1-0:1.0: USB hub found
+Sep 15 09:58:25 client2 kernel: [    1.487261] hub 1-0:1.0: 15 ports detected
+Sep 15 09:58:25 client2 kernel: [    1.493676] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+Sep 15 09:58:25 client2 kernel: [    1.495669] ahci 0000:00:1f.2: version 3.0
+Sep 15 09:58:25 client2 kernel: [    1.496174] ACPI: \_SB_.GSIA: Enabled at IRQ 16
+Sep 15 09:58:25 client2 kernel: [    1.496228] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input4
+Sep 15 09:58:25 client2 kernel: [    1.497635] ahci 0000:00:1f.2: AHCI 0001.0000 32 slots 6 ports 1.5 Gbps 0x3f impl SATA mode
+Sep 15 09:58:25 client2 kernel: [    1.498071] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.15
+Sep 15 09:58:25 client2 kernel: [    1.499134] ahci 0000:00:1f.2: flags: 64bit ncq only 
+Sep 15 09:58:25 client2 kernel: [    1.500151] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Sep 15 09:58:25 client2 kernel: [    1.501712] usb usb2: Product: xHCI Host Controller
+Sep 15 09:58:25 client2 kernel: [    1.502336] usb usb2: Manufacturer: Linux 5.15.0-173-generic xhci-hcd
+Sep 15 09:58:25 client2 kernel: [    1.503130] usb usb2: SerialNumber: 0000:02:00.0
+Sep 15 09:58:25 client2 kernel: [    1.503958] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+Sep 15 09:58:25 client2 kernel: [    1.505910] hub 2-0:1.0: USB hub found
+Sep 15 09:58:25 client2 kernel: [    1.506676] hub 2-0:1.0: 15 ports detected
+Sep 15 09:58:25 client2 kernel: [    1.511563] GPT:Primary header thinks Alt. header is not at the end of the disk.
+Sep 15 09:58:25 client2 kernel: [    1.512527] GPT:4612095 != 41943039
+Sep 15 09:58:25 client2 kernel: [    1.513019] GPT:Alternate GPT header not at the end of the disk.
+Sep 15 09:58:25 client2 kernel: [    1.513764] GPT:4612095 != 41943039
+Sep 15 09:58:25 client2 kernel: [    1.514233] GPT: Use GNU Parted to correct GPT errors.
+Sep 15 09:58:25 client2 kernel: [    1.514891]  vda: vda1 vda14 vda15
+Sep 15 09:58:25 client2 kernel: [    1.515410] cryptd: max_cpu_qlen set to 1000
+Sep 15 09:58:25 client2 kernel: [    1.521492] AVX2 version of gcm_enc/dec engaged.
+Sep 15 09:58:25 client2 kernel: [    1.522406] AES CTR mode by8 optimization enabled
+Sep 15 09:58:25 client2 kernel: [    1.531927] scsi host0: ahci
+Sep 15 09:58:25 client2 kernel: [    1.532842] scsi host1: ahci
+Sep 15 09:58:25 client2 kernel: [    1.533534] scsi host2: ahci
+Sep 15 09:58:25 client2 kernel: [    1.534243] scsi host3: ahci
+Sep 15 09:58:25 client2 kernel: [    1.534961] scsi host4: ahci
+Sep 15 09:58:25 client2 kernel: [    1.538048] scsi host5: ahci
+Sep 15 09:58:25 client2 kernel: [    1.543646] virtio_net virtio0 enp1s0: renamed from eth0
+Sep 15 09:58:25 client2 kernel: [    1.544961] ata1: SATA max UDMA/133 abar m4096@0xfce0e000 port 0xfce0e100 irq 51
+Sep 15 09:58:25 client2 kernel: [    1.546146] ata2: SATA max UDMA/133 abar m4096@0xfce0e000 port 0xfce0e180 irq 51
+Sep 15 09:58:25 client2 kernel: [    1.547178] ata3: SATA max UDMA/133 abar m4096@0xfce0e000 port 0xfce0e200 irq 51
+Sep 15 09:58:25 client2 kernel: [    1.548309] ata4: SATA max UDMA/133 abar m4096@0xfce0e000 port 0xfce0e280 irq 51
+Sep 15 09:58:25 client2 kernel: [    1.549679] ata5: SATA max UDMA/133 abar m4096@0xfce0e000 port 0xfce0e300 irq 51
+Sep 15 09:58:25 client2 kernel: [    1.550687] ata6: SATA max UDMA/133 abar m4096@0xfce0e000 port 0xfce0e380 irq 51
+Sep 15 09:58:25 client2 kernel: [    1.868272] ata2: SATA link down (SStatus 0 SControl 300)
+Sep 15 09:58:25 client2 kernel: [    1.869962] ata3: SATA link down (SStatus 0 SControl 300)
+Sep 15 09:58:25 client2 kernel: [    1.871572] ata4: SATA link down (SStatus 0 SControl 300)
+Sep 15 09:58:25 client2 kernel: [    1.872520] ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Sep 15 09:58:25 client2 kernel: [    1.873517] ata6: SATA link down (SStatus 0 SControl 300)
+Sep 15 09:58:25 client2 kernel: [    1.874265] ata1.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+Sep 15 09:58:25 client2 kernel: [    1.875026] ata1.00: applying bridge limits
+Sep 15 09:58:25 client2 kernel: [    1.875738] ata5: SATA link down (SStatus 0 SControl 300)
+Sep 15 09:58:25 client2 kernel: [    1.876514] ata1.00: configured for UDMA/100
+Sep 15 09:58:25 client2 kernel: [    1.877337] scsi 0:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+Sep 15 09:58:25 client2 kernel: [    1.878683] sr 0:0:0:0: [sr0] scsi3-mmc drive: 4x/4x cd/rw xa/form2 tray
+Sep 15 09:58:25 client2 kernel: [    1.879556] cdrom: Uniform CD-ROM driver Revision: 3.20
+Sep 15 09:58:25 client2 kernel: [    1.909076] sr 0:0:0:0: Attached scsi CD-ROM sr0
+Sep 15 09:58:25 client2 kernel: [    1.909335] sr 0:0:0:0: Attached scsi generic sg0 type 5
+Sep 15 09:58:25 client2 kernel: [    3.188072] raid6: avx512x4 gen() 28317 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.256072] raid6: avx512x4 xor()  8559 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.324072] raid6: avx512x2 gen() 39758 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.392072] raid6: avx512x2 xor() 21470 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.460076] raid6: avx512x1 gen() 34804 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.528080] raid6: avx512x1 xor() 16494 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.596073] raid6: avx2x4   gen() 23417 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.664073] raid6: avx2x4   xor()  5589 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.732074] raid6: avx2x2   gen() 25865 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.800075] raid6: avx2x2   xor() 18496 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.868072] raid6: avx2x1   gen() 22295 MB/s
+Sep 15 09:58:25 client2 kernel: [    3.936071] raid6: avx2x1   xor() 14398 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.004073] raid6: sse2x4   gen()  8499 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.072072] raid6: sse2x4   xor()  4887 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.140072] raid6: sse2x2   gen()  8490 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.208073] raid6: sse2x2   xor()  5499 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.276073] raid6: sse2x1   gen()  7810 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.344073] raid6: sse2x1   xor()  4211 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.344644] raid6: using algorithm avx512x2 gen() 39758 MB/s
+Sep 15 09:58:25 client2 kernel: [    4.345341] raid6: .... xor() 21470 MB/s, rmw enabled
+Sep 15 09:58:25 client2 kernel: [    4.345981] raid6: using avx512x2 recovery algorithm
+Sep 15 09:58:25 client2 kernel: [    4.348943] xor: automatically using best checksumming function   avx       
+Sep 15 09:58:25 client2 kernel: [    4.351386] async_tx: api initialized (async)
+Sep 15 09:58:25 client2 kernel: [    4.430425] Btrfs loaded, crc32c=crc32c-intel, zoned=yes, fsverity=yes
+Sep 15 09:58:25 client2 kernel: [    4.508056] EXT4-fs (vda1): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+Sep 15 09:58:25 client2 kernel: [    4.843299] systemd[1]: Inserted module 'autofs4'
+Sep 15 09:58:25 client2 kernel: [    4.882145] systemd[1]: systemd 249.11-0ubuntu3.17 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+Sep 15 09:58:25 client2 kernel: [    4.886939] systemd[1]: Detected virtualization kvm.
+Sep 15 09:58:25 client2 kernel: [    4.887596] systemd[1]: Detected architecture x86-64.
+Sep 15 09:58:25 client2 kernel: [    4.891925] systemd[1]: Hostname set to <ubuntu>.
+Sep 15 09:58:25 client2 kernel: [    4.899727] systemd[1]: Initializing machine ID from VM UUID.
+Sep 15 09:58:25 client2 kernel: [    4.901191] systemd[1]: Installed transient /etc/machine-id file.
+Sep 15 09:58:25 client2 kernel: [    5.130931] systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Sep 15 09:58:25 client2 kernel: [    5.188329] systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Sep 15 09:58:25 client2 kernel: [    5.393168] systemd[1]: Queued start job for default target Graphical Interface.
+Sep 15 09:58:25 client2 kernel: [    5.395854] systemd[1]: Created slice Slice /system/modprobe.
+Sep 15 09:58:25 client2 kernel: [    5.397684] systemd[1]: Created slice Slice /system/serial-getty.
+Sep 15 09:58:25 client2 kernel: [    5.399437] systemd[1]: Created slice Slice /system/systemd-fsck.
+Sep 15 09:58:25 client2 kernel: [    5.401110] systemd[1]: Created slice User and Session Slice.
+Sep 15 09:58:25 client2 kernel: [    5.402566] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+Sep 15 09:58:25 client2 kernel: [    5.404552] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+Sep 15 09:58:25 client2 kernel: [    5.406658] systemd[1]: Reached target Slice Units.
+Sep 15 09:58:25 client2 kernel: [    5.407868] systemd[1]: Reached target Mounting snaps.
+Sep 15 09:58:25 client2 kernel: [    5.409153] systemd[1]: Reached target Swaps.
+Sep 15 09:58:25 client2 kernel: [    5.410278] systemd[1]: Reached target Local Verity Protected Volumes.
+Sep 15 09:58:25 client2 kernel: [    5.411875] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+Sep 15 09:58:25 client2 kernel: [    5.413555] systemd[1]: Listening on LVM2 poll daemon socket.
+Sep 15 09:58:25 client2 kernel: [    5.415028] systemd[1]: Listening on multipathd control socket.
+Sep 15 09:58:25 client2 kernel: [    5.416561] systemd[1]: Listening on Syslog Socket.
+Sep 15 09:58:25 client2 kernel: [    5.417842] systemd[1]: Listening on fsck to fsckd communication Socket.
+Sep 15 09:58:25 client2 kernel: [    5.419515] systemd[1]: Listening on initctl Compatibility Named Pipe.
+Sep 15 09:58:25 client2 kernel: [    5.421254] systemd[1]: Listening on Journal Audit Socket.
+Sep 15 09:58:25 client2 kernel: [    5.422682] systemd[1]: Listening on Journal Socket (/dev/log).
+Sep 15 09:58:25 client2 kernel: [    5.424203] systemd[1]: Listening on Journal Socket.
+Sep 15 09:58:25 client2 kernel: [    5.425533] systemd[1]: Listening on Network Service Netlink Socket.
+Sep 15 09:58:25 client2 kernel: [    5.427157] systemd[1]: Listening on udev Control Socket.
+Sep 15 09:58:25 client2 kernel: [    5.428563] systemd[1]: Listening on udev Kernel Socket.
+Sep 15 09:58:25 client2 kernel: [    5.430667] systemd[1]: Mounting Huge Pages File System...
+Sep 15 09:58:25 client2 kernel: [    5.432712] systemd[1]: Mounting POSIX Message Queue File System...
+Sep 15 09:58:25 client2 kernel: [    5.435622] systemd[1]: Mounting Kernel Debug File System...
+Sep 15 09:58:25 client2 kernel: [    5.437759] systemd[1]: Mounting Kernel Trace File System...
+Sep 15 09:58:25 client2 kernel: [    5.440597] systemd[1]: Starting Journal Service...
+Sep 15 09:58:25 client2 kernel: [    5.442772] systemd[1]: Starting Set the console keyboard layout...
+Sep 15 09:58:25 client2 kernel: [    5.445074] systemd[1]: Starting Create List of Static Device Nodes...
+Sep 15 09:58:25 client2 kernel: [    5.447312] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+Sep 15 09:58:25 client2 kernel: [    5.450627] systemd[1]: Condition check resulted in LXD - agent being skipped.
+Sep 15 09:58:25 client2 kernel: [    5.453159] systemd[1]: Starting Load Kernel Module configfs...
+Sep 15 09:58:25 client2 kernel: [    5.456318] systemd[1]: Starting Load Kernel Module drm...
+Sep 15 09:58:25 client2 kernel: [    5.460025] systemd[1]: Starting Load Kernel Module efi_pstore...
+Sep 15 09:58:25 client2 kernel: [    5.462310] systemd[1]: Starting Load Kernel Module fuse...
+Sep 15 09:58:25 client2 kernel: [    5.470465] systemd[1]: Condition check resulted in OpenVSwitch configuration for cleanup being skipped.
+Sep 15 09:58:25 client2 kernel: [    5.473050] systemd[1]: Starting File System Check on Root Device...
+Sep 15 09:58:25 client2 kernel: [    5.500081] systemd[1]: Starting Load Kernel Modules...
+Sep 15 09:58:25 client2 kernel: [    5.506002] systemd[1]: Starting Coldplug All udev Devices...
+Sep 15 09:58:25 client2 kernel: [    5.508855] systemd[1]: Mounted Huge Pages File System.
+Sep 15 09:58:25 client2 kernel: [    5.509695] systemd[1]: Mounted POSIX Message Queue File System.
+Sep 15 09:58:25 client2 kernel: [    5.510875] systemd[1]: Mounted Kernel Debug File System.
+Sep 15 09:58:25 client2 kernel: [    5.512036] systemd[1]: Mounted Kernel Trace File System.
+Sep 15 09:58:25 client2 kernel: [    5.514356] systemd[1]: Finished Create List of Static Device Nodes.
+Sep 15 09:58:25 client2 kernel: [    5.516251] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+Sep 15 09:58:25 client2 kernel: [    5.518983] systemd[1]: Finished Load Kernel Module configfs.
+Sep 15 09:58:25 client2 kernel: [    5.520845] systemd[1]: Finished Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+Sep 15 09:58:25 client2 kernel: [    5.522646] systemd[1]: modprobe@drm.service: Deactivated successfully.
+Sep 15 09:58:25 client2 kernel: [    5.524780] systemd[1]: Finished Load Kernel Module drm.
+Sep 15 09:58:25 client2 kernel: [    5.526888] systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+Sep 15 09:58:25 client2 kernel: [    5.528573] systemd[1]: Finished Load Kernel Module efi_pstore.
+Sep 15 09:58:25 client2 kernel: [    5.529781] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+Sep 15 09:58:25 client2 kernel: [    5.531361] systemd[1]: Finished Load Kernel Module fuse.
+Sep 15 09:58:25 client2 kernel: [    5.532990] systemd[1]: Finished Load Kernel Modules.
+Sep 15 09:58:25 client2 kernel: [    5.536390] systemd[1]: Mounting FUSE Control File System...
+Sep 15 09:58:25 client2 kernel: [    5.539179] systemd[1]: Mounting Kernel Configuration File System...
+Sep 15 09:58:25 client2 kernel: [    5.553918] systemd[1]: Started File System Check Daemon to report status.
+Sep 15 09:58:25 client2 kernel: [    5.557634] systemd[1]: Starting Apply Kernel Variables...
+Sep 15 09:58:25 client2 kernel: [    5.562450] systemd[1]: Finished Set the console keyboard layout.
+Sep 15 09:58:25 client2 kernel: [    5.564573] systemd[1]: Finished File System Check on Root Device.
+Sep 15 09:58:25 client2 kernel: [    5.567756] systemd[1]: Mounted FUSE Control File System.
+Sep 15 09:58:25 client2 kernel: [    5.576582] systemd[1]: Started Journal Service.
+Sep 15 09:58:25 client2 kernel: [    5.600188] EXT4-fs (vda1): re-mounted. Opts: discard,errors=remount-ro. Quota mode: none.
+Sep 15 09:58:25 client2 kernel: [    5.618516] alua: device handler registered
+Sep 15 09:58:25 client2 kernel: [    5.618762] systemd-journald[394]: Received client request to flush runtime journal.
+Sep 15 09:58:25 client2 kernel: [    5.620507] emc: device handler registered
+Sep 15 09:58:25 client2 kernel: [    5.624280] rdac: device handler registered
+Sep 15 09:58:25 client2 kernel: [    5.737105] loop0: detected capacity change from 0 to 130608
+Sep 15 09:58:25 client2 kernel: [    5.740346] loop1: detected capacity change from 0 to 187728
+Sep 15 09:58:25 client2 kernel: [    5.747400] loop2: detected capacity change from 0 to 99056
+Sep 15 09:58:25 client2 kernel: [    6.318845] audit: type=1400 audit(1789466299.612:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=521 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.320484] audit: type=1400 audit(1789466299.616:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=521 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.344517] audit: type=1400 audit(1789466299.640:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=520 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.472807] audit: type=1400 audit(1789466299.768:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ubuntu_pro_apt_news" pid=525 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.515906] audit: type=1400 audit(1789466299.808:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=524 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.517798] audit: type=1400 audit(1789466299.812:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=524 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.519501] audit: type=1400 audit(1789466299.812:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=524 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.523036] audit: type=1400 audit(1789466299.816:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/{,usr/}sbin/dhclient" pid=524 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.607789] audit: type=1400 audit(1789466299.900:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/bin/man" pid=527 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    6.609076] audit: type=1400 audit(1789466299.904:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="man_filter" pid=527 comm="apparmor_parser"
+Sep 15 09:58:25 client2 kernel: [    8.435834] ISO 9660 Extensions: Microsoft Joliet Level 3
+Sep 15 09:58:25 client2 kernel: [    8.436606] ISO 9660 Extensions: RRIP_1991A
+Sep 15 09:58:25 client2 kernel: [   11.192803] EXT4-fs (vda1): resizing filesystem from 548091 to 5214459 blocks
+Sep 15 09:58:25 client2 kernel: [   11.336798] EXT4-fs (vda1): resized filesystem to 5214459
+Sep 15 09:58:25 client2 dbus-daemon[674]: [system] Successfully activated service 'org.freedesktop.systemd1'
+Sep 15 09:58:25 client2 systemd[1]: Started System Logging Service.
+Sep 15 09:58:25 client2 systemd[1]: Starting GRUB failed boot detection...
+Sep 15 09:58:25 client2 systemd[1]: Started Serial Getty on ttyS0.
+Sep 15 09:58:25 client2 systemd[1]: Starting Set console scheme...
+Sep 15 09:58:25 client2 systemd[1]: Starting Hostname Service...
+Sep 15 09:58:25 client2 systemd[1]: Finished Set console scheme.
+Sep 15 09:58:25 client2 systemd[1]: Started User Login Management.
+Sep 15 09:58:25 client2 systemd[1]: Created slice Slice /system/getty.
+Sep 15 09:58:26 client2 systemd[1]: Started Getty on tty1.
+Sep 15 09:58:26 client2 systemd[1]: Reached target Login Prompts.
+Sep 15 09:58:26 client2 systemd[1]: Started Unattended Upgrades Shutdown.
+Sep 15 09:58:26 client2 systemd[1]: grub-initrd-fallback.service: Deactivated successfully.
+Sep 15 09:58:26 client2 systemd[1]: Finished GRUB failed boot detection.
+Sep 15 09:58:26 client2 networkd-dispatcher[682]: No valid path found for iwconfig
+Sep 15 09:58:26 client2 networkd-dispatcher[682]: No valid path found for iw
+Sep 15 09:58:26 client2 systemd[1]: Started Dispatcher daemon for systemd-networkd.
+Sep 15 09:58:26 client2 dbus-daemon[674]: [system] Successfully activated service 'org.freedesktop.hostname1'
+Sep 15 09:58:26 client2 dbus-daemon[674]: [system] Activating via systemd: service name='org.freedesktop.PolicyKit1' unit='polkit.service' requested by ':1.7' (uid=0 pid=736 comm="/lib/systemd/systemd-hostnamed " label="unconfined")
+Sep 15 09:58:26 client2 systemd[1]: Started Hostname Service.
+Sep 15 09:58:26 client2 systemd[1]: Starting Authorization Manager...
+Sep 15 09:58:26 client2 polkitd[760]: started daemon version 0.105 using authority implementation `local' version `0.105'
+Sep 15 09:58:26 client2 dbus-daemon[674]: [system] Successfully activated service 'org.freedesktop.PolicyKit1'
+Sep 15 09:58:26 client2 systemd[1]: Started Authorization Manager.
+Sep 15 09:58:26 client2 systemd-hostnamed[736]: Hostname set to <client2> (static)
+Sep 15 09:58:26 client2 pollinate[683]: WARNING: Network communication failed [60]   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current#012                                 Dload  Upload   Total   Spent    Left  Speed#012#015  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     009:58:26.678600 *   Trying 185.125.189.54:443...#01209:58:26.833323 * Connected to entropy.ubuntu.com (185.125.189.54) port 443 (#0)#01209:58:26.835522 * ALPN, offering h2#01209:58:26.835567 * ALPN, offering http/1.1#01209:58:26.841963 *  CAfile: /etc/pollinate/entropy.ubuntu.com.pem#01209:58:26.842020 *  CApath: /dev/null#01209:58:26.843580 * TLSv1.0 (OUT), TLS header, Certificate Status (22):#01209:58:26.843624 } [5 bytes data]#01209:58:26.843704 * TLSv1.3 (OUT), TLS handshake, Client hello (1):#01209:58:26.843732 } [512 bytes data]#01209:58:27.019143 * TLSv1.2 (IN), TLS header, Certificate Status (22):#01209:58:27.019206 { [5 bytes data]#01209:58:27.019290 * TLSv1.3 (IN), TLS handshake, Server hello (2):#01209:58:27.019319 { [122 bytes data]#01209:58:27.019665 * TLSv1.2 (I
+Sep 15 09:58:26 client2 systemd[1]: pollinate.service: Deactivated successfully.
+Sep 15 09:58:26 client2 systemd[1]: Finished Pollinate to seed the pseudo random number generator.
+Sep 15 09:58:26 client2 systemd[1]: Starting OpenBSD Secure Shell server...
+Sep 15 09:58:26 client2 systemd[1]: Started OpenBSD Secure Shell server.
+Sep 15 09:58:29 client2 snapd[686]: overlord.go:294: Acquiring state lock file
+Sep 15 09:58:29 client2 snapd[686]: overlord.go:299: Acquired state lock file
+Sep 15 09:58:29 client2 snapd[686]: patch.go:64: Patching system state level 6 to sublevel 1...
+Sep 15 09:58:29 client2 snapd[686]: patch.go:64: Patching system state level 6 to sublevel 2...
+Sep 15 09:58:29 client2 snapd[686]: patch.go:64: Patching system state level 6 to sublevel 3...
+Sep 15 09:58:29 client2 snapd[686]: daemon.go:276: started snapd/2.74.1 (series 16; classic) ubuntu/22.04 (amd64) linux/5.15.0-173-generic.
+Sep 15 09:58:29 client2 kernel: [   15.996901] loop3: detected capacity change from 0 to 8
+Sep 15 09:58:29 client2 systemd[1]: tmp-syscheck\x2dmountpoint\x2d88537241.mount: Deactivated successfully.
+Sep 15 09:58:29 client2 snapd[686]: daemon.go:370: adjusting startup timeout by 45s (pessimistic estimate of 30s plus 5s per snap)
+Sep 15 09:58:29 client2 snapd[686]: backends.go:70: AppArmor status: apparmor is enabled and all features are available (using snapd provided apparmor_parser)
+Sep 15 09:58:29 client2 snapd[686]: backend.go:141: delegating reload of snap-confine profiles to system snap security profiles setup
+Sep 15 09:58:29 client2 snapd[686]: standby.go:95: will consider standby after: 5s
+Sep 15 09:58:29 client2 systemd[1]: Started Snap Daemon.
+Sep 15 09:58:30 client2 systemd[1]: Started snap.lxd.hook.install-3fce2f9c-820b-4e4e-b913-f6c15e04d76f.scope.
+Sep 15 09:58:30 client2 systemd[1]: tmp-snap.rootfs_fl8ZkF.mount: Deactivated successfully.
+Sep 15 09:58:30 client2 systemd[1]: dmesg.service: Deactivated successfully.
+Sep 15 09:58:30 client2 systemd[1]: snap.lxd.hook.install-3fce2f9c-820b-4e4e-b913-f6c15e04d76f.scope: Deactivated successfully.
+Sep 15 09:58:30 client2 systemd[1]: Reloading.
+Sep 15 09:58:31 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Sep 15 09:58:31 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Sep 15 09:58:31 client2 systemd[1]: Listening on Socket unix for snap application lxd.user-daemon.
+Sep 15 09:58:31 client2 systemd[1]: Listening on Socket unix for snap application lxd.daemon.
+Sep 15 09:58:31 client2 systemd[1]: Starting Service for snap application lxd.activate...
+Sep 15 09:58:31 client2 lxd.activate[921]: => Starting LXD activation
+Sep 15 09:58:31 client2 lxd.activate[921]: ==> Creating missing snap configuration
+Sep 15 09:58:31 client2 lxd.activate[921]: ==> Loading snap configuration
+Sep 15 09:58:31 client2 lxd.activate[921]: ==> Checking for socket activation support
+Sep 15 09:58:32 client2 lxd.activate[921]: ==> Creating "lxd" user
+Sep 15 09:58:32 client2 lxd.activate[921]: ==> Setting LXD socket ownership
+Sep 15 09:58:32 client2 lxd.activate[921]: ==> Setting LXD user socket ownership
+Sep 15 09:58:32 client2 lxd.activate[921]: ==> LXD never started on this system, no need to start it now
+Sep 15 09:58:32 client2 systemd[1]: snap.lxd.activate.service: Deactivated successfully.
+Sep 15 09:58:32 client2 systemd[1]: Finished Service for snap application lxd.activate.
+Sep 15 09:58:32 client2 systemd[1]: Started snap.lxd.hook.configure-0b4515db-2394-4c2f-a354-04fd0881c092.scope.
+Sep 15 09:58:32 client2 systemd[1]: snap.lxd.hook.configure-0b4515db-2394-4c2f-a354-04fd0881c092.scope: Deactivated successfully.
+Sep 15 09:58:32 client2 dbus-daemon[674]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.12' (uid=0 pid=686 comm="/snap/snapd/current/usr/lib/snapd/snapd " label="unconfined")
+Sep 15 09:58:32 client2 systemd[1]: Starting Time & Date Service...
+Sep 15 09:58:32 client2 dbus-daemon[674]: [system] Successfully activated service 'org.freedesktop.timedate1'
+Sep 15 09:58:32 client2 systemd[1]: Started Time & Date Service.
+Sep 15 09:58:33 client2 snapd[686]: snapmgr.go:1659: performing periodic snap downloads cache cleanup
+Sep 15 09:58:33 client2 snapd[686]: snapmgr.go:1669: cannot clean store downloads cache: open /var/lib/snapd/cache: no such file or directory
+Sep 15 09:58:34 client2 systemd[1]: Finished Wait until snapd is fully seeded.
+Sep 15 09:58:34 client2 systemd[1]: Starting Cloud-init: Config Stage...
+Sep 15 09:58:34 client2 systemd[1]: Condition check resulted in Auto import assertions from block devices being skipped.
+Sep 15 09:58:34 client2 systemd[1]: Reached target Multi-User System.
+Sep 15 09:58:34 client2 systemd[1]: Reached target Graphical Interface.
+Sep 15 09:58:34 client2 systemd[1]: Starting Record Runlevel Change in UTMP...
+Sep 15 09:58:34 client2 systemd[1]: systemd-update-utmp-runlevel.service: Deactivated successfully.
+Sep 15 09:58:34 client2 systemd[1]: Finished Record Runlevel Change in UTMP.
+Sep 15 09:58:34 client2 cloud-init[1333]: Cloud-init v. 25.3-0ubuntu1~22.04.1 running 'modules:config' at Tue, 15 Sep 2026 09:58:34 +0000. Up 21.09 seconds.
+Sep 15 09:58:35 client2 systemd[1]: Finished Cloud-init: Config Stage.
+Sep 15 09:58:35 client2 systemd[1]: Starting Cloud-init: Final Stage...
+Sep 15 09:58:35 client2 cloud-init[1345]: Cloud-init v. 25.3-0ubuntu1~22.04.1 running 'modules:final' at Tue, 15 Sep 2026 09:58:35 +0000. Up 21.95 seconds.
+Sep 15 09:58:35 client2 cloud-init: #############################################################
+Sep 15 09:58:35 client2 cloud-init: -----BEGIN SSH HOST KEY FINGERPRINTS-----
+Sep 15 09:58:35 client2 cloud-init: 256 SHA256:/h9l6SMB9dp8Hqh9Xzc5fIxb2LMkUGpxkUZ/BlqroHM root@client2 (ECDSA)
+Sep 15 09:58:35 client2 cloud-init: 256 SHA256:hrKr583nv0yuO3Jljqg3y0jPeuPlmzbNVIPonToBA4A root@client2 (ED25519)
+Sep 15 09:58:35 client2 cloud-init: 3072 SHA256:04UG0RL7/cd1T3sEZ2rpUuxAtAQIeCjpT1lcYx8nVg8 root@client2 (RSA)
+Sep 15 09:58:35 client2 cloud-init: -----END SSH HOST KEY FINGERPRINTS-----
+Sep 15 09:58:35 client2 cloud-init: #############################################################
+Sep 15 09:58:35 client2 cloud-init[1345]: Cloud-init v. 25.3-0ubuntu1~22.04.1 finished at Tue, 15 Sep 2026 09:58:35 +0000. Datasource DataSourceNoCloud [seed=/dev/sr0].  Up 22.11 seconds
+Sep 15 09:58:35 client2 systemd[1]: Finished Cloud-init: Final Stage.
+Sep 15 09:58:35 client2 systemd[1]: Reached target Cloud-init target.
+Sep 15 09:58:35 client2 systemd[1]: Startup finished in 4.684s (kernel) + 17.498s (userspace) = 22.183s.
+Sep 15 09:58:49 client2 systemd[1]: systemd-fsckd.service: Deactivated successfully.
+Sep 15 09:58:53 client2 systemd-timesyncd[518]: Initial synchronization to time server 91.189.91.157:123 (ntp.ubuntu.com).
+Sep 15 09:58:56 client2 systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+Sep 15 09:59:03 client2 systemd[1]: systemd-timedated.service: Deactivated successfully.
+Sep 15 10:03:29 client2 systemd[1]: Starting Download data for packages that failed at package install time...
+Sep 15 10:03:29 client2 systemd[1]: update-notifier-download.service: Deactivated successfully.
+Sep 15 10:03:29 client2 systemd[1]: Finished Download data for packages that failed at package install time.
+Sep 15 10:03:33 client2 dbus-daemon[674]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.12' (uid=0 pid=686 comm="/snap/snapd/current/usr/lib/snapd/snapd " label="unconfined")
+Sep 15 10:03:33 client2 systemd[1]: Starting Time & Date Service...
+Sep 15 10:03:33 client2 dbus-daemon[674]: [system] Successfully activated service 'org.freedesktop.timedate1'
+Sep 15 10:03:33 client2 systemd[1]: Started Time & Date Service.
+Sep 15 10:04:03 client2 systemd[1]: systemd-timedated.service: Deactivated successfully.
+Sep 15 10:13:29 client2 systemd[1]: Starting Cleanup of Temporary Directories...
+Sep 15 10:13:29 client2 systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+Sep 15 10:13:29 client2 systemd[1]: Finished Cleanup of Temporary Directories.
+Sep 15 10:17:01 client2 CRON[1375]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Sep 15 10:18:49 client2 systemd[1]: Created slice User Slice of UID 1000.
+Sep 15 10:18:49 client2 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Sep 15 10:18:49 client2 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Sep 15 10:18:49 client2 systemd[1]: Starting User Manager for UID 1000...
+Sep 15 10:18:49 client2 systemd[1381]: Queued start job for default target Main User Target.
+Sep 15 10:18:49 client2 systemd[1381]: Created slice User Application Slice.
+Sep 15 10:18:49 client2 systemd[1381]: Reached target Paths.
+Sep 15 10:18:49 client2 systemd[1381]: Reached target Timers.
+Sep 15 10:18:49 client2 systemd[1381]: Starting D-Bus User Message Bus Socket...
+Sep 15 10:18:49 client2 systemd[1381]: Listening on GnuPG network certificate management daemon.
+Sep 15 10:18:49 client2 systemd[1381]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 10:18:49 client2 systemd[1381]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 10:18:49 client2 systemd[1381]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 10:18:49 client2 systemd[1381]: Listening on GnuPG cryptographic agent and passphrase cache.
+Sep 15 10:18:49 client2 systemd[1381]: Listening on debconf communication socket.
+Sep 15 10:18:49 client2 systemd[1381]: Listening on REST API socket for snapd user session agent.
+Sep 15 10:18:49 client2 systemd[1381]: Listening on D-Bus User Message Bus Socket.
+Sep 15 10:18:49 client2 systemd[1381]: Reached target Sockets.
+Sep 15 10:18:49 client2 systemd[1381]: Reached target Basic System.
+Sep 15 10:18:49 client2 systemd[1381]: Reached target Main User Target.
+Sep 15 10:18:49 client2 systemd[1381]: Startup finished in 111ms.
+Sep 15 10:18:49 client2 systemd[1]: Started User Manager for UID 1000.
+Sep 15 10:18:49 client2 systemd[1]: Started Session 2 of User student.
+Sep 15 10:18:50 client2 systemd[1]: Started Session 4 of User student.
+Sep 15 10:18:51 client2 systemd[1]: session-4.scope: Deactivated successfully.
+Sep 15 10:18:51 client2 systemd[1]: Started Session 5 of User student.
+Sep 15 10:18:51 client2 systemd[1]: session-5.scope: Deactivated successfully.
+Sep 15 10:18:52 client2 systemd[1]: Started Session 6 of User student.
+Sep 15 10:18:52 client2 systemd[1]: session-6.scope: Deactivated successfully.
+Sep 15 10:18:53 client2 systemd[1]: session-2.scope: Deactivated successfully.
+Sep 15 10:18:53 client2 systemd[1]: session-2.scope: Consumed 2.363s CPU time.
+Sep 15 10:18:53 client2 systemd[1]: Started Session 7 of User student.
+Sep 15 10:18:53 client2 systemd[1]: session-7.scope: Deactivated successfully.
+Sep 15 10:18:54 client2 systemd[1]: Started Session 8 of User student.
+Sep 15 10:18:54 client2 systemd[1]: session-8.scope: Deactivated successfully.
+Sep 15 10:18:54 client2 systemd[1]: Started Session 9 of User student.
+Sep 15 10:18:55 client2 python3[1795]: ansible-ansible.legacy.ping Invoked with data=pong
+Sep 15 10:18:55 client2 systemd[1]: session-9.scope: Deactivated successfully.
+Sep 15 10:18:55 client2 systemd[1]: Started Session 10 of User student.
+Sep 15 10:18:55 client2 systemd[1]: session-10.scope: Deactivated successfully.
+Sep 15 10:19:06 client2 systemd[1]: Stopping User Manager for UID 1000...
+Sep 15 10:19:06 client2 systemd[1381]: Stopped target Main User Target.
+Sep 15 10:19:06 client2 systemd[1381]: Stopped target Basic System.
+Sep 15 10:19:06 client2 systemd[1381]: Stopped target Paths.
+Sep 15 10:19:06 client2 systemd[1381]: Stopped target Sockets.
+Sep 15 10:19:06 client2 systemd[1381]: Stopped target Timers.
+Sep 15 10:19:06 client2 systemd[1381]: Closed D-Bus User Message Bus Socket.
+Sep 15 10:19:06 client2 systemd[1381]: Closed GnuPG network certificate management daemon.
+Sep 15 10:19:06 client2 systemd[1381]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 10:19:06 client2 systemd[1381]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 10:19:06 client2 systemd[1381]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 10:19:06 client2 systemd[1381]: Closed GnuPG cryptographic agent and passphrase cache.
+Sep 15 10:19:06 client2 systemd[1381]: Closed debconf communication socket.
+Sep 15 10:19:06 client2 systemd[1381]: Closed REST API socket for snapd user session agent.
+Sep 15 10:19:06 client2 systemd[1381]: Removed slice User Application Slice.
+Sep 15 10:19:06 client2 systemd[1381]: Reached target Shutdown.
+Sep 15 10:19:06 client2 systemd[1381]: Finished Exit the Session.
+Sep 15 10:19:06 client2 systemd[1381]: Reached target Exit the Session.
+Sep 15 10:19:06 client2 systemd[1]: user@1000.service: Deactivated successfully.
+Sep 15 10:19:06 client2 systemd[1]: Stopped User Manager for UID 1000.
+Sep 15 10:19:06 client2 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Sep 15 10:19:06 client2 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Sep 15 10:19:06 client2 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Sep 15 10:19:06 client2 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Sep 15 10:19:06 client2 systemd[1]: Removed slice User Slice of UID 1000.
+Sep 15 10:19:06 client2 systemd[1]: user-1000.slice: Consumed 3.101s CPU time.
+Sep 15 10:20:50 client2 systemd[1]: Created slice User Slice of UID 1000.
+Sep 15 10:20:50 client2 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Sep 15 10:20:50 client2 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Sep 15 10:20:50 client2 systemd[1]: Starting User Manager for UID 1000...
+Sep 15 10:20:50 client2 systemd[1855]: Queued start job for default target Main User Target.
+Sep 15 10:20:50 client2 systemd[1855]: Created slice User Application Slice.
+Sep 15 10:20:50 client2 systemd[1855]: Reached target Paths.
+Sep 15 10:20:50 client2 systemd[1855]: Reached target Timers.
+Sep 15 10:20:50 client2 systemd[1855]: Starting D-Bus User Message Bus Socket...
+Sep 15 10:20:50 client2 systemd[1855]: Listening on GnuPG network certificate management daemon.
+Sep 15 10:20:50 client2 systemd[1855]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 10:20:50 client2 systemd[1855]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 10:20:50 client2 systemd[1855]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 10:20:50 client2 systemd[1855]: Listening on GnuPG cryptographic agent and passphrase cache.
+Sep 15 10:20:50 client2 systemd[1855]: Listening on debconf communication socket.
+Sep 15 10:20:50 client2 systemd[1855]: Listening on REST API socket for snapd user session agent.
+Sep 15 10:20:50 client2 systemd[1855]: Listening on D-Bus User Message Bus Socket.
+Sep 15 10:20:50 client2 systemd[1855]: Reached target Sockets.
+Sep 15 10:20:50 client2 systemd[1855]: Reached target Basic System.
+Sep 15 10:20:50 client2 systemd[1]: Started User Manager for UID 1000.
+Sep 15 10:20:50 client2 systemd[1]: Started Session 11 of User student.
+Sep 15 10:20:50 client2 systemd[1855]: Reached target Main User Target.
+Sep 15 10:20:50 client2 systemd[1855]: Startup finished in 92ms.
+Sep 15 10:20:50 client2 systemd[1]: session-11.scope: Deactivated successfully.
+Sep 15 10:20:51 client2 systemd[1]: Started Session 13 of User student.
+Sep 15 10:20:51 client2 systemd[1]: session-13.scope: Deactivated successfully.
+Sep 15 10:20:52 client2 systemd[1]: Started Session 14 of User student.
+Sep 15 10:20:52 client2 systemd[1]: session-14.scope: Deactivated successfully.
+Sep 15 10:20:52 client2 systemd[1]: Started Session 15 of User student.
+Sep 15 10:20:53 client2 systemd[1]: session-15.scope: Deactivated successfully.
+Sep 15 10:20:53 client2 systemd[1]: Started Session 16 of User student.
+Sep 15 10:20:53 client2 systemd[1]: session-16.scope: Deactivated successfully.
+Sep 15 10:20:54 client2 systemd[1]: Started Session 17 of User student.
+Sep 15 10:20:54 client2 systemd[1]: session-17.scope: Deactivated successfully.
+Sep 15 10:20:55 client2 systemd[1]: Started Session 18 of User student.
+Sep 15 10:20:55 client2 python3[2245]: ansible-apt Invoked with name=['auditd', 'audispd-plugins'] update_cache=True state=present package=['auditd', 'audispd-plugins'] update_cache_retries=5 update_cache_retry_max_delay=12 cache_valid_time=0 purge=False force=False upgrade=no dpkg_options=force-confdef,force-confold autoremove=False autoclean=False fail_on_autoremove=False only_upgrade=False force_apt_get=False clean=False allow_unauthenticated=False allow_downgrade=False allow_change_held_packages=False lock_timeout=60 deb=None default_release=None install_recommends=None policy_rc_d=None
+Sep 15 10:20:55 client2 systemd[1]: Starting Update APT News...
+Sep 15 10:20:55 client2 systemd[1]: Starting Update the local ESM caches...
+Sep 15 10:20:56 client2 python3[2256]: ["2026-09-15T10:20:56.088", "INFO", "ubuntupro.system", "get_cpu_info", 296, "could not open /proc/sysinfo", {}]
+Sep 15 10:20:56 client2 python3[2256]: ["2026-09-15T10:20:56.089", "INFO", "ubuntupro.system", "get_cpu_info", 306, "could not open /sys/firmware/devicetree/base/model", {}]
+Sep 15 10:20:56 client2 systemd[1]: apt-news.service: Deactivated successfully.
+Sep 15 10:20:56 client2 systemd[1]: Finished Update APT News.
+Sep 15 10:21:02 client2 systemd[1]: esm-cache.service: Deactivated successfully.
+Sep 15 10:21:02 client2 systemd[1]: Finished Update the local ESM caches.
+Sep 15 10:21:05 client2 dbus-daemon[674]: [system] Activating via systemd: service name='org.freedesktop.PackageKit' unit='packagekit.service' requested by ':1.48' (uid=0 pid=2553 comm="/usr/bin/gdbus call --system --dest org.freedeskto" label="unconfined")
+Sep 15 10:21:05 client2 systemd[1]: Starting PackageKit Daemon...
+Sep 15 10:21:05 client2 PackageKit: daemon start
+Sep 15 10:21:05 client2 dbus-daemon[674]: [system] Successfully activated service 'org.freedesktop.PackageKit'
+Sep 15 10:21:05 client2 systemd[1]: Started PackageKit Daemon.
+Sep 15 10:21:16 client2 systemd[1]: Reloading.
+Sep 15 10:21:16 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Sep 15 10:21:16 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Sep 15 10:21:16 client2 systemd[1]: Reloading.
+Sep 15 10:21:16 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Sep 15 10:21:16 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Sep 15 10:21:16 client2 systemd[1]: Reloading.
+Sep 15 10:21:16 client2 systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+Sep 15 10:21:16 client2 systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Sep 15 10:21:17 client2 systemd[1]: Starting Security Auditing Service...
+Sep 15 10:21:17 client2 auditd[2830]: No plugins found, not dispatching events
+Sep 15 10:21:17 client2 auditd[2830]: Init complete, auditd 3.0.7 listening for events (startup state enable)
+Sep 15 10:21:17 client2 augenrules[2833]: /sbin/augenrules: No change
+Sep 15 10:21:17 client2 augenrules[2843]: No rules
+Sep 15 10:21:17 client2 augenrules[2843]: enabled 1
+Sep 15 10:21:17 client2 augenrules[2843]: failure 1
+Sep 15 10:21:17 client2 augenrules[2843]: pid 2830
+Sep 15 10:21:17 client2 augenrules[2843]: rate_limit 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_limit 8192
+Sep 15 10:21:17 client2 augenrules[2843]: lost 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_wait_time 15000
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_wait_time_actual 0
+Sep 15 10:21:17 client2 augenrules[2843]: enabled 1
+Sep 15 10:21:17 client2 augenrules[2843]: failure 1
+Sep 15 10:21:17 client2 augenrules[2843]: pid 2830
+Sep 15 10:21:17 client2 augenrules[2843]: rate_limit 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_limit 8192
+Sep 15 10:21:17 client2 augenrules[2843]: lost 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_wait_time 15000
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_wait_time_actual 0
+Sep 15 10:21:17 client2 augenrules[2843]: enabled 1
+Sep 15 10:21:17 client2 augenrules[2843]: failure 1
+Sep 15 10:21:17 client2 augenrules[2843]: pid 2830
+Sep 15 10:21:17 client2 augenrules[2843]: rate_limit 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_limit 8192
+Sep 15 10:21:17 client2 augenrules[2843]: lost 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog 0
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_wait_time 60000
+Sep 15 10:21:17 client2 augenrules[2843]: backlog_wait_time_actual 0
+Sep 15 10:21:17 client2 systemd[1]: Started Security Auditing Service.
+Sep 15 10:21:27 client2 systemd[1]: session-18.scope: Deactivated successfully.
+Sep 15 10:21:27 client2 systemd[1]: session-18.scope: Consumed 22.289s CPU time.
+Sep 15 10:21:28 client2 systemd[1]: Started Session 19 of User student.
+Sep 15 10:21:28 client2 systemd[1]: session-19.scope: Deactivated successfully.
+Sep 15 10:21:31 client2 systemd[1]: Started Session 20 of User student.
+Sep 15 10:21:31 client2 systemd[1]: session-20.scope: Deactivated successfully.
+Sep 15 10:21:32 client2 systemd[1]: Started Session 21 of User student.
+Sep 15 10:21:32 client2 systemd[1]: session-21.scope: Deactivated successfully.
+Sep 15 10:21:33 client2 systemd[1]: Started Session 22 of User student.
+Sep 15 10:21:33 client2 systemd[1]: session-22.scope: Deactivated successfully.
+Sep 15 10:21:34 client2 systemd[1]: Started Session 23 of User student.
+Sep 15 10:21:34 client2 systemd[1]: session-23.scope: Deactivated successfully.
+Sep 15 10:21:35 client2 systemd[1]: Started Session 24 of User student.
+Sep 15 10:21:35 client2 python3[3240]: ansible-ansible.legacy.stat Invoked with path=/etc/audit/rules.d/lab.rules follow=False get_checksum=True checksum_algorithm=sha1 get_mime=True get_attributes=True
+Sep 15 10:21:35 client2 systemd[1]: session-24.scope: Deactivated successfully.
+Sep 15 10:21:35 client2 systemd[1]: Started Session 25 of User student.
+Sep 15 10:21:36 client2 systemd[1]: session-25.scope: Deactivated successfully.
+Sep 15 10:21:36 client2 systemd[1]: Started Session 26 of User student.
+Sep 15 10:21:36 client2 systemd[1]: session-26.scope: Deactivated successfully.
+Sep 15 10:21:37 client2 systemd[1]: Started Session 27 of User student.
+Sep 15 10:21:37 client2 systemd[1]: session-27.scope: Deactivated successfully.
+Sep 15 10:21:38 client2 systemd[1]: Started Session 28 of User student.
+Sep 15 10:21:38 client2 systemd[1]: session-28.scope: Deactivated successfully.
+Sep 15 10:21:39 client2 systemd[1]: Started Session 29 of User student.
+Sep 15 10:21:39 client2 python3[3489]: ansible-ansible.legacy.copy Invoked with dest=/etc/audit/rules.d/lab.rules src=/home/student/.ansible/tmp/ansible-tmp-1789467691.893935-1082303-217598347007900/source _original_basename=tmp8kaq2s6l follow=False checksum=e59734a421da5dee42c981842e098068c1fe208b backup=False force=True unsafe_writes=False content=NOT_LOGGING_PARAMETER validate=None directory_mode=None remote_src=None local_follow=None mode=None owner=None group=None seuser=None serole=None selevel=None setype=None attributes=None
+Sep 15 10:21:39 client2 systemd[1]: session-29.scope: Deactivated successfully.
+Sep 15 10:21:40 client2 systemd[1]: Started Session 30 of User student.
+Sep 15 10:21:40 client2 systemd[1]: session-30.scope: Deactivated successfully.
+Sep 15 10:21:40 client2 systemd[1]: Started Session 31 of User student.
+Sep 15 10:21:41 client2 systemd[1]: session-31.scope: Deactivated successfully.
+Sep 15 10:21:41 client2 systemd[1]: Started Session 32 of User student.
+Sep 15 10:21:41 client2 systemd[1]: session-32.scope: Deactivated successfully.
+Sep 15 10:21:42 client2 systemd[1]: Started Session 33 of User student.
+Sep 15 10:21:42 client2 systemd[1]: session-33.scope: Deactivated successfully.
+Sep 15 10:21:43 client2 systemd[1]: Started Session 34 of User student.
+Sep 15 10:21:43 client2 systemd[1]: session-34.scope: Deactivated successfully.
+Sep 15 10:21:44 client2 systemd[1]: Started Session 35 of User student.
+Sep 15 10:21:44 client2 python3[3794]: ansible-systemd Invoked with name=auditd state=restarted enabled=True daemon_reload=False daemon_reexec=False scope=system no_block=False force=None masked=None
+Sep 15 10:21:44 client2 systemd[1]: Stopping Security Auditing Service...
+Sep 15 10:21:44 client2 auditd[2830]: The audit daemon is exiting.
+Sep 15 10:21:44 client2 systemd[1]: auditd.service: Deactivated successfully.
+Sep 15 10:21:44 client2 systemd[1]: Stopped Security Auditing Service.
+Sep 15 10:21:44 client2 kernel: [ 1411.361165] kauditd_printk_skb: 29 callbacks suppressed
+Sep 15 10:21:44 client2 kernel: [ 1411.361169] audit: type=1305 audit(1789467704.601:220): op=set audit_pid=0 old=2830 auid=4294967295 ses=4294967295 subj=unconfined res=1
+Sep 15 10:21:44 client2 kernel: [ 1411.362400] audit: type=1131 audit(1789467704.601:221): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=unconfined msg='unit=auditd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+Sep 15 10:21:44 client2 systemd[1]: Starting Security Auditing Service...
+Sep 15 10:21:44 client2 auditd[3801]: No plugins found, not dispatching events
+Sep 15 10:21:44 client2 auditd[3801]: Init complete, auditd 3.0.7 listening for events (startup state enable)
+Sep 15 10:21:44 client2 kernel: [ 1411.376972] audit: type=1305 audit(1789467704.617:222): op=set audit_enabled=1 old=1 auid=4294967295 ses=4294967295 subj=unconfined res=1
+Sep 15 10:21:44 client2 kernel: [ 1411.376978] audit: type=1300 audit(1789467704.617:222): arch=c000003e syscall=44 success=yes exit=60 a0=3 a1=7ffde4fcdb90 a2=3c a3=0 items=0 ppid=3800 pid=3801 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="auditd" exe="/usr/sbin/auditd" subj=unconfined key=(null)
+Sep 15 10:21:44 client2 kernel: [ 1411.376982] audit: type=1327 audit(1789467704.617:222): proctitle="/sbin/auditd"
+Sep 15 10:21:44 client2 augenrules[3818]: No rules
+Sep 15 10:21:44 client2 augenrules[3818]: enabled 1
+Sep 15 10:21:44 client2 augenrules[3818]: failure 1
+Sep 15 10:21:44 client2 augenrules[3818]: pid 3801
+Sep 15 10:21:44 client2 augenrules[3818]: rate_limit 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_limit 8192
+Sep 15 10:21:44 client2 augenrules[3818]: lost 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog 3
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_wait_time 60000
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_wait_time_actual 0
+Sep 15 10:21:44 client2 augenrules[3818]: enabled 1
+Sep 15 10:21:44 client2 augenrules[3818]: failure 1
+Sep 15 10:21:44 client2 augenrules[3818]: pid 3801
+Sep 15 10:21:44 client2 augenrules[3818]: rate_limit 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_limit 8192
+Sep 15 10:21:44 client2 augenrules[3818]: lost 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_wait_time 60000
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_wait_time_actual 0
+Sep 15 10:21:44 client2 augenrules[3818]: enabled 1
+Sep 15 10:21:44 client2 augenrules[3818]: failure 1
+Sep 15 10:21:44 client2 augenrules[3818]: pid 3801
+Sep 15 10:21:44 client2 augenrules[3818]: rate_limit 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_limit 8192
+Sep 15 10:21:44 client2 augenrules[3818]: lost 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog 0
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_wait_time 60000
+Sep 15 10:21:44 client2 augenrules[3818]: backlog_wait_time_actual 0
+Sep 15 10:21:44 client2 systemd[1]: Started Security Auditing Service.
+Sep 15 10:21:44 client2 systemd[1]: session-35.scope: Deactivated successfully.
+Sep 15 10:21:45 client2 systemd[1]: Started Session 36 of User student.
+Sep 15 10:21:45 client2 systemd[1]: session-36.scope: Deactivated successfully.
+Sep 15 10:21:55 client2 systemd[1]: Stopping User Manager for UID 1000...
+Sep 15 10:21:55 client2 systemd[1855]: Stopped target Main User Target.
+Sep 15 10:21:55 client2 systemd[1855]: Stopped target Basic System.
+Sep 15 10:21:55 client2 systemd[1855]: Stopped target Paths.
+Sep 15 10:21:55 client2 systemd[1855]: Stopped target Sockets.
+Sep 15 10:21:55 client2 systemd[1855]: Stopped target Timers.
+Sep 15 10:21:55 client2 systemd[1855]: Closed D-Bus User Message Bus Socket.
+Sep 15 10:21:55 client2 systemd[1855]: Closed GnuPG network certificate management daemon.
+Sep 15 10:21:55 client2 systemd[1855]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 10:21:55 client2 systemd[1855]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 10:21:55 client2 systemd[1855]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 10:21:55 client2 systemd[1855]: Closed GnuPG cryptographic agent and passphrase cache.
+Sep 15 10:21:55 client2 systemd[1855]: Closed debconf communication socket.
+Sep 15 10:21:55 client2 systemd[1855]: Closed REST API socket for snapd user session agent.
+Sep 15 10:21:55 client2 systemd[1855]: Removed slice User Application Slice.
+Sep 15 10:21:55 client2 systemd[1855]: Reached target Shutdown.
+Sep 15 10:21:55 client2 systemd[1855]: Finished Exit the Session.
+Sep 15 10:21:55 client2 systemd[1855]: Reached target Exit the Session.
+Sep 15 10:21:55 client2 systemd[1]: user@1000.service: Deactivated successfully.
+Sep 15 10:21:55 client2 systemd[1]: Stopped User Manager for UID 1000.
+Sep 15 10:21:55 client2 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Sep 15 10:21:55 client2 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Sep 15 10:21:55 client2 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Sep 15 10:21:55 client2 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Sep 15 10:21:55 client2 systemd[1]: Removed slice User Slice of UID 1000.
+Sep 15 10:21:55 client2 systemd[1]: user-1000.slice: Consumed 24.927s CPU time.
+Sep 15 10:25:35 client2 systemd[1]: Created slice User Slice of UID 1000.
+Sep 15 10:25:35 client2 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Sep 15 10:25:35 client2 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Sep 15 10:25:35 client2 systemd[1]: Starting User Manager for UID 1000...
+Sep 15 10:25:36 client2 systemd[3883]: Queued start job for default target Main User Target.
+Sep 15 10:25:36 client2 systemd[3883]: Created slice User Application Slice.
+Sep 15 10:25:36 client2 systemd[3883]: Reached target Paths.
+Sep 15 10:25:36 client2 systemd[3883]: Reached target Timers.
+Sep 15 10:25:36 client2 systemd[3883]: Starting D-Bus User Message Bus Socket...
+Sep 15 10:25:36 client2 systemd[3883]: Listening on GnuPG network certificate management daemon.
+Sep 15 10:25:36 client2 systemd[3883]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 10:25:36 client2 systemd[3883]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 10:25:36 client2 systemd[3883]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 10:25:36 client2 systemd[3883]: Listening on GnuPG cryptographic agent and passphrase cache.
+Sep 15 10:25:36 client2 systemd[3883]: Listening on debconf communication socket.
+Sep 15 10:25:36 client2 systemd[3883]: Listening on REST API socket for snapd user session agent.
+Sep 15 10:25:36 client2 systemd[3883]: Listening on D-Bus User Message Bus Socket.
+Sep 15 10:25:36 client2 systemd[3883]: Reached target Sockets.
+Sep 15 10:25:36 client2 systemd[3883]: Reached target Basic System.
+Sep 15 10:25:36 client2 systemd[1]: Started User Manager for UID 1000.
+Sep 15 10:25:36 client2 systemd[1]: Started Session 37 of User student.
+Sep 15 10:25:36 client2 systemd[3883]: Reached target Main User Target.
+Sep 15 10:25:36 client2 systemd[3883]: Startup finished in 84ms.
+Sep 15 10:25:36 client2 systemd[1]: session-37.scope: Deactivated successfully.
+Sep 15 10:25:46 client2 systemd[1]: Stopping User Manager for UID 1000...
+Sep 15 10:25:46 client2 systemd[3883]: Stopped target Main User Target.
+Sep 15 10:25:46 client2 systemd[3883]: Stopped target Basic System.
+Sep 15 10:25:46 client2 systemd[3883]: Stopped target Paths.
+Sep 15 10:25:46 client2 systemd[3883]: Stopped target Sockets.
+Sep 15 10:25:46 client2 systemd[3883]: Stopped target Timers.
+Sep 15 10:25:46 client2 systemd[3883]: Closed D-Bus User Message Bus Socket.
+Sep 15 10:25:46 client2 systemd[3883]: Closed GnuPG network certificate management daemon.
+Sep 15 10:25:46 client2 systemd[3883]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 10:25:46 client2 systemd[3883]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 10:25:46 client2 systemd[3883]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 10:25:46 client2 systemd[3883]: Closed GnuPG cryptographic agent and passphrase cache.
+Sep 15 10:25:46 client2 systemd[3883]: Closed debconf communication socket.
+Sep 15 10:25:46 client2 systemd[3883]: Closed REST API socket for snapd user session agent.
+Sep 15 10:25:46 client2 systemd[3883]: Removed slice User Application Slice.
+Sep 15 10:25:46 client2 systemd[3883]: Reached target Shutdown.
+Sep 15 10:25:46 client2 systemd[3883]: Finished Exit the Session.
+Sep 15 10:25:46 client2 systemd[3883]: Reached target Exit the Session.
+Sep 15 10:25:46 client2 systemd[1]: user@1000.service: Deactivated successfully.
+Sep 15 10:25:46 client2 systemd[1]: Stopped User Manager for UID 1000.
+Sep 15 10:25:46 client2 systemd[1]: Stopping User Runtime Directory /run/user/1000...
+Sep 15 10:25:46 client2 systemd[1]: run-user-1000.mount: Deactivated successfully.
+Sep 15 10:25:46 client2 systemd[1]: user-runtime-dir@1000.service: Deactivated successfully.
+Sep 15 10:25:46 client2 systemd[1]: Stopped User Runtime Directory /run/user/1000.
+Sep 15 10:25:46 client2 systemd[1]: Removed slice User Slice of UID 1000.
+Sep 15 10:36:20 client2 systemd-resolved[588]: Clock change detected. Flushing caches.
+Sep 15 11:09:29 client2 systemd[1]: Created slice User Slice of UID 1000.
+Sep 15 11:09:29 client2 systemd[1]: Starting User Runtime Directory /run/user/1000...
+Sep 15 11:09:29 client2 systemd[1]: Finished User Runtime Directory /run/user/1000.
+Sep 15 11:09:29 client2 systemd[1]: Starting User Manager for UID 1000...
+Sep 15 11:09:29 client2 systemd[3960]: Queued start job for default target Main User Target.
+Sep 15 11:09:29 client2 systemd[3960]: Created slice User Application Slice.
+Sep 15 11:09:29 client2 systemd[3960]: Reached target Paths.
+Sep 15 11:09:29 client2 systemd[3960]: Reached target Timers.
+Sep 15 11:09:29 client2 systemd[3960]: Starting D-Bus User Message Bus Socket...
+Sep 15 11:09:29 client2 systemd[3960]: Listening on GnuPG network certificate management daemon.
+Sep 15 11:09:29 client2 systemd[3960]: Listening on GnuPG cryptographic agent and passphrase cache (access for web browsers).
+Sep 15 11:09:29 client2 systemd[3960]: Listening on GnuPG cryptographic agent and passphrase cache (restricted).
+Sep 15 11:09:29 client2 systemd[3960]: Listening on GnuPG cryptographic agent (ssh-agent emulation).
+Sep 15 11:09:29 client2 systemd[3960]: Listening on GnuPG cryptographic agent and passphrase cache.
+Sep 15 11:09:29 client2 systemd[3960]: Listening on debconf communication socket.
+Sep 15 11:09:29 client2 systemd[3960]: Listening on REST API socket for snapd user session agent.
+Sep 15 11:09:29 client2 systemd[3960]: Listening on D-Bus User Message Bus Socket.
+Sep 15 11:09:29 client2 systemd[3960]: Reached target Sockets.
+Sep 15 11:09:29 client2 systemd[3960]: Reached target Basic System.
+Sep 15 11:09:29 client2 systemd[1]: Started User Manager for UID 1000.
+Sep 15 11:09:29 client2 systemd[1]: Started Session 39 of User student.
+Sep 15 11:09:29 client2 systemd[3960]: Reached target Main User Target.
+Sep 15 11:09:29 client2 systemd[3960]: Startup finished in 74ms.
+Sep 15 11:09:29 client2 systemd[1]: session-39.scope: Deactivated successfully.
+Sep 15 11:09:30 client2 systemd[1]: Started Session 41 of User student.
+Sep 15 11:09:30 client2 systemd[1]: session-41.scope: Deactivated successfully.
+Sep 15 11:09:31 client2 systemd[1]: Started Session 42 of User student.
+Sep 15 11:09:31 client2 systemd[1]: session-42.scope: Deactivated successfully.
+Sep 15 11:09:31 client2 systemd[1]: Started Session 43 of User student.
+Sep 15 11:09:32 client2 systemd[1]: session-43.scope: Deactivated successfully.
+Sep 15 11:09:32 client2 systemd[1]: Started Session 44 of User student.
+Sep 15 11:09:32 client2 systemd[1]: session-44.scope: Deactivated successfully.
+Sep 15 11:09:33 client2 systemd[1]: Started Session 45 of User student.
+Sep 15 11:09:33 client2 systemd[1]: session-45.scope: Deactivated successfully.
+Sep 15 11:09:34 client2 systemd[1]: Started Session 46 of User student.
+Sep 15 11:09:34 client2 python3[4329]: ansible-ansible.legacy.slurp Invoked with src=/var/log/audit/audit.log
+Sep 15 11:09:34 client2 systemd[1]: session-46.scope: Deactivated successfully.
+Sep 15 11:09:35 client2 systemd[1]: Started Session 47 of User student.
+Sep 15 11:09:35 client2 systemd[1]: session-47.scope: Deactivated successfully.
+Sep 15 11:09:36 client2 systemd[1]: Started Session 48 of User student.
+Sep 15 11:09:36 client2 systemd[1]: session-48.scope: Deactivated successfully.
+Sep 15 11:09:37 client2 systemd[1]: Started Session 49 of User student.
+Sep 15 11:09:37 client2 systemd[1]: session-49.scope: Deactivated successfully.
+Sep 15 11:09:37 client2 systemd[1]: Started Session 50 of User student.
+Sep 15 11:09:38 client2 systemd[1]: session-50.scope: Deactivated successfully.
+Sep 15 11:09:38 client2 systemd[1]: Started Session 51 of User student.
+Sep 15 11:09:38 client2 systemd[1]: session-51.scope: Deactivated successfully.
+Sep 15 11:09:39 client2 systemd[1]: Started Session 52 of User student.
+Sep 15 11:09:39 client2 systemd[1]: session-52.scope: Deactivated successfully.
+Sep 15 11:09:40 client2 systemd[1]: Started Session 53 of User student.
+Sep 15 11:09:40 client2 systemd[1]: session-53.scope: Deactivated successfully.
+Sep 15 11:09:40 client2 systemd[1]: Started Session 54 of User student.
+Sep 15 11:09:41 client2 python3[4735]: ansible-ansible.legacy.slurp Invoked with src=/var/log/syslog

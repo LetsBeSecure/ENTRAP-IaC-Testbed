@@ -1,0 +1,230 @@
+---
+# collect_logs.yml
+# Fetches all log sources from lab VMs to the Ansible controller (host machine).
+# Run after each attack scenario to snapshot the logs for that run.
+#
+# Usage:
+#   ansible-playbook playbooks/collect_logs.yml -e "run_name=gonnacry"
+#   ansible-playbook playbooks/collect_logs.yml -e "run_name=baseline"
+#   ansible-playbook playbooks/collect_logs.yml -e "run_name=nmap_scan"
+#
+# Output: dataset/logs/<YYYYMMDDTHHMMSS>_<run_name>/<host>/<logfile>
+# Labels: dataset/labels.jsonl  (written by scripts/run_attack.sh)
+
+# ── Play 1: Create timestamped local collection directory ─────────────────────
+- name: Prepare local collection directory
+  hosts: localhost
+  gather_facts: true
+
+  tasks:
+    - name: Set timestamped run directory
+      set_fact:
+        run_dir: "{{ playbook_dir }}/../dataset/logs/{{ ansible_date_time.iso8601_basic_short }}_{{ run_name | default('unknown') }}"
+        cacheable: true
+
+    - name: Create run directory
+      file:
+        path: "{{ run_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Print collection path
+      debug:
+        msg: "Collecting logs to: {{ run_dir }}"
+
+# ── Play 2: Discover active clients ──────────────────────────────────────────
+- name: Discover active clients from DHCP leases
+  hosts: dhcp
+  gather_facts: false
+
+  tasks:
+    - name: Read active client IPs
+      shell: >
+        awk -F',' 'NR>1 && $10=="0" {print $1}'
+        /var/lib/kea/kea-leases4.csv /var/lib/kea/kea-leases4.csv.2
+        2>/dev/null | sort -u
+      register: discovered_ips
+      changed_when: false
+
+    - name: Add clients to inventory
+      add_host:
+        name: "{{ item }}"
+        groups: collect_clients
+        ansible_user: "{{ client_user }}"
+        ansible_password: "{{ client_password }}"
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
+          -o StrictHostKeyChecking=no
+          -o UserKnownHostsFile=/dev/null
+          -W %h:%p {{ infra_admin_user }}@{{ (vms | selectattr('name', 'equalto', 'gateway1') | first).wan_ip }}"
+      loop: "{{ discovered_ips.stdout_lines }}"
+      when: discovered_ips.stdout_lines | length > 0
+
+# ── Play 3: gateway1 — Suricata EVE JSON ─────────────────────────────────────
+- name: Collect Suricata logs from gateway1
+  hosts: gateway
+  gather_facts: false
+
+  vars:
+    run_dir: "{{ hostvars['localhost']['run_dir'] }}"
+
+  tasks:
+    - name: Fetch all Suricata EVE JSON logs (split per protocol)
+      fetch:
+        src: "/var/log/suricata/{{ item }}"
+        dest: "{{ run_dir }}/gateway1/"
+        flat: true
+        fail_on_missing: false
+      loop:
+        - eve-alert.json
+        - eve-dns.json
+        - eve-http.json
+        - eve-tls.json
+        - eve-flow.json
+        - eve-smb.json
+        - eve-anomaly.json
+        - fast.log
+        - suricata.log
+
+    - name: Fetch gateway syslog
+      fetch:
+        src: /var/log/syslog
+        dest: "{{ run_dir }}/gateway1/"
+        flat: true
+        fail_on_missing: false
+
+# ── Play 4: clients — auditd + syslog ────────────────────────────────────────
+- name: Collect logs from clients
+  hosts: collect_clients
+  become: true
+  gather_facts: false
+
+  vars:
+    run_dir: "{{ hostvars['localhost']['run_dir'] }}"
+
+  tasks:
+    - name: Fetch audit.log (rename storm, exec, connect, file access)
+      fetch:
+        src: /var/log/audit/audit.log
+        dest: "{{ run_dir }}/{{ inventory_hostname }}/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch syslog
+      fetch:
+        src: /var/log/syslog
+        dest: "{{ run_dir }}/{{ inventory_hostname }}/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch auth.log
+      fetch:
+        src: /var/log/auth.log
+        dest: "{{ run_dir }}/{{ inventory_hostname }}/"
+        flat: true
+        fail_on_missing: false
+
+# ── Play 5: dns1 — BIND query log ────────────────────────────────────────────
+- name: Collect logs from dns1
+  hosts: dns
+  gather_facts: false
+
+  vars:
+    run_dir: "{{ hostvars['localhost']['run_dir'] }}"
+
+  tasks:
+    - name: Fetch DNS query log (all queries — DGA detection, C2 domain lookups)
+      fetch:
+        src: /var/log/named/query.log
+        dest: "{{ run_dir }}/dns1/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch syslog
+      fetch:
+        src: /var/log/syslog
+        dest: "{{ run_dir }}/dns1/"
+        flat: true
+        fail_on_missing: false
+
+# ── Play 6: dhcp1 — kea leases + syslog ──────────────────────────────────────
+- name: Collect logs from dhcp1
+  hosts: dhcp
+  gather_facts: false
+
+  vars:
+    run_dir: "{{ hostvars['localhost']['run_dir'] }}"
+
+  tasks:
+    - name: Fetch syslog (kea lease events)
+      fetch:
+        src: /var/log/syslog
+        dest: "{{ run_dir }}/dhcp1/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch kea lease file (client IP mapping for dataset correlation)
+      fetch:
+        src: /var/lib/kea/kea-leases4.csv
+        dest: "{{ run_dir }}/dhcp1/"
+        flat: true
+        fail_on_missing: false
+
+# ── Play 7: backup1 — Samba VFS audit in syslog ──────────────────────────────
+- name: Collect logs from backup1
+  hosts: backup
+  gather_facts: false
+
+  vars:
+    run_dir: "{{ hostvars['localhost']['run_dir'] }}"
+
+  tasks:
+    - name: Fetch syslog (contains Samba VFS full_audit entries on LOCAL7)
+      fetch:
+        src: /var/log/syslog
+        dest: "{{ run_dir }}/backup1/"
+        flat: true
+        fail_on_missing: false
+
+# ── Play 8: web1 — web access log ────────────────────────────────────────────
+- name: Collect logs from web1
+  hosts: web
+  gather_facts: false
+
+  vars:
+    run_dir: "{{ hostvars['localhost']['run_dir'] }}"
+
+  tasks:
+    - name: Fetch nginx access log
+      fetch:
+        src: /var/log/nginx/access.log
+        dest: "{{ run_dir }}/web1/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch apache2 access log
+      fetch:
+        src: /var/log/apache2/access.log
+        dest: "{{ run_dir }}/web1/"
+        flat: true
+        fail_on_missing: false
+
+    - name: Fetch syslog
+      fetch:
+        src: /var/log/syslog
+        dest: "{{ run_dir }}/web1/"
+        flat: true
+        fail_on_missing: false
+
+# ── Play 9: Summary ───────────────────────────────────────────────────────────
+- name: Print summary
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Show collection path
+      debug:
+        msg: >
+          Collection complete.
+          Logs: {{ run_dir }}
+          Next: python3 scripts/export_dataset.py
