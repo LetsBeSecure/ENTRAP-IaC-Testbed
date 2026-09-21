@@ -1,0 +1,8 @@
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: entrap-awx
+spec:
+  service_type: NodePort
+  projects_persistence: true
+  projects_storage_size: 2Gi
