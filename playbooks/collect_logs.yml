@@ -75,6 +75,7 @@
         dest: "{{ run_dir }}/gateway1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
       loop:
         - eve-alert.json
         - eve-dns.json
@@ -92,6 +93,7 @@
         dest: "{{ run_dir }}/gateway1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
 # ── Play 4: clients — auditd + syslog ────────────────────────────────────────
 - name: Collect logs from clients
@@ -109,6 +111,7 @@
         dest: "{{ run_dir }}/{{ inventory_hostname }}/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch syslog
       fetch:
@@ -116,6 +119,7 @@
         dest: "{{ run_dir }}/{{ inventory_hostname }}/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch auth.log
       fetch:
@@ -123,6 +127,7 @@
         dest: "{{ run_dir }}/{{ inventory_hostname }}/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Find MitM pcap captures (mitm_intercept.sh or dhcp_attack_combined.sh INTERCEPT=1)
       shell: "find /home/{{ client_user }} -maxdepth 2 -name 'mitm_capture_*.pcap' 2>/dev/null"
@@ -136,6 +141,7 @@
         dest: "{{ run_dir }}/{{ inventory_hostname }}/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
       loop: "{{ pcap_files.stdout_lines }}"
       when: pcap_files.stdout_lines | length > 0
 
@@ -154,6 +160,7 @@
         dest: "{{ run_dir }}/dns1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch syslog
       fetch:
@@ -161,6 +168,7 @@
         dest: "{{ run_dir }}/dns1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
 # ── Play 6: dhcp1 — kea leases + syslog ──────────────────────────────────────
 - name: Collect logs from dhcp1
@@ -177,6 +185,7 @@
         dest: "{{ run_dir }}/dhcp1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch syslog (fallback — Kea itself logs to kea-dhcp4.log, not syslog)
       fetch:
@@ -184,6 +193,7 @@
         dest: "{{ run_dir }}/dhcp1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch kea lease file (client IP mapping for dataset correlation)
       fetch:
@@ -191,6 +201,7 @@
         dest: "{{ run_dir }}/dhcp1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
 # ── Play 7: backup1 — Samba VFS audit in syslog ──────────────────────────────
 - name: Collect logs from backup1
@@ -207,6 +218,7 @@
         dest: "{{ run_dir }}/backup1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
 # ── Play 8: web1 — web access log ────────────────────────────────────────────
 - name: Collect logs from web1
@@ -223,6 +235,7 @@
         dest: "{{ run_dir }}/web1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch apache2 access log
       fetch:
@@ -230,6 +243,7 @@
         dest: "{{ run_dir }}/web1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
     - name: Fetch syslog
       fetch:
@@ -237,6 +251,7 @@
         dest: "{{ run_dir }}/web1/"
         flat: true
         fail_on_missing: false
+      ignore_errors: true
 
 # ── Play 9: Summary ───────────────────────────────────────────────────────────
 - name: Print summary
