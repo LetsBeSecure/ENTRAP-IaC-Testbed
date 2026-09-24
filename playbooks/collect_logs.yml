@@ -19,7 +19,7 @@
   tasks:
     - name: Set timestamped run directory
       set_fact:
-        run_dir: "{{ playbook_dir }}/../dataset/logs/{{ ansible_date_time.iso8601_basic_short }}_{{ run_name | default('unknown') }}"
+        run_dir: "/mnt/entrap-logs/{{ student_id | default('unknown_student') }}/{{ ansible_date_time.iso8601_basic_short }}_{{ run_name | default('unknown') }}"
         cacheable: true
 
     - name: Create run directory
