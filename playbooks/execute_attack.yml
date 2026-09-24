@@ -21,7 +21,7 @@
         attacker_ip: "{{ lease_output.stdout_lines[1] | default(lease_output.stdout_lines[0] | default('10.10.20.153')) }}"
         attack_type: "{{ attack_type | default('dhcp_exhaustion') }}"
         student_id: "{{ student_id | default('unknown') }}"
-      cacheable: true
+        cacheable: true
 
     - name: Show plan
       debug:
