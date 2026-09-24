@@ -8,7 +8,7 @@
       shell: >
         ssh -i {{ infra_ssh_private_key_path }}
         -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-        -o ProxyJump=admin@{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}
+        -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p admin@{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}"
         admin@10.10.10.2
         "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' /var/lib/kea/kea-leases4.csv"
       register: lease_output
