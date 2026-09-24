@@ -1,0 +1,91 @@
+---
+- name: Check testbed readiness
+  hosts: localhost
+  gather_facts: true
+  vars:
+    gateway_ip: "{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}"
+    c2_ip: "{{ c2server_ip }}"
+  tasks:
+    - name: "Check 1: Gateway reachable"
+      shell: >
+        ssh -i {{ infra_ssh_private_key_path }}
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -o ConnectTimeout=10
+        admin@{{ gateway_ip }} "hostname"
+      register: gw_check
+      ignore_errors: true
+
+    - name: "Check 2: Detect active client leases"
+      shell: >
+        ssh -i {{ infra_ssh_private_key_path }}
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -o ProxyJump=admin@{{ gateway_ip }}
+        admin@10.10.10.2
+        "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' /var/lib/kea/kea-leases4.csv"
+      register: lease_check
+      ignore_errors: true
+
+    - name: Set client IPs
+      set_fact:
+        active_clients: "{{ lease_check.stdout_lines | default([]) }}"
+
+    - name: "Check 3: SSH to first client"
+      shell: >
+        sshpass -p student ssh
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -o ConnectTimeout=10
+        -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -W %h:%p admin@{{ gateway_ip }}"
+        student@{{ active_clients[0] | default('10.10.20.152') }}
+        "hostname"
+      register: client_check
+      ignore_errors: true
+
+    - name: "Check 4: Look for attack artifacts"
+      shell: >
+        sshpass -p student ssh
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -o ConnectTimeout=10
+        -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -W %h:%p admin@{{ gateway_ip }}"
+        student@{{ active_clients[0] | default('10.10.20.152') }}
+        "test -f ~/RANSOM_NOTE.txt && echo 'DIRTY:ransom_note' || true;
+         test -f /tmp/gonnacry && echo 'DIRTY:gonnacry_binary' || true;
+         test -f /tmp/nmap_results.txt && echo 'DIRTY:nmap_results' || true;
+         ls ~/Documents/*.GNNCRY 2>/dev/null | head -1 | xargs -I{} echo 'DIRTY:encrypted_files' || true;
+         echo 'CHECK_DONE'"
+      register: artifact_check
+      ignore_errors: true
+
+    - name: Parse cleanliness
+      set_fact:
+        dirty_items: "{{ artifact_check.stdout_lines | select('match', '^DIRTY:') | list }}"
+
+    - name: "Check 5: C2 server"
+      shell: >
+        ssh -i {{ infra_ssh_private_key_path }}
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        admin@{{ c2_ip }}
+        "curl -s --connect-timeout 5 http://localhost/ > /dev/null 2>&1 && echo UP || echo DOWN"
+      register: c2_check
+      ignore_errors: true
+
+    - name: Testbed readiness report
+      debug:
+        msg: |
+          ════════════════════════════════════════════════
+          TESTBED READINESS REPORT
+          ════════════════════════════════════════════════
+          Gateway:     {{ '✓ OK' if gw_check.rc == 0 else '✗ FAIL' }}
+          Clients:     {{ active_clients | length }} active ({{ active_clients | join(', ') }})
+          SSH access:  {{ '✓ OK' if client_check.rc == 0 else '✗ FAIL' }}
+          Clean state: {{ '✓ CLEAN' if dirty_items | length == 0 else '✗ DIRTY (' ~ dirty_items | join(', ') ~ ')' }}
+          C2 server:   {{ '✓ OK' if 'UP' in (c2_check.stdout | default('')) else '⚠ DOWN' }}
+          ════════════════════════════════════════════════
+
+    - name: Fail if not ready
+      fail:
+        msg: "Testbed not ready. Gateway unreachable or no active clients."
+      when: gw_check.rc != 0 or active_clients | length == 0

