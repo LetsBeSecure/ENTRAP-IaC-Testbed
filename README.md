@@ -1,8 +1,8 @@
-# 🔐 Ransomware Testbed using Ansible and KVM
+# 🔐 ENTRAP Cyber Range using Ansible and KVM
 
-A fully automated enterprise ransomware cyber-range built using **Ansible**, **KVM/QEMU**, **Libvirt**, **Cloud-init**, and **Ubuntu Server Cloud Images**.
+A fully automated enterprise cyber range built using **Ansible**, **KVM/QEMU**, **Libvirt**, **Cloud-init**, and **Ubuntu Server Cloud Images**.
 
-The testbed provides a reproducible, isolated, enterprise-style environment for ransomware behavior analysis, malware execution testing, backup and recovery validation, DNS/DHCP infrastructure testing, incident response experiments, and network traffic analysis.
+The cyber range provides a reproducible, isolated, enterprise-style environment for ransomware behavior analysis, malware execution testing, backup and recovery validation, DNS/DHCP infrastructure testing, incident response experiments, and network traffic analysis.
 
 ---
 
